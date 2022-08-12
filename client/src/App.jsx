@@ -2,12 +2,12 @@ import React from 'react';
 import './App.scss';
 // eslint-disable-next-line no-unused-vars
 import { Route, Routes } from 'react-router-dom';
-import Header from './components/Header/Header';
+import ClientDataForm from './components/ClientDataForm/ClientDataForm';
 
 function App() {
 	return (
 		<>
-			<Header />
+			<ClientDataForm />
 			<Routes>{/* <Route path="/" element={<Main />}></Route> */}</Routes>
 			{/* <Footer /> */}
 		</>
