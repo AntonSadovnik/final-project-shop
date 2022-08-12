@@ -1,16 +1,23 @@
 import React from 'react';
 import './App.scss';
-// eslint-disable-next-line no-unused-vars
-import { Route, Routes } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
 import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
 
 function App() {
 	return (
-		<>
-			<Header />
-			<Routes>{/* <Route path="/" element={<Main />}></Route> */}</Routes>
-			{/* <Footer /> */}
-		</>
+		<Grid container justifyContent="center">
+			<Grid item xs={2}>
+				<Nav />
+			</Grid>
+			<Grid item xs={9}>
+				<Header />
+				<Main />
+				<Footer />
+			</Grid>
+		</Grid>
 	);
 }
 
