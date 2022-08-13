@@ -1,0 +1,24 @@
+.header {
+	&__phone-number {
+		color: #ff9846;
+	}
+	&__links {
+		color: #111111;
+		text-decoration: none;
+		&:hover {
+			color: #ff9846;
+		}
+		&:first-of-type {
+			margin-right: 10px;
+		}
+	}
+	&__buttons {
+		padding: 0;
+		&:hover {
+			background: none;
+		}
+	}
+}
+.watch-ico {
+	margin-right: 5px;
+}

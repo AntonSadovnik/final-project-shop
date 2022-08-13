@@ -6,27 +6,8 @@ import ListItemText from '@mui/material/ListItemText';
 // import Typography from '@mui/material/Typography';
 // import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
-
-const CustomList = styled(List)(
-	({ theme }) => `
-    padding-bottom: 60px;
-    & li{
-        margin-bottom: 20px;
-    }
-    & li:last-of-type{
-        margin-bottom: 0;
-    }
-    & a {
-        color: ${theme.palette.text.primary};
-        text-decoration: none;
-    }
-    & a:hover {
-        color: ${theme.palette.text.hoverText};
-    }
-    `
-);
+import './style.scss';
 
 function Footer() {
 	return (
@@ -37,7 +18,10 @@ function Footer() {
 					<Grid container marginTop="22px" justifyContent="space-between">
 						<Grid item>
 							<Grid container>
-								<CustomList>
+								<List
+									className="footer__content-wrap"
+									style={{ paddingBottom: '60px' }}
+								>
 									<Typography component="li">
 										<a href="/">About company</a>
 									</Typography>
@@ -47,7 +31,7 @@ function Footer() {
 									<Typography component="li">
 										<a href="/">Return policy</a>
 									</Typography>
-								</CustomList>
+								</List>
 							</Grid>
 						</Grid>
 						<Grid item>

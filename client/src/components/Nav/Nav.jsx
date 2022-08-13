@@ -1,35 +1,15 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import { styled } from '@mui/material/styles';
+import {
+	MenuList,
+	MenuItem,
+	ListItemText,
+	ListItemIcon,
+	Typography,
+	Divider,
+	Box,
+} from '@mui/material';
+import './style.scss';
 
-const CustomMenuItem = styled(MenuItem)(
-	({ theme }) => `
-    margin-top: 30px;
-    margin-left: 10px;
-	:hover {
-		background: none;
-		color:${theme.palette.text.hoverText};
-	}
-	& p {
-		font-size: 1.5em;
-		margin-left: 20px;
-	}
-`
-);
-const CustomTypography = styled(Typography)`
-	& {
-		font-weight: 300;
-		font-size: 30px;
-		text-transform: uppercase;
-		margin: 10px 0 30px;
-	}
-`;
 function Nav() {
 	const menuItems = [
 		{
@@ -76,26 +56,31 @@ function Nav() {
 
 	return (
 		<nav>
-			<Box style={{ paddingTop: '25px' }} align="center">
+			<Box className="nav__logo-wrap" align="center">
 				<img
 					src="https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660238641/sushi-shop/Nav/logo_xxz8a9.svg"
 					alt="logo"
 				/>
-				<CustomTypography>Romsem</CustomTypography>
+				<Typography className="nav__logo-title">Romsem</Typography>
 				<Divider />
 			</Box>
 			<MenuList>
 				{menuItems.map((e) => {
 					const { src, alt } = e;
 					return (
-						<CustomMenuItem key={alt} disableGutters disableRipple>
+						<MenuItem
+							className="nav__menu-item"
+							key={alt}
+							disableGutters
+							disableRipple
+						>
 							<ListItemIcon>
 								<img src={src} alt={alt} />
 							</ListItemIcon>
 							<ListItemText>
-								<Typography>{alt}</Typography>
+								<Typography className="nav__menu-text">{alt}</Typography>
 							</ListItemText>
-						</CustomMenuItem>
+						</MenuItem>
 					);
 				})}
 			</MenuList>

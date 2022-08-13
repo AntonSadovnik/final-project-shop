@@ -1,78 +1,42 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import { styled } from '@mui/material/styles';
-
-const CustomPhoneNumber = styled(Box)(
-	({ theme }) => `
-    a{
-        color: ${theme.palette.text.hoverText};
-        margin: 5px 0;
-    }
-`
-);
-const CustomWorkHours = styled(Typography)(
-	({ theme }) => `
-    color: ${theme.palette.text.secondary};
-    font-size: 14px;
-    .watch-ico{
-        margin-right: 5px;
-    }
-    `
-);
-
-const CustomInfoLinks = styled(Grid)(
-	({ theme }) => `
-    & a{
-        text-decoration: none;
-        color: ${theme.palette.text.primary}
-    }
-    & a:hover{
-        color:${theme.palette.text.hoverText}
-    }
-    & a:first-of-type{
-        margin-right: 10px;
-    }
-    & button{
-        padding: 0;
-    }
-    & button:hover{
-        background: none;
-    }
-    `
-);
+import { Grid, Button, Typography, Divider, Box } from '@mui/material';
+import './style.scss';
 
 function Header() {
 	return (
 		<header>
-			<Grid container style={{ backgroundColor: '#F2F2F2' }}>
+			<Grid container backgroundColor="#F2F2F2">
 				<Grid
 					item
 					xs={2}
 					flexDirection="column"
 					align="center"
-					style={{ padding: '6px 0 8px' }}
+					padding="6px 0 8px"
 				>
 					<Typography>Our phone</Typography>
-					<CustomPhoneNumber>
-						<Box>
-							<a href="tel:+996705188955">996 705 188 955</a>
+					<Box>
+						<Box margin="5px 0;">
+							<a className="header__phone-number" href="tel:+996705188955">
+								996 705 188 955
+							</a>
 						</Box>
-						<Box>
-							<a href="tel:+996555188955">996 555 188 955</a>
+						<Box margin="5px 0;">
+							<a className="header__phone-number" href="tel:+996555188955">
+								996 555 188 955
+							</a>
 						</Box>
-					</CustomPhoneNumber>
-					<CustomWorkHours>
+					</Box>
+					<Typography
+						color={(theme) => theme.palette.text.secondary}
+						fontSize="14px"
+					>
 						<img
 							className="watch-ico"
 							src="https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660310827/sushi-shop/header/watch_kgbw0v.svg"
 							alt="watch"
 						/>
 						Work hours: 10:00-00:00
-					</CustomWorkHours>
+					</Typography>
 				</Grid>
 				<Divider
 					flexItem
@@ -86,22 +50,22 @@ function Header() {
 					justifyContent="space-between"
 					alignItems="center"
 				>
-					<Grid item style={{ marginLeft: '10px' }} xs={2}>
-						<Typography style={{ fontSize: '14px', color: '#A4ACAD' }}>
+					<Grid item marginLeft="10px" xs={2}>
+						<Typography fontSize="14px" color="#A4ACAD">
 							City:
 						</Typography>
 					</Grid>
-					<CustomInfoLinks item container justifyContent="space-between" xs={6}>
+					<Grid item container justifyContent="space-between" xs={6}>
 						<Grid item xs={6}>
-							<Typography component="a" href="/">
+							<Typography className="header__links" component="a" href="/">
 								Reviews
 							</Typography>
-							<Typography component="a" href="/">
+							<Typography className="header__links" component="a" href="/">
 								Shipping and payment
 							</Typography>
 						</Grid>
 						<Grid container item xs={4} justifyContent="flex-end">
-							<Button disableRipple size="small">
+							<Button className="header__buttons" disableRipple size="small">
 								<svg
 									version="1.1"
 									xmlns="http://www.w3.org/2000/svg"
@@ -117,14 +81,14 @@ function Header() {
 									</g>
 								</svg>
 							</Button>
-							<Button disableRipple size="small">
+							<Button className="header__buttons" disableRipple size="small">
 								<img
 									src="https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660315914/sushi-shop/header/search_ny57nh.svg"
 									alt="search"
 								/>
 							</Button>
 						</Grid>
-					</CustomInfoLinks>
+					</Grid>
 				</Grid>
 			</Grid>
 			<Divider />
