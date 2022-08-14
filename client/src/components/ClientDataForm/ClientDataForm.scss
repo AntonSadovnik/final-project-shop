@@ -9,6 +9,10 @@
         grid-gap: 20px;
         display: flex;
         padding-bottom: 30px;
+
+        @media (max-width: 600px) {
+            flex-direction: column;
+        }
     }
 
     &__grid-item {
@@ -18,10 +22,18 @@
     &__delivery {
         height: 56px;
         margin-bottom: 23px;
+
+        @media (max-width: 600px) {
+            margin-bottom: 13px;
+        }
     }
 
     &__address {
         height: 225px;
+
+        @media (max-width: 600px) {
+            height: auto;
+        }
     }
 
     &__payment {
@@ -31,6 +43,18 @@
 
     &__change {
         height: 82px;
+
+        @media (max-width: 600px) {
+            height: auto;
+        }
+    }
+
+    &__change-box {
+        height: 147px;
+
+        @media (max-width: 600px) {
+            height: auto;
+        }
     }
 
     &__change-text {
@@ -44,11 +68,32 @@
     }
 
     &__time {
-       height: 56px;
+        height: 56px;
+    }
+
+    &__time-box {
+        height: 56px;
+
+        @media (max-width: 600px) {
+            height: auto;
+        }
     }
 
     &__sticks {
         height: 56px;
         align-items: center;
+
+        @media (max-width: 600px) {
+            height: auto;
+        }
     }
+
+    &__sticks-box {
+        padding-right: 55px;
+        @media (max-width: 420px) {
+            padding-right: 20px;
+        }
+    }
+
+
 }

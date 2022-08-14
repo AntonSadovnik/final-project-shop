@@ -7,7 +7,6 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import {
 	Button,
 	Grid,
@@ -24,9 +23,8 @@ function ClientDataForm() {
 	const [delivery, setDelivery] = React.useState('courier');
 	const [time, setTime] = React.useState('now');
 	const [timePicker, setTimePicker] = React.useState(
-		<div style={{ height: 56 }} />
+		<div className="client-data-form__time-box" />
 	);
-	const [timeValue, setTimeValue] = React.useState(null);
 
 	const validationschema = yup.object({
 		name: yup.string('Enter your name').required('Name is required'),
@@ -143,6 +141,7 @@ function ClientDataForm() {
 		</Grid>
 	);
 
+
 	const handleIncrement = () => {
 		setCounter(counter + 1);
 	};
@@ -162,7 +161,6 @@ function ClientDataForm() {
 				control={<Checkbox defaultChecked />}
 				label="Prepare change with"
 			/>
-
 			<TextField
 				className="client-data-form__change-input"
 				id="summ"
@@ -184,7 +182,7 @@ function ClientDataForm() {
 	) => {
 		setPayment(nextView);
 		if (nextView === 'card') {
-			setChange(<div style={{ height: 147 }} />);
+			setChange(<div className="client-data-form__change-box" />);
 		} else {
 			setChange(
 				<Grid className="client-data-form__change" item xs={8}>
@@ -229,18 +227,23 @@ function ClientDataForm() {
 	) => {
 		setTime(nextView);
 		if (nextView === 'now') {
-			setTimePicker(<div style={{ height: 56}} />);
+			setTimePicker(
+				<div className="client-data-form__time-box"/>
+			);
 		} else {
 			setTimePicker(
-				<LocalizationProvider dateAdapter={AdapterDateFns}>
-					<MobileTimePicker
-						required
+				<LocalizationProvider fullWidth dateAdapter={AdapterDateFns}>
+					<TextField
+						fullWidth
+						id="time"
 						label="Set time"
-						value={timeValue}
-						onChange={(newValue) => {
-							setTimeValue(newValue);
+						type="time"
+						InputLabelProps={{
+							shrink: true,
 						}}
-						renderInput={(params) => <TextField {...params} />}
+						inputProps={{
+							step: 1800,
+						}}
 					/>
 				</LocalizationProvider>
 			);
@@ -283,6 +286,7 @@ function ClientDataForm() {
 						</Grid>
 						<Grid item xs={8}>
 							<ToggleButtonGroup
+								fullWidth
 								className="client-data-form__payment"
 								type="radio"
 								id={payment}
@@ -325,13 +329,13 @@ function ClientDataForm() {
 								helperText={formik.touched.comment && formik.errors.comment}
 							/>
 						</Grid>
-						<Grid item xs={8}>
+						<Grid  item xs={8}>
 							<ButtonGroup
 								className="client-data-form__sticks"
 								size="small"
 								aria-label="small outlined button group"
 							>
-								<Typography style={{ marginRight: 55 }}>
+								<Typography className="client-data-form__sticks-box">
 									Regular sticks & soy sauce
 								</Typography>
 								<Button onClick={handleDecrement}>-</Button>
@@ -360,6 +364,7 @@ function ClientDataForm() {
 					<Grid spacing={1} container columns={8}>
 						<Grid className="client-data-form__address" item xs={8}>
 							<ToggleButtonGroup
+								fullWidth
 								className="client-data-form__delivery"
 								value={delivery}
 								exclusive
@@ -377,6 +382,7 @@ function ClientDataForm() {
 
 						<Grid item xs={8}>
 							<ToggleButtonGroup
+								fullWidth
 								className="client-data-form__time"
 								value={time}
 								exclusive
