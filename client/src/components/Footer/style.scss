@@ -1,5 +1,5 @@
 .footer {
-	&__content-wrap > li {
+	&__links-wrap > li {
 		margin-bottom: 20px;
 		&:last-of-type {
 			margin-bottom: 0;
@@ -11,5 +11,24 @@
 				color: #ff9846;
 			}
 		}
+	}
+	&__socials-wrap {
+		margin-top: 10px;
+		& > div {
+			justify-content: center;
+			& > svg {
+				width: 50px;
+				height: 50px;
+				opacity: 0.5;
+				cursor: pointer;
+			}
+			& > svg:hover {
+				opacity: 1;
+			}
+		}
+	}
+	&__contacts {
+		color: #a4acad;
+		text-decoration: none;
 	}
 }
