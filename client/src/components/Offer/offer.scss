@@ -1,0 +1,103 @@
+.offer_slider{
+  max-width: 950px;
+  position: relative;
+  margin-left: 110px;
+  margin-right: 110px;
+
+
+  &_container{
+    display: inline-block;
+    position: relative;
+  }
+
+  &_item{
+    padding-right: 350px;
+    width: 600px;
+    height: 470px;
+    background-color: #fff;
+  }
+
+  &_title{
+    position: absolute;
+    top: 50px;
+    right: 60px;
+  }
+
+  &_subtitle{
+    position: absolute;
+    top: 90px;
+    right: 60px;
+    color: #F46D40;
+  }
+
+  &_text{
+    position: absolute;
+    top: 200px;
+    right: 60px;
+
+      &_cross{
+        position: absolute;
+        top: 170px;
+        right: 60px;
+        text-decoration: line-through;
+      }
+  }
+
+  &_button{
+    background: #F46D40;
+    color: #fff;
+    border: 0;
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+    border-radius: 2px;
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+  }
+}
+
+.slick-arrow{
+  border: 0;
+  position: absolute;
+  font-size: 0;
+  top: 10px;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.slick-next{
+  right: 10px;
+}
+
+.slick-dots{
+  position: absolute;
+  padding:0;
+  margin: 0;
+  left: 430px;
+  bottom: 20px;
+}
+
+.slick-dots li {
+  display: inline-block;
+}
+
+.slick-dots li button{
+  font-size: 0;
+  margin: 0 5px;
+  border: 0;
+  padding: 3px;
+  border-radius: 50%;
+  background: #A4ACAD;
+}
+
+.slick-dots li button:hover{
+  color: #F46D40;
+}
+
+@media (max-width: 992px) {
+  .offer_slider{
+    display: none;
+  }
+}
