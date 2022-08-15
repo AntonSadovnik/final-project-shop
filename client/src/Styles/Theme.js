@@ -40,7 +40,7 @@ const theme = createTheme({
 	},
 
 	typography: {
-		fontFamily: "'Bodoni Moda', sans-serif",
+		fontFamily: "'Nunito Sans', sans-serif",
 	},
 });
 
