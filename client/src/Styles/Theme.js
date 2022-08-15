@@ -18,6 +18,15 @@ const theme = createTheme({
 		secondary: {
 			main: colors.secondaryButton,
 		},
+		grayColor: {
+			main: colors.grayText,
+		},
+		hoverColor: {
+			main: colors.hoverText,
+		},
+		lightGrayColor: {
+			main: colors.buttonsLightGrayText,
+		},
 		backgroungColor: {
 			main: colors.backgroungColor,
 		},
