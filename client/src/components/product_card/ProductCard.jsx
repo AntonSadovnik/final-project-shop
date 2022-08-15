@@ -1,13 +1,6 @@
 import React from 'react';
 import { Grid, CardMedia, CardContent, Typography, CardActionArea, Stack } from '@mui/material';
 
-// Button, CardActions Card,
-// import { createTheme } from '@mui/material/styles';
-// import { makeStyles } from '@mui';
-// import { styled } from '@mui/material/styles';
-// import { makeStyles } from '@material-ui/core/styles';
-
-
 const cardPicture = "/images/img_productCard/set_img.jpg";
 const cardMinus = "/images/img_productCard/minus.png";
 const cardAdd = "/images/img_productCard/add.png";
