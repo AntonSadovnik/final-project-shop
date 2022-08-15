@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, Grid, Button, CardMedia, CardContent, Typography, CardActions, CardActionArea, Stack } from '@mui/material';
+import { Grid, CardMedia, CardContent, Typography, CardActionArea, Stack } from '@mui/material';
 
+// Button, CardActions Card,
 // import { createTheme } from '@mui/material/styles';
 // import { makeStyles } from '@mui';
 // import { styled } from '@mui/material/styles';
@@ -10,6 +11,8 @@ import { Card, Grid, Button, CardMedia, CardContent, Typography, CardActions, Ca
 const cardPicture = "/images/img_productCard/set_img.jpg";
 const cardMinus = "/images/img_productCard/minus.png";
 const cardAdd = "/images/img_productCard/add.png";
+const cardForward = "/images/img_productCard/forward.png";
+const cardBack = "/images/img_productCard/back.png";
 const cardWeight = "290 grams";
 const cardPrice = "110";
 const quantityGoods = "1";
@@ -17,107 +20,176 @@ const cardCompound = "Salmon, Philadelphia cheese, cucumber, avocado";
 
 function ProductCard() {
 
-    // const theme = createTheme({
-    //     palette: {
-    //         hex: {
-    //             main: '#FF9846',
-    //         }
-    //     }
-    // });
-
-    // const useStyles = makeStyles({
-    //     // root: {
-    //     //     maxWidth: 345,
-    //     // },
-    //     // media: {
-    //     //     height: 140,
-    //     // },
-    // });
-
-
     return (
 
-        <Card>
-            {/* className={classes.root} */}
-            <Grid container spacing={0}>
-                <Grid container item xs={12} sm={12} md={7} lg={7} xl={7}>
+        <Stack
+
+            className="product-card" >
+
+            <Stack
+                className="product-card_block-switch"
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                spacing={4}
+                style={{ height: 120, paddingLeft: 30, paddingRight: 30 }}
+            >
+
+                <Stack
+                    variant="contained"
+                    component="a"
+                    direction="row"
+                    alignItems="center"
+                    className="product-card__switch-in-sheet"
+                >
+
+                    <CardMedia
+                        component="img"
+                        height="20"
+                        image={cardForward}
+                        alt="set picture"
+                        style={{ marginRight: 10 }}
+                    />
+
+                    <Typography
+                        variant="body2"
+                        component="span"
+                    >
+                        Forward
+                    </Typography>
+
+
+                </Stack>
+
+
+
+                <Stack
+                    variant="contained"
+                    component="a"
+                    direction="row"
+                    alignItems="center"
+                    className="product-card__switch-in-sheet"
+                >
+
+                    <Typography
+                        className="product-card__switch-text"
+                        variant="body2"
+                        component="span"
+                        style={{ marginRight: 21, marginLeft: 21 }}
+                    >
+                        Back
+                    </Typography>
+
+                    <CardMedia
+                        className="product-card__switch-img"
+                        component="img"
+                        image={cardBack}
+                        alt="set picture"
+                    />
+                </Stack>
+
+
+            </Stack>
+
+            <Grid container
+                xs={12} sm={12} md={12} lg={12} xl={12}
+                spacing={0}
+                className="product-card_grid"
+            >
+
+                <Grid container item
+                    xs={12} sm={12} md={7} lg={7} xl={7}
+                    className="product-card_grid-item"
+                >
+
                     <CardActionArea>
                         <Stack
+                            className="product-card_grid-picture-container"
                             spacing={1}
                             justifyContent="center"
-                            alignItems="flex-end"
+                            alignItems="center"
                         >
                             <CardMedia
+                                className="product-card_grid-picture"
                                 component="img"
-                                height="435"
                                 image={cardPicture}
                                 alt="set picture"
-                            // className={classes.media}
                             />
                         </Stack>
 
                     </CardActionArea>
                 </Grid>
-                <Grid container item xs={12} sm={12} md={5} lg={5} xl={5} >
+
+
+
+                <Grid container item
+                    xs={12} sm={12} md={5} lg={5} xl={5}
+                    className="product-card_grid-item"
+                >
 
                     <Stack
+                        className="product-card_grid-item-container"
                         direction="column"
                         justifyContent="center"
                         alignItems="flex-start"
-                        spacing={4}
+                        spacing={2}
                     >
 
-                        <CardContent>
+                        <CardContent
+                            className="product-card_grid-prodact-info"
+                        >
 
-                            <CardActionArea>
+                            <Typography
+                                className="product-card_grid-title"
+                                variant="h3"
+                                component="h3"
+                            >
+                                Philadelphia and
+                                salmon set
+                            </Typography>
 
+                            <Typography
+                                className="product-card_grid-prodact-weight"
+                                variant="body2"
+                                component="p"
+                            >
+                                {cardWeight}
+                            </Typography>
+
+                            <Stack
+                                direction="row"
+                                spacing={4}
+                                justifyContent="flex-start"
+                                alignItems="center"
+                            >
                                 <Typography
+                                    className="product-card_grid-prodact-price"
                                     variant="h3"
-                                    component="h3"
-                                    font-style="normal"
-                                    font-weight="500"
-                                    font-size="48px"
-                                    line-height="60px"
+                                    component="span"
                                 >
-                                    Philadelphia and
-                                    salmon set
+                                    {cardPrice}$
                                 </Typography>
 
-                                <Typography
-                                    variant="body2"
-                                    // color="textSecondary"
-                                    component="p"
-                                // color={theme.palette.hex}
-                                >
-                                    {cardWeight}
-                                </Typography>
 
                                 <Stack
-                                    weight="112"
+                                    className="product-card_grid-blok-count"
                                     direction="row"
                                     spacing={1}
-                                    justifyContent="flex-start"
+                                    justifyContent="space-between"
                                     alignItems="center"
                                 >
-                                    <Typography
-                                        variant="h3"
-                                        component="span"
-                                        margin-top="20px"
-                                    >
-                                        {cardPrice}$
-                                    </Typography>
 
                                     <CardMedia
+                                        className="product-card_grid-img-minus"
                                         component="img"
-                                        // height="40px"
-                                        weight="40px"
                                         image={cardMinus}
                                         alt="Minus"
                                     />
 
                                     <Typography
+                                        className="product-card_grid-count"
                                         variant="h3"
-                                        component="h3"
+                                        component="h6"
                                     >
                                         {quantityGoods}
 
@@ -125,31 +197,26 @@ function ProductCard() {
 
 
                                     <CardMedia
+                                        className="product-card_grid-img-add"
                                         component="img"
-                                        height="40"
-                                        weight="40"
                                         image={cardAdd}
                                         alt="Add"
                                     />
 
+
                                 </Stack>
 
-                                {/* <Typography
-                                        variant="h3"
-                                        component="span"
-                                        margin-top="20px"
-                                    >
-                                        {cardPrice} $
-                                    </Typography> */}
+                            </Stack>
 
-
-
-                            </CardActionArea>
-
-
-                            <CardActionArea>
+                            <Stack
+                                direction="column"
+                                justifyContent="center"
+                                alignItems="flex-start"
+                                spacing={1}
+                            >
 
                                 <Typography
+                                    className="product-card_grid-compound-title"
                                     variant="h4"
                                     component="h6"
                                 >
@@ -157,22 +224,26 @@ function ProductCard() {
                                 </Typography>
 
                                 <Typography
+                                    className="product-card_grid-compound"
                                     variant="body2"
                                     component="p"
-                                // color={theme.palette.hex}
                                 >
                                     {cardCompound}
                                 </Typography>
 
-                            </CardActionArea>
+                            </Stack>
+
                         </CardContent>
 
-
-                        <CardActions component="div">
-                            <Button variant="contained" size="small" color="primary">
-                                Want!
-                            </Button>
-                        </CardActions>
+                        <Stack
+                            variant="contained"
+                            component="a"
+                            direction="row"
+                            alignItems="center"
+                            className="product-card_grid-button-want"
+                        >
+                            WANT!
+                        </Stack>
 
                     </Stack>
 
@@ -180,9 +251,8 @@ function ProductCard() {
 
             </Grid >
 
+        </Stack>
 
-
-        </Card >
     );
 }
 
