@@ -3,6 +3,7 @@ import { Grid, Divider } from '@mui/material';
 import PhoneNumbers from './components/phone-numbers/PhoneNumbers';
 import Activities from './components/activities/Activities';
 import { City } from './components/city/City';
+import Logo from '../Logo/Logo';
 
 function Header() {
 	return (
@@ -33,7 +34,16 @@ function Header() {
 					sm={12}
 					justifyContent="space-between"
 					alignItems="center"
+					sx={{ padding: { sm: '10px 0', md: '0' } }}
 				>
+					<Grid
+						item
+						sx={{
+							display: { sm: 'block', md: 'none' },
+						}}
+					>
+						<Logo maxWidth="40px" maxHeight="40px" />
+					</Grid>
 					<Grid item marginLeft="10px" xs={2}>
 						<City />
 					</Grid>

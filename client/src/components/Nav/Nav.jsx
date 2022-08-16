@@ -8,7 +8,7 @@ import {
 	Divider,
 	Box,
 } from '@mui/material';
-import Logo from './components/logo/Logo';
+import Logo from '../Logo/Logo';
 import menuItemsContent from './config';
 import './style.scss';
 
