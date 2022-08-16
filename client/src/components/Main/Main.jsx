@@ -9,7 +9,7 @@ function Main() {
 				justifyContent="space-around"
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
-				<Grid item style={{ padding: '30px 0 60px' }}>
+				<Grid item sx={{ padding: '30px 0 60px' }}>
 					Main
 				</Grid>
 			</Grid>

@@ -12,11 +12,7 @@ function Header() {
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
 				<PhoneNumbers />
-				<Divider
-					flexItem
-					orientation="vertical"
-					style={{ marginLeft: '10px' }}
-				/>
+				<Divider flexItem orientation="vertical" sx={{ marginLeft: '10px' }} />
 				<Grid
 					container
 					item

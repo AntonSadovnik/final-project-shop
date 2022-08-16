@@ -15,10 +15,10 @@ import './style.scss';
 function Nav() {
 	return (
 		<nav>
-			<Box style={{ paddingTop: '25px' }} align="center">
+			<Box sx={{ paddingTop: '25px' }} align="center">
 				<Logo />
 				<Typography
-					style={{
+					sx={{
 						fontWeight: 300,
 						fontSize: '30px',
 						textTransform: 'uppercase',
