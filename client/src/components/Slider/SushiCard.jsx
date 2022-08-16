@@ -11,7 +11,7 @@ function SushiCard({item}){
   return(<Card key={item.article}  direction="column"
   
   className="card" sx={{ padding: 0,
-  background: '#ccc',
+  background: '#F2F2F2',
   overflow: 'hidden',
   maxWidth: '290px',
   minWidth:'225px',
@@ -19,8 +19,6 @@ function SushiCard({item}){
   display: "flex",
   flexDirection: "column",
   border:"none",
-
-
   boxShadow:"none"
 
   }}>

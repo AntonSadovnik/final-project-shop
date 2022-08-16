@@ -1,20 +1,20 @@
-body{
-  background: #ccc;
-}
 .slick-slide > div {
   margin: 0 10px;
   padding: 10px;
 }
 .slick-list {
-  margin: 0 -10px;
+  margin: 0 -50px;
 }
 .slick-slide > div{
   display:flex;
   justify-content: center;
 }
-@media (max-width: 600px){
+ .slick-slider {
+  width:64vw;
+} 
+/* @media (max-width: 600px){
   .slick-slide > div{
     display:flex;
     justify-content: center;
   }
-}  
+}   */

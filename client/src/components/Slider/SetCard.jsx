@@ -25,9 +25,9 @@ return (<Card key={item.article} className="card" sx={{ padding: 0,
   overflow: 'hidden',
   maxWidth: '290px',
   minWidth:'225px',
-  boxSizing: 'content-box'
+  boxSizing: 'content-box',
   }}>
-{/* <Stack spacing={2} direction="row"> </Stack> */}
+
 <Typography  component="div" className='title' sx={{display:"flex"}}>
 <CardMedia
         component="img"

@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from "react-slick";
+import Slider from 'react-slick';
 import Typography from '@mui/material/Typography';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
@@ -11,13 +11,11 @@ import SetCard from './SetCard';
 
 
 
-
-
 function NextBtn(props) {
   const { onClick } = props;
   console.log(onClick)
-  return (<Typography  component="div" className='title' color="white"
-  alignItems="center"  onClick={onClick} style={{display: "flex", justifyContent:"center", alignItems:"center", background: "green", borderRadius: "50%", height:'60px', width:"60px",position:"absolute", top:"40%", left:"-20px", zIndex:"1111"}}>
+  return (<Typography component="div" className='title' color="white"
+  alignItems="center"  onClick={onClick} style={{display: "flex", justifyContent:"center", alignItems:"center", background: "green", borderRadius: "50%", height:'60px', width:"60px",position:"absolute", top:"40%", left:"-7%", zIndex:"1111"}}>
  
   <NavigateBeforeIcon onClick={onClick}/>
   </Typography>
@@ -26,8 +24,8 @@ function NextBtn(props) {
 function PrevBtn(props) {
 const { onClick } = props;
 console.log(onClick)
-  return (<Typography  component="div" className='title' color="white"
-  alignItems="center"  onClick={onClick} style={{display: "flex", justifyContent:"center", alignItems:"center", background: "green", borderRadius: "50%", height:'60px', width:"60px",position:"absolute", top:"40%", right:"-20px", zIndex:"1111" }}>
+  return (<Typography component="div" className='title' color="white"
+  alignItems="center"  onClick={onClick} style={{display: "flex", justifyContent:"center", alignItems:"center", background: "green", borderRadius: "50%", height:'60px', width:"60px",position:"absolute", top:"40%", right:"-7%", zIndex:"1111" }}>
   <NavigateNextIcon onClick={onclick} />
   </Typography>
   );
@@ -72,12 +70,11 @@ function SliderF() {
     ]
   };
   
-	return <Typography key="123" component="div" className='slider-wrapper' color="white" sx={{width:'78%',
-    marginLeft: '12%',
-    marginTop: '50px'}}>
+	return <Typography  component="div" className='slider-wrapper' color="white" sx={{width:'78%',
+    marginLeft: '12%', marginTop: '50px', display:"flex", justifyContent:"center",}}>
   
   <Slider {...settings}>
-  {productItems.map((item)=>(item.slider==="one") && <SetCard  item={item}/>
+  {productItems.map((item)=>(item.slider==="one") && <SetCard key={item.article} item={item}/>
    
   )}
   
