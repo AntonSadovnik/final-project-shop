@@ -1,20 +1,32 @@
 import React from 'react';
 import './App.scss';
-import { Route, Routes } from 'react-router-dom';
+
+import Grid from '@mui/material/Grid';
 import Header from './components/Header/Header';
-import SliderF from './components/Slider/Slider';
-import SliderTwo from './components/Slider/SliderTwo';
+import Main from './components/Main/Main';
+import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
 
 function App() {
 	return (
-		<>
-			<Header />
-			<SliderF />
-			 <SliderTwo/> 
-			<Routes>{/* <Route path="/" element={<Main />}></Route> */}</Routes>
-			{/* <Footer /> */}
-		</>
+		<Grid
+			container
+			justifyContent="center"
+			style={{ maxWidth: '2300px', margin: '0 auto' }}
+		>
+			<Grid item xs={2} sx={{ display: { xs: 'none', md: 'block' } }}>
+				<Nav />
+			</Grid>
+			<Grid item xl={9} md={10} xs={12}>
+				<Header />
+				<Main />
+				<Footer />
+			</Grid>
+		</Grid>
 	);
 }
 
 export default App;
+
+
+

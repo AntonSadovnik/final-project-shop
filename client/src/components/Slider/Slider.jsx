@@ -72,7 +72,7 @@ function SliderF() {
     ]
   };
   
-	return <Typography  component="div" className='slider-wrapper' color="white" sx={{width:'78%',
+	return <Typography key="123" component="div" className='slider-wrapper' color="white" sx={{width:'78%',
     marginLeft: '12%',
     marginTop: '50px'}}>
   

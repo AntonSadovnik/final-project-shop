@@ -13,7 +13,7 @@
 	},
 	"plugins": ["react"],
 	"rules": {"react/prop-types": "off",
-	"react/jsx-props-no-spreading":"eslint-disable jsx-props-no-spreading"
+	"react/jsx-props-no-spreading": "eslint-disable react/prop-types"
 }
 
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Card, Button, CardContent, CardMedia, Typography, CardActions, Divider, Stack} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./slider.scss";
 
@@ -12,7 +12,7 @@ const theme = createTheme();
 theme.typography.h6 ={
   fontSize: '24px',
   '@media (min-width:900px) and (max-width: 980px)':{
-    fontSize:'20px'
+  fontSize:'20px'
   }
 }
 
