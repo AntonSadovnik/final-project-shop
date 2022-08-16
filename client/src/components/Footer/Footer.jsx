@@ -43,7 +43,7 @@ function Footer() {
 							<Grid
 								container
 								maxWidth="fit-content"
-								sx={{ marginLeft: { lg: '40px', md: '20px' } }}
+								sx={{ marginLeft: { lg: '40px', sm: '20px' } }}
 							>
 								<Contacts />
 							</Grid>

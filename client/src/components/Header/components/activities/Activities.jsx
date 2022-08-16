@@ -8,7 +8,7 @@ import './style.scss';
 function Activities() {
 	return (
 		<>
-			<Grid item lg={7} md={7}>
+			<Grid item container lg={7} sm={7} alignItems="center">
 				<Typography className="header__links" component="a" href="/">
 					Reviews
 				</Typography>
@@ -16,7 +16,7 @@ function Activities() {
 					Shipping and payment
 				</Typography>
 			</Grid>
-			<Grid container item justifyContent="space-evenly" md={4}>
+			<Grid container item justifyContent="space-evenly" sm={4}>
 				<Button className="header__buttons" disableRipple size="small">
 					<ShoppingCartIcon
 						color="grayColor"
@@ -35,8 +35,8 @@ function Activities() {
 				</Button>
 				<Button className="header__buttons" disableRipple size="small">
 					<LoginIcon
-						color="grayColor"
 						sx={{
+							color: '#1BD741',
 							fontSize: '40px',
 						}}
 					/>

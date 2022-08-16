@@ -11,12 +11,26 @@ function Header() {
 				container
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
-				<PhoneNumbers />
-				<Divider flexItem orientation="vertical" sx={{ marginLeft: '10px' }} />
+				<Grid
+					item
+					xs={2}
+					flexDirection="column"
+					align="center"
+					padding="6px 0 8px"
+					sx={{ display: { xs: 'none', md: 'block' } }}
+				>
+					<PhoneNumbers />
+				</Grid>
+				<Divider
+					flexItem
+					orientation="vertical"
+					sx={{ marginLeft: '10px', display: { xs: 'none', md: 'block' } }}
+				/>
 				<Grid
 					container
 					item
-					xs={9.7}
+					md={9.7}
+					sm={12}
 					justifyContent="space-between"
 					alignItems="center"
 				>
@@ -29,7 +43,7 @@ function Header() {
 						justifyContent="space-between"
 						xl={6}
 						lg={7}
-						md={9}
+						sm={9}
 					>
 						<Activities />
 					</Grid>

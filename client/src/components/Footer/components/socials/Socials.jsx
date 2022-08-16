@@ -8,7 +8,7 @@ import './style.scss';
 function Socials() {
 	return (
 		<Grid container>
-			<Grid item sx={{ marginLeft: { lg: '40px', md: '20px' } }}>
+			<Grid item sx={{ marginLeft: { lg: '40px', sm: '20px' } }}>
 				<Typography fontWeight="500">Enter your number</Typography>
 				<Input sx={{ margin: '10px 0 20px' }} />
 				<Typography
