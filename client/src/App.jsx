@@ -3,10 +3,7 @@ import './App.scss';
 import OfferSlider from './components/Offer/Offer';
 import GridItem from './components/Grid/Grid'
 import Grid from '@mui/material/Grid';
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
-import Nav from './components/Nav/Nav';
-import Footer from './components/Footer/Footer';
+
 const App = () => {
 
     return(
@@ -19,11 +16,8 @@ const App = () => {
 				<Nav />
 			</Grid>
 			<Grid item xl={9} md={10} xs={12}>
-				<Header />
-				<Main />
                 <OfferSlider />
                 <GridItem />
-				<Footer />
 			</Grid>
 		</Grid>
     );
