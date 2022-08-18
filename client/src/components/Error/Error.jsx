@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardMedia, Typography, Stack } from '@mui/material';
+import { Typography, Stack } from '@mui/material';
 
 function Error() {
 
@@ -8,20 +8,22 @@ function Error() {
         <Stack
             className="error-card"
             component="section"
-            xs={12} sm={12} md={12} lg={12} xl={12}
+            xs={12}
+
         >
 
             <Stack
                 className="error-card_block-switch"
-                spacing={3}
+                spacing={4}
             >
 
-                <CardMedia
-                    className="error-card_picture"
-                    component="img"
-                    image="/images/img_error-page/error.jpg"
-                    alt="error picture"
-                />
+                <Typography
+                    className="error-card_title"
+                    variant="h4"
+                    component="h4"
+                >
+                    Error 404
+                </Typography>
 
                 <Typography
                     className="error-card_content"

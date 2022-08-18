@@ -4,10 +4,12 @@
     justify-content: center;
     align-items: center;
     padding: 0 30px 22px;
+    margin: 40px 0;
     
 
         @media (max-width: 768px) {
                 padding: 7px;
+                margin: 20px 0;
         }
 }
 
@@ -33,14 +35,6 @@
         }
 }
 
-.error-card_picture{
-        width: 30%;
-        height: 30%;
-        
-            @media (max-width: 768px) {
-                display: none;
-            }
-}
 
 .error-card_content-switch-home-page{
     color: #a4acad;
@@ -49,12 +43,12 @@
 
 .error-card_switch-home-page{
     background: #F46D40;
-        border-radius: 5px;
-        padding: 5px 65px;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 24px;
-        line-height: 30px;
-        text-align: center;
-        color: #F2F2F2;
+    border-radius: 5px;
+    padding: 5px 65px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: #F2F2F2;
 }
