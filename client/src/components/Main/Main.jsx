@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import NoveltieSlider from '../Slider/comonents/noveltieSlider/Slider';
-import RecommendedSlider from '../Slider/comonents/recommendedSlider/SliderTwo';
+import NoveltieSlider from '../Slider/components/noveltieSlider/Slider';
+import RecommendedSlider from '../Slider/components/recommendedSlider/SliderTwo';
 
 function Main() {
 	return (
