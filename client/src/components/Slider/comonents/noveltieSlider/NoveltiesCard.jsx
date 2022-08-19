@@ -1,10 +1,9 @@
 import React from 'react';
-
 import { Card, Button, CardContent, CardMedia, Typography, CardActions, Divider, Stack} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./slider.scss";
+import "../../slider.scss";
 
 
 const theme = createTheme();
@@ -16,8 +15,7 @@ theme.typography.h6 ={
   }
 }
 
-
-function SetCard({item}){
+function NoveltiesCard({item}){
   
 return (<Card key={item.article} className="card" sx={{ padding: 0,
   borderRadius: 5,
@@ -26,6 +24,7 @@ return (<Card key={item.article} className="card" sx={{ padding: 0,
   maxWidth: '290px',
   minWidth:'225px',
   boxSizing: 'content-box',
+  margin:"0 70px"
   }}>
 
 <Typography  component="div" className='title' sx={{display:"flex"}}>
@@ -34,7 +33,7 @@ return (<Card key={item.article} className="card" sx={{ padding: 0,
         alt="not display"
         image={item.imgSrc}
         className="img"
-        sx={{width:"253px", height:"203px",}}
+        sx={{width:"253px", height:"203px", objectFit:"cover"}}
       />
         </Typography>
        
@@ -49,9 +48,9 @@ return (<Card key={item.article} className="card" sx={{ padding: 0,
         <Divider textAlign="right" style={{color: 'black', marginTop: '20px'}} />
         </Typography>
         <Stack > 
-        {/* justifyContent="center" alignItems="center" direction="row" spacing={3} */}
+      
         <Typography variant="body2" component="div"  className='card-bottom' sx={{marginTop: "10px",position: "relative",
-        display: 'flex',justifyContent: 'space-between',padding: 0,}}>
+        display: 'flex', justifyContent: 'space-between',padding: 0,}}>
         <Typography variant="body2" component="div"  className='price' sx={{alignSelf: "center",
         fontWeight: 700, marginRight:"-30px", lineHight:"30.05px"}}>
         {item.price}
@@ -69,4 +68,4 @@ return (<Card key={item.article} className="card" sx={{ padding: 0,
 
 }
 
-export default SetCard
+export default NoveltiesCard

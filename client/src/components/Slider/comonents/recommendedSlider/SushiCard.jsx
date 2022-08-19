@@ -4,7 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import "./slider.scss";
+import "../../slider.scss";
 
 
 function SushiCard({item}){
@@ -14,7 +14,7 @@ function SushiCard({item}){
   background: '#F2F2F2',
   overflow: 'hidden',
   maxWidth: '290px',
-  minWidth:'225px',
+  minWidth:'200px',
   boxSizing: "content-box",
   display: "flex",
   flexDirection: "column",
@@ -33,18 +33,17 @@ function SushiCard({item}){
         </Typography>
  
        <CardContent>
-        <Typography gutterBottom variant="h6" component="div" className='title' sx={{ fontSize: 22, display:"flex",justifyContent:"center", alignItems:"center", marginTop:"-15px", flexDirection:"column"
+        <Typography gutterBottom variant="h6" component="div" className='card-title' sx={{ fontSize: 22, display:"flex",justifyContent:"center", alignItems:"center", marginTop:"-15px", flexDirection:"column"
        }}>
         {item.title}
         <Typography variant="body2" component="div"  className='card-bottom' sx={{position: "relative",
         display: 'flex', justifyContent: "center",alignContent:"center", padding:"10px"}} >
-        <Typography variant="body2" component="div" className='price' sx={{alignSelf: "center",
+        <Typography variant="body2" component="div" className='card-price' sx={{alignSelf: "center",
           fontWeight: 700, marginRight:"0px", lineHight:"30.05px",  }}>
         {item.price}
         </Typography>
         <CardActions component="div">
      
-
         <Button variant="text" sx={{display:"inline-block", position: "absolute", right: "-30px"}}><AddCircleIcon fontSize='large'/></Button>
         </CardActions>
         
