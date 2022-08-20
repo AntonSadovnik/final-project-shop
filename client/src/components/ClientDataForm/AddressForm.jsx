@@ -1,32 +1,14 @@
-import { Grid, TextField } from '@mui/material';
-import { useFormik } from 'formik';
+/* eslint-disable react/prop-types */
+
+import {
+	Grid,
+	TextField,
+} from '@mui/material';
 import * as React from 'react';
-import * as yup from 'yup';
 
-function AddressForm() {
 
-	const validationschema = yup.object({
-		name: yup.string('Enter your name').required('Name is required'),
-		phone: yup
-			.string('Enter your phone')
-			.min(8, 'phone should be of minimum 10 characters length')
-			.required('phone is required'),
-	});
+function AddressForm({ formikData }) {
 
-	const formik = useFormik({
-		initialValues: {
-			apartment: '',
-			entrance: '',
-			floor: '',
-			code: '',
-			street: '',
-			house: '',
-		},
-		validationSchema: validationschema,
-		onSubmit: (values) => {
-			console.log(values);
-		},
-	});
 
 	return (
 		<Grid
@@ -43,11 +25,11 @@ function AddressForm() {
 					name="street"
 					label="Street"
 					type="street"
-					value={formik.values.street}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.street && Boolean(formik.errors.street)}
-					helperText={formik.touched.street && formik.errors.street}
+					value={formikData.values.street}
+					onChange={formikData.handleChange}
+					onBlur={formikData.onBlur}
+					error={formikData.touched.street && Boolean(formikData.errors.street)}
+					helperText={formikData.touched.street && formikData.errors.street}
 				/>
 			</Grid>
 			<Grid item xs={2}>
@@ -57,11 +39,11 @@ function AddressForm() {
 					name="house"
 					label="House"
 					type="house"
-					value={formik.values.house}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.house && Boolean(formik.errors.house)}
-					helperText={formik.touched.house && formik.errors.house}
+					value={formikData.values.house}
+					onChange={formikData.handleChange}
+					onBlur={formikData.onBlur}
+					error={formikData.touched.house && Boolean(formikData.errors.house)}
+					helperText={formikData.touched.house && formikData.errors.house}
 				/>
 			</Grid>
 			<Grid item xs={2}>
@@ -71,11 +53,11 @@ function AddressForm() {
 					name="apartment"
 					label="Apt"
 					type="apartment"
-					value={formik.values.apartment}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.apartment && Boolean(formik.errors.apartment)}
-					helperText={formik.touched.apartment && formik.errors.apartment}
+					value={formikData.values.apartment}
+					onChange={formikData.handleChange}
+					onBlur={formikData.onBlur}
+					error={formikData.touched.apartment && Boolean(formikData.errors.apartment)}
+					helperText={formikData.touched.apartment && formikData.errors.apartment}
 				/>
 			</Grid>
 			<Grid item xs={2}>
@@ -85,11 +67,11 @@ function AddressForm() {
 					name="entrance"
 					label="Entrance"
 					type="entrance"
-					value={formik.values.entrance}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.entrance && Boolean(formik.errors.entrance)}
-					helperText={formik.touched.entrance && formik.errors.entrance}
+					value={formikData.values.entrance}
+					onChange={formikData.handleChange}
+					onBlur={formikData.onBlur}
+					error={formikData.touched.entrance && Boolean(formikData.errors.entrance)}
+					helperText={formikData.touched.entrance && formikData.errors.entrance}
 				/>
 			</Grid>
 			<Grid item xs={2}>
@@ -99,11 +81,11 @@ function AddressForm() {
 					name="floor"
 					label="Floor"
 					type="floor"
-					value={formik.values.floor}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.floor && Boolean(formik.errors.floor)}
-					helperText={formik.touched.floor && formik.errors.floor}
+					value={formikData.values.floor}
+					onChange={formikData.handleChange}
+					onBlur={formikData.onBlur}
+					error={formikData.touched.floor && Boolean(formikData.errors.floor)}
+					helperText={formikData.touched.floor && formikData.errors.floor}
 				/>
 			</Grid>
 			<Grid item xs={2}>
@@ -113,11 +95,11 @@ function AddressForm() {
 					name="code"
 					label="Code"
 					type="code"
-					value={formik.values.code}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.code && Boolean(formik.errors.code)}
-					helperText={formik.touched.code && formik.errors.code}
+					value={formikData.values.code}
+					onChange={formikData.handleChange}
+					onBlur={formikData.onBlur}
+					error={formikData.touched.code && Boolean(formikData.errors.code)}
+					helperText={formikData.touched.code && formikData.errors.code}
 				/>
 			</Grid>
 		</Grid>
