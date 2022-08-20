@@ -28,7 +28,7 @@
 		"redux": "^4.2.0",
 		"redux-thunk": "^2.4.1",
 		"slick-carousel": "^1.8.1",
-		"yup": "^0.32.11"
+		"yup": "^0.32.11",
 		"styled-components": "^5.3.5",
 		"web-vitals": "^2.1.4"
 	},
