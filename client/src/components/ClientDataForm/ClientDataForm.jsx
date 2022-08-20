@@ -1,13 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-
 import * as React from 'react';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import {
 	Button,
 	Grid,
@@ -16,7 +12,10 @@ import {
 	ToggleButton,
 	ButtonGroup,
 	ToggleButtonGroup,
+	Box,
 } from '@mui/material';
+import AddressForm from './AddressForm';
+import ChangeForm from './ChangeForm';
 
 function ClientDataForm() {
 	const [counter, setCounter] = React.useState(1);
@@ -24,9 +23,12 @@ function ClientDataForm() {
 	const [delivery, setDelivery] = React.useState('courier');
 	const [time, setTime] = React.useState('now');
 	const [timePicker, setTimePicker] = React.useState(
-		<div style={{ height: 56 }} />
+		<Box
+			sx={{
+				height: { xs: 'auto', sm: '56px' },
+			}}
+		/>
 	);
-	const [timeValue, setTimeValue] = React.useState(null);
 
 	const validationschema = yup.object({
 		name: yup.string('Enter your name').required('Name is required'),
@@ -49,99 +51,6 @@ function ClientDataForm() {
 			console.log(values);
 		},
 	});
-	const addressForm = (
-		<Grid
-			className="address-form"
-			alignItems="flex-start"
-			spacing={1}
-			container
-			columns={8}
-		>
-			<Grid item xs={6}>
-				<TextField
-					fullWidth
-					id="street"
-					name="street"
-					label="Street"
-					type="street"
-					value={formik.values.street}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.street && Boolean(formik.errors.street)}
-					helperText={formik.touched.street && formik.errors.street}
-				/>
-			</Grid>
-			<Grid item xs={2}>
-				<TextField
-					fullWidth
-					id="house"
-					name="house"
-					label="House"
-					type="house"
-					value={formik.values.house}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.house && Boolean(formik.errors.house)}
-					helperText={formik.touched.house && formik.errors.house}
-				/>
-			</Grid>
-			<Grid item xs={2}>
-				<TextField
-					fullWidth
-					id="apartment"
-					name="apartment"
-					label="Apt"
-					type="apartment"
-					value={formik.values.apartment}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.apartment && Boolean(formik.errors.apartment)}
-					helperText={formik.touched.apartment && formik.errors.apartment}
-				/>
-			</Grid>
-			<Grid item xs={2}>
-				<TextField
-					fullWidth
-					id="entrance"
-					name="entrance"
-					label="Entrance"
-					type="entrance"
-					value={formik.values.entrance}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.entrance && Boolean(formik.errors.entrance)}
-					helperText={formik.touched.entrance && formik.errors.entrance}
-				/>
-			</Grid>
-			<Grid item xs={2}>
-				<TextField
-					fullWidth
-					id="floor"
-					name="floor"
-					label="Floor"
-					type="floor"
-					value={formik.values.floor}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.floor && Boolean(formik.errors.floor)}
-					helperText={formik.touched.floor && formik.errors.floor}
-				/>
-			</Grid>
-			<Grid item xs={2}>
-				<TextField
-					id="code"
-					name="code"
-					label="Code"
-					type="code"
-					value={formik.values.code}
-					onChange={formik.handleChange}
-					onBlur={formik.onBlur}
-					error={formik.touched.code && Boolean(formik.errors.code)}
-					helperText={formik.touched.code && formik.errors.code}
-				/>
-			</Grid>
-		</Grid>
-	);
 
 	const handleIncrement = () => {
 		setCounter(counter + 1);
@@ -154,28 +63,11 @@ function ClientDataForm() {
 		}
 	};
 
-	const [address, setAddress] = React.useState(addressForm);
+	const [address, setAddress] = React.useState(
+		<AddressForm formikData={formik} />
+	);
 	const [change, setChange] = React.useState(
-		<Grid className="client-data-form__change" item xs={8}>
-			<FormControlLabel
-				className="client-data-form__change-text"
-				control={<Checkbox defaultChecked />}
-				label="Prepare change with"
-			/>
-
-			<TextField
-				className="client-data-form__change-input"
-				id="summ"
-				name="summ"
-				label="Summ"
-				type="summ"
-				value={formik.values.summ}
-				onChange={formik.handleChange}
-				onBlur={formik.onBlur}
-				error={formik.touched.summ && Boolean(formik.errors.summ)}
-				helperText={formik.touched.summ && formik.errors.summ}
-			/>
-		</Grid>
+		<ChangeForm formikData={formik} />
 	);
 
 	const handlePaymentChange = (
@@ -184,30 +76,15 @@ function ClientDataForm() {
 	) => {
 		setPayment(nextView);
 		if (nextView === 'card') {
-			setChange(<div style={{ height: 147 }} />);
-		} else {
 			setChange(
-				<Grid className="client-data-form__change" item xs={8}>
-					<FormControlLabel
-						className="client-data-form__change-text"
-						control={<Checkbox defaultChecked />}
-						label="Prepare change with"
-					/>
-
-					<TextField
-						className="client-data-form__change-input"
-						id="summ"
-						name="summ"
-						label="Summ"
-						type="summ"
-						value={formik.values.summ}
-						onChange={formik.handleChange}
-						onBlur={formik.onBlur}
-						error={formik.touched.summ && Boolean(formik.errors.summ)}
-						helperText={formik.touched.summ && formik.errors.summ}
-					/>
-				</Grid>
+				<Box
+					sx={{
+						height: { xs: 'auto', sm: '147px' },
+					}}
+				/>
 			);
+		} else {
+			setChange(<ChangeForm formikData={formik} />);
 		}
 	};
 
@@ -219,7 +96,7 @@ function ClientDataForm() {
 		if (address) {
 			setAddress(null);
 		} else {
-			setAddress(addressForm);
+			setAddress(<AddressForm formikData={formik} />);
 		}
 	};
 
@@ -229,18 +106,29 @@ function ClientDataForm() {
 	) => {
 		setTime(nextView);
 		if (nextView === 'now') {
-			setTimePicker(<div style={{ height: 56}} />);
+			setTimePicker(
+				<Box
+					sx={{
+						height: { xs: 'auto', sm: '56px' },
+					}}
+				/>
+			);
 		} else {
 			setTimePicker(
-				<LocalizationProvider dateAdapter={AdapterDateFns}>
-					<MobileTimePicker
-						required
+				<LocalizationProvider fullWidth dateAdapter={AdapterDateFns}>
+					<TextField
+						fullWidth
+						id="time"
 						label="Set time"
-						value={timeValue}
-						onChange={(newValue) => {
-							setTimeValue(newValue);
+						type="time"
+						InputLabelProps={{
+							shrink: true,
 						}}
-						renderInput={(params) => <TextField {...params} />}
+						inputProps={
+							{
+								// step: 1800,
+							}
+						}
 					/>
 				</LocalizationProvider>
 			);
@@ -248,12 +136,12 @@ function ClientDataForm() {
 	};
 
 	return (
-		<div>
+		<Box>
 			<form className="client-data-form" onSubmit={formik.handleSubmit}>
 				<Typography fontSize={24}>Your data</Typography>
-				<div className="client-data-form__container">
+				<Box className="client-data-form__container">
 					<Grid spacing={1} container columns={8}>
-						<Grid className="client-data-form__grid-item" item xs={4}>
+						<Grid sx={{ height: 70 }} item xs={4}>
 							<TextField
 								fullWidth
 								id="name"
@@ -268,7 +156,7 @@ function ClientDataForm() {
 						</Grid>
 						<Grid item xs={4}>
 							<TextField
-								className="client-data-form__grid-item"
+								sx={{ height: 70 }}
 								fullWidth
 								id="phone"
 								name="phone"
@@ -283,7 +171,8 @@ function ClientDataForm() {
 						</Grid>
 						<Grid item xs={8}>
 							<ToggleButtonGroup
-								className="client-data-form__payment"
+								fullWidth
+								sx={{ height: "52px", paddingBottom: "5px" }}
 								type="radio"
 								id={payment}
 								onBlur={formik.onBlur}
@@ -326,18 +215,29 @@ function ClientDataForm() {
 							/>
 						</Grid>
 						<Grid item xs={8}>
-							<ButtonGroup
-								className="client-data-form__sticks"
-								size="small"
-								aria-label="small outlined button group"
+							<Grid
+								sx={{
+									height: { xs: 'auto', sm: '56px' },
+									alignItems: { xs: 'center' },
+								}}
+								container
+								columns={10}
 							>
-								<Typography style={{ marginRight: 55 }}>
-									Regular sticks & soy sauce
-								</Typography>
-								<Button onClick={handleDecrement}>-</Button>
-								<Button disabled>{counter}</Button>
-								<Button onClick={handleIncrement}>+</Button>
-							</ButtonGroup>
+								<Grid item xs={6}>
+									<Typography>Regular sticks & soy sauce</Typography>
+								</Grid>
+								<Grid item xs={4}>
+									<ButtonGroup
+										fullWidth
+										size="small"
+										aria-label="small outlined button group"
+									>
+										<Button onClick={handleDecrement}>-</Button>
+										<Button disabled>{counter}</Button>
+										<Button onClick={handleIncrement}>+</Button>
+									</ButtonGroup>
+								</Grid>
+							</Grid>
 						</Grid>
 						<Grid item xs={8}>
 							<TextField
@@ -358,9 +258,19 @@ function ClientDataForm() {
 					</Grid>
 
 					<Grid spacing={1} container columns={8}>
-						<Grid className="client-data-form__address" item xs={8}>
+						<Grid
+							sx={{
+								height: { xs: 'auto', sm: '225px' },
+							}}
+							item
+							xs={8}
+						>
 							<ToggleButtonGroup
-								className="client-data-form__delivery"
+								fullWidth
+								sx={{
+									height: { sm: '56px' },
+									marginBottom: { xs: '13px', sm: '23px' },
+								}}
 								value={delivery}
 								exclusive
 								onChange={handleDeliveryChange}
@@ -377,7 +287,8 @@ function ClientDataForm() {
 
 						<Grid item xs={8}>
 							<ToggleButtonGroup
-								className="client-data-form__time"
+								fullWidth
+								sx={{ height: 56 }}
 								value={time}
 								exclusive
 								onChange={handleTimeChange}
@@ -408,13 +319,13 @@ function ClientDataForm() {
 							/>
 						</Grid>
 					</Grid>
-				</div>
+				</Box>
 
 				<Button color="primary" variant="contained" fullWidth type="submit">
 					Submit
 				</Button>
 			</form>
-		</div>
+		</Box>
 	);
 }
 
