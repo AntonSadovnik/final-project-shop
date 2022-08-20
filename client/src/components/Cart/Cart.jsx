@@ -36,16 +36,17 @@ const arr =  [
 ]
 
 
-export default function Cart() {
-    const [open, setOpen] = React.useState(false);
-    const [scroll, setScroll] = React.useState('paper');
+export default function Cart(props) {
+    // const [open, setOpen] = React.useState(false);
+    // const [scroll, setScroll] = React.useState('paper');
     const matches = useMediaQuery('(max-width:600px)');
+    const {open, setOpen, scroll, handleClickOpen} = props
 
 
-    const handleClickOpen = () => () => {
-        setOpen(true);
-        setScroll('paper');
-    };
+    // const handleClickOpen = () => () => {
+    //     setOpen(true);
+    //     setScroll('paper');
+    // };
 
     const handleClose = () => {
         setOpen(false);
