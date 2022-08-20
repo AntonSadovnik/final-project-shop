@@ -8,17 +8,17 @@ import {
 	Divider,
 	Box,
 } from '@mui/material';
-import Logo from './components/logo/Logo';
+import Logo from '../Logo/Logo';
 import menuItemsContent from './config';
 import './style.scss';
 
 function Nav() {
 	return (
 		<nav>
-			<Box style={{ paddingTop: '25px' }} align="center">
+			<Box sx={{ paddingTop: '25px' }} align="center">
 				<Logo />
 				<Typography
-					style={{
+					sx={{
 						fontWeight: 300,
 						fontSize: '30px',
 						textTransform: 'uppercase',

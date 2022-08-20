@@ -29,10 +29,6 @@ export default function menuItemsContent() {
 			alt: 'Soups',
 		},
 		{
-			src: 'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660240220/sushi-shop/Nav/corndog_tmqhun.svg',
-			alt: 'Corndogs',
-		},
-		{
 			src: 'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660240221/sushi-shop/Nav/drinks_w1km50.svg',
 			alt: 'Drinks',
 		},

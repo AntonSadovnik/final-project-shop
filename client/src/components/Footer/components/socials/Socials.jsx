@@ -8,9 +8,9 @@ import './style.scss';
 function Socials() {
 	return (
 		<Grid container>
-			<Grid item sx={{ marginLeft: { lg: '40px', md: '20px' } }}>
+			<Grid item sx={{ marginLeft: { lg: '40px', sm: '20px' } }}>
 				<Typography fontWeight="500">Enter your number</Typography>
-				<Input style={{ margin: '10px 0 20px' }} />
+				<Input sx={{ margin: '10px 0 20px' }} />
 				<Typography
 					fontSize="18px"
 					color={(theme) => theme.palette.text.secondary}
@@ -19,13 +19,13 @@ function Socials() {
 				</Typography>
 				<List className="footer__socials-wrap" disablePadding>
 					<ListItemIcon>
-						<WhatsAppIcon style={{ color: '#1BD741' }} />
+						<WhatsAppIcon sx={{ color: '#1BD741' }} />
 					</ListItemIcon>
 					<ListItemIcon>
-						<TelegramIcon style={{ color: '#61A8DE' }} />
+						<TelegramIcon sx={{ color: '#61A8DE' }} />
 					</ListItemIcon>
 					<ListItemIcon>
-						<InstagramIcon style={{ color: '#d85ed8' }} />
+						<InstagramIcon sx={{ color: '#d85ed8' }} />
 					</ListItemIcon>
 				</List>
 			</Grid>

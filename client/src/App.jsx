@@ -11,7 +11,7 @@ function App() {
 		<Grid
 			container
 			justifyContent="center"
-			style={{ maxWidth: '2300px', margin: '0 auto' }}
+			sx={{ maxWidth: '2300px', margin: '0 auto' }}
 		>
 			<Grid item xs={2} sx={{ display: { xs: 'none', md: 'block' } }}>
 				<Nav />
