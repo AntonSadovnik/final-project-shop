@@ -5,8 +5,6 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
-import ProductCard from './components/Product_card/ProductCard';
-import Error from './components/Error/Error';
 
 function App() {
 	return (
@@ -21,8 +19,6 @@ function App() {
 			<Grid item xl={9} md={10} xs={12}>
 				<Header />
 				<Main />
-				<ProductCard />
-				<Error />
 				<Footer />
 			</Grid>
 		</Grid>
