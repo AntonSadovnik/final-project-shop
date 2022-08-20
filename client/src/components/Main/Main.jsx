@@ -1,5 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
+import NoveltieSlider from '../Slider/components/noveltieSlider/Slider';
+import RecommendedSlider from '../Slider/components/recommendedSlider/SliderTwo';
 
 function Main() {
 	return (
@@ -9,8 +11,9 @@ function Main() {
 				justifyContent="space-around"
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
-				<Grid item sx={{ padding: '30px 0 60px' }}>
-					Main
+				<Grid item style={{ padding: '30px 0 60px' }}>
+				 <NoveltieSlider/>
+				 <RecommendedSlider/>
 				</Grid>
 			</Grid>
 		</main>
