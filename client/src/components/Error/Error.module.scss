@@ -1,0 +1,54 @@
+.error-card, .error-card_block-switch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px 22px;
+    margin: 40px 0;
+    
+
+        @media (max-width: 768px) {
+                padding: 7px;
+                margin: 20px 0;
+        }
+}
+
+.error-card_title{
+    display: block;
+    font-size: 35px;
+    margin-bottom: 10px;
+    text-align: center;
+    
+        @media (max-width: 768px) {
+                font-size: 25px;
+        }
+}
+
+.error-card_content{
+    
+    font-size: 25px;
+    margin-bottom: 10px;
+    text-align: center;
+    
+        @media (max-width: 768px) {
+                font-size: 15px;
+        }
+}
+
+
+.error-card_content-switch-home-page{
+    color: #a4acad;
+}
+
+
+.error-card_switch-home-page{
+    background: #F46D40;
+    border-radius: 5px;
+    padding: 5px 65px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: #F2F2F2;
+}
