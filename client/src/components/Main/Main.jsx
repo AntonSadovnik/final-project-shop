@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-// import NoveltieSlider from '../Slider/components/noveltieSlider/Slider';
-// import RecommendedSlider from '../Slider/components/recommendedSlider/SliderTwo';
+import NoveltieSlider from '../Slider/components/noveltieSlider/Slider';
+import RecommendedSlider from '../Slider/components/recommendedSlider/SliderTwo';
 
 function Main() {
 	return (
@@ -12,9 +12,8 @@ function Main() {
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
 				<Grid item style={{ padding: '30px 0 60px' }}>
-					Main
-					{/* <NoveltieSlider />
-					<RecommendedSlider /> */}
+					<NoveltieSlider />
+					<RecommendedSlider />
 				</Grid>
 			</Grid>
 		</main>
