@@ -2,12 +2,13 @@ import React from 'react';
 import { Grid, Button, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
+import LoginIcon from '@mui/icons-material/Login';
 import './style.scss';
 
 function Activities() {
 	return (
 		<>
-			<Grid item lg={7} md={7}>
+			<Grid item container lg={7} sm={7} alignItems="center">
 				<Typography className="header__links" component="a" href="/">
 					Reviews
 				</Typography>
@@ -15,11 +16,11 @@ function Activities() {
 					Shipping and payment
 				</Typography>
 			</Grid>
-			<Grid container item justifyContent="flex-end" md={4}>
+			<Grid container item justifyContent="space-evenly" sm={4}>
 				<Button className="header__buttons" disableRipple size="small">
 					<ShoppingCartIcon
 						color="grayColor"
-						style={{
+						sx={{
 							fontSize: '40px',
 						}}
 					/>
@@ -27,7 +28,15 @@ function Activities() {
 				<Button className="header__buttons" disableRipple size="small">
 					<SearchIcon
 						color="grayColor"
-						style={{
+						sx={{
+							fontSize: '40px',
+						}}
+					/>
+				</Button>
+				<Button className="header__buttons" disableRipple size="small">
+					<LoginIcon
+						sx={{
+							color: '#1BD741',
 							fontSize: '40px',
 						}}
 					/>

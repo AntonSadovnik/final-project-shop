@@ -5,7 +5,7 @@ import './style.scss';
 
 function PhoneNumbers() {
 	return (
-		<Grid item xs={2} flexDirection="column" align="center" padding="6px 0 8px">
+		<>
 			<Typography>Our phone</Typography>
 			<Box>
 				<Box margin="5px 0">
@@ -28,7 +28,7 @@ function PhoneNumbers() {
 					Work hours: 10:00-00:00
 				</Typography>
 			</Grid>
-		</Grid>
+		</>
 	);
 }
 
