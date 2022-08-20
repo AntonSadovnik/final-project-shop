@@ -13,7 +13,6 @@ const App = () => {
 			style={{ maxWidth: '2300px', margin: '0 auto' }}
 		>
 			<Grid item xs={2} sx={{ display: { xs: 'none', md: 'block' } }}>
-				<Nav />
 			</Grid>
 			<Grid item xl={9} md={10} xs={12}>
                 <OfferSlider />
