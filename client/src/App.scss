@@ -1,5 +1,3 @@
 @import "./reset.scss";
-
-@font-face {
-
-}
+@import "./components/Product_card/ProductCard.module.scss";  
+@import "./components/Error/Error.module.scss";  
