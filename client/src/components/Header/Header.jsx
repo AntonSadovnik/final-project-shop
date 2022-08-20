@@ -4,6 +4,7 @@ import PhoneNumbers from './components/phone-numbers/PhoneNumbers';
 import Activities from './components/activities/Activities';
 import { City } from './components/city/City';
 import Logo from '../Logo/Logo';
+import WorkHours from './components/work-hours/WorkHours';
 
 function Header() {
 	return (
@@ -21,6 +22,9 @@ function Header() {
 					sx={{ display: { xs: 'none', md: 'block' } }}
 				>
 					<PhoneNumbers />
+					<Grid container alignItems="center" justifyContent="center">
+						<WorkHours />
+					</Grid>
 				</Grid>
 				<Divider
 					flexItem

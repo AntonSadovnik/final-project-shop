@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Grid from '@mui/material/Grid';
+import { Box, Grid } from '@mui/material';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
+import HeaderMobile from './components/Header/Header-mobile';
 
 function App() {
 	return (
@@ -17,7 +18,12 @@ function App() {
 				<Nav />
 			</Grid>
 			<Grid item xl={9} md={10} xs={12}>
-				<Header />
+				<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+					<Header />
+				</Box>
+				<Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+					<HeaderMobile />
+				</Box>
 				<Main />
 				<Footer />
 			</Grid>
@@ -26,6 +32,3 @@ function App() {
 }
 
 export default App;
-
-
-
