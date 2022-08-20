@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from '@mui/material';
 import { StyledEngineProvider } from '@mui/material/styles';
 import store from './store/store';
-import theme from './styles/Theme';
+import theme from './Styles/Theme';
 import App from './App';
 
 const rootElement = document.getElementById('root');

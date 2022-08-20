@@ -4,6 +4,7 @@ import Links from './components/links/Links';
 import Socials from './components/socials/Socials';
 import Contacts from './components/contacts/Contacts';
 
+
 function Footer() {
 	return (
 		<footer>
@@ -55,3 +56,5 @@ function Footer() {
 	);
 }
 export default Footer;
+
+
