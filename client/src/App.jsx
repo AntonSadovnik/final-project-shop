@@ -6,6 +6,7 @@ import Main from './components/Main/Main';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import HeaderMobile from './components/Header/Header-mobile';
+import FooterMobile from './components/Footer/FooterMobile';
 
 function App() {
 	return (
@@ -25,7 +26,12 @@ function App() {
 					<HeaderMobile />
 				</Box>
 				<Main />
-				<Footer />
+				<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+					<Footer />
+				</Box>
+				<Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+					<FooterMobile />
+				</Box>
 			</Grid>
 		</Grid>
 	);
