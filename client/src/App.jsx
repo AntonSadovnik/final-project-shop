@@ -3,6 +3,7 @@ import './App.scss';
 import Grid from '@mui/material/Grid';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import Slider from './components/Slider/Slider';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 
@@ -22,10 +23,16 @@ function App() {
 				<Footer />
 			</Grid>
 		</Grid>
+
+function App() {
+	return (
+		<>
+			<Slider/>
+			<Header />
+			<Routes>{/* <Route path="/" element={<Main />}></Route> */}</Routes>
+			{/* <Footer /> */}
+		</>
 	);
 }
 
 export default App;
-
-
-

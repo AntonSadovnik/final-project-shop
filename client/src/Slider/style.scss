@@ -1,0 +1,62 @@
+.card{
+    padding: 0;
+    border:1px solid white;
+    border-radius: 5px;
+    background: white;
+    overflow: hidden;
+  }
+  .slick-slide > div {
+    margin: 0 10px;
+    padding: 10px;
+  }
+  .slick-list {
+    margin: 0 -10px;
+  }
+  .img-wrapper{
+    display:flex;
+    justify-content: center;
+    padding: 0px 17px 0px 17px;
+  }
+  .slider-wrapper{
+    width:78%;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  .slick-arrow{
+    color: black;
+    scale:2;
+  }
+  .title{
+    font-size: 1.5em;
+    margin-left: 17px;
+    margin-top:25px;
+    margin-bottom: 30px;
+    font-weight: 500px;
+    background-color: red;
+  }
+  .card-bottom{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 17px 0;
+  }
+  .card-bottom::before{
+    content:'';
+    background-color: #A4ACAD;
+    position: absolute;
+    width: 100%;
+    top:5px;
+    left:0px;
+   // margin-left:-3%;
+    height: 1px;
+  }
+  .price{
+    align-self: center;
+    font-weight: 700;
+  }
+  .portion{
+      margin:0 0 30px 17px;
+      color: #A4ACAD;
+      color: red;
+  }
+  
