@@ -1,12 +1,13 @@
 import React from 'react';
-import { Grid, Typography, Box } from '@mui/material';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { Typography, Box } from '@mui/material';
 import './style.scss';
 
 function PhoneNumbers() {
 	return (
-		<Grid item xs={2} flexDirection="column" align="center" padding="6px 0 8px">
-			<Typography>Our phone</Typography>
+		<>
+			<Typography sx={{ xs: { fontSize: '12px' }, md: { fontSize: '1em' } }}>
+				Our phone
+			</Typography>
 			<Box>
 				<Box margin="5px 0">
 					<a className="header__phone-number" href="tel:+996705188955">
@@ -19,16 +20,7 @@ function PhoneNumbers() {
 					</a>
 				</Box>
 			</Box>
-			<Grid container alignItems="center" justifyContent="center">
-				<AccessTimeIcon color="hoverColor" />
-				<Typography
-					color={(theme) => theme.palette.text.secondary}
-					fontSize="14px"
-				>
-					Work hours: 10:00-00:00
-				</Typography>
-			</Grid>
-		</Grid>
+		</>
 	);
 }
 

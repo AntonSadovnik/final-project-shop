@@ -17,7 +17,7 @@ function Footer() {
 					<Divider flexItem />
 					<Grid
 						container
-						style={{ marginTop: '22px' }}
+						sx={{ marginTop: '22px' }}
 						justifyContent="space-between"
 					>
 						<Grid item xs={3}>
@@ -25,7 +25,7 @@ function Footer() {
 						</Grid>
 						<Grid
 							item
-							style={{
+							sx={{
 								paddingBottom: '60px',
 								borderLeft: '0.5px solid #A4ACAD',
 							}}
@@ -36,7 +36,7 @@ function Footer() {
 						<Grid
 							item
 							xs={3}
-							style={{
+							sx={{
 								paddingBottom: '60px',
 								borderLeft: '0.5px solid #A4ACAD',
 							}}
@@ -44,7 +44,7 @@ function Footer() {
 							<Grid
 								container
 								maxWidth="fit-content"
-								sx={{ marginLeft: { lg: '40px', md: '20px' } }}
+								sx={{ marginLeft: { lg: '40px', sm: '20px' } }}
 							>
 								<Contacts />
 							</Grid>

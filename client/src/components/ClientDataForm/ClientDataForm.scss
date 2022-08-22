@@ -14,86 +14,9 @@
             flex-direction: column;
         }
     }
-
-    &__grid-item {
-        height: 70px;
-    }
-
-    &__delivery {
-        height: 56px;
-        margin-bottom: 23px;
-
-        @media (max-width: 600px) {
-            margin-bottom: 13px;
-        }
-    }
-
-    &__address {
-        height: 225px;
-
-        @media (max-width: 600px) {
-            height: auto;
-        }
-    }
-
+    
     &__payment {
         height: 52px;
         padding-bottom: 5px;
     }
-
-    &__change {
-        height: 82px;
-
-        @media (max-width: 600px) {
-            height: auto;
-        }
-    }
-
-    &__change-box {
-        height: 147px;
-
-        @media (max-width: 600px) {
-            height: auto;
-        }
-    }
-
-    &__change-text {
-        width: 60%;
-        margin-top: 10px;
-    }
-
-    &__change-input {
-        width: 38%;
-        display: inline;
-    }
-
-    &__time {
-        height: 56px;
-    }
-
-    &__time-box {
-        height: 56px;
-
-        @media (max-width: 600px) {
-            height: auto;
-        }
-    }
-
-    &__sticks {
-        height: 56px;
-        align-items: center;
-
-        @media (max-width: 600px) {
-            height: auto;
-        }
-    }
-
-    &__sticks-box {
-        padding-right: 55px;
-        @media (max-width: 420px) {
-            padding-right: 20px;
-        }
-    }
-
-
 }
