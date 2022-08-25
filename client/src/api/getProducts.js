@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getProducts = (categories) =>
-	axios.get(`/api/products/filter?categories=${categories}`);
+const getProducts = (params) =>
+	axios.get(`/api/products/filter?${params}`);
 
 export default getProducts;
