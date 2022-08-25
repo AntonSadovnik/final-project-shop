@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button, Grid } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import PhoneNumbers from './components/phone-numbers/PhoneNumbers';
 import Logo from '../Logo/Logo';
 import WorkHours from './components/work-hours/WorkHours';
 import './components/activities/style.scss';
+
 
 function HeaderMobile() {
 	return (
@@ -16,7 +18,14 @@ function HeaderMobile() {
 				sx={{ padding: '12px 0 8px', borderBottom: '0.5px solid #A4ACAD;' }}
 			>
 				<Grid item xs={2}>
-					<Logo maxWidth="45px" maxHeight="45px" />
+					<NavLink
+						style={{
+							textDecoration: 'none',
+						}}
+						to="/"
+					>
+						<Logo maxWidth="45px" maxHeight="45px" />
+					</NavLink>
 				</Grid>
 				<Grid container wrap="nowrap" item xs={8}>
 					<Grid

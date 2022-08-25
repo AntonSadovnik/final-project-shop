@@ -3,6 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import { NavLink } from 'react-router-dom';
 
 function FooterMobile() {
 	return (
@@ -13,15 +14,26 @@ function FooterMobile() {
 				justifyContent="space-evenly"
 			>
 				<Grid item>
-					<Button
-						disableRipple
-						sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+					<NavLink
+						style={{
+							textDecoration: 'none',
+						}}
+						to="/products?category=Pizza"
 					>
-						<RestaurantMenuIcon color="hoverColor" sx={{ fontSize: '30px' }} />
-						<Typography color={(theme) => theme.palette.text.primary}>
-							Menu
-						</Typography>
-					</Button>
+						<Button
+							disableRipple
+							sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+						>
+							<RestaurantMenuIcon
+								color="hoverColor"
+								sx={{ fontSize: '30px' }}
+							/>
+
+							<Typography color={(theme) => theme.palette.text.primary}>
+								Menu
+							</Typography>
+						</Button>
+					</NavLink>
 				</Grid>
 				<Grid item>
 					<Button
@@ -35,15 +47,22 @@ function FooterMobile() {
 					</Button>
 				</Grid>
 				<Grid item>
-					<Button
-						disableRipple
-						sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+					<NavLink
+						style={{
+							textDecoration: 'none',
+						}}
+						to="/reviews"
 					>
-						<ThumbUpOffAltIcon color="hoverColor" sx={{ fontSize: '30px' }} />
-						<Typography color={(theme) => theme.palette.text.primary}>
-							Reviews
-						</Typography>
-					</Button>
+						<Button
+							disableRipple
+							sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+						>
+							<ThumbUpOffAltIcon color="hoverColor" sx={{ fontSize: '30px' }} />
+							<Typography color={(theme) => theme.palette.text.primary}>
+								Reviews
+							</Typography>
+						</Button>
+					</NavLink>
 				</Grid>
 			</Grid>
 		</footer>
