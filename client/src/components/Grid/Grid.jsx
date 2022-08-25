@@ -5,7 +5,6 @@ import {Box, Typography} from "@mui/material";
 
 const GridItem = () => {
 
-
     return (
         <Grid container
               md={6} sm={12} xs={12}
