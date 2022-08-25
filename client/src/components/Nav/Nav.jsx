@@ -18,9 +18,9 @@ function Nav() {
 	const navigate = useNavigate();
 	const handleClick = (alt) => {
 				navigate({
-		pathname: '/products',
-		search: `?category=${alt}`,
-		});
+					pathname: '/products',
+					search: `?categories=${alt.toLowerCase()}`,
+				});
 	}
 
 	return (

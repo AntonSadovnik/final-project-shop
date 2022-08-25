@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Button, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { NavLink } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import './style.scss';
@@ -25,12 +26,26 @@ function Activities() {
 				handleClickOpen={handleClickOpen}
 			/>
 			<Grid item container lg={7} sm={7} alignItems="center">
-				<Typography className="header__links" component="a" href="/">
-					Reviews
-				</Typography>
-				<Typography className="header__links" component="a" href="/">
-					Shipping and payment
-				</Typography>
+				<NavLink
+					style={{
+						textDecoration: 'none',
+					}}
+					to="/reviews"
+				>
+					<Typography className="header__links" component="a" href="/">
+						Reviews
+					</Typography>
+				</NavLink>
+				<NavLink
+					style={{
+						textDecoration: 'none',
+					}}
+					to="/shipping"
+				>
+					<Typography className="header__links" component="a" href="/">
+						Shipping and payment
+					</Typography>
+				</NavLink>
 			</Grid>
 			<Grid container item justifyContent="space-evenly" sm={4}>
 				<Button
