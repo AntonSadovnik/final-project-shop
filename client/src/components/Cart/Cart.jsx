@@ -169,7 +169,7 @@ export default function Cart(props) {
 						ref={descriptionElementRef}
 						tabIndex={-1}
 					>
-						{arr.map((i, ind  => (
+						{arr.map((i, ind)  => (
 							<div key={ind}>
 								<Box
 									sx={{
