@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import { Stack } from '@mui/material';
+import { Stack, Button,Typography } from '@mui/material';
+import { getNoveltieProduct, getPopularProduct } from '../../../../api/Api';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "../../slider.scss";
-import productItems from "../../data";
 import NoveltiesCard from './NoveltiesCard';
-import NextBtn from '../buttons/NextBtn';
-import PrevBtn from '../buttons/PrevBtn';
+import NextBtn from '../buttons/PrevBtn';
+import PrevBtn from '../buttons/NextBtn';
+
 
 
 function NoveltieSlider() {
+const [items, setItems] = useState();
+const [button, setButton]= useState('left');
+
+ useEffect(()=>{
+  if(button==="left")
+  getNoveltieProduct().then(({data:{products}})=>setItems(products))
+  if(button==="right")
+  getPopularProduct().then(({data:{products}})=>setItems(products))
+ },[button])
+
   const settings = {
     dots: true,
     infinite: false,
@@ -55,16 +67,27 @@ function NoveltieSlider() {
       }
     ]
   };
-  
-	return ( <Stack className='slider-wrapper' direction="row" justifyContent="center" alignItems="center" sx={{marginTop: '50px'}}>
+  if(!items){return null}
+	return (<Stack direction="column" justifyContent="center" alignItems="center">
+  <Typography  component="div" className='btn-container' sx={{display:"flex", alignSelf:'flex-start'}}>
+ <Button onClick={()=>setButton('left')}  sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px' }}>Novelties</Button>
+ <Button  onClick={()=>setButton('right')} sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px' }}>Popular</Button>
+ </Typography>
+  <Stack className='slider-wrapper' direction="row" justifyContent="center" alignItems="center" sx={{marginTop: '50px'}}>
  
   <Slider {...settings}>
-  {productItems.map((item)=>(item.slider==="one") && <NoveltiesCard key={item.article} item={item}/>
-   
+
+  {items.map((item)=>  <NoveltiesCard key={item._id} item={item}/>
   )}
   
   </Slider>
+  </Stack>
   </Stack>)
+}
+
+NoveltieSlider.propTypes = {
+  name: PropTypes.string,
+  imageUrls: PropTypes.shape([]),
 }
 
 export default NoveltieSlider
