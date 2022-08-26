@@ -7,6 +7,7 @@ import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import HeaderMobile from './components/Header/Header-mobile';
 import FooterMobile from './components/Footer/FooterMobile';
+import AboutCompany from './components/AboutCompany/AboutCompany';
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<HeaderMobile />
 				</Box>
 				<Main />
+				<AboutCompany/>
 				<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 					<Footer />
 				</Box>
