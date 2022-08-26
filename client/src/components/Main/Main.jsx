@@ -12,7 +12,6 @@ function Main() {
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
 				<Grid item style={{ padding: '30px 0 60px' }}>
-					Main
 				 <NoveltieSlider/>
 				 <RecommendedSlider/>
 				</Grid>

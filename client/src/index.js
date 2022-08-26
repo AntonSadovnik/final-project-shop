@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -10,7 +10,9 @@ import store from './store/store';
 import theme from './Styles/Theme';
 import App from './App';
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+root.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<StyledEngineProvider injectFirst>
@@ -21,6 +23,5 @@ ReactDOM.render(
 				</BrowserRouter>
 			</StyledEngineProvider>
 		</ThemeProvider>
-	</React.StrictMode>,
-	document.getElementById('root')
+	</React.StrictMode>
 );
