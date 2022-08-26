@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stack } from '@mui/material';
-import PropTypes from 'prop-types';
+
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 
@@ -12,7 +12,5 @@ function PrevBtn(props) {
   );
 }
 
-PrevBtn.propTypes = {
-  onClick: PropTypes.func,
-}
+
 export default PrevBtn

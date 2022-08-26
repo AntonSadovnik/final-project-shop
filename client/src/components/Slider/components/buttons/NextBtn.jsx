@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import PropTypes from 'prop-types';
+
 
 
 function NextBtn(props) {
@@ -10,9 +10,6 @@ function NextBtn(props) {
     <NavigateNextIcon onClick={onclick} />
     </Stack>
     );
-  }
-  NextBtn.propTypes = {
-    onClick: PropTypes.func,
   }
  
   export default NextBtn

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+
 import Slider from 'react-slick';
 import { Stack, Button,Typography } from '@mui/material';
 import { getNoveltieProduct, getPopularProduct } from '../../../../api/Api';
@@ -77,7 +77,7 @@ const [button, setButton]= useState('left');
  
   <Slider {...settings}>
 
-  {items.map((item)=>  <NoveltiesCard key={item._id} item={item}/>
+  {items.map((item)=> <NoveltiesCard key={item.itemNo} item={item}/>
   )}
   
   </Slider>
@@ -85,10 +85,7 @@ const [button, setButton]= useState('left');
   </Stack>)
 }
 
-NoveltieSlider.propTypes = {
-  name: PropTypes.string,
-  imageUrls: PropTypes.shape([]),
-}
+
 
 export default NoveltieSlider
 

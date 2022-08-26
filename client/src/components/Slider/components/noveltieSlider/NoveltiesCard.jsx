@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { Card, Button, CardContent, CardMedia, Typography, CardActions, Divider, Stack} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "slick-carousel/slick/slick.css";
@@ -17,7 +17,7 @@ theme.typography.h6 ={
 }
 
 function NoveltiesCard({item}){
-  
+  console.log(item)
 return (<Card key={item.id} className="card" sx={{ padding: 0,
   borderRadius: 5,
   background: 'white',
@@ -70,10 +70,7 @@ return (<Card key={item.id} className="card" sx={{ padding: 0,
 
 }
 
-NoveltiesCard.propTypes = {
-  name: PropTypes.string,
-  item: PropTypes.shape({}),
-}
+
 
 
 export default NoveltiesCard
