@@ -1,0 +1,11 @@
+.catalog-title {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    min-height: 45px;
+    align-items: center;
+    h1 {
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
