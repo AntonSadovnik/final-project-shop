@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
 	MenuList,
 	MenuItem,
@@ -12,21 +13,39 @@ import Logo from '../Logo/Logo';
 import menuItemsContent from './config';
 import './style.scss';
 
+
 function Nav() {
+	const navigate = useNavigate();
+	const handleClick = (alt) => {
+				navigate({
+					pathname: '/products',
+					search: `?categories=${alt.toLowerCase()}`,
+				});
+	}
+
 	return (
 		<nav>
 			<Box sx={{ paddingTop: '25px' }} align="center">
-				<Logo />
-				<Typography
-					sx={{
-						fontWeight: 300,
-						fontSize: '30px',
-						textTransform: 'uppercase',
-						margin: '10px 0 30px',
+				<NavLink
+					style={{
+						textDecoration: 'none',
 					}}
+					to="/"
 				>
-					Romsem
-				</Typography>
+					<Logo />
+					<Typography
+						sx={{
+							color: '#000000',
+							fontWeight: 300,
+							fontSize: '30px',
+							textTransform: 'uppercase',
+							textDecoration: 'none',
+							margin: '10px 0 30px',
+						}}
+					>
+						Romsem
+					</Typography>
+				</NavLink>
 				<Divider />
 			</Box>
 			<MenuList>
@@ -34,6 +53,7 @@ function Nav() {
 					const { src, alt } = e;
 					return (
 						<MenuItem
+							onClick={() => handleClick(alt)}
 							className="nav__menu-item"
 							key={alt}
 							disableGutters
