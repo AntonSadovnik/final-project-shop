@@ -1,19 +1,20 @@
 import React from 'react';
 import { Typography, List, Grid } from '@mui/material';
 import './style.scss';
+import { NavLink } from 'react-router-dom';
 
 function Links() {
 	return (
 		<Grid container>
 			<List className="footer__links-wrap" disablePadding>
 				<Typography component="li">
-					<a href="/">About company</a>
+					<NavLink to="/about">About company</NavLink>
 				</Typography>
 				<Typography component="li">
-					<a href="/">Shipping and payment</a>
+					<NavLink to="/shipping">Shipping and payment</NavLink>
 				</Typography>
 				<Typography component="li">
-					<a href="/">Return policy</a>
+					<NavLink to="/return">Return policy</NavLink>
 				</Typography>
 			</List>
 		</Grid>
