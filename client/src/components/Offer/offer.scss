@@ -1,62 +1,17 @@
 .offer_slider{
-  max-width: 950px;
-  position: relative;
-  justify-content: center;
-
-
-  &_container{
-    display: inline-block;
-    position: relative;
-  }
 
   &_item{
-    padding-right: 350px;
-    width: 600px;
+    width:600px;
     height: 470px;
-    background-color: #fff;
-  }
-
-  &_title{
-    position: absolute;
-    top: 50px;
-    right: 60px;
-    font-size: 24px;
-    line-height: 30px;
   }
 
   &_subtitle{
-    position: absolute;
-    top: 90px;
-    right: 60px;
     color: #F46D40;
-  }
-
-  &_text{
-    position: absolute;
-    top: 200px;
-    right: 60px;
-    font-size: 24px;
-    line-height: 30px;
-
-    &_cross{
-        position: absolute;
-        top: 170px;
-        right: 60px;
-        text-decoration: line-through;
-      }
   }
 
   &_button{
     background: #F46D40;
     color: #fff;
-    border: 0;
-    width: 200px;
-    height: 50px;
-    font-size: 24px;
-    border-radius: 5px;
-    position: absolute;
-    right: 60px;
-    bottom: 80px;
   }
 }
 
@@ -97,10 +52,4 @@
 
 .slick-dots li.slick-active button {
   opacity: .75;
-}
-
-@media (max-width: 992px) {
-  .offer_slider{
-    display: none;
-  }
 }

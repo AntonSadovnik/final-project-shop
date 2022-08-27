@@ -17,12 +17,19 @@ const GridItem = () => {
                 const {layout, src, alt, text} = e;
                 return(
                     <Grid item {...layout}>
-                        <Box className='card'>
+                        <Box className='card'
+                             sx={{  position: 'relative', borderRadius: 5, overflow: 'hidden'}}
+                        >
                             <img
                                 src={src}
+                                sx={{display: 'block', objectFit: 'cover'}}
                                 className='card_image' alt={alt}
                             />
-                            <Typography className='card_text' component="h3">{text}</Typography>
+                            <Typography className='card_text'
+                                        sx={{ left: 20, bottom: 10, position: 'absolute'}}
+                                        component="h3">
+                                {text}
+                            </Typography>
                         </Box>
                     </Grid>
                 )
@@ -32,10 +39,17 @@ const GridItem = () => {
                 const {src, alt, text} = e;
                 return(
                     <Grid item sx={{display: {md:'none', sm:'block'}}} xs={6}>
-                        <Box className="card card_hidden">
+                        <Box className="card"
+                             sx={{  position: 'relative', borderRadius: 5, overflow: 'hidden'}}
+                        >
                             <img src={src}
+                                 sx={{display: 'block', objectFit: 'cover'}}
                                  className='card_image' alt={alt}/>
-                            <Typography className='card_text' component="h3">{text}</Typography>
+                            <Typography className='card_text'
+                                        sx={{ left: 20, bottom: 10, position: 'absolute', fontSize: 24, lineHeight: 30}}
+                                        component="h3">
+                                {text}
+                            </Typography>
                         </Box>
                     </Grid>
                 )
