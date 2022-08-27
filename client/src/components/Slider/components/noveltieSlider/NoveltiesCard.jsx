@@ -17,7 +17,6 @@ theme.typography.h6 ={
 }
 
 function NoveltiesCard({item}){
-  console.log(item)
 return (<Card key={item.id} className="card" sx={{ padding: 0,
   borderRadius: 5,
   background: 'white',
