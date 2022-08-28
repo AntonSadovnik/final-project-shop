@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch} from 'react-redux';
 import Grid from '@mui/material/Grid';
+import { getProductsRequest } from '../../store/actions'
+
 import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider';
 import RecommendedSlider from '../../components/Slider/components/recommendedSlider/SliderTwo';
 
 function Main() {
+const dispatch = useDispatch()
+
+useEffect(()=>{
+	dispatch(getProductsRequest())
+},[])
+
 	return (
 		<main>
 			<Grid
