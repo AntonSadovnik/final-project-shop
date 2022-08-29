@@ -19,13 +19,16 @@ export default function ProductCard (props) {
         overflow: 'hidden',
         maxWidth: '288px',
         maxHeight: '400px',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        padding: '0px',
+        margin: '0px'
         }}>
        <CardMedia
               component="img"
               alt="not display"
               height="210px"
               width="253px"
+              fit="cover"
               image={imgSrc}
               className="img"
             />
