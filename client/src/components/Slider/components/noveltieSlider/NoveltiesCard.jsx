@@ -2,13 +2,14 @@ import React from 'react';
 
 import { Card, Button, CardContent, CardMedia, Typography, CardActions, Divider, Stack} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch} from 'react-redux';
+import { addToCart } from '../../../../store/actions';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../slider.scss";
 
 
 const theme = createTheme();
-
 theme.typography.h6 ={
   fontSize: '24px',
   '@media (min-width:900px) and (max-width: 980px)':{
@@ -17,6 +18,7 @@ theme.typography.h6 ={
 }
 
 function NoveltiesCard({item}){
+  const dispatch= useDispatch()
 return (<Card key={item.id} className="card" sx={{ padding: 0,
   borderRadius: 5,
   background: 'white',
@@ -58,7 +60,7 @@ return (<Card key={item.id} className="card" sx={{ padding: 0,
         </Typography>
         
         <CardActions component="div">
-        <Button variant="contained" sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px' }}>Wish</Button>
+        <Button variant="contained" sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px'}} onClick={()=>dispatch(addToCart(item))}>Wish</Button>
         </CardActions>
         
         </Typography>

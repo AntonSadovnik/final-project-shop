@@ -1,14 +1,16 @@
 import React from 'react';
 import { Card, Button, CardContent, CardMedia, Typography, CardActions, } from '@mui/material/';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import { useDispatch} from 'react-redux';
+import { addToCart } from '../../../../store/actions';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "../../slider.scss";
 
 
 function SushiCard({item}){
-  
+  const dispatch= useDispatch()
+
   return(<Card key={item._id}  direction="column"
   
   className="card" sx={{ padding: 0,
@@ -45,7 +47,7 @@ function SushiCard({item}){
         </Typography>
         <CardActions component="div">
      
-        <Button variant="text" sx={{display:"inline-block", position: "absolute", right: "-30px"}}><AddCircleIcon fontSize='large'/></Button>
+        <Button variant="text" sx={{display:"inline-block", position: "absolute", right: "-30px"}} onClick={()=>dispatch(addToCart(item))}><AddCircleIcon fontSize='large'/></Button>
         </CardActions>
         
         </Typography>
