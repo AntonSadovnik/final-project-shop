@@ -33,7 +33,9 @@ export default function CardList() {
             <Stack direction="row" justifyContent="space-between" spacing={2}>
                 <Item>
                     <img src='https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660240222/sushi-shop/Nav/%D0%A1%D0%B5%D1%82%D1%8B_kqi7dj.svg' alt='' />
-                    <h1>Sets</h1>
+                    <Typography component="h1" sx={{ fontSize: '20px', fontWeight: 'bold',}}>
+                        Sets
+                    </Typography>
                 </Item>
                 <Item>
                     <SortSelect className="select" />
