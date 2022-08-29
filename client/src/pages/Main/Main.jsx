@@ -1,8 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import NoveltieSlider from '../Slider/components/noveltieSlider/Slider';
-import RecommendedSlider from '../Slider/components/recommendedSlider/SliderTwo';
-import CardList from '../CardList/CardList';
+import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider';
+import RecommendedSlider from '../../components/Slider/components/recommendedSlider/SliderTwo';
 
 function Main() {
 	return (
@@ -15,7 +14,6 @@ function Main() {
 				<Grid item style={{ padding: '30px 0 60px' }}>
 					<NoveltieSlider />
 					<RecommendedSlider />
-					<CardList/>
 				</Grid>
 			</Grid>
 		</main>

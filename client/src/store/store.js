@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducer';
 
-const initialState = {};
+const initialState = { products: null, cart: null, filters: null };
 // eslint-disable-next-line no-underscore-dangle
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
 	? // eslint-disable-next-line no-underscore-dangle
