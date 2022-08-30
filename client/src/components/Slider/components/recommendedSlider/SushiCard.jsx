@@ -11,7 +11,7 @@ import "../../slider.scss";
 function SushiCard({item}){
   const dispatch= useDispatch()
 
-  return(<Card key={item._id}  direction="column"
+  return(<Card key={item.itemNo}  direction="column"
   
   className="card" sx={{ padding: 0,
   background: '#F2F2F2',

@@ -1,7 +1,7 @@
 import { SET_PRODUCTS } from '../types/types';
 
-const store ={products: null,
-}
+const store =[];
+
 
 const ProductsReducer = (state=store, action) => {
 
