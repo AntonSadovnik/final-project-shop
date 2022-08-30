@@ -15,6 +15,8 @@
 	 export const getNoveltieProduct=()=>axios.get('/api/products/filter?promo=new');
 
 	 export const getPopularProduct=()=>axios.get('/api/products/filter?promo=popular');
+
+	 export const getAllProducts=()=>axios.get('/api/products')
 	 
 	// могу предположить, что у некоторых бэк будет запускаться на 4000-ом локал хосте,
 	// если да, то идём в package.json клиента и меняем поле "proxy": "http://localhost:5000" на
