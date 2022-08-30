@@ -1,6 +1,6 @@
 import { ADD_FILTER } from '../types/types';
 
-const store = { filter: [] };
+const store = [] ;
 
 const FilterReducer = (state = store, action) => {
 	switch (action.type) {
