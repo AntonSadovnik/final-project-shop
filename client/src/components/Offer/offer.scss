@@ -1,55 +1,34 @@
-.offer_slider{
+.offer-slider {
+	&__item {
+		width: 600px;
+		height: 470px;
+	}
 
-  &_item{
-    width:600px;
-    height: 470px;
-  }
-
-  &_subtitle{
-    color: #F46D40;
-  }
-
-  &_button{
-    background: #F46D40;
-    color: #fff;
-  }
+	&_button {
+		background: #f46d40;
+		color: #fff;
+	}
 }
 
-.slick-arrow{
-  border: 0;
-  position: absolute;
-  font-size: 0;
-  top: 10px;
-  width: 0;
-  height: 0;
-  visibility: hidden;
+.slick-dots {
+	bottom: 20px;
 }
 
-.slick-next{
-  right: 10px;
+.slick-dots li button {
+	font-size: 0;
+	width: 8px;
+	height: 8px;
+	border: 0;
+	padding: 3px;
+	border-radius: 50%;
+	background: #a4acad;
 }
-
-.slick-dots{
-  position: absolute;
-  padding:0;
-  margin: 0;
-  left: 430px;
-  bottom: 20px;
-}
-
-.slick-dots li {
-  display: inline-block;
-}
-
-.slick-dots li button{
-  font-size: 0;
-  margin: 0 5px;
-  border: 0;
-  padding: 3px;
-  border-radius: 50%;
-  background: #FF9846;
+.slick-dots li button::before {
+	content: '';
 }
 
 .slick-dots li.slick-active button {
-  opacity: .75;
+	width: 10px;
+	height: 10px;
+	background: #ff9846;
 }
