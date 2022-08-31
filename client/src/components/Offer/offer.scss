@@ -1,12 +1,12 @@
 .offer-slider {
 	&__item {
-		width: 600px;
-		height: 470px;
+		max-width: 600px;
+		max-height: 470px;
 	}
 
-	&_button {
+	&__button:hover {
 		background: #f46d40;
-		color: #fff;
+		box-shadow: none;
 	}
 }
 

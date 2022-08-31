@@ -24,7 +24,7 @@ function Main() {
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
 				<Grid item style={{ padding: '30px 0 60px' }}>
-					<Grid>
+					<Grid sx={{ display: { md: 'block', xs: 'none' } }}>
 						<Offer />
 					</Grid>
 					<Grid container justifyContent="center">

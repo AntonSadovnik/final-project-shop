@@ -1,10 +1,10 @@
 import React from 'react';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.scss';
-import './offer.scss';
-import Button from '@mui/material/Button';
 import { Box, Typography } from '@mui/material';
 import sliderItems from './items';
+import CustomButton from '../Button/Button';
+import 'slick-carousel/slick/slick.scss';
+import './offer.scss';
 
 function OfferSlider() {
 	const settings = {
@@ -16,8 +16,7 @@ function OfferSlider() {
 		autoplay: true,
 		autoplaySpeed: 2000,
 		cssEase: 'linear',
-		prevArrow: false,
-		nextArrow: false,
+		arrows: false,
 	};
 
 	return (
@@ -28,16 +27,22 @@ function OfferSlider() {
 					<Box
 						sx={{
 							maxWidth: 950,
-							display: { sm: 'none', xs: 'none' },
 							position: 'relative',
 						}}
 					>
 						<img src={src} className="offer-slider__item" alt="img" />
-						<Box sx={{ position: 'absolute', top: 60, right: 20 }}>
+						<Box
+							sx={{
+								position: 'absolute',
+								top: { lg: 60, sm: 40 },
+								right: { lg: 20, sm: 0 },
+								textAlign: 'right',
+								maxWidth: '25%',
+							}}
+						>
 							<Typography
 								sx={{
 									fontSize: 24,
-									textAlign: 'right',
 									fontWeight: 'bold',
 								}}
 								component="p"
@@ -48,7 +53,6 @@ function OfferSlider() {
 								color={(theme) => theme.palette.text.hoverText}
 								sx={{
 									marginTop: '10px',
-									textAlign: 'right',
 								}}
 								component="p"
 							>
@@ -57,9 +61,8 @@ function OfferSlider() {
 							<Typography
 								sx={{
 									textDecoration: 'line-through',
-									marginTop: '80px',
+									marginTop: '40%',
 									fontWeight: 'bold',
-									textAlign: 'right',
 								}}
 								component="h5"
 							>
@@ -68,30 +71,25 @@ function OfferSlider() {
 							<Typography
 								sx={{
 									fontSize: 24,
-									marginTop: '20px',
+									marginTop: '5%',
 									fontWeight: 'bold',
-									textAlign: 'right',
 								}}
 								component="h3"
 							>
 								{text}
 							</Typography>
+							<CustomButton
+								className="offer-slider__button"
+								title="Want!"
+								textStyle={{ color: '#fff' }}
+								btnStyle={{
+									background: '#F46D40',
+									boxShadow: 'none',
+									width: '80%',
+									marginTop: '70%',
+								}}
+							/>
 						</Box>
-						<Button
-							className="offer-slider_button"
-							sx={{
-								position: 'absolute',
-								right: 60,
-								bottom: 80,
-								borderRadius: 5,
-								width: 200,
-								height: 50,
-								border: 0,
-								fontSize: 24,
-							}}
-						>
-							Want!
-						</Button>
 					</Box>
 				);
 			})}
