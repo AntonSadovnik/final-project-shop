@@ -15,10 +15,14 @@ export default function ProductCard(props) {
     const { data } = props;
     const { title, portion, price, imgSrc, article } = data;
     return (<Card key={article} className="card" sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: { xs: 'row', md: 'column' },
         borderRadius: 5,
         background: 'white',
         overflow: 'hidden',
         boxSizing: 'border-box',
+        justifyContent: 'space-around',
         // maxWidth: {sm: 330}
     }}>
         <CardMedia 
@@ -29,7 +33,6 @@ export default function ProductCard(props) {
                 width: 253,
                 fit:"cover",
                 maxWith: {xs: 100, sm: 180, md: 253},
-                margin: 'auto'
             }}
             
             image={imgSrc}
@@ -56,7 +59,7 @@ export default function ProductCard(props) {
                     {price}
                 </Typography>
                 <CardActions component="div">
-                    <Button variant="contained" sx={{ paddingLeft: 5, paddingRight: 5 }}>Wish</Button>
+                    <Button variant="contained" sx={{ padding: '5px 30px'}}>Wish</Button>
                 </CardActions>
             </Typography>
         </CardContent>
