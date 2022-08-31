@@ -1,16 +1,15 @@
-import {SET_PRODUCTS, ADD_TO_CART, DELETE_FROM_CART } from "../types/types";
+import { ADD_TO_CART, DELETE_FROM_CART } from "../types/types";
 
-const store ={cart:[],
-}
+const store ={_id:null,
+products:[]
+};
+
 
 const CartReducer = (state=store, action) => {
 	switch (action.type) {
-		case SET_PRODUCTS: {
-			return { ...state, products: action.payload };
-		}
 		case ADD_TO_CART: {
-		
-			return { ...state, cart: [...state.cart,action.payload] };
+
+			return { ...state, products: [...state.products,action.payload] };
 		}
 		case DELETE_FROM_CART: {
 			return { ...state, cart: action.payload };

@@ -7,8 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../slider.scss";
 import NoveltiesCard from './NoveltiesCard';
-import NextBtn from '../buttons/PrevBtn';
-import PrevBtn from '../buttons/NextBtn';
+import NextBtn from '../buttons/NextBtn';
+import PrevBtn from '../buttons/PrevBtn';
 
 
 
