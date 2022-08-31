@@ -1,13 +1,15 @@
 import React from 'react';
+
 import { Card, Button, CardContent, CardMedia, Typography, CardActions, Divider, Stack} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch} from 'react-redux';
+import { addToCart } from '../../../../store/actions';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../slider.scss";
 
 
 const theme = createTheme();
-
 theme.typography.h6 ={
   fontSize: '24px',
   '@media (min-width:900px) and (max-width: 980px)':{
@@ -16,14 +18,15 @@ theme.typography.h6 ={
 }
 
 function NoveltiesCard({item}){
-  
-return (<Card key={item.article} className="card" sx={{ padding: 0,
+  const dispatch= useDispatch()
+return (<Card key={item.id} className="card" sx={{ padding: 0,
   borderRadius: 5,
   background: 'white',
-  overflow: 'hidden',
-  maxWidth: '290px',
+  overflow:'hidden',
+  maxWidth:'290px',
+  maxHeight:'397px',
   minWidth:'225px',
-  boxSizing: 'content-box',
+  boxSizing:'content-box',
   margin:"0 70px"
   }}>
 
@@ -31,7 +34,7 @@ return (<Card key={item.article} className="card" sx={{ padding: 0,
 <CardMedia
         component="img"
         alt="not display"
-        image={item.imgSrc}
+        image={item.imageUrls[0]}
         className="img"
         sx={{width:"253px", height:"203px", objectFit:"cover"}}
       />
@@ -39,25 +42,25 @@ return (<Card key={item.article} className="card" sx={{ padding: 0,
        
        <CardContent>
        <ThemeProvider theme={theme}>
-        <Typography gutterBottom variant="h6" component="div" className='title' sx={{ fontSize: 22 }}>
-        {item.title}
+        <Typography gutterBottom variant="h6" component="div" className='title' sx={{ fontSize: 22,marginTop:"20px", maxHeight:"30px", marginBottom:"30px", height:'30px'}}>
+        {item.name[0].toUpperCase()+item.name.slice(1)}
         </Typography>
         </ThemeProvider>
         <Typography variant="body2" component="div" color="text.secondary" className='portion' sx={{marginBottom: "0"}}>
-        {item.portion}
-        <Divider textAlign="right" style={{color: 'black', marginTop: '20px'}} />
+        {item.weight}<span> gramm</span>
+        <Divider textAlign="right" style={{color: 'black', marginTop: '10px'}} />
         </Typography>
         <Stack > 
       
         <Typography variant="body2" component="div"  className='card-bottom' sx={{marginTop: "10px",position: "relative",
-        display: 'flex', justifyContent: 'space-between',padding: 0,}}>
+        display: 'flex', justifyContent: 'space-between',padding:0,}}>
         <Typography variant="body2" component="div"  className='price' sx={{alignSelf: "center",
         fontWeight: 700, marginRight:"-30px", lineHight:"30.05px"}}>
-        {item.price}
+        {item.currentPrice}<span> UAH</span>
         </Typography>
         
         <CardActions component="div">
-        <Button variant="contained" sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px' }}>Wish</Button>
+        <Button variant="contained" sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px'}} onClick={()=>dispatch(addToCart(item))}>Wish</Button>
         </CardActions>
         
         </Typography>
@@ -67,5 +70,8 @@ return (<Card key={item.article} className="card" sx={{ padding: 0,
 
 
 }
+
+
+
 
 export default NoveltiesCard

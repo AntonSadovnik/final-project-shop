@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import { Typography, Stack } from '@mui/material';
+import { getRecommendedProduct } from '../../../../api/Api';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "../../slider.scss";
-import productItems from "../../data";
 import SushiCard from './SushiCard';
 import NextBtn from '../buttons/NextBtn';
 import PrevBtn from '../buttons/PrevBtn';
 
 
 function RecommendedSlider() {
+  const [items, setItems] = useState();
+
+  useEffect(()=>{
+  getRecommendedProduct().then(({data:{products}})=>setItems(products))
+   },[])
+
+
   const settings = {
     dots: false,
     infinite: false,
@@ -56,17 +63,16 @@ function RecommendedSlider() {
       }
     ]
   };
-  
+  if(!items){return null}
 	return (<Stack className='slider-wrapper' direction="column" justifyContent="center" alignItems="center"sx={{width:'78%',
       marginLeft: '12%', marginTop: '50px'}}>
     <Typography gutterBottom variant="h6" component="div" className='slider_title' sx={{ fontSize: 22, display:"flex",  justifyContent:"center", alignItems:"center", textAlign:"center"}}> 
         <h6>Recommended for this product</h6>
     </Typography> 
     <Slider {...settings}>
-      {productItems.map((item)=>(item.slider==="two")&& <SushiCard key={item.article} item={item}/>)}
+      {items.map((item)=> <SushiCard key={item.itemNo} item={item}/>)}
     </Slider>
    </Stack>
- 
   )
 }
 
