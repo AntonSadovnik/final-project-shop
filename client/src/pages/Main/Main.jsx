@@ -23,15 +23,19 @@ function Main() {
 				flexDirection="column"
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
-				<Grid item style={{ padding: '30px 0 60px' }}>
+				<Grid item sx={{ padding: '30px 0 60px', width: '100%' }}>
 					<Grid sx={{ display: { md: 'block', xs: 'none' } }}>
 						<Offer />
 					</Grid>
 					<Grid container justifyContent="center">
 						<GridItem />
 					</Grid>
-					<NoveltieSlider />
-					<RecommendedSlider />
+					<Grid container justifyContent="center">
+						<NoveltieSlider />
+					</Grid>
+					<Grid container justifyContent="center">
+						<RecommendedSlider />
+					</Grid>
 				</Grid>
 			</Grid>
 		</main>

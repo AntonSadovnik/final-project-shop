@@ -9,8 +9,10 @@
 		box-shadow: none;
 	}
 }
-
-.slick-dots {
+.slick-slider.slick-initialized {
+	width: 100%;
+}
+.offer-slider .slick-dots {
 	bottom: 20px;
 }
 
