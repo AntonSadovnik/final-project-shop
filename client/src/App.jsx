@@ -16,6 +16,7 @@ import Product from './pages/Product/Product';
 import Return from './pages/Return/Return';
 import Products from './pages/Products/Products';
 import Error from './components/Error/Error';
+import CartMob from "./components/Cart/CartMob";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
 					<Route path="/products" element={<Products />} />
 					<Route path="/products/:id" element={<Product />} />
 					<Route path="/return" element={<Return />} />
+					<Route path="/cart" element={<CartMob />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 				<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
