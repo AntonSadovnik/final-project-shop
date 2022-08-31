@@ -36,6 +36,12 @@ function FooterMobile() {
 					</NavLink>
 				</Grid>
 				<Grid item>
+					<NavLink
+						style={{
+							textDecoration: 'none',
+						}}
+						to="/cart"
+					>
 					<Button
 						disableRipple
 						sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
@@ -45,6 +51,7 @@ function FooterMobile() {
 							Cart
 						</Typography>
 					</Button>
+						</NavLink>
 				</Grid>
 				<Grid item>
 					<NavLink

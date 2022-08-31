@@ -1,0 +1,32 @@
+import cartData from "../../components/Cart/cartData";
+import {DECREASE_QUANTITY_TO_CART, INCREASE_QUANTITY_TO_CART, REMOVE_FROM_CART, ADD_TO_CART} from "../types/types";
+
+const initialState = {cart: cartData};
+
+
+const cartReducer = (state = initialState, action = {}) => {
+    switch (action.type) {
+        case ADD_TO_CART: {
+            return {...state, cart: {...state.cart, products: [...state.cart.products, action.payload]}};
+        }
+
+        case INCREASE_QUANTITY_TO_CART: {
+
+            return {...state, cart: action.payload};
+        }
+
+        case DECREASE_QUANTITY_TO_CART: {
+            return {...state, cart: action.payload};
+        }
+
+        case REMOVE_FROM_CART: {
+            return {...state, cart: action.payload};
+        }
+
+        default: {
+            return state;
+        }
+    }
+};
+
+export default cartReducer;
