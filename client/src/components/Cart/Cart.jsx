@@ -22,9 +22,7 @@ import {decreaseQuantity, increaseQuantity, removeProductFromCart} from "../../s
 export default function Cart(props) {
     const dispatch = useDispatch()
     const {products} = useSelector(state => state.cart.cart)
-    console.log(useSelector(state => state.cart))
     const price = products.map(j => j.product.currentPrice * j.cartQuantity)
-    console.log(price)
     const sum = () => {
         let s = 0;
         for (let i = 0; i < price.length; i += 1) {
