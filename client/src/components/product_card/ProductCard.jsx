@@ -1,37 +1,47 @@
 import { React, useState, useEffect } from 'react';
 import { Grid, CardMedia, Typography, CardActionArea, Stack } from '@mui/material';
-// CardContent,
 import { useParams } from "react-router-dom";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircle from '@mui/icons-material/RemoveCircle';
+import NavigateBefore from '@mui/icons-material/NavigateBefore';
+import NavigateNext from '@mui/icons-material/NavigateNext';
 
-// import axios from 'axios';
-import getProduct from "../../api/getProduct";
-// import getProducts from "../../api/getProducts";
 
-// import { useSelector } from 'react-redux';
+import { getProduct, getProductsByCategory } from "../../api/Api";
+
 
 
 
 function ProductCard() {
     const [product, setProduct] = useState({});
+    const [productNextID, setproductNextID] = useState({});
+    const [category, setCategory] = useState();
 
     const { id } = useParams();
 
+    useEffect(() => {
+        getProduct(id).then(({ data: { products } }) => setProduct(products[0]))
+    }, [])
+
 
     useEffect(() => {
-        getProduct(id).then((products) => { const pr = products; setProduct({ pr }); console.log(product); })
-        console.log(product);
-    }, []);
+        setCategory("pizza")
+        getProductsByCategory("pizza").then(({ data: { products } }) => setproductNextID(products))
+    }, [])
+    console.log("--> here");
+    console.log(productNextID);
+    console.log(product);
+    console.log(category);
 
 
-    const cardPicture = "/images/img_productCard/set_img.jpg";
-    const cardMinus = "/images/img_productCard/minus.png";
-    const cardAdd = "/images/img_productCard/add.png";
-    const cardForward = "/images/img_productCard/forward.png";
-    const cardBack = "/images/img_productCard/back.png";
-    const cardWeight = "290 grams";
-    // const cardPrice = product.currentPrice ? product.currentPrice : 110;
+
+
+    const cardPicture = "imageUrls" in product ? product.imageUrls[0] : "";
+    const cardWeight = "weight" in product ? product.weight : "";
     const quantityGoods = "1";
-    const cardCompound = "Salmon, Philadelphia cheese, cucumber, avocado";
+    const cardCompound = "ingredients" in product ? product.ingredients : "";
+    const cardTitle = "name" in product ? product.name : "";
+    const cardPrice = "currentPrice" in product ? product.currentPrice : "";
 
     return (
 
@@ -48,7 +58,10 @@ function ProductCard() {
                 justifyContent="space-between"
                 alignItems="center"
                 spacing={4}
-                style={{ height: 120, paddingLeft: 30, paddingRight: 30 }}
+                style={{ paddingLeft: 30, paddingRight: 30 }}
+                sx={{
+                    height: { xs: '60px', sm: '80px', md: '90px', lx: '110px' },
+                }}
             >
 
                 <Stack
@@ -59,19 +72,21 @@ function ProductCard() {
                     className="product-card__switch-in-sheet"
                 >
 
-                    <CardMedia
-                        component="img"
-                        height="20"
-                        image={cardForward}
-                        alt="set picture"
+                    <NavigateBefore
+                        style={{
+                            background: '#F46D40',
+                            color: '#F2F2F2',
+                            borderRadius: '50px',
+                            height: '20px',
+                            width: '20px',
+                        }}
                     />
+
 
                     <Typography
                         variant="body2"
                         component="span"
                         style={{
-                            marginRight: '21px',
-                            marginLeft: '18px',
                             fontStyle: 'normal',
                             fontWeight: '400',
                             fontSize: '18px',
@@ -79,6 +94,7 @@ function ProductCard() {
                         }}
                         sx={{
                             color: { xs: '#000000' },
+                            margin: { xs: '0 0 0 12px', sm: '0 0 0 15px', md: '0 0 0 17px', lx: '0 0 0 18px' },
                         }}
                     >
                         Forward
@@ -102,8 +118,6 @@ function ProductCard() {
                         variant="body2"
                         component="span"
                         style={{
-                            marginRight: '21px',
-                            marginLeft: '21px',
                             fontStyle: 'normal',
                             fontWeight: '400',
                             fontSize: '18px',
@@ -111,17 +125,18 @@ function ProductCard() {
                         }}
                         sx={{
                             color: { xs: '#000000' },
+                            margin: { xs: '0 13px 0 0', sm: '0 15px 0 0', md: '0 17px 0 0', lx: '0 19px 0 0' },
+
                         }}
                     >
                         Back
                     </Typography>
 
-                    <CardMedia
-                        className="product-card__switch-img"
-                        component="img"
-                        image={cardBack}
-                        alt="set picture"
-                        sm={{
+                    <NavigateNext
+                        style={{
+                            background: '#F46D40',
+                            color: '#F2F2F2',
+                            borderRadius: '50px',
                             height: '20px',
                             width: '20px',
                         }}
@@ -150,8 +165,14 @@ function ProductCard() {
                         <Stack
                             className="product-card_grid-picture-container"
                             spacing={1}
+                            style={{
+                                display: 'flex',
+                                justifyContent: "center",
+                                alignItems: "flex-start",
+                            }}
+                            display='flex'
                             justifyContent="center"
-                            alignItems="center"
+                            alignItems="flex-start"
                         >
                             <CardMedia
                                 className="product-card_grid-picture"
@@ -184,8 +205,6 @@ function ProductCard() {
                         className="product-card_grid-item-container"
                         direction="column"
                         justifyContent="center"
-                        // alignItems="flex-start"
-                        spacing={2}
                         sm={{
                             marginBottom: '47px',
                         }}
@@ -223,8 +242,7 @@ function ProductCard() {
                                     lineHeight: { xs: '35px', sm: '48px', md: '60px', lx: '70px' },
                                 }}
                             >
-                                Philadelphia and
-                                salmon set
+                                {cardTitle}
                             </Typography>
 
                             <Typography
@@ -234,15 +252,15 @@ function ProductCard() {
                                 sm={{
                                     fontStyle: 'normal',
                                     fontWeight: '300',
-                                    fontSize: '18px',
-                                    lineHeight: '22px',
                                 }}
                                 sx={{
                                     padding: { xs: '30px 0' },
                                     color: { xs: '#FF9846' },
+                                    fontSize: { xs: '18px', sm: '20px', md: '22px', lx: '23px' },
+                                    lineHeight: { xs: '22px', sm: '24px', md: '26px', lx: '28px' },
                                 }}
                             >
-                                {cardWeight}
+                                {cardWeight} grams
                             </Typography>
 
                             <Stack
@@ -258,15 +276,15 @@ function ProductCard() {
                                     sm={{
                                         fontStyle: 'normal',
                                         fontWeight: '700',
-                                        fontSize: '24px',
-                                        lineHeight: '30px',
                                         marginRight: '30px',
                                     }}
                                     sx={{
                                         color: { xs: '#000000' },
+                                        fontSize: { xs: '24px', sm: '25px', md: '26px', lx: '27px' },
+                                        lineHeight: { xs: '27px', sm: '30px', md: '30px', lx: '34px' },
                                     }}
                                 >
-                                    {product.currentPrice ? product.currentPrice : 110}$
+                                    {cardPrice} UAH
                                 </Typography>
 
 
@@ -276,20 +294,14 @@ function ProductCard() {
                                     spacing={1}
                                     justifyContent="space-between"
                                     alignItems="center"
-                                    sm={{
-                                        margin: '0 19px',
+                                    sx={{
+                                        margin: { xs: '0 19px', sm: '0 22px', md: '0 25px', lx: '0 30px' },
                                     }}
                                 >
 
-                                    <CardMedia
-                                        className="product-card_grid-img-minus"
-                                        component="img"
-                                        image={cardMinus}
-                                        alt="Minus"
-                                        sm={{
-                                            height: '2px',
-                                            width: '10px',
-                                        }}
+                                    <RemoveCircle
+                                        style={{ color: '#F46D40' }}
+                                        fontSize='large'
                                     />
 
                                     <Typography
@@ -299,12 +311,12 @@ function ProductCard() {
                                         sm={{
                                             fontStyle: 'normal',
                                             fontWeight: '700',
-                                            fontSize: '36px',
-                                            lineHeight: '45px',
                                             margin: '0 19px',
                                         }}
                                         sx={{
                                             color: { xs: '#000000' },
+                                            fontSize: { xs: '24px', sm: '25px', md: '26px', lx: '27px' },
+                                            lineHeight: { xs: '27px', sm: '30px', md: '30px', lx: '34px' },
                                         }}
                                     >
                                         {quantityGoods}
@@ -312,17 +324,9 @@ function ProductCard() {
                                     </Typography>
 
 
-                                    <CardMedia
-                                        className="product-card_grid-img-add"
-                                        component="img"
-                                        image={cardAdd}
-                                        alt="Add"
-                                        sm={{
-                                            width: '30px',
-                                            height: '30px',
-                                            margin: '10px',
-                                        }}
-
+                                    <AddCircleIcon
+                                        fontSize='large'
+                                        style={{ color: '#F46D40' }}
                                     />
 
 
@@ -352,7 +356,7 @@ function ProductCard() {
                                         margin: '26px 0 5px 0',
                                     }}
                                     sx={{
-                                        margin: { xs: '26px 0 5px 0' },
+                                        margin: { xs: '0 0 5px 0', md: '26px 0 5px 0' },
                                         textAlign: { xs: 'center', md: 'start' },
                                         color: { xs: '#111111' },
                                     }}
@@ -396,6 +400,7 @@ function ProductCard() {
                                 textAlign: 'center',
                                 color: { xs: '#F2F2F2' },
                                 background: { xs: '#F46D40' },
+                                margin: { xs: '50px 0 0' },
                             }}
 
                         >

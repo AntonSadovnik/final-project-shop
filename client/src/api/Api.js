@@ -1,9 +1,13 @@
-	import axios from "axios"
+import axios from "axios"
 
-	 export const getRecommendedProduct=()=>axios.get('/api/products/filter?categories=drinks');
+export const getRecommendedProduct = () => axios.get('/api/products/filter?categories=drinks');
 
-	 export const getNoveltieProduct=()=>axios.get('/api/products/filter?promo=new');
+export const getNoveltieProduct = () => axios.get('/api/products/filter?promo=new');
 
-	 export const getPopularProduct=()=>axios.get('/api/products/filter?promo=popular');
+export const getProduct = (itemNo) => axios.get(`/api/products/filter?itemNo=${itemNo}`);
 
-	 export const getAllProducts=()=>axios.get('/api/products')
+export const getProductsByCategory = (categories) => axios.get(`/api/products/filter?categories=${categories}&sort=itemNo`);
+
+export const getPopularProduct = () => axios.get('/api/products/filter?promo=popular');
+
+export const getAllProducts = () => axios.get('/api/products')
