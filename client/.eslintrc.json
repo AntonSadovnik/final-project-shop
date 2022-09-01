@@ -16,6 +16,7 @@
 		"import/prefer-default-export": 0,
 		"react/prop-types": 0,
 		"react/jsx-props-no-spreading": 0,
-		"default-param-last": 0
+		"default-param-last": 0,
+		"no-underscore-dangle": 0
 	}
 }

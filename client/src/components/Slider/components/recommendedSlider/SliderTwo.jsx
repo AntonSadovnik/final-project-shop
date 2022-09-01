@@ -70,7 +70,7 @@ function RecommendedSlider() {
         <h6>Recommended for this product</h6>
     </Typography> 
     <Slider {...settings}>
-      {items.map((item)=> <SushiCard key={item._id} item={item}/>)}
+      {items.map((item)=> <SushiCard key={item.itemNo} item={item}/>)}
     </Slider>
    </Stack>
   )

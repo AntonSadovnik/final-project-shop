@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button, Typography } from '@mui/material';
+import {Grid, Button, Typography} from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { NavLink } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,9 +11,9 @@ function Activities() {
 	const [open, setOpen] = React.useState(false);
 	const [scroll, setScroll] = React.useState('paper');
 
-	const handleClickOpen = () => () => {
+	const handleClickOpen = (type) => {
 		setOpen(true);
-		setScroll('paper');
+		setScroll(type);
 	};
 
 	return (
@@ -52,7 +52,7 @@ function Activities() {
 					className="header__buttons"
 					disableRipple
 					size="small"
-					onClick={handleClickOpen('paper')}
+					onClick={() => handleClickOpen('paper')}
 				>
 					<ShoppingCartIcon
 						color="grayColor"
