@@ -1,7 +1,6 @@
-import cartData from "../../components/Cart/cartData";
 import {DECREASE_QUANTITY_TO_CART, INCREASE_QUANTITY_TO_CART, REMOVE_FROM_CART, ADD_TO_CART} from "../types/types";
 
-const initialState = {cart: cartData};
+const initialState = {cart: {}};
 
 
 const cartReducer = (state = initialState, action = {}) => {

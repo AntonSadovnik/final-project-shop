@@ -78,6 +78,9 @@ export default function Cart(props) {
                 </Box>
                 <DialogContent dividers={scroll === 'paper'}>
                     <DialogContentText ref={descriptionElementRef} tabIndex={-1}>
+                        {
+                            products.length === 0 && <Typography>Your cart is empty</Typography>
+                        }
                         {products.map((i) => (
                             <Box key={i.product.itemNo}>
                                 <Grid container spacing={3} alignItems="center">
@@ -130,7 +133,7 @@ export default function Cart(props) {
                     <Typography variant="h6" component="p" color="black" sx={{mr: '2rem'}}>
                         {sum()}$
                     </Typography>
-                    <CustomButton colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT">
+                    <CustomButton disabled={products.length === 0} colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT">
                         Checkout
                     </CustomButton>
                 </DialogActions>
