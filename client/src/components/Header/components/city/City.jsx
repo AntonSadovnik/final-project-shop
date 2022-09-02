@@ -25,7 +25,7 @@ function City() {
 	};
 
 	return (
-		<div>
+		<>
 			<Box
 				sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
 				id="click-box"
@@ -65,7 +65,7 @@ function City() {
 					</MenuItem>
 				))}
 			</Menu>
-		</div>
+		</>
 	);
 }
 
