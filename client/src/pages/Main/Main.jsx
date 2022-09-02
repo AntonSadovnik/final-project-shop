@@ -4,9 +4,10 @@ import Grid from '@mui/material/Grid';
 import { getProductsRequest } from '../../store/actions';
 
 import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider';
-import RecommendedSlider from '../../components/Slider/components/recommendedSlider/SliderTwo';
 import Offer from '../../components/Offer/Offer';
 import GridItem from '../../components/Grid/Grid';
+import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
+import Socials from '../../components/Footer/components/socials/Socials';
 
 function Main() {
 	const dispatch = useDispatch();
@@ -30,11 +31,22 @@ function Main() {
 					<Grid container justifyContent="center">
 						<GridItem />
 					</Grid>
-					<Grid container justifyContent="center">
+					<Grid
+						container
+						justifyContent="center"
+						sx={{ display: { xs: 'none', sm: 'flex' } }}
+					>
 						<NoveltieSlider />
 					</Grid>
 					<Grid container justifyContent="center">
-						<RecommendedSlider />
+						<SimpleAccordion />
+					</Grid>
+					<Grid
+						container
+						textAlign="center"
+						sx={{ display: { xs: 'flex', sm: 'none' } }}
+					>
+						<Socials />
 					</Grid>
 				</Grid>
 			</Grid>
