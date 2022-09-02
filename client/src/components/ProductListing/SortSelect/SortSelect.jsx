@@ -14,6 +14,7 @@ export default function SortSelect() {
           labelId="select-label"
           label="Sorting"
         >
+          <MenuItem value={5}>Default</MenuItem>
           <MenuItem value={10}>Name</MenuItem>
           <MenuItem value={20}>First cheaper</MenuItem>
           <MenuItem value={30}>First more expensive</MenuItem>
