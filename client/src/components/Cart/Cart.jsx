@@ -101,7 +101,7 @@ export default function Cart(props) {
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={1} sx={{textAlign: 'right'}}>
-                                        <Typography variant="body2" component="p">
+                                        <Typography variant="body2" component="span">
                                             {i.cartQuantity}
                                         </Typography>
                                     </Grid>
@@ -113,7 +113,7 @@ export default function Cart(props) {
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={1}>
-                                        <Typography variant="body2" component="p">
+                                        <Typography variant="body2" component="span">
                                             {i.cartQuantity * i.product.currentPrice}$
                                         </Typography>
                                     </Grid>
@@ -128,7 +128,7 @@ export default function Cart(props) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Typography variant="h6" component="p" color="black" sx={{mr: '2rem'}}>
+                    <Typography variant="h6" component="span" color="black" sx={{mr: '2rem'}}>
                         {sum()}$
                     </Typography>
                     <CustomButton disabled={products.length === 0} colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT">
