@@ -12,3 +12,10 @@ export const reducers = combineReducers({
 	cart:CartReducer,
 	filter:FilterReducer,
 });
+
+const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || {products:[]}
+export const initialValues ={
+	// products: [],
+	// filter: [],
+	cart: {cart: cartFromLocalStorage},
+}
