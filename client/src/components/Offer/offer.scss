@@ -1,0 +1,34 @@
+.offer-slider {
+	&__item {
+		max-width: 600px;
+		max-height: 470px;
+	}
+
+	&__button:hover {
+		background: #f46d40;
+		box-shadow: none;
+	}
+}
+
+.slick-dots {
+	bottom: 20px;
+}
+
+.slick-dots li button {
+	font-size: 0;
+	width: 8px;
+	height: 8px;
+	border: 0;
+	padding: 3px;
+	border-radius: 50%;
+	background: #a4acad;
+}
+.slick-dots li button::before {
+	content: '';
+}
+
+.slick-dots li.slick-active button {
+	width: 10px;
+	height: 10px;
+	background: #ff9846;
+}
