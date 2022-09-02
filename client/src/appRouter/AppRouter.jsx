@@ -16,6 +16,7 @@ import Product from '../pages/Product/Product';
 import Return from '../pages/Return/Return';
 import Products from '../pages/Products/Products';
 import Error from '../components/Error/Error';
+import CartMob from "../components/Cart/CartMob";
 
 
 function AppRouter(){
@@ -42,6 +43,7 @@ function AppRouter(){
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<Product />} />
+        <Route path="/cart" element={<CartMob />} />
         <Route path="/return" element={<Return />} />
         <Route path="*" element={<Error />} />
       </Routes>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {useSelector, useDispatch} from "react-redux";
+import {NavLink} from "react-router-dom";
 import {
     Box,
     Typography,
@@ -131,9 +132,11 @@ export default function Cart(props) {
                     <Typography variant="h6" component="span" color="black" sx={{mr: '2rem'}}>
                         {sum()}$
                     </Typography>
-                    <CustomButton disabled={products.length === 0} colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT">
-                        Checkout
-                    </CustomButton>
+                    <NavLink to="/ordering">
+                        <CustomButton disabled={products.length === 0} colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT" onClick={handleClose}>
+                            Checkout
+                        </CustomButton>
+                    </NavLink>
                 </DialogActions>
             </Dialog>
         </div>
