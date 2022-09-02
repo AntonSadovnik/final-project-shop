@@ -20,7 +20,7 @@ function OfferSlider() {
 	};
 
 	return (
-		<Slider {...settings} justifyContent="center">
+		<Slider className="offer-slider" {...settings} justifyContent="center">
 			{sliderItems().map((e) => {
 				const { src, title, subtitle, cross, text } = e;
 				return (
