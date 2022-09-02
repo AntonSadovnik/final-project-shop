@@ -1,47 +1,58 @@
 import { React, useState, useEffect } from 'react';
 import { Grid, CardMedia, Typography, CardActionArea, Stack } from '@mui/material';
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircle from '@mui/icons-material/RemoveCircle';
 import NavigateBefore from '@mui/icons-material/NavigateBefore';
 import NavigateNext from '@mui/icons-material/NavigateNext';
-
-
 import { getProduct, getProductsByCategory } from "../../api/Api";
-
+import CustomButton from '../Button/Button';
 
 
 
 function ProductCard() {
     const [product, setProduct] = useState({});
-    const [productNextID, setproductNextID] = useState({});
-    const [category, setCategory] = useState();
+    const [forwardProductId, setForwardProductId] = useState("");
+    const [backProductId, setBackProductId] = useState("");
+    const [quantityGoods, setQuantityGoods] = useState(1);
 
     const { id } = useParams();
-
-    useEffect(() => {
-        getProduct(id).then(({ data: { products } }) => setProduct(products[0]))
-    }, [])
-
-
-    useEffect(() => {
-        setCategory("pizza")
-        getProductsByCategory("pizza").then(({ data: { products } }) => setproductNextID(products))
-    }, [])
-    console.log("--> here");
-    console.log(productNextID);
-    console.log(product);
-    console.log(category);
-
-
-
-
     const cardPicture = "imageUrls" in product ? product.imageUrls[0] : "";
     const cardWeight = "weight" in product ? product.weight : "";
-    const quantityGoods = "1";
     const cardCompound = "ingredients" in product ? product.ingredients : "";
     const cardTitle = "name" in product ? product.name : "";
     const cardPrice = "currentPrice" in product ? product.currentPrice : "";
+    const cardPpromoPrice = "cardPpromoPrice" in product ? product.cardPpromoPrice : "";
+
+    const showProduct = () => getProduct(id).then(({ data: { products } }) => {
+        getProductsByCategory(products[0].categories).then((data) => {
+            const currentProductId = data.data.products.findIndex(element => element.itemNo === id);
+            const forvardProd = (typeof data.data.products[currentProductId + 1] === 'undefined' ? 0 : currentProductId + 1);
+            setForwardProductId(`/products/${data.data.products[forvardProd].itemNo}`);
+
+            const backProd = typeof data.data.products[currentProductId - 1] === 'undefined' ? data.data.products.length - 1 : currentProductId - 1;
+            setBackProductId(`/products/${data.data.products[backProd].itemNo}`);
+        });
+        return setProduct(products[0]);
+    })
+
+    useEffect(() => {
+        showProduct();
+    }, [])
+
+    useEffect(() => {
+        showProduct();
+    }, [id])
+
+    const addQuantity = () => {
+        setQuantityGoods(quantityGoods + 1);
+    }
+
+    const minusQuantity = () => {
+        if (quantityGoods > 1) { setQuantityGoods(quantityGoods - 1) };
+    }
+
+
 
     return (
 
@@ -64,84 +75,88 @@ function ProductCard() {
                 }}
             >
 
-                <Stack
-                    variant="contained"
-                    component="a"
-                    direction="row"
-                    alignItems="center"
-                    className="product-card__switch-in-sheet"
-                >
+                <NavLink to={backProductId}>
 
-                    <NavigateBefore
-                        style={{
-                            background: '#F46D40',
-                            color: '#F2F2F2',
-                            borderRadius: '50px',
-                            height: '20px',
-                            width: '20px',
-                        }}
-                    />
-
-
-                    <Typography
-                        variant="body2"
-                        component="span"
-                        style={{
-                            fontStyle: 'normal',
-                            fontWeight: '400',
-                            fontSize: '18px',
-                            lineHeight: '22px',
-                        }}
-                        sx={{
-                            color: { xs: '#000000' },
-                            margin: { xs: '0 0 0 12px', sm: '0 0 0 15px', md: '0 0 0 17px', lx: '0 0 0 18px' },
-                        }}
+                    <Stack
+                        variant="contained"
+                        component="a"
+                        direction="row"
+                        alignItems="center"
+                        className="product-card__switch-in-sheet"
                     >
-                        Forward
-                    </Typography>
+
+                        <NavigateBefore
+                            style={{
+                                background: '#F46D40',
+                                color: '#F2F2F2',
+                                borderRadius: '50px',
+                                height: '20px',
+                                width: '20px',
+                            }}
+                        />
 
 
-                </Stack>
+                        <Typography
+                            variant="body2"
+                            component="span"
+                            style={{
+                                fontStyle: 'normal',
+                                fontWeight: '400',
+                                fontSize: '18px',
+                                lineHeight: '22px',
+                            }}
+                            sx={{
+                                color: { xs: '#000000' },
+                                margin: { xs: '0 0 0 12px', sm: '0 0 0 15px', md: '0 0 0 17px', lx: '0 0 0 18px' },
+                            }}
+                        >
+                            Back
+                        </Typography>
 
 
+                    </Stack>
+                </NavLink>
 
-                <Stack
-                    variant="contained"
-                    component="a"
-                    direction="row"
-                    alignItems="center"
-                    className="product-card__switch-in-sheet"
-                >
 
-                    <Typography
-                        className="product-card__switch-text"
-                        variant="body2"
-                        component="span"
-                        style={{
-                            fontStyle: 'normal',
-                            fontWeight: '400',
-                            fontSize: '18px',
-                            lineHeight: '22px',
-                        }}
-                        sx={{
-                            color: { xs: '#000000' },
-                            margin: { xs: '0 13px 0 0', sm: '0 15px 0 0', md: '0 17px 0 0', lx: '0 19px 0 0' },
-
-                        }}
+                <NavLink to={forwardProductId}>
+                    <Stack
+                        variant="contained"
+                        component="a"
+                        direction="row"
+                        alignItems="center"
+                        className="product-card__switch-in-sheet"
                     >
-                        Back
-                    </Typography>
 
-                    <NavigateNext
-                        style={{
-                            background: '#F46D40',
-                            color: '#F2F2F2',
-                            borderRadius: '50px',
-                            height: '20px',
-                            width: '20px',
-                        }}
-                    />
-                </Stack>
+                        <Typography
+                            className="product-card__switch-text"
+                            variant="body2"
+                            component="span"
+                            style={{
+                                fontStyle: 'normal',
+                                fontWeight: '400',
+                                fontSize: '18px',
+                                lineHeight: '22px',
+                            }}
+                            sx={{
+                                color: { xs: '#000000' },
+                                margin: { xs: '0 13px 0 0', sm: '0 15px 0 0', md: '0 17px 0 0', lx: '0 19px 0 0' },
+
+                            }}
+                        >
+                            Forward
+                        </Typography>
+
+                        <NavigateNext
+                            style={{
+                                background: '#F46D40',
+                                color: '#F2F2F2',
+                                borderRadius: '50px',
+                                height: '20px',
+                                width: '20px',
+                            }}
+                        />
+                    </Stack>
+                </NavLink>
 
 
             </Stack>
@@ -263,12 +278,29 @@ function ProductCard() {
                                 {cardWeight} grams
                             </Typography>
 
+
+
                             <Stack
                                 direction="row"
-                                spacing={4}
+                                spacing={2}
                                 justifyContent="flex-start"
                                 alignItems="center"
                             >
+
+                                <Typography
+                                    sx={{
+                                        textDecoration: 'line-through',
+                                        color: { xs: '#000000' },
+                                        fontSize: { xs: '20px', sm: '23px', md: '24px', lx: '25px' },
+                                        lineHeight: { xs: '23px', sm: '28px', md: '28px', lx: '32px' },
+                                    }}
+                                    component="h5"
+                                    marginLeft='15px'
+                                >
+                                    {cardPpromoPrice}
+                                </Typography>
+
+
                                 <Typography
                                     className="product-card_grid-prodact-price"
                                     variant="h4"
@@ -276,16 +308,17 @@ function ProductCard() {
                                     sm={{
                                         fontStyle: 'normal',
                                         fontWeight: '700',
-                                        marginRight: '30px',
                                     }}
                                     sx={{
                                         color: { xs: '#000000' },
+                                        fontWeight: 'bold',
                                         fontSize: { xs: '24px', sm: '25px', md: '26px', lx: '27px' },
                                         lineHeight: { xs: '27px', sm: '30px', md: '30px', lx: '34px' },
                                     }}
                                 >
                                     {cardPrice} UAH
                                 </Typography>
+
 
 
                                 <Stack
@@ -302,6 +335,7 @@ function ProductCard() {
                                     <RemoveCircle
                                         style={{ color: '#F46D40' }}
                                         fontSize='large'
+                                        onClick={minusQuantity}
                                     />
 
                                     <Typography
@@ -327,6 +361,7 @@ function ProductCard() {
                                     <AddCircleIcon
                                         fontSize='large'
                                         style={{ color: '#F46D40' }}
+                                        onClick={addQuantity}
                                     />
 
 
@@ -384,28 +419,24 @@ function ProductCard() {
 
                         </Stack>
 
-                        <Stack
-                            variant="contained"
-                            component="a"
-                            direction="row"
-                            alignItems="center"
-                            className="product-card_grid-button-want"
-                            sx={{
+                        <CustomButton
+                            title="Want!"
+                            textStyle={{
+                                color: '#F2F2F2',
                                 borderRadius: '5px',
                                 padding: '5px 65px',
                                 fontStyle: 'normal',
                                 fontWeight: '500',
-                                fontSize: '24px',
-                                lineHeight: '30px',
+                                fontSize: '23px',
+                                lineHeight: '28px',
                                 textAlign: 'center',
-                                color: { xs: '#F2F2F2' },
-                                background: { xs: '#F46D40' },
-                                margin: { xs: '50px 0 0' },
                             }}
-
-                        >
-                            WANT!
-                        </Stack>
+                            btnStyle={{
+                                background: '#F46D40',
+                                margin: { xs: '50px 0 0' },
+                                padding: { xs: '0' },
+                            }}
+                        />
 
                     </Stack>
 
@@ -419,3 +450,4 @@ function ProductCard() {
 }
 
 export default ProductCard;
+
