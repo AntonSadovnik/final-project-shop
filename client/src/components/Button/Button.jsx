@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, Typography } from '@mui/material';
 
 export default function CustomButton({
+	disabled= false,
 	className,
 	title,
 	textStyle,
@@ -10,6 +11,7 @@ export default function CustomButton({
 }) {
 	return (
 		<Button
+			disabled={disabled}
 			variant="contained"
 			disableRipple
 			className={className}
