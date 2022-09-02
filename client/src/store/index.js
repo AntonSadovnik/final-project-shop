@@ -2,13 +2,20 @@ import { combineReducers } from "redux";
 
 import ProductsReducer from "./reducers/ProductsReducer";
 
-import CartReducer from "./reducers/CartReducer";
+import CartReducer from "./reducers/cartReducer";
 
 import FilterReducer from './reducers/FilterReducer';
 
 
 export const reducers = combineReducers({
-	ProductsReducer,
-	CartReducer,
-	FilterReducer,
+	products:ProductsReducer,
+	cart:CartReducer,
+	filter:FilterReducer,
 });
+
+const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || {products:[]}
+export const initialValues ={
+	// products: [],
+	// filter: [],
+	cart: {cart: cartFromLocalStorage},
+}
