@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import './style.scss';
 import Cart from '../../../Cart/Cart';
+import Search from '../../../Search/Search';
 
 function Activities() {
 	const [open, setOpen] = React.useState(false);
@@ -25,6 +26,7 @@ function Activities() {
 				setScroll={setScroll}
 				handleClickOpen={handleClickOpen}
 			/>
+			<Search/>
 			<Grid item container lg={7} sm={7} alignItems="center">
 				<NavLink
 					style={{
