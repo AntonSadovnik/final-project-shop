@@ -26,7 +26,6 @@ export default function CartMob() {
     }
 
     function incrQuantity(itemNo) {
-        console.log('increace')
         dispatch(increaseQuantity(itemNo))
     }
 
