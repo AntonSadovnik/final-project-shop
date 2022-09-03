@@ -6,7 +6,9 @@ import RecommendedSlider from '../../components/Slider/components/recommendedSli
 
 function Product() {
 	return (
-		<main>
+		<main sx={{
+			margin: { xs: '0 auto' },
+		}}>
 			<ProductCard />
 			<Stack
 				sx={{
