@@ -1,11 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import Grid from '@mui/material/Grid';
-import './grid.scss';
 import { Box, Typography } from '@mui/material';
 import gridItems from './itemGrid';
 import gridItemsHidden from './itemGridHidden';
+import './grid.scss';
 
 function GridItem() {
+	const navigate = useNavigate();
+	const handleClick = (alt) => {
+		navigate({
+			pathname: '/products',
+			search: `?categories=${alt.toLowerCase()}`,
+		});
+	};
+
 	return (
 		<Grid
 			container
@@ -25,16 +34,18 @@ function GridItem() {
 								overflow: 'hidden',
 								width: '100%',
 								height: '100%',
+								cursor: 'pointer',
 							}}
+							onClick={() => handleClick(alt)}
 						>
-							<img
-								src={src}
-								sx={{ display: 'block', objectFit: 'cover' }}
-								className="card__image"
-								alt={alt}
-							/>
+							<img src={src} className="card__image" alt={alt} />
 							<Typography
-								sx={{ left: 20, bottom: 10, position: 'absolute' }}
+								sx={{
+									left: 10,
+									bottom: 10,
+									position: 'absolute',
+									fontSize: { md: 24, sm: 32, xs: 24 },
+								}}
 								color="#ffffff"
 								component="h3"
 							>
@@ -51,21 +62,20 @@ function GridItem() {
 					<Grid item sx={{ display: { md: 'none', sm: 'block' } }} xs={6}>
 						<Box
 							className="card"
-							sx={{ position: 'relative', borderRadius: 5, overflow: 'hidden' }}
+							sx={{
+								position: 'relative',
+								borderRadius: 5,
+								overflow: 'hidden',
+							}}
+							onClick={() => handleClick(alt)}
 						>
-							<img
-								src={src}
-								sx={{ display: 'block', objectFit: 'cover' }}
-								className="card__image"
-								alt={alt}
-							/>
+							<img src={src} className="card__image" alt={alt} />
 							<Typography
 								sx={{
-									left: 20,
-									bottom: 10,
+									left: 10,
+									top: 10,
 									position: 'absolute',
-									fontSize: 24,
-									lineHeight: 30,
+									fontSize: { sm: 32, xs: 24 },
 								}}
 								color="#ffffff"
 								component="h3"
