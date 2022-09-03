@@ -34,6 +34,7 @@ function GridItem() {
 								overflow: 'hidden',
 								width: '100%',
 								height: '100%',
+								cursor: 'pointer',
 							}}
 							onClick={() => handleClick(alt)}
 						>
