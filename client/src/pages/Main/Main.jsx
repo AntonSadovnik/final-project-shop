@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Grid from '@mui/material/Grid';
+import { Stack } from '@mui/material';
 import { getProductsRequest } from '../../store/actions';
-
 import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider';
 import RecommendedSlider from '../../components/Slider/components/recommendedSlider/SliderTwo';
-import Offer from '../../components/Offer/Offer';
+import OfferSlider from '../../components/Slider/OfferSlider.jsx/OfferSlider';
 import GridItem from '../../components/Grid/Grid';
 
 function Main() {
@@ -17,23 +17,37 @@ function Main() {
 
 	return (
 		<main>
-			<Grid
+			<Stack
 				container
-				justifyContent="space-around"
 				flexDirection="column"
+				justifyContent="center"
+				alignItems="center"
+				sx={{width:'100%'}}
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
-			>
-				<Grid item style={{ padding: '30px 0 60px' }}>
+			>   
+			<Grid >
+			<OfferSlider />
+			<GridItem />
+			<NoveltieSlider />
+			<RecommendedSlider />
+
+			</Grid>
+{/* sx={{width:'90%'}} */}
+			
+
+				{/* <Grid item style={{ padding: '30px 0 60px' }}>
 					<Grid sx={{ display: { md: 'block', xs: 'none' } }}>
-						<Offer />
+						 <Offer /> 
+						
 					</Grid>
 					<Grid container justifyContent="center">
+					<OfferSlider />
 						<GridItem />
 					</Grid>
 					<NoveltieSlider />
 					<RecommendedSlider />
-				</Grid>
-			</Grid>
+				</Grid> */}
+			</Stack>
 		</main>
 	);
 }

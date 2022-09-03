@@ -3,7 +3,7 @@ const productItems= [{
   title:"Salomon Set",
   portion:"1050gmm, 30Items",
   price:"1200 UAH",
-  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660057824/sushi-shop/products/sets/djfmset_gzq4kf.png',
+  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1662194768/sushi-shop/Main_Slider/broth_with_shrimp_cut_iu2udq.jpg',
   article:'e34678l',
   slider:'one'
 }, {
@@ -11,7 +11,7 @@ const productItems= [{
   title:"Philadelphia Set",
   portion:"1050gmm, 30Items",
   price:"1550 UAH",
-  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660057825/sushi-shop/products/sets/set6_k9ovrf.png',
+  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1662188333/sushi-shop/Main_Slider/teppanyaki_with_mussels_txutmk.jpg',
   article:'e3467877k',
   slider:'one',
 }, {
@@ -19,7 +19,7 @@ const productItems= [{
   title:"California Set",
   portion:"1050gmm, 30Items",
   price:"1550 UAH",
-  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660057827/sushi-shop/products/sets/set5_mx8hp9.png',
+  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1662188326/sushi-shop/Main_Slider/scrambled_eggs_ar8md1.jpg',
   article:'e346y87d7g',
   slider:'one',
 },{
@@ -27,7 +27,7 @@ const productItems= [{
   title:"California large Set",
   portion:"1050gmm, 30Items",
   price:"1550 UAH",
-  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660057824/sushi-shop/products/sets/22-1_wo82ch.png',
+  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1662188321/sushi-shop/Main_Slider/ramen_with_sea_bass_fgvosk.jpg',
   article:'e346yt73a',
   slider:'one',
 },
@@ -36,7 +36,7 @@ const productItems= [{
   title:"California",
   
   price:"125 UAH",
-  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660058538/sushi-shop/products/sushi/tunec2_me3heo.png',
+  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1662194768/sushi-shop/Main_Slider/broth_with_shrimp_cut_iu2udq.jpg',
   article:'e346ytd70ff',
   slider:'two',
 },
@@ -45,7 +45,7 @@ const productItems= [{
   title:"Philadelphia",
   
   price:"155 UAH",
-  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660058538/sushi-shop/products/sushi/grebeshoknew_t8o2rh.png',
+  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1662194709/sushi-shop/Main_Slider/grilled_mackerel_cut_oaiqok.jpg',
   article:'e346yt79q',
   slider:'two',
 },{
@@ -53,7 +53,7 @@ const productItems= [{
   title:"Arigato",
   
   price:"145 UAH",
-  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660058538/sushi-shop/products/sushi/54_ebj2bi.png',
+  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1662188303/sushi-shop/Main_Slider/chinese_broth_yquaup.jpg',
   article:'e346ytg78w',
   slider:'two',
 },{
@@ -61,7 +61,7 @@ const productItems= [{
   title:"Banzai",
   
   price:"140 UAH",
-  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660058538/sushi-shop/products/sushi/52_biutjs.png',
+  imgSrc:'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1662188293/sushi-shop/Main_Slider/broth_with_shrimp_pudf6q.jpg',
   article:'e346yta7x',
   slider:'two',
 }, {

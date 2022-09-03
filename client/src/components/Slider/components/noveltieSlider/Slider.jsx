@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import Slider from 'react-slick';
 import { Stack, Button,Typography } from '@mui/material';
 import { getNoveltieProduct, getPopularProduct } from '../../../../api/Api';
@@ -10,7 +9,16 @@ import NoveltiesCard from './NoveltiesCard';
 import NextBtn from '../buttons/NextBtn';
 import PrevBtn from '../buttons/PrevBtn';
 
+/*
+import { createTheme } from '@mui/material/styles';
+const theme = createTheme();
 
+ theme.noveltieSlider ={
+  fontSize: '24px',
+  '@media (min-width:1201px) and (max-width: 2300px)':{
+  width: '950px'
+  }
+} */
 
 function NoveltieSlider() {
 const [items, setItems] = useState();
@@ -68,8 +76,8 @@ const [button, setButton]= useState('left');
     ]
   };
   if(!items){return null}
-	return (<Stack direction="column" justifyContent="center" alignItems="center">
-  <Typography  component="div" className='btn-container' sx={{display:"flex", alignSelf:'flex-start'}}>
+	return (<Stack direction="column" justifyContent="center" alignItems="center" className="noveltieSlider">
+  <Typography  component="div" className='btn-container' sx={{display:"flex", alignSelf:'flex-start', marginBottom:'-50px'}}>
  <Button onClick={()=>setButton('left')}  sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px' }}>Novelties</Button>
  <Button  onClick={()=>setButton('right')} sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px' }}>Popular</Button>
  </Typography>

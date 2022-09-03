@@ -5,15 +5,21 @@ import { Box, Typography } from '@mui/material';
 import gridItems from './itemGrid';
 import gridItemsHidden from './itemGridHidden';
 
+
+
 function GridItem() {
 	return (
+	
 		<Grid
 			container
 			justifyContent="center"
+			alignItems="center"
 			rowSpacing={{ sm: 1, md: 2, xs: 1 }}
 			columnSpacing={{ sm: 1, md: 2, xs: 1 }}
-			sx={{ marginTop: 30, maxWidth: 950 }}
+			className="ff88888 blockquote"
+			sx={{ marginTop: 30, maxWidth: 950, display:'flex', justifyContent:'center', alignItems:'center',alignSelf:'center', borderRadius:'15px', padding:'0px 10px 10px 0px' }}
 		>
+			
 			{gridItems().map((e) => {
 				const { layout, src, alt, text } = e;
 				return (
@@ -76,7 +82,9 @@ function GridItem() {
 					</Grid>
 				);
 			})}
+			
 		</Grid>
+		
 	);
 }
 
