@@ -57,7 +57,6 @@ function ProductCard() {
 
     const addQuantity = () => {
         setQuantityGoods(quantityGoods + 1);
-        console.log(product);
     }
 
     const minusQuantity = () => {
@@ -65,8 +64,7 @@ function ProductCard() {
     }
 
     const onClickButton = () => {
-        // const cartProduct = { ...product, cartQuantity: quantityGoods };
-        console.log(product);
+        product.cartQuantity = quantityGoods;
         dispatch(addToCart(product));
     }
 
