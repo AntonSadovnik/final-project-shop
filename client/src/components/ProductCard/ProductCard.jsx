@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Grid, CardMedia, Typography, CardActionArea, Stack } from '@mui/material';
 import { useParams, NavLink } from "react-router-dom";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -9,6 +10,10 @@ import { getProduct, getProductsByCategory } from "../../api/Api";
 import CustomButton from '../Button/Button';
 
 
+import { addToCart } from '../../store/actions';
+
+
+
 
 function ProductCard() {
     const [product, setProduct] = useState({});
@@ -16,13 +21,19 @@ function ProductCard() {
     const [backProductId, setBackProductId] = useState("");
     const [quantityGoods, setQuantityGoods] = useState(1);
 
+    const dispatch = useDispatch()
     const { id } = useParams();
     const cardPicture = "imageUrls" in product ? product.imageUrls[0] : "";
     const cardWeight = "weight" in product ? product.weight : "";
-    const cardCompound = "ingredients" in product ? product.ingredients : "";
     const cardTitle = "name" in product ? product.name : "";
     const cardPrice = "currentPrice" in product ? product.currentPrice : "";
-    const cardPpromoPrice = "cardPpromoPrice" in product ? product.cardPpromoPrice : "";
+    const cardPpromoPrice = "previousPrice" in product ? product.previousPrice : "";
+    let cardCompound = "ingredients" in product ? product.ingredients : "";
+    cardCompound = "contains" in product ? product.contains.toString() : cardCompound;
+    const displayCompound = cardCompound !== "" ? "block" : "none";
+    const displaycardPpromoPrice = cardPpromoPrice !== "" ? "block" : "none";
+
+
 
     const showProduct = () => getProduct(id).then(({ data: { products } }) => {
         getProductsByCategory(products[0].categories).then((data) => {
@@ -46,11 +57,19 @@ function ProductCard() {
 
     const addQuantity = () => {
         setQuantityGoods(quantityGoods + 1);
+        console.log(product);
     }
 
     const minusQuantity = () => {
         if (quantityGoods > 1) { setQuantityGoods(quantityGoods - 1) };
     }
+
+    const onClickButton = () => {
+        // const cartProduct = { ...product, cartQuantity: quantityGoods };
+        console.log(product);
+        dispatch(addToCart(product));
+    }
+
 
 
 
@@ -75,7 +94,11 @@ function ProductCard() {
                 }}
             >
 
-                <NavLink to={backProductId}>
+                <NavLink to={backProductId}
+                    style={{
+                        textDecoration: 'none',
+                    }}
+                >
 
                     <Stack
                         variant="contained"
@@ -118,7 +141,11 @@ function ProductCard() {
                 </NavLink>
 
 
-                <NavLink to={forwardProductId}>
+                <NavLink to={forwardProductId}
+                    style={{
+                        textDecoration: 'none',
+                    }}
+                >
                     <Stack
                         variant="contained"
                         component="a"
@@ -168,12 +195,14 @@ function ProductCard() {
                 sm={{
                     width: '100 %',
                 }}
+                sx={{
+                    height: { sm: '350px', md: '400px', lx: '700px' },
+                }}
             >
 
                 <Grid container item
                     xs={12} md={7}
                     className="product-card_grid-item"
-
                 >
 
                     <CardActionArea>
@@ -283,8 +312,11 @@ function ProductCard() {
                             <Stack
                                 direction="row"
                                 spacing={2}
-                                justifyContent="flex-start"
+                                justifyContent="space-around;"
                                 alignItems="center"
+                                sx={{
+                                    maxWidth: { md: '500px' },
+                                }}
                             >
 
                                 <Typography
@@ -295,7 +327,7 @@ function ProductCard() {
                                         lineHeight: { xs: '23px', sm: '28px', md: '28px', lx: '32px' },
                                     }}
                                     component="h5"
-                                    marginLeft='15px'
+                                    display={displaycardPpromoPrice}
                                 >
                                     {cardPpromoPrice}
                                 </Typography>
@@ -312,7 +344,7 @@ function ProductCard() {
                                     sx={{
                                         color: { xs: '#000000' },
                                         fontWeight: 'bold',
-                                        fontSize: { xs: '24px', sm: '25px', md: '26px', lx: '27px' },
+                                        fontSize: { xs: '24px', sm: '25px', md: '25px', lx: '27px' },
                                         lineHeight: { xs: '27px', sm: '30px', md: '30px', lx: '34px' },
                                     }}
                                 >
@@ -349,7 +381,7 @@ function ProductCard() {
                                         }}
                                         sx={{
                                             color: { xs: '#000000' },
-                                            fontSize: { xs: '24px', sm: '25px', md: '26px', lx: '27px' },
+                                            fontSize: { xs: '24px', sm: '24px', md: '26px', lx: '27px' },
                                             lineHeight: { xs: '27px', sm: '30px', md: '30px', lx: '34px' },
                                         }}
                                     >
@@ -369,10 +401,13 @@ function ProductCard() {
 
                             </Stack>
 
+
                             <Stack
                                 direction="column"
                                 justifyContent="center"
                                 spacing={1}
+                                display={displayCompound}
+
                                 sx={{
                                     margin: { xs: '26px 0 5px 0' },
                                     alignItems: { xs: 'center', md: 'flex-start' },
@@ -417,10 +452,12 @@ function ProductCard() {
 
                             </Stack>
 
+
                         </Stack>
 
                         <CustomButton
                             title="Want!"
+                            onClick={onClickButton}
                             textStyle={{
                                 color: '#F2F2F2',
                                 borderRadius: '5px',
