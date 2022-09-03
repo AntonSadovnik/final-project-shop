@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Button, Typography} from '@mui/material';
+import { Grid, Button, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { NavLink } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,6 +11,11 @@ import Search from '../../../Search/Search';
 function Activities() {
 	const [open, setOpen] = React.useState(false);
 	const [scroll, setScroll] = React.useState('paper');
+	const [openSearch, setOpenSearch] = React.useState(false);
+
+	const handleOpenSearchClick = () => {
+		setOpenSearch(true);
+	};
 
 	const handleClickOpen = (type) => {
 		setOpen(true);
@@ -26,7 +31,7 @@ function Activities() {
 				setScroll={setScroll}
 				handleClickOpen={handleClickOpen}
 			/>
-			<Search/>
+			<Search openSearch={openSearch} setOpenSearch={setOpenSearch} />
 			<Grid item container lg={7} sm={7} alignItems="center">
 				<NavLink
 					style={{
@@ -63,7 +68,7 @@ function Activities() {
 						}}
 					/>
 				</Button>
-				<Button className="header__buttons" disableRipple size="small">
+				<Button className="header__buttons" disableRipple size="small" onClick={handleOpenSearchClick}>
 					<SearchIcon
 						color="grayColor"
 						sx={{

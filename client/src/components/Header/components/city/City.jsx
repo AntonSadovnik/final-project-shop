@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { Typography, Box, Menu, MenuItem } from '@mui/material';
 import ExpandCircleDownSharpIcon from '@mui/icons-material/ExpandCircleDownSharp';
 import { menuItemHover } from './styles';
@@ -58,6 +58,7 @@ function City() {
 			>
 				{CITIES.map((oneCity) => (
 					<MenuItem
+						key={Date.now().toString()}
 						sx={menuItemHover}
 						onClick={() => handleCitySelection(oneCity)}
 					>
