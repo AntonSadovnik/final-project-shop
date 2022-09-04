@@ -14,16 +14,18 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchListItem from './components/SearchListItem';
 import SearchListEmpty from './components/SearchListEmpty';
+import LoadingElement from './components/LoadingElement';
 
 export default function Search({ openSearch, setOpenSearch }) {
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 	const [searchValue, setSearchValue] = useState('');
-	const [searchResult, setSearchResult] = useState();
+	const [searchResult, setSearchResult] = useState(null);
 	const [inputError, setInputError] = useState({
-		hasError : false,
+		hasError: false,
 		errorType: '',
 	});
+	const [loading, setLoading] = useState(false);
 
 	const handleClose = () => {
 		setOpenSearch(false);
@@ -37,7 +39,7 @@ export default function Search({ openSearch, setOpenSearch }) {
 	const handleSearch = () => {
 		if (searchValue.trim()) {
 			axios
-				.post('api/products/search', { query: searchValue.trim() })
+				.post('/api/products/search', { query: searchValue.trim() })
 				.then((result) => {
 					console.log(result);
 					setSearchResult(result);
@@ -48,10 +50,21 @@ export default function Search({ openSearch, setOpenSearch }) {
 						hasError: true,
 						errorType: 'Oops! Something went wrong. Sorry...',
 					});
+				})
+				.finally(() => {
+					setSearchValue('');
+					setLoading(false);
 				});
 		} else {
-			setInputError({ hasError : true, errorType: 'The field is empty' });
+			setInputError({ hasError: true, errorType: 'The field is empty' });
+			setLoading(false);
 		}
+	};
+
+	const handleSearchReset = () => {
+		handleClose();
+		setInputError({ hasError: false, errorType: '' });
+		setSearchResult(null);
 	};
 
 	return (
@@ -103,14 +116,22 @@ export default function Search({ openSearch, setOpenSearch }) {
 							fontSize: '40px',
 							cursor: 'pointer',
 						}}
-						onClick={handleSearch}
+						onClick={() => {
+							setLoading(true);
+							handleSearch();
+						}}
 					/>
 				</Box>
+				{loading && <LoadingElement />}
 				{searchResult && (
 					<List sx={{ width: '100%' }}>
 						{searchResult.data.length ? (
 							searchResult.data.map((product) => (
-								<SearchListItem product={product} />
+								<SearchListItem
+									product={product}
+									key={`${product.itemNo}s`}
+									handleSearchReset={handleSearchReset}
+								/>
 							))
 						) : (
 							<SearchListEmpty />

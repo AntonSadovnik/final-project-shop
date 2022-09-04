@@ -58,7 +58,7 @@ function City() {
 			>
 				{CITIES.map((oneCity) => (
 					<MenuItem
-						key={Date.now().toString()}
+						key={`${Date.now().toString()}${oneCity}`}
 						sx={menuItemHover}
 						onClick={() => handleCitySelection(oneCity)}
 					>
