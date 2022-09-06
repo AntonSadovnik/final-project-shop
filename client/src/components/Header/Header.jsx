@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Grid, Divider } from '@mui/material';
 import PhoneNumbers from './components/phone-numbers/PhoneNumbers';
 import Activities from './components/activities/Activities';
@@ -46,7 +47,14 @@ function Header() {
 							display: { sm: 'block', md: 'none' },
 						}}
 					>
-						<Logo maxWidth="40px" maxHeight="40px" />
+						<NavLink
+							style={{
+								textDecoration: 'none',
+							}}
+							to="/"
+						>
+							<Logo maxWidth="40px" maxHeight="40px" />
+						</NavLink>
 					</Grid>
 					<Grid item marginLeft="10px" xs={2}>
 						<City />

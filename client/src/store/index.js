@@ -18,3 +18,10 @@ export const reducers = combineReducers({
 	customer: CustomerReducer,
 	isLoggedIn: LoginReducer,
 });
+
+const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || {products:[]}
+export const initialValues ={
+	// products: [],
+	// filter: [],
+	cart: {cart: cartFromLocalStorage},
+}

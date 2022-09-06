@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {useSelector, useDispatch} from "react-redux";
+import {NavLink} from "react-router-dom";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
@@ -6,50 +8,50 @@ import IconButton from "@mui/material/IconButton";
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Button from "@mui/material/Button";
-
-
-const arr =  [
-    ['Philadelphia with tuna', "https://966.ua/upload/imagickAgent/detail/ebc/ebc412185a13657020d30a160952605f.jpeg2000",3,300],
-    ["Biggest Philadelphia","https://966.ua/upload/imagickAgent/section/358/358262124230e834d537b161a0aa8ae1.jpeg2000",5,134],
-    ["Sushi with tuna","https://966.ua/upload/imagickAgent/section/2c6/2c6ebbb3cabc124c3496b047c0ee7e29.jpeg2000",1,456],
-    ['Philadelphia with tuna', "https://966.ua/upload/imagickAgent/detail/ebc/ebc412185a13657020d30a160952605f.jpeg2000",2,214],
-    ["Biggest Philadelphia","https://966.ua/upload/imagickAgent/section/358/358262124230e834d537b161a0aa8ae1.jpeg2000",4,130],
-    ["Sushi with tuna","https://966.ua/upload/imagickAgent/section/2c6/2c6ebbb3cabc124c3496b047c0ee7e29.jpeg2000",1,321],
-    ['Philadelphia with tuna', "https://966.ua/upload/imagickAgent/detail/ebc/ebc412185a13657020d30a160952605f.jpeg2000",3,300],
-    ["Biggest Philadelphia","https://966.ua/upload/imagickAgent/section/358/358262124230e834d537b161a0aa8ae1.jpeg2000",5,134],
-    ["Sushi with tuna","https://966.ua/upload/imagickAgent/section/2c6/2c6ebbb3cabc124c3496b047c0ee7e29.jpeg2000",1,456],
-    ['Philadelphia with tuna', "https://966.ua/upload/imagickAgent/detail/ebc/ebc412185a13657020d30a160952605f.jpeg2000",2,214],
-    ["Biggest Philadelphia","https://966.ua/upload/imagickAgent/section/358/358262124230e834d537b161a0aa8ae1.jpeg2000",4,130],
-    ["Sushi with tuna","https://966.ua/upload/imagickAgent/section/2c6/2c6ebbb3cabc124c3496b047c0ee7e29.jpeg2000",1,321],
-    ['Philadelphia with tuna', "https://966.ua/upload/imagickAgent/detail/ebc/ebc412185a13657020d30a160952605f.jpeg2000",3,300],
-    ["Biggest Philadelphia","https://966.ua/upload/imagickAgent/section/358/358262124230e834d537b161a0aa8ae1.jpeg2000",5,134],
-    ["Sushi with tuna","https://966.ua/upload/imagickAgent/section/2c6/2c6ebbb3cabc124c3496b047c0ee7e29.jpeg2000",1,456],
-    ['Philadelphia with tuna', "https://966.ua/upload/imagickAgent/detail/ebc/ebc412185a13657020d30a160952605f.jpeg2000",2,214],
-    ["Biggest Philadelphia","https://966.ua/upload/imagickAgent/section/358/358262124230e834d537b161a0aa8ae1.jpeg2000",4,130],
-    ["Sushi with tuna","https://966.ua/upload/imagickAgent/section/2c6/2c6ebbb3cabc124c3496b047c0ee7e29.jpeg2000",1,321],
-]
-
+import {decreaseQuantity, increaseQuantity} from "../../store/actions";
 
 export default function CartMob() {
+    const dispatch = useDispatch()
+    const {products} = useSelector(state=> state.cart.cart)
+
+    const productQuantity = products.map( i =>i.cartQuantity )
+    let summQuantity = 0
+    for (let i=0; i < productQuantity.length; i += 1){
+        summQuantity += productQuantity[i]
+    }
+    const productPrice = products.map( i =>i.product.currentPrice*i.cartQuantity)
+    let summForPay = 0
+    for (let i=0; i < productPrice.length; i += 1){
+        summForPay += productPrice[i]
+    }
+
+    function incrQuantity(itemNo) {
+        dispatch(increaseQuantity(itemNo))
+    }
+
+    function decrQuantity(itemNo) {
+        dispatch(decreaseQuantity(itemNo))
+    }
+
     return (
         <Box sx={{ bgcolor: "backgroungColor.main",paddingTop: '10px' }}>
             <Box sx={{display:"flex",justifyContent:"center"}}>
                 <Typography variant='span' color='text.primary' fontSize='24px' fontWeight='500' sx={{mb: '10px'}}>Your basket</Typography>
             </Box>
             {
-            arr.map(i => <Card sx={{margin: '10px', display:"flex"}}>
+                products.map(item => <Card key = {item.product.itemNo} sx={{margin: '10px', display:"flex"}}>
                 <img style={{maxWidth: '90px', marginRight: "14px",height: '62px'
-                            }} src={i[1]} alt="susi"/>
+                            }} src={item.product.imageUrls[0]} alt="susi"/>
                 <Box>
-                <Typography id="modal-modal-description" sx={{ml: 1, fontSize: "18px"}}>{i[0]}</Typography>
-                <IconButton aria-label="delete">
+                <Typography id="modal-modal-description" sx={{ml: 1, fontSize: "18px"}}>{item.product.name}</Typography>
+                <IconButton aria-label="delete"  onClick={()=>decrQuantity(item.product.itemNo)}>
                     <RemoveIcon  fontSize="small" sx={{color: 'black'}}/>
                 </IconButton>
-                <Typography id="modal-modal-amount" variant="body2" component="text1" fontSize='18px' fontWeight='700' sx={{marginX: '10px'}}>{i[2]}</Typography>
-                <IconButton aria-label="delete">
+                <Typography id="modal-modal-amount" variant="body2" component="span" fontSize='18px' fontWeight='700' sx={{marginX: '10px'}}>{item.cartQuantity}</Typography>
+                <IconButton aria-label="delete" onClick={()=>incrQuantity(item.product.itemNo)}>
                     <AddCircleIcon color='secondary'  fontSize="small"/>
                 </IconButton>
-                <Typography variant="body2" component="text1" marginX='.1rem' fontSize='18px' fontWeight='700'>{i[2] * i[3]}$</Typography>
+                <Typography variant="body2" component="span" marginX='.1rem' fontSize='18px' fontWeight='700'>{item.product.currentPrice * item.cartQuantity}$</Typography>
                 </Box>
             </Card>)}
             <Card sx={{margin: '10px'}}>
@@ -58,10 +60,10 @@ export default function CartMob() {
                     </Box>
                 <Box  sx={{mb: '12px',paddingX:'40px', fontSize: "18px", borderBottom:' .5px #A4ACAD solid', display:'flex', justifyContent: 'space-between' }}>
                     <Typography fontSize='18px' fontWeight='400'>
-                        1 item
+                        {summQuantity}
                     </Typography>
                     <Typography fontSize='18px' fontWeight='400'>
-                        summ pay for
+                        {summForPay} pay for
                     </Typography>
                 </Box>
                 <Box  sx={{mb: '12px',paddingX:'40px', fontSize: "18px", borderBottom:' .5px #A4ACAD solid', display:'flex', justifyContent: 'space-between' }}>
@@ -74,9 +76,14 @@ export default function CartMob() {
                 </Box>
             </Card>
             <Box sx={{display:"flex", justifyContent:"center"}}>
-            <Button variant="contained" ><Typography variant='subtitle2' color='text.btnText'>
-                оформить заказ
-            </Typography></Button>
+                <NavLink to="/ordering">
+                    <Button variant="contained" >
+                        <Typography variant='subtitle2' color='text.btnText'>
+                        оформить заказ
+                    </Typography>
+                    </Button>
+                </NavLink>
+
             </Box>
         </Box>
     );

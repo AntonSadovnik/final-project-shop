@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {useSelector, useDispatch} from "react-redux";
+import {NavLink} from "react-router-dom";
 import {
     Box,
     Typography,
@@ -22,9 +23,7 @@ import {decreaseQuantity, increaseQuantity, removeProductFromCart} from "../../s
 export default function Cart(props) {
     const dispatch = useDispatch()
     const {products} = useSelector(state => state.cart.cart)
-    console.log(useSelector(state => state.cart))
     const price = products.map(j => j.product.currentPrice * j.cartQuantity)
-    console.log(price)
     const sum = () => {
         let s = 0;
         for (let i = 0; i < price.length; i += 1) {
@@ -78,6 +77,9 @@ export default function Cart(props) {
                 </Box>
                 <DialogContent dividers={scroll === 'paper'}>
                     <DialogContentText ref={descriptionElementRef} tabIndex={-1}>
+                        {
+                            products.length === 0 && <Typography>Your cart is empty</Typography>
+                        }
                         {products.map((i) => (
                             <Box key={i.product.itemNo}>
                                 <Grid container spacing={3} alignItems="center">
@@ -100,7 +102,7 @@ export default function Cart(props) {
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={1} sx={{textAlign: 'right'}}>
-                                        <Typography variant="body2" component="p">
+                                        <Typography variant="body2" component="span">
                                             {i.cartQuantity}
                                         </Typography>
                                     </Grid>
@@ -112,7 +114,7 @@ export default function Cart(props) {
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={1}>
-                                        <Typography variant="body2" component="p">
+                                        <Typography variant="body2" component="span">
                                             {i.cartQuantity * i.product.currentPrice}$
                                         </Typography>
                                     </Grid>
@@ -127,12 +129,14 @@ export default function Cart(props) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Typography variant="h6" component="p" color="black" sx={{mr: '2rem'}}>
+                    <Typography variant="h6" component="span" color="black" sx={{mr: '2rem'}}>
                         {sum()}$
                     </Typography>
-                    <CustomButton colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT">
-                        Checkout
-                    </CustomButton>
+                    <NavLink to="/ordering">
+                        <CustomButton disabled={products.length === 0} colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT" onClick={handleClose}>
+                            Checkout
+                        </CustomButton>
+                    </NavLink>
                 </DialogActions>
             </Dialog>
         </div>

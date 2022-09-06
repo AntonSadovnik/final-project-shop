@@ -4,9 +4,10 @@ import Grid from '@mui/material/Grid';
 import { getProductsRequest } from '../../store/actions';
 
 import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider';
-import RecommendedSlider from '../../components/Slider/components/recommendedSlider/SliderTwo';
 import Offer from '../../components/Offer/Offer';
 import GridItem from '../../components/Grid/Grid';
+import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
+import Socials from '../../components/Footer/components/socials/Socials';
 
 function Main() {
 	const dispatch = useDispatch();
@@ -23,15 +24,36 @@ function Main() {
 				flexDirection="column"
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
-				<Grid item style={{ padding: '30px 0 60px' }}>
+				<Grid sx={{ padding: '30px 0 60px', width: '100%' }}>
 					<Grid sx={{ display: { md: 'block', xs: 'none' } }}>
 						<Offer />
 					</Grid>
 					<Grid container justifyContent="center">
 						<GridItem />
 					</Grid>
-					<NoveltieSlider />
-					<RecommendedSlider />
+					<Grid
+						container
+						justifyContent="center"
+						sx={{ display: { xs: 'none', sm: 'flex' }, marginTop: '50px' }}
+					>
+						<NoveltieSlider />
+					</Grid>
+					<Grid
+						container
+						justifyContent="center"
+						sx={{ marginTop: { sm: '50px', xs: '20px' } }}
+					>
+						<Grid item sm={10} xs={11}>
+							<SimpleAccordion />
+						</Grid>
+					</Grid>
+					<Grid
+						container
+						textAlign="center"
+						sx={{ display: { xs: 'flex', sm: 'none' }, marginTop: '20px' }}
+					>
+						<Socials />
+					</Grid>
 				</Grid>
 			</Grid>
 		</main>
