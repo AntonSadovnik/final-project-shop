@@ -41,18 +41,16 @@ export default function Search({ openSearch, setOpenSearch }) {
 			axios
 				.post('/api/products/search', { query: searchValue.trim() })
 				.then((result) => {
-					console.log(result);
 					setSearchResult(result);
+					setSearchValue('');
 				})
-				.catch((err) => {
-					console.error(err);
+				.catch(() => {
 					setInputError({
 						hasError: true,
 						errorType: 'Oops! Something went wrong. Sorry...',
 					});
 				})
 				.finally(() => {
-					setSearchValue('');
 					setLoading(false);
 				});
 		} else {
@@ -63,8 +61,10 @@ export default function Search({ openSearch, setOpenSearch }) {
 
 	const handleSearchReset = () => {
 		handleClose();
-		setInputError({ hasError: false, errorType: '' });
-		setSearchResult(null);
+		setTimeout(() => {
+			setInputError({ hasError: false, errorType: '' });
+			setSearchResult(null);
+		}, 500);
 	};
 
 	return (
@@ -73,7 +73,7 @@ export default function Search({ openSearch, setOpenSearch }) {
 			open={openSearch}
 			onClose={handleClose}
 			aria-labelledby="responsive-dialog-title"
-			maxWidth="lg"
+			maxWidth="md"
 			sx={{
 				'& .MuiDialog-container': {
 					justifyContent: 'center',
@@ -84,12 +84,11 @@ export default function Search({ openSearch, setOpenSearch }) {
 			<DialogContent>
 				<Box
 					sx={{
-						width: 900,
-						maxWidth: '100%',
 						display: 'flex',
 						alignItems: 'center',
-						columnGap: '10px',
+						columnGap: '5px',
 						marginBottom: '10px',
+						width: '100%',
 					}}
 				>
 					<TextField
@@ -100,7 +99,7 @@ export default function Search({ openSearch, setOpenSearch }) {
 						onChange={handleInputChange}
 						error={inputError.hasError}
 						helperText={inputError.errorType}
-						inputProps={{ style: { fontSize: 25 } }}
+						inputProps={{ style: { fontSize: 18 } }}
 						FormHelperTextProps={{
 							style: {
 								fontSize: '18px',
@@ -109,6 +108,7 @@ export default function Search({ openSearch, setOpenSearch }) {
 								bottom: -28,
 							},
 						}}
+						sx={{ width: '500px', flexGrow: 1 }}
 					/>
 					<SearchIcon
 						sx={{

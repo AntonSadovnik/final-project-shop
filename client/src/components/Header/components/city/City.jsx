@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Typography, Box, Menu, MenuItem } from '@mui/material';
 import ExpandCircleDownSharpIcon from '@mui/icons-material/ExpandCircleDownSharp';
 import { menuItemHover } from './styles';
+import { setCity } from '../../../../store/actions';
 
 const CITIES = ['Kyiv', 'Odesa', 'Dnipro', 'Kharkiv'];
 
 function City() {
+	const dispatch = useDispatch();
 	const [anchorEl, setAnchorEl] = useState(null);
-	const [city, setCity] = useState(CITIES[0]);
+	const [stateCity, setStateCity] = useState(CITIES[0]);
 	const open = Boolean(anchorEl);
+
+	useEffect(() => {
+		if (!localStorage.getItem('city')) {
+			localStorage.setItem('city', stateCity);
+			dispatch(setCity(stateCity));
+		} else {
+			dispatch(setCity(localStorage.getItem('city')));
+			setStateCity(localStorage.getItem('city'));
+		}
+	}, []);
+
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -18,8 +32,10 @@ function City() {
 	};
 
 	const handleCitySelection = (selectedCity) => {
-		if (city !== selectedCity) {
-			setCity(selectedCity);
+		if (stateCity !== selectedCity) {
+			setStateCity(selectedCity);
+			dispatch(setCity(selectedCity));
+			localStorage.setItem('city', selectedCity);
 		}
 		handleClose();
 	};
@@ -40,7 +56,7 @@ function City() {
 					sx={{ display: 'flex', flexDirection: 'column', flexBasis: '50px' }}
 				>
 					<span>City:</span>
-					<span>{city}</span>
+					<span>{stateCity}</span>
 				</Typography>
 				<ExpandCircleDownSharpIcon sx={{ color: '#ff9846' }} />
 			</Box>

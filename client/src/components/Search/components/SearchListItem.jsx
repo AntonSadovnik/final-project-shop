@@ -1,11 +1,23 @@
 import * as React from 'react';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import {
+	ListItem,
+	ListItemAvatar,
+	Avatar,
+	Box,
+	Typography,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export default function SearchListItem({ product, handleSearchReset}) {
+const Ingredients = styled('div')(({ theme }) => ({
+	fontSize: '14px',
+	[theme.breakpoints.down('sm')]: {
+		display: 'none',
+	},
+	fontFamily: theme.typography.fontFamily,
+}));
+
+export default function SearchListItem({ product, handleSearchReset }) {
 	return (
 		<Link
 			to={`/products/${product.itemNo}`}
@@ -21,14 +33,28 @@ export default function SearchListItem({ product, handleSearchReset}) {
 					<Avatar
 						alt="product"
 						src={product.imageUrls[0]}
-						sx={{ width: '100px', height: '100px' }}
+						sx={{
+							width: { xs: '80px', sm: '100px' },
+							height: { xs: '80px', sm: '100px' },
+						}}
 					/>
 				</ListItemAvatar>
-				<Typography sx={{ flexGrow: 1, fontSize: '18px' }}>
-					{product.name.toUpperCase()}
-				</Typography>
+				<Box sx={{ flexGrow: 1 }}>
+					<Typography sx={{ fontSize: { xs: '14px', sm: '18px' }, fontWeight: 700 }}>
+						{product.name}
+					</Typography>
+					<Ingredients>
+						{product.ingredients && `ingredients: ${product.ingredients}`}
+						{product.contains && `set contains: ${product.contains}`}
+					</Ingredients>
+				</Box>
 				<Typography
-					sx={{ fontWeight: 700, fontSize: '18px' }}
+					sx={{
+						fontWeight: 700,
+						fontSize: { xs: '14px', sm: '18px' },
+						minWidth: { xs: '40px', sm: '60px' },
+						textAlign: 'right',
+					}}
 				>{`${product.currentPrice} ₴`}</Typography>
 			</ListItem>
 		</Link>

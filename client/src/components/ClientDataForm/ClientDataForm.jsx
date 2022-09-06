@@ -14,6 +14,7 @@ import {
 	ToggleButtonGroup,
 	Box,
 } from '@mui/material';
+import { useSelector } from 'react-redux';
 import AddressForm from './AddressForm';
 import ChangeForm from './ChangeForm';
 
@@ -29,6 +30,9 @@ function ClientDataForm() {
 			}}
 		/>
 	);
+
+	const city = useSelector((store) => store.city);
+	const cartProducts = useSelector((store) => store.cart.cart.products);
 
 	const validationschema = yup.object({
 		name: yup.string('Enter your name').required('Name is required'),
@@ -135,10 +139,21 @@ function ClientDataForm() {
 		}
 	};
 
+	const calculateOrder = () =>
+		cartProducts.reduce(
+			(accumulator, productInfo) => (
+				accumulator +
+					productInfo.cartQuantity * productInfo.product.currentPrice
+			), 0
+		);
+
 	return (
 		<Box>
 			<form className="client-data-form" onSubmit={formik.handleSubmit}>
-				<Typography fontSize={24}>Your data</Typography>
+				<Typography fontSize={18} marginBottom='10px'>Your are now in {city}</Typography>
+				<Typography fontSize={18}>
+					Your total order is {calculateOrder()} UAH
+				</Typography>
 				<Box className="client-data-form__container">
 					<Grid spacing={1} container columns={8}>
 						<Grid sx={{ height: 70 }} item xs={4}>
@@ -172,7 +187,7 @@ function ClientDataForm() {
 						<Grid item xs={8}>
 							<ToggleButtonGroup
 								fullWidth
-								sx={{ height: "52px", paddingBottom: "5px" }}
+								sx={{ height: '52px', paddingBottom: '5px' }}
 								type="radio"
 								id={payment}
 								onBlur={formik.onBlur}
