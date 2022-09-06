@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+export const getProduct = (itemNo) =>
+	axios.get(`/api/products/filter?itemNo=${itemNo}`);
+
+export const getProductsByCategory = (categories) =>
+	axios.get(`/api/products/filter?categories=${categories}&sort=itemNo`);
+
 export const getRecommendedProduct = () =>
 	axios.get('/api/products/filter?categories=drinks');
 
@@ -20,6 +26,5 @@ export const getCustomer = (token) =>
 	axios.get('api/customers/customer', {
 		headers: {
 			Authorization: token,
-		}
+		},
 	});
-
