@@ -32,9 +32,5 @@ export default function menuItemsContent() {
 			src: 'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660240221/sushi-shop/Nav/drinks_w1km50.svg',
 			alt: 'Drinks',
 		},
-		{
-			src: 'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660240220/sushi-shop/Nav/offers_e7derq.svg',
-			alt: 'Stock',
-		},
 	];
 }

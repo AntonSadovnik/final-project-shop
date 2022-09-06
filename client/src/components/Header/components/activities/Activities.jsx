@@ -1,20 +1,71 @@
-import React from 'react';
-import {Grid, Button, Typography} from '@mui/material';
+import React, { useEffect } from 'react';
+import { Grid, Button, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { NavLink } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 import './style.scss';
 import Cart from '../../../Cart/Cart';
+import LoginModal from '../../../LoginModal/LoginModal';
+import { deleteCustomer, setCustomer, setLogin, setLogout } from '../../../../store/actions';
+
 
 function Activities() {
 	const [open, setOpen] = React.useState(false);
+	const [loginButton, setLoginButton] = React.useState(null);
+	const [loginModal, setLoginModal] = React.useState(false);
 	const [scroll, setScroll] = React.useState('paper');
+	const dispatch = useDispatch();
 
 	const handleClickOpen = (type) => {
 		setOpen(true);
 		setScroll(type);
 	};
+	const handleLoginOpen = () => {
+		setLoginModal(true);
+	};
+
+	const handleLogout = () => {
+		dispatch(setLogout());
+		dispatch(deleteCustomer());
+		setLoginButton(
+			<LoginIcon
+				onClick={handleLoginOpen}
+				sx={{
+					color: '#1BD741',
+					fontSize: '40px',
+				}}
+			/>
+		);
+	};
+
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			dispatch(setLogin());
+			dispatch(setCustomer())
+			setLoginButton(
+				<LogoutIcon
+					onClick={handleLogout}
+					sx={{
+						color: 'red',
+						fontSize: '40px',
+					}}
+				/>
+			);
+		} else {
+			setLoginButton(
+				<LoginIcon
+					onClick={handleLoginOpen}
+					sx={{
+						color: '#1BD741',
+						fontSize: '40px',
+					}}
+				/>
+			);
+		}
+	}, [localStorage.getItem('token')]);
 
 	return (
 		<>
@@ -24,6 +75,11 @@ function Activities() {
 				scroll={scroll}
 				setScroll={setScroll}
 				handleClickOpen={handleClickOpen}
+			/>
+			<LoginModal
+				loginModal={loginModal}
+				setLoginModal={setLoginModal}
+				handleLoginOpen={handleLoginOpen}
 			/>
 			<Grid item container lg={7} sm={7} alignItems="center">
 				<NavLink
@@ -70,12 +126,7 @@ function Activities() {
 					/>
 				</Button>
 				<Button className="header__buttons" disableRipple size="small">
-					<LoginIcon
-						sx={{
-							color: '#1BD741',
-							fontSize: '40px',
-						}}
-					/>
+					{loginButton}
 				</Button>
 			</Grid>
 		</>
