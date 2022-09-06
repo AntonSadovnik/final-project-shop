@@ -1,0 +1,12 @@
+.modal {
+    &__change-form {
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
+
+        &:hover {
+            color: #F46D40;
+        }
+    }
+}
