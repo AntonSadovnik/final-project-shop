@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import Grid from '@mui/material/Grid';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Grid } from '@mui/material';
 import gridItems from './itemGrid';
 import gridItemsHidden from './itemGridHidden';
 import './grid.scss';
@@ -59,7 +58,12 @@ function GridItem() {
 			{gridItemsHidden().map((e) => {
 				const { src, alt, text } = e;
 				return (
-					<Grid item sx={{ display: { md: 'none', sm: 'block' } }} xs={6}>
+					<Grid
+						item
+						sx={{ display: { md: 'none', sm: 'block' } }}
+						sm={4}
+						xs={6}
+					>
 						<Box
 							className="card"
 							sx={{
