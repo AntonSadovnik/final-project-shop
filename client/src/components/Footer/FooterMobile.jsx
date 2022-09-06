@@ -1,13 +1,95 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import { NavLink } from 'react-router-dom';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { deleteCustomer, setCustomer, setLogin, setLogout } from '../../store/actions';
+import LoginModal from '../LoginModal/LoginModal';
 
 function FooterMobile() {
+	const [loginModal, setLoginModal] = React.useState(false);
+	const [loginButton, setLoginButton] = React.useState(null);
+	const dispatch = useDispatch();
+
+	const handleLoginOpen = () => {
+		setLoginModal(true);
+	};
+
+	const handleLogout = () => {
+		dispatch(setLogout());
+		dispatch(deleteCustomer());
+		setLoginButton(
+			<Button
+				onClick={handleLoginOpen}
+				disableRipple
+				sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+			>
+				<LoginIcon
+					sx={{
+						color: '#1BD741',
+						fontSize: '30px',
+					}}
+				/>
+				<Typography color={(theme) => theme.palette.text.primary}>
+					Login
+				</Typography>
+			</Button>
+		);
+	};
+
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			dispatch(setLogin());
+			dispatch(setCustomer());
+			setLoginButton(
+				<Button
+					onClick={handleLogout}
+					disableRipple
+					sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+				>
+					<LogoutIcon
+						sx={{
+							color: 'red',
+							fontSize: '30px',
+						}}
+					/>
+					<Typography color={(theme) => theme.palette.text.primary}>
+						Logout
+					</Typography>
+				</Button>
+			);
+		} else {
+			setLoginButton(
+				<Button
+					onClick={handleLoginOpen}
+					disableRipple
+					sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+				>
+					<LoginIcon
+						sx={{
+							color: '#1BD741',
+							fontSize: '30px',
+						}}
+					/>
+					<Typography color={(theme) => theme.palette.text.primary}>
+						Login
+					</Typography>
+				</Button>
+			);
+		}
+	}, [localStorage.getItem('token')]);
+
 	return (
 		<footer>
+			<LoginModal
+				loginModal={loginModal}
+				setLoginModal={setLoginModal}
+				handleLoginOpen={handleLoginOpen}
+			/>
 			<Grid
 				container
 				sx={{ padding: '11px 0', borderTop: '1px solid #A4ACAD' }}
@@ -42,16 +124,16 @@ function FooterMobile() {
 						}}
 						to="/cart"
 					>
-					<Button
-						disableRipple
-						sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
-					>
-						<ShoppingCartIcon color="hoverColor" sx={{ fontSize: '30px' }} />
-						<Typography color={(theme) => theme.palette.text.primary}>
-							Cart
-						</Typography>
-					</Button>
-						</NavLink>
+						<Button
+							disableRipple
+							sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+						>
+							<ShoppingCartIcon color="hoverColor" sx={{ fontSize: '30px' }} />
+							<Typography color={(theme) => theme.palette.text.primary}>
+								Cart
+							</Typography>
+						</Button>
+					</NavLink>
 				</Grid>
 				<Grid item>
 					<NavLink
@@ -70,6 +152,9 @@ function FooterMobile() {
 							</Typography>
 						</Button>
 					</NavLink>
+				</Grid>
+				<Grid item>
+						{loginButton}
 				</Grid>
 			</Grid>
 		</footer>
