@@ -1,5 +1,5 @@
 import getProducts from '../api/getProducts';
-import { getAllProducts } from '../api/Api';
+import { getAllProducts, getCustomer } from '../api/Api';
 import {
 	GET_PRODUCTS_INIT,
 	ADD_TO_CART,
@@ -7,13 +7,16 @@ import {
 	DECREASE_QUANTITY_TO_CART,
 	INCREASE_QUANTITY_TO_CART,
 	REMOVE_FROM_CART,
-	SET_CITY,
+    SET_CUSTOMER,
+    SET_LOGIN,
+    SET_LOGOUT,
+    SET_PRODUCTS,
+		SET_CITY,
 } from './types/types';
 
 export const getProductsAction = (categories) => (dispatch) => {
 	getProducts(categories).then((products) => {
-		// console.log(products);
-		dispatch({ type: 'SET_PRODUCTS', payload: products.data });
+		dispatch({ type: SET_PRODUCTS, payload: products.data });
 	});
 };
 
@@ -55,6 +58,26 @@ export const removeProductFromCart = (payload) => ({
 	type: REMOVE_FROM_CART,
 	payload,
 });
+
+export const setLogin = () => (dispatch) => {
+	dispatch({ type: SET_LOGIN });
+};
+
+export const setLogout = () => (dispatch) => {
+	localStorage.removeItem('token');
+	dispatch({ type: SET_LOGOUT });
+};
+
+export const setCustomer = () => (dispatch) => {
+	getCustomer(localStorage.getItem('token')).then((loggedInCustomer) => {
+		console.log(loggedInCustomer);
+		dispatch({ type: SET_CUSTOMER, payload: loggedInCustomer.data });
+	});
+};
+
+export const deleteCustomer = () => (dispatch) => {
+	dispatch({ type: SET_CUSTOMER, payload: null });
+};
 
 export const setCity = (city) => ({
 	type: SET_CITY,

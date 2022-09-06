@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
+import { Box, Typography, Button, Container } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import style from './AboutCompany.module.scss';
 
 export default function SimpleAccordion() {
 	const [showMore, setShowMore] = useState(false);
-	const city = useSelector((store) => store.city);
 
 	return (
-		<Container sx={{ bgcolor: 'text.btnText', textAlign: 'justify' }}>
+		<Container
+			sx={{
+				display: 'flex',
+				justifyContent: 'center',
+				bgcolor: 'text.btnText',
+			}}
+		>
 			{!showMore ? (
-				<div className={style.contentWrapper}>
+				<Box>
 					<Typography
 						variant="h6"
 						component="h2"
@@ -22,7 +24,7 @@ export default function SimpleAccordion() {
 						fontSize="24px"
 						sx={{ marginBottom: '9px' }}
 					>
-						Order sushi in {city}
+						Order sushi in Kyiv
 					</Typography>
 					<Typography
 						variant="h6"
@@ -31,7 +33,7 @@ export default function SimpleAccordion() {
 						fontSize="24px"
 						sx={{ marginBottom: '9px' }}
 					>
-						The best sushi delivery in {city} for everyone
+						The best sushi delivery in Kyiv for everyone
 					</Typography>
 					<Typography
 						variant="h6"
@@ -47,7 +49,7 @@ export default function SimpleAccordion() {
 						for a trip to the Far East, you can enjoy the taste of great sushi
 						right now! It&apos;s time to try a treat that is usually associated
 						with Japan, although the Chinese were the first to cook it. You can
-						order sushi in {city} with delivery and enjoy it right at home.
+						order sushi in Kyiv with delivery and enjoy it right at home.
 						Surprise your friends who came to visit you or arrange a romantic
 						evening with your soulmate. The combination of boiled rice and raw
 						fish, delivered to your chosen address, can also be a decoration for
@@ -65,7 +67,7 @@ export default function SimpleAccordion() {
 							show more <ExpandMoreIcon />
 						</Button>
 					</div>
-				</div>
+				</Box>
 			) : (
 				<div className={style.contentWrapper}>
 					<Typography
@@ -75,7 +77,7 @@ export default function SimpleAccordion() {
 						fontSize="24px"
 						sx={{ marginBottom: '9px' }}
 					>
-						Order sushi in {city}
+						Order sushi in Kyiv
 					</Typography>
 					<Typography
 						variant="h6"
@@ -84,7 +86,7 @@ export default function SimpleAccordion() {
 						fontSize="24px"
 						sx={{ marginBottom: '9px' }}
 					>
-						The best sushi delivery in {city} for everyone
+						The best sushi delivery in Kyiv for everyone
 					</Typography>
 					<Typography
 						variant="h6"
@@ -100,7 +102,7 @@ export default function SimpleAccordion() {
 						for a trip to the Far East, you can enjoy the taste of great sushi
 						right now! It&apos;s time to try a treat that is usually associated
 						with Japan, although the Chinese were the first to cook it. You can
-						order sushi in {city} with delivery and enjoy it right at home.
+						order sushi in Kyiv with delivery and enjoy it right at home.
 						Surprise your friends who came to visit you or arrange a romantic
 						evening with your soulmate. The combination of boiled rice and raw
 						fish, delivered to your chosen address, can also be a decoration for
@@ -113,7 +115,7 @@ export default function SimpleAccordion() {
 						fontSize="24px"
 						sx={{ marginBottom: '9px' }}
 					>
-						Sushi delivery in {city}
+						Sushi delivery in Kyiv
 					</Typography>
 					<Typography
 						variant="h6"
@@ -139,13 +141,14 @@ export default function SimpleAccordion() {
 						Despite the fact that sushi is considered one of the haute oriental
 						dishes, sushi lovers do not need to plan a trip to Japan, because in
 						the modern world you can simply order a portion of Japanese seafood
-						right in {city}. Sushi in {city} is incredibly popular and is in
-						first place in terms of the number of orders for delivery. In Kyiv
-						there is no lack of opportunities, but very often there is a lack of
-						time. If you are hungry and urgently want to treat yourself to
-						something tasty, then sushi delivery in {city} is exactly what you
-						need. Delicious and hearty sushi will quickly energize you. You can
-						also order sushi not only home but also directly to the office. This
+						right in Kyiv. Sushi in Kyiv is incredibly popular and is in first
+						place in terms of the number of orders for delivery. In Kyiv, which
+						is both the capital of Ukraine and its economic heart, there is no
+						lack of opportunities, but very often there is a lack of time. If
+						you are hungry and urgently want to treat yourself to something
+						tasty, then sushi delivery in Kyiv is exactly what you need.
+						Delicious and hearty sushi will quickly energize you. You can also
+						order sushi not only home but also directly to the office. This
 						gourmet Asian dish is an interesting alternative to typical
 						catering,
 						<br />
@@ -153,7 +156,7 @@ export default function SimpleAccordion() {
 						the most delicious food in Ukraine. We have already gained trust and
 						popularity among customers in the largest cities, namely Kharkov,
 						Odessa, Dnipro and Kyiv. “Sushi and Noodles” offers not just sushi
-						delivery in {city}, we offer delicious and healthy dishes at a bargain
+						delivery in Kyiv, we offer delicious and healthy dishes at a bargain
 						price.
 					</Typography>
 					<div className={style.btn}>
