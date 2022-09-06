@@ -132,7 +132,7 @@ export default function Cart(props) {
                     <Typography variant="h6" component="span" color="black" sx={{mr: '2rem'}}>
                         {sum()}$
                     </Typography>
-                    <NavLink to="/ordering">
+                    <NavLink to="/ordering" style={{ textDecoration: 'inherit'}}>
                         <CustomButton disabled={products.length === 0} colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT" onClick={handleClose}>
                             Checkout
                         </CustomButton>
