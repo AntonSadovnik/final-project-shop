@@ -1,25 +1,16 @@
 .slick-slide > div {
-  // margin: 0 -50px; 
  }
  
  .slick-slide > div{
    display:flex;
    justify-content: center;
-   
-   //margin: 0 50px;
    width: 100%;
  }
-  /* .slick-slider {
-   width:950px; 
- }  */
  
- 
-
  @media  (max-width: 900px) {
   .sale-slider{
     display: none
-  }
-  
+  } 
 }
 
 .blockquote {
