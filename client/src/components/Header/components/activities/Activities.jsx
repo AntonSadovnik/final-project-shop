@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Grid, Button, Typography } from '@mui/material';
+import {  Grid, Button, Typography  } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { NavLink } from 'react-router-dom';
@@ -11,6 +11,7 @@ import Cart from '../../../Cart/Cart';
 import LoginModal from '../../../LoginModal/LoginModal';
 import { deleteCustomer, setCustomer, setLogin, setLogout } from '../../../../store/actions';
 
+import Search from '../../../Search/Search';
 
 function Activities() {
 	const [open, setOpen] = React.useState(false);
@@ -18,6 +19,11 @@ function Activities() {
 	const [loginModal, setLoginModal] = React.useState(false);
 	const [scroll, setScroll] = React.useState('paper');
 	const dispatch = useDispatch();
+	const [openSearch, setOpenSearch] = React.useState(false);
+
+	const handleOpenSearchClick = () => {
+		setOpenSearch(true);
+	};
 
 	const handleClickOpen = (type) => {
 		setOpen(true);
@@ -81,6 +87,7 @@ function Activities() {
 				setLoginModal={setLoginModal}
 				handleLoginOpen={handleLoginOpen}
 			/>
+			<Search openSearch={openSearch} setOpenSearch={setOpenSearch} />
 			<Grid item container lg={7} sm={7} alignItems="center">
 				<NavLink
 					style={{
@@ -117,7 +124,7 @@ function Activities() {
 						}}
 					/>
 				</Button>
-				<Button className="header__buttons" disableRipple size="small">
+				<Button className="header__buttons" disableRipple size="small" onClick={handleOpenSearchClick}>
 					<SearchIcon
 						color="grayColor"
 						sx={{

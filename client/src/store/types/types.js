@@ -9,3 +9,5 @@ export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const SET_CUSTOMER = 'SET_CUSTOMER';
 export const SET_LOGIN = 'SET_LOGIN';
 export const SET_LOGOUT = 'SET_LOGOUT';
+
+export const SET_CITY = "SET_CITY";

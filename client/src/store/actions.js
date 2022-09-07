@@ -11,6 +11,7 @@ import {
     SET_LOGIN,
     SET_LOGOUT,
     SET_PRODUCTS,
+		SET_CITY,
 } from './types/types';
 
 export const getProductsAction = (categories) => (dispatch) => {
@@ -59,7 +60,7 @@ export const removeProductFromCart = (payload) => ({
 });
 
 export const setLogin = () => (dispatch) => {
-    dispatch({ type: SET_LOGIN });
+	dispatch({ type: SET_LOGIN });
 };
 
 export const setLogout = () => (dispatch) => {
@@ -68,12 +69,19 @@ export const setLogout = () => (dispatch) => {
 };
 
 export const setCustomer = () => (dispatch) => {
-    getCustomer(localStorage.getItem('token')).then((loggedInCustomer) => {
-        console.log(loggedInCustomer);
-        dispatch({ type: SET_CUSTOMER, payload: loggedInCustomer.data });
-		});
+	getCustomer(localStorage.getItem('token')).then((loggedInCustomer) => {
+		console.log(loggedInCustomer);
+		dispatch({ type: SET_CUSTOMER, payload: loggedInCustomer.data });
+	});
 };
 
 export const deleteCustomer = () => (dispatch) => {
-		dispatch({ type: SET_CUSTOMER, payload: null });
+	dispatch({ type: SET_CUSTOMER, payload: null });
 };
+
+export const setCity = (city) => ({
+	type: SET_CITY,
+	payload: {
+		city,
+	},
+});
