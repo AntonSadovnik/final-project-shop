@@ -12,5 +12,4 @@ export const getPopularProduct = () => axios.get('/api/products/filter?promo=pop
 
 export const getAllProducts = () => axios.get('/api/products')
 
-
 export const getSaleProduct = () => axios.get('/api/products/filter?promo=sale')
