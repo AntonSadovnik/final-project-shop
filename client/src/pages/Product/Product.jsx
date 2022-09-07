@@ -12,7 +12,7 @@ function Product() {
 			<ProductCard />
 			<Stack
 				sx={{
-					marginBottom: { xs: '35px', md: '55px' },
+					marginBottom: { xs: '0', md: '0' },
 				}}
 			>
 				<RecommendedSlider />

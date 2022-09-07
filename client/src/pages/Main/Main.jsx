@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import { getProductsRequest } from '../../store/actions';
 
 import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider';
-import Offer from '../../components/Offer/Offer';
+import OfferSlider from '../../components/Slider/components/offerSlider/OfferSlider'
 import GridItem from '../../components/Grid/Grid';
 import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
 import Socials from '../../components/Footer/components/socials/Socials';
@@ -26,7 +26,8 @@ function Main() {
 			>
 				<Grid sx={{ padding: '30px 0 60px', width: '100%' }}>
 					<Grid sx={{ display: { md: 'block', xs: 'none' } }}>
-						<Offer />
+						{/* <Offer /> */}
+						<OfferSlider/>
 					</Grid>
 					<Grid container justifyContent="center">
 						<GridItem />
