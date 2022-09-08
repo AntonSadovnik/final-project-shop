@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import {
 	Grid,
 	TextField,
@@ -9,7 +8,6 @@ import * as React from 'react';
 
 function AddressForm({ formikData }) {
 
-
 	return (
 		<Grid
 			className="address-form"
@@ -18,7 +16,7 @@ function AddressForm({ formikData }) {
 			container
 			columns={8}
 		>
-			<Grid item xs={6}>
+			<Grid item xs={5}>
 				<TextField
 					fullWidth
 					id="street"
@@ -27,12 +25,12 @@ function AddressForm({ formikData }) {
 					type="street"
 					value={formikData.values.street}
 					onChange={formikData.handleChange}
-					onBlur={formikData.onBlur}
+					onBlur={formikData.handleBlur}
 					error={formikData.touched.street && Boolean(formikData.errors.street)}
 					helperText={formikData.touched.street && formikData.errors.street}
 				/>
 			</Grid>
-			<Grid item xs={2}>
+			<Grid item xs={3}>
 				<TextField
 					fullWidth
 					id="house"
@@ -56,8 +54,12 @@ function AddressForm({ formikData }) {
 					value={formikData.values.apartment}
 					onChange={formikData.handleChange}
 					onBlur={formikData.onBlur}
-					error={formikData.touched.apartment && Boolean(formikData.errors.apartment)}
-					helperText={formikData.touched.apartment && formikData.errors.apartment}
+					error={
+						formikData.touched.apartment && Boolean(formikData.errors.apartment)
+					}
+					helperText={
+						formikData.touched.apartment && formikData.errors.apartment
+					}
 				/>
 			</Grid>
 			<Grid item xs={2}>
@@ -70,7 +72,9 @@ function AddressForm({ formikData }) {
 					value={formikData.values.entrance}
 					onChange={formikData.handleChange}
 					onBlur={formikData.onBlur}
-					error={formikData.touched.entrance && Boolean(formikData.errors.entrance)}
+					error={
+						formikData.touched.entrance && Boolean(formikData.errors.entrance)
+					}
 					helperText={formikData.touched.entrance && formikData.errors.entrance}
 				/>
 			</Grid>
