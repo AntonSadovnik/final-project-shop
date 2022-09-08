@@ -6,11 +6,18 @@ import PhoneNumbers from './components/phone-numbers/PhoneNumbers';
 import Logo from '../Logo/Logo';
 import WorkHours from './components/work-hours/WorkHours';
 import './components/activities/style.scss';
-
+import Search from '../Search/Search';
 
 function HeaderMobile() {
+	const [openSearch, setOpenSearch] = React.useState(false);
+
+	const handleOpenSearchClick = () => {
+		setOpenSearch(true);
+	};
+
 	return (
 		<header>
+			<Search openSearch={openSearch} setOpenSearch={setOpenSearch} />
 			<Grid
 				container
 				justifyContent="space-evenly"
@@ -48,7 +55,12 @@ function HeaderMobile() {
 					</Grid>
 				</Grid>
 				<Grid item xs={1}>
-					<Button className="header__buttons" disableRipple size="small">
+					<Button
+						className="header__buttons"
+						disableRipple
+						size="small"
+						onClick={handleOpenSearchClick}
+					>
 						<SearchIcon
 							color="grayColor"
 							sx={{

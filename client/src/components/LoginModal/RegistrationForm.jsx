@@ -6,6 +6,7 @@ import { Button, TextField, Typography } from '@mui/material';
 // eslint-disable-next-line import/no-cycle
 import LoginForm from './LoginForm';
 import { registrateCustomer } from '../../api/Api';
+// eslint-disable-next-line import/no-cycle
 import SuccessfullRegistration from './SuccessfulRegistration';
 
 export default function RegistrationForm({ setForm }) {
@@ -42,7 +43,7 @@ export default function RegistrationForm({ setForm }) {
 		onSubmit: (values) => {
 			registrateCustomer(values)
 				.then(() => {
-					setForm(<SuccessfullRegistration />);
+					setForm(<SuccessfullRegistration setForm={setForm} />);
 				})
 				.catch((error) =>
 					setErr(error.response.data[Object.keys(error.response.data)[0]])

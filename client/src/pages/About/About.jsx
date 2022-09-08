@@ -1,11 +1,14 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 function About() {
+	const city = useSelector((store) => store.city);
 	return (
 		<Box
 			sx={{
 				padding: { xs: '20px', sm: '50px' },
+				textAlign: 'justify',
 			}}
 		>
 			<Typography
@@ -14,7 +17,7 @@ function About() {
 				fontSize="24px"
 				sx={{ marginBottom: '9px' }}
 			>
-				The best sushi delivery in Kyiv for everyone
+				The best sushi delivery in {city} for everyone
 			</Typography>
 			<Typography
 				color="text.secondary"
@@ -30,7 +33,7 @@ function About() {
 				the Far East, you can enjoy the taste of great sushi right now!
 				It&apos;s time to try a treat that is usually associated with Japan,
 				although the Chinese were the first to cook it. You can order sushi in
-				Kyiv with delivery and enjoy it right at home. Surprise your friends who
+				{city} with delivery and enjoy it right at home. Surprise your friends who
 				came to visit you or arrange a romantic evening with your soulmate. The
 				combination of boiled rice and raw fish, delivered to your chosen
 				address, can also be a decoration for a family celebration or a business
@@ -42,7 +45,7 @@ function About() {
 				fontSize="24px"
 				sx={{ marginBottom: '9px' }}
 			>
-				Sushi delivery in Kyiv
+				Sushi delivery in {city}
 			</Typography>
 			<Typography
 				variant="h6"
@@ -67,11 +70,10 @@ function About() {
 				Despite the fact that sushi is considered one of the haute oriental
 				dishes, sushi lovers do not need to plan a trip to Japan, because in the
 				modern world you can simply order a portion of Japanese seafood right in
-				Kyiv. Sushi in Kyiv is incredibly popular and is in first place in terms
-				of the number of orders for delivery. In Kyiv, which is both the capital
-				of Ukraine and its economic heart, there is no lack of opportunities,
+				{city}. Sushi in {city} is incredibly popular and is in first place in terms
+				of the number of orders for delivery. In {city} there is no lack of opportunities,
 				but very often there is a lack of time. If you are hungry and urgently
-				want to treat yourself to something tasty, then sushi delivery in Kyiv
+				want to treat yourself to something tasty, then sushi delivery in {city}
 				is exactly what you need. Delicious and hearty sushi will quickly
 				energize you. You can also order sushi not only home but also directly
 				to the office. This gourmet Asian dish is an interesting alternative to
@@ -81,7 +83,7 @@ function About() {
 				most delicious food in Ukraine. We have already gained trust and
 				popularity among customers in the largest cities, namely Kharkov,
 				Odessa, Dnipro and Kyiv. “Sushi and Noodles” offers not just sushi
-				delivery in Kyiv, we offer delicious and healthy dishes at a bargain
+				delivery in {city}, we offer delicious and healthy dishes at a bargain
 				price.
 			</Typography>
 		</Box>
