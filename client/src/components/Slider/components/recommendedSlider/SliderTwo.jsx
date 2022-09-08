@@ -27,7 +27,7 @@ function RecommendedSlider() {
 		initialSlide: 0,
 		prevArrow: <PrevBtn />,
 		nextArrow: <NextBtn />,
-
+		
 		responsive: [
 			{
 				breakpoint: 2300,
@@ -37,6 +37,7 @@ function RecommendedSlider() {
 					infinite: false,
 					dots: false,
 				},
+
 			},
 			{
 				breakpoint: 1200,
@@ -73,7 +74,7 @@ function RecommendedSlider() {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			sx={{ width: '78%', marginTop: '50px' }}
+			sx={{marginTop: '50px', background:'#F2F2F2', padding:'20px' }}
 		>
 			<Typography
 				gutterBottom
@@ -90,7 +91,7 @@ function RecommendedSlider() {
 			>
 				<h6>Recommended for this product</h6>
 			</Typography>
-			<Slider {...settings}>
+			<Slider {...settings} className="slider">
 				{items.map((item) => (
 					<SushiCard key={item.itemNo} item={item} />
 				))}

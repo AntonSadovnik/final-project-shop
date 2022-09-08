@@ -10,6 +10,8 @@ import CustomerReducer from './reducers/CustomerReducer';
 
 import LoginReducer from './reducers/LoginReducer';
 
+import cityReducer from "./reducers/cityReducer";
+
 
 export const reducers = combineReducers({
 	products: ProductsReducer,
@@ -17,11 +19,11 @@ export const reducers = combineReducers({
 	filter: FilterReducer,
 	customer: CustomerReducer,
 	isLoggedIn: LoginReducer,
+	city:cityReducer
 });
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || {products:[]}
 export const initialValues ={
-	// products: [],
-	// filter: [],
+	
 	cart: {cart: cartFromLocalStorage},
 }

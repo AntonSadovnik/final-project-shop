@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import Slider from 'react-slick';
 import { Stack, Button, Typography } from '@mui/material';
 import { getNoveltieProduct, getPopularProduct } from '../../../../api/Api';
@@ -73,22 +72,25 @@ function NoveltieSlider() {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			sx={{ width: '78%' }}
 		>
 			<Typography
 				component="div"
 				className="btn-container"
-				sx={{ display: 'flex', alignSelf: 'flex-start' }}
+				sx={{ display: 'flex', alignSelf: 'flex-start', marginBottom:'-50px' }}
 			>
 				<Button
 					onClick={() => setButton('left')}
-					sx={{ paddingLeft: 4, paddingRight: 5, marginRight: '-10px' }}
+					sx={{ paddingLeft: 4, paddingRight: 5, marginRight: '-10px', }}
+					
 				>
 					Novelties
 				</Button>
 				<Button
 					onClick={() => setButton('right')}
-					sx={{ paddingLeft: 4, paddingRight: 5, marginRight: '-10px' }}
+					style={{
+							textDecoration: 'none',
+						}}
+					sx={{ paddingLeft: 4, paddingRight: 5, marginRight: '-10px', textDecoration:'none'  }}
 				>
 					Popular
 				</Button>
