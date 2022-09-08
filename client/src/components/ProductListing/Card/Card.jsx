@@ -13,7 +13,7 @@ import CustomButton from '../../Button/Button';
 
 export default function ProductCard(props) {
 	const {
-		data: { name, ingredients, weight, currentPrice, imageUrls, itemNo },
+		data: { name, weight, currentPrice, imageUrls, itemNo },
 		onClick,
 	} = props;
 	const title = name.charAt(0).toUpperCase() + name.slice(1);
@@ -33,7 +33,7 @@ export default function ProductCard(props) {
 					padding: '0 18px',
 				}}
 			>
-				<Grid item>
+				<Grid item xs={6} sm={12}>
 					<CardMedia
 						component="img"
 						alt="not display"
@@ -43,30 +43,22 @@ export default function ProductCard(props) {
 						image={imageUrls}
 					/>
 				</Grid>
-				<Grid item width="100%">
-					<CardContent sx={{ padding: 0 }}>
+				<Grid item width="100%" xs={6} sm={12}>
+					<CardContent sx={{ padding: 0, marginLeft: { xs: '15px', sm: 0 } }}>
 						<Typography
 							variant="h6"
 							component="p"
 							sx={{ fontSize: { xs: '18px', sm: '24px' }, fontWeight: 500 }}
 						>
-							{title}
+							{title} - {weight}g
 						</Typography>
-						<Typography
-							variant="body2"
-							component="p"
-							color="text.secondary"
-							sx={{ marginBottom: '0', fontSize: { xs: '14px', sm: '18px' } }}
-						>
-							{ingredients} ({weight}g)
-							<Divider
-								sx={{
-									color: 'black',
-									marginTop: '20px',
-									display: { xs: 'none', md: 'block' },
-								}}
-							/>
-						</Typography>
+						<Divider
+							sx={{
+								color: 'black',
+								marginTop: '20px',
+								display: { xs: 'none', md: 'block' },
+							}}
+						/>
 						<Grid
 							container
 							justifyContent="space-between"
