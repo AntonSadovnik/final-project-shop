@@ -26,7 +26,6 @@ function Main() {
 			>
 				<Grid sx={{ padding: '30px 0 60px', width: '100%' }}>
 					<Grid sx={{ display: { md: 'block', xs: 'none' } }}>
-						{/* <Offer /> */}
 						<OfferSlider/>
 					</Grid>
 					<Grid container justifyContent="center">
