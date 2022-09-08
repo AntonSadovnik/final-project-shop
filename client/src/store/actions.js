@@ -71,7 +71,6 @@ export const setLogout = () => (dispatch) => {
 export const setCustomer = () => (dispatch) => {
 	getCustomer(localStorage.getItem('token'))
 		.then((loggedInCustomer) => {
-			console.log(loggedInCustomer);
 			dispatch({ type: SET_CUSTOMER, payload: loggedInCustomer.data });
 			dispatch({ type: SET_LOGIN });
 		})
