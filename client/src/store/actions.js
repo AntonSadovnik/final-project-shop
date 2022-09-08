@@ -7,11 +7,11 @@ import {
 	DECREASE_QUANTITY_TO_CART,
 	INCREASE_QUANTITY_TO_CART,
 	REMOVE_FROM_CART,
-    SET_CUSTOMER,
-    SET_LOGIN,
-    SET_LOGOUT,
-    SET_PRODUCTS,
-		SET_CITY,
+	SET_CUSTOMER,
+	SET_LOGIN,
+	SET_LOGOUT,
+	SET_PRODUCTS,
+	SET_CITY,
 } from './types/types';
 
 export const getProductsAction = (categories) => (dispatch) => {
@@ -69,10 +69,14 @@ export const setLogout = () => (dispatch) => {
 };
 
 export const setCustomer = () => (dispatch) => {
-	getCustomer(localStorage.getItem('token')).then((loggedInCustomer) => {
-		console.log(loggedInCustomer);
-		dispatch({ type: SET_CUSTOMER, payload: loggedInCustomer.data });
-	});
+	getCustomer(localStorage.getItem('token'))
+		.then((loggedInCustomer) => {
+			dispatch({ type: SET_CUSTOMER, payload: loggedInCustomer.data });
+			dispatch({ type: SET_LOGIN });
+		})
+		.catch(() => {
+			localStorage.removeItem('token')
+		dispatch({ type: SET_LOGOUT });});
 };
 
 export const deleteCustomer = () => (dispatch) => {
