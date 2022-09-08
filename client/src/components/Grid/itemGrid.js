@@ -42,7 +42,7 @@ export default function gridItems() {
 		},
 		{
 			layout: {
-				md: 6,
+				md: 8,
 				sm: 8,
 				xs: 12,
 			},
