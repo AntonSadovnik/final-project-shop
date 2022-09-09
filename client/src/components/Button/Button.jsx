@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, Typography } from '@mui/material';
 
 export default function CustomButton({
-	disabled= false,
+	disabled,
 	className,
 	title,
 	textStyle,
@@ -23,6 +23,7 @@ export default function CustomButton({
 	);
 }
 CustomButton.defaultProps = {
+	disabled: false,
 	className: '',
 	title: '',
 	textStyle: {},
