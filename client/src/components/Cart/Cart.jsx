@@ -69,7 +69,6 @@ export default function Cart(props) {
 
     return (
         <div>
-            {/* <Button onClick={handleClickOpen('paper')}>Open modal</Button> */}
             <Dialog open={open} onClose={handleClose} scroll={scroll} aria-labelledby="scroll-dialog-title"
                     aria-describedby="scroll-dialog-description">
                 <Box>

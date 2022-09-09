@@ -10,16 +10,20 @@ export const cartMiddleware = (store) => (dispatch) => (action) => {
         return filteredProducts
     }
     if (action.type === ADD_TO_CART) {
+
         const cart = JSON.parse(localStorage.getItem('cart')) || {products: []}
 
         const index = cart.products.findIndex((prod) => prod.product.itemNo === action.payload.itemNo)
+
+        const quantityProductToCard = action.payload.cartQuantity || 1
+
         if (index === -1) {
-            const productToAdd = {product: action.payload, cartQuantity: 1}
+            const productToAdd = {product: action.payload, cartQuantity: quantityProductToCard}
             cart.products.push(productToAdd)
             localStorage.setItem('cart', JSON.stringify(cart))
             return dispatch({type: ADD_TO_CART, payload: productToAdd})
         }
-            cart.products[index].cartQuantity += 1
+            cart.products[index].cartQuantity += quantityProductToCard
             localStorage.setItem('cart', JSON.stringify(cart))
             return dispatch(increaseQuantity(cart))
 
