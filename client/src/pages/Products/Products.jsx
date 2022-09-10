@@ -8,6 +8,7 @@ import menuItemsContent from '../../components/Nav/config';
 import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
 import Socials from '../../components/Footer/components/socials/Socials';
 import SortSelect from '../../components/ProductListing/SortSelect/SortSelect';
+import Filter from '../../components/Filter/Filter';
 
 function Products() {
 	const dispatch = useDispatch();
@@ -58,6 +59,9 @@ function Products() {
 						<Typography variant="h4" component="h2">
 							{categoryTitle}
 						</Typography>
+					</Grid>
+					<Grid>
+						<Filter />
 					</Grid>
 					<Grid sx={{ width: { xs: '100%', sm: '50%', lg: 'fit-content' } }}>
 						<SortSelect />
