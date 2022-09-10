@@ -1,11 +1,11 @@
 import { ADD_FILTER } from '../types/types';
 
-const store = [] ;
+const store = [];
 
 const FilterReducer = (state = store, action) => {
 	switch (action.type) {
 		case ADD_FILTER: {
-			return { ...state, filter: action.payload };
+			return action.payload;
 		}
 		default: {
 			return state;

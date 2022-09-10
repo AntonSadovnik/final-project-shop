@@ -14,19 +14,29 @@ function Products() {
 	const dispatch = useDispatch();
 	const [searchParams] = useSearchParams();
 	const currentParams = Object.fromEntries(searchParams);
+
 	useEffect(() => {
-		dispatch(getProductsAction(`categories=${currentParams.categories}`));
-	}, [currentParams.categories]);
+		dispatch(
+			getProductsAction(
+				`categories=${currentParams.categories}${
+					currentParams.spicy ? '&spicy=true' : ''
+				}${currentParams.vegetarian ? '&vegetarian=true' : ''}`
+			)
+		);
+	}, [currentParams.categories, currentParams.spicy, currentParams.vegetarian]);
+
 	const { products } = useSelector((state) => state.products);
 	const components = products.map((product) => (
 		<ProductCard data={product} onClick={() => dispatch(addToCart(product))} />
 	));
+
 	const categoryTitle =
 		currentParams.categories.charAt(0).toUpperCase() +
 		currentParams.categories.slice(1);
 	const categoryImgPath = menuItemsContent().find(
 		(el) => el.alt.toLocaleLowerCase() === categoryTitle.toLocaleLowerCase()
 	).src;
+
 	return (
 		<main>
 			<Grid
