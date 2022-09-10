@@ -105,7 +105,7 @@ function FooterMobile() {
 						style={{
 							textDecoration: 'none',
 						}}
-						to="/products?category=Pizza"
+						to="/"
 					>
 						<Button
 							disableRipple
