@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,8 +15,7 @@ export default function SortSelect() {
 					<MenuItem value={10}>Name</MenuItem>
 					<MenuItem value={20}>First cheaper</MenuItem>
 					<MenuItem value={30}>First more expensive</MenuItem>
-					<MenuItem value={40}>Number of pieces</MenuItem>
-					<MenuItem value={50}>The weight</MenuItem>
+					<MenuItem value={40}>The weight</MenuItem>
 				</Select>
 			</FormControl>
 		</Box>
