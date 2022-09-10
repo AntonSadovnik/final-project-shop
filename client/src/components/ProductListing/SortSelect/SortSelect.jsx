@@ -4,18 +4,24 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import './style.scss';
 
 export default function SortSelect() {
 	return (
 		<Box sx={{ minWidth: 120 }}>
-			<FormControl fullWidth>
+			<FormControl fullWidth variant="standard">
 				<InputLabel id="select-label">Sorting</InputLabel>
-				<Select labelId="select-label" label="Sorting">
-					<MenuItem value={5}>Default</MenuItem>
-					<MenuItem value={10}>Name</MenuItem>
-					<MenuItem value={20}>First cheaper</MenuItem>
-					<MenuItem value={30}>First more expensive</MenuItem>
-					<MenuItem value={40}>The weight</MenuItem>
+				<Select
+					className="products__sorting"
+					labelId="select-label"
+					label="Sorting"
+					defaultValue="default"
+				>
+					<MenuItem value="default">Default</MenuItem>
+					<MenuItem value="name">Name</MenuItem>
+					<MenuItem value="firstCheaper">First cheaper</MenuItem>
+					<MenuItem value="firstExprnsive">First more expensive</MenuItem>
+					<MenuItem value="weight">The weight</MenuItem>
 				</Select>
 			</FormControl>
 		</Box>
