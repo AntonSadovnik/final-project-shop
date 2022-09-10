@@ -13,7 +13,6 @@ export default function LoginModal(props) {
 		setForm(<LoginForm setLoginModal={setLoginModal} setForm={setForm} />);
 	}, loginModal);
 
-
 	const style = {
 		position: 'absolute',
 		top: '50%',
@@ -28,6 +27,7 @@ export default function LoginModal(props) {
 
 	const handleClose = () => {
 		setLoginModal(false);
+		setForm(<LoginForm setLoginModal={setLoginModal} setForm={setForm} />);
 	};
 
 	return (

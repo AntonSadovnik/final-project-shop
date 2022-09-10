@@ -1,13 +1,13 @@
-.slick-slide > div {
-  margin: 0 -50px; 
-}
-
 .slick-slide > div{
   display:flex;
   justify-content: space-around;
-  margin: 0 50px;
 }
  .slick-slider {
-  width:76vw; 
-  
+  width:950px;   
 } 
+
+@media (min-width: 300px) and (max-width: 1200px) {
+  .slick-slider{
+    width:83.5vw; 
+  }; 
+}

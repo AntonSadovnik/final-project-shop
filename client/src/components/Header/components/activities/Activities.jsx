@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Grid, Button, Typography } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
+import {  Grid, Button, Typography  } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { NavLink } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
@@ -9,7 +9,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import './style.scss';
 import Cart from '../../../Cart/Cart';
 import LoginModal from '../../../LoginModal/LoginModal';
-import { deleteCustomer, setCustomer, setLogin, setLogout } from '../../../../store/actions';
+import { deleteCustomer, setCustomer, setLogout } from '../../../../store/actions';
+import Search from '../../../Search/Search';
 
 
 function Activities() {
@@ -18,6 +19,12 @@ function Activities() {
 	const [loginModal, setLoginModal] = React.useState(false);
 	const [scroll, setScroll] = React.useState('paper');
 	const dispatch = useDispatch();
+	const [openSearch, setOpenSearch] = React.useState(false);
+	const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+	const handleOpenSearchClick = () => {
+		setOpenSearch(true);
+	};
 
 	const handleClickOpen = (type) => {
 		setOpen(true);
@@ -39,33 +46,37 @@ function Activities() {
 				}}
 			/>
 		);
+		window.location.reload();
 	};
 
-	useEffect(() => {
-		if (localStorage.getItem('token')) {
-			dispatch(setLogin());
-			dispatch(setCustomer())
-			setLoginButton(
-				<LogoutIcon
-					onClick={handleLogout}
-					sx={{
-						color: 'red',
-						fontSize: '40px',
-					}}
-				/>
-			);
-		} else {
-			setLoginButton(
-				<LoginIcon
-					onClick={handleLoginOpen}
-					sx={{
-						color: '#1BD741',
-						fontSize: '40px',
-					}}
-				/>
-			);
-		}
-	}, [localStorage.getItem('token')]);
+	useEffect(
+		() => {
+			if (localStorage.getItem('token')) {
+				dispatch(setCustomer());
+					setLoginButton(
+						<LogoutIcon
+							onClick={handleLogout}
+							sx={{
+								color: 'red',
+								fontSize: '40px',
+							}}
+						/>
+					);
+			} else {
+				setLoginButton(
+					<LoginIcon
+						onClick={handleLoginOpen}
+						sx={{
+							color: '#1BD741',
+							fontSize: '40px',
+						}}
+					/>
+				);
+			}
+		},
+		[localStorage.getItem('token')],
+		isLoggedIn
+	);
 
 	return (
 		<>
@@ -81,6 +92,7 @@ function Activities() {
 				setLoginModal={setLoginModal}
 				handleLoginOpen={handleLoginOpen}
 			/>
+			<Search openSearch={openSearch} setOpenSearch={setOpenSearch} />
 			<Grid item container lg={7} sm={7} alignItems="center">
 				<NavLink
 					style={{
@@ -117,7 +129,7 @@ function Activities() {
 						}}
 					/>
 				</Button>
-				<Button className="header__buttons" disableRipple size="small">
+				<Button className="header__buttons" disableRipple size="small" onClick={handleOpenSearchClick}>
 					<SearchIcon
 						color="grayColor"
 						sx={{

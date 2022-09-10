@@ -28,3 +28,4 @@ export const getCustomer = (token) =>
 			Authorization: token,
 		},
 	});
+export const getSaleProduct=()=> axios.get('/api/products/filter?promo=sale')
