@@ -9,11 +9,13 @@ import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
 import Socials from '../../components/Footer/components/socials/Socials';
 import SortSelect from '../../components/ProductListing/SortSelect/SortSelect';
 import Filter from '../../components/Filter/Filter';
+import sortFunction from '../../components/ProductListing/SortSelect/SortFunction';
 
 function Products() {
 	const dispatch = useDispatch();
 	const [searchParams] = useSearchParams();
 	const currentParams = Object.fromEntries(searchParams);
+	const sorting = useSelector((state) => state.sort);
 
 	useEffect(() => {
 		dispatch(
@@ -23,12 +25,31 @@ function Products() {
 				}${currentParams.vegetarian ? '&vegetarian=true' : ''}`
 			)
 		);
-	}, [currentParams.categories, currentParams.spicy, currentParams.vegetarian]);
+	}, [
+		currentParams.categories,
+		currentParams.spicy,
+		currentParams.vegetarian,
+		sorting,
+	]);
 
 	const { products } = useSelector((state) => state.products);
-	const components = products.map((product) => (
-		<ProductCard data={product} onClick={() => dispatch(addToCart(product))} />
-	));
+	let components;
+	if (sorting !== 'default') {
+		const sortedProducts = sortFunction(products, sorting);
+		components = sortedProducts.map((product) => (
+			<ProductCard
+				data={product}
+				onClick={() => dispatch(addToCart(product))}
+			/>
+		));
+	} else {
+		components = products.map((product) => (
+			<ProductCard
+				data={product}
+				onClick={() => dispatch(addToCart(product))}
+			/>
+		));
+	}
 
 	const categoryTitle =
 		currentParams.categories.charAt(0).toUpperCase() +

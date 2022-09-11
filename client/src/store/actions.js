@@ -12,6 +12,7 @@ import {
 	SET_LOGOUT,
 	SET_PRODUCTS,
 	SET_CITY,
+	SET_SORT,
 } from './types/types';
 
 export const getProductsAction = (categories) => (dispatch) => {
@@ -75,8 +76,9 @@ export const setCustomer = () => (dispatch) => {
 			dispatch({ type: SET_LOGIN });
 		})
 		.catch(() => {
-			localStorage.removeItem('token')
-		dispatch({ type: SET_LOGOUT });});
+			localStorage.removeItem('token');
+			dispatch({ type: SET_LOGOUT });
+		});
 };
 
 export const deleteCustomer = () => (dispatch) => {
@@ -88,4 +90,9 @@ export const setCity = (city) => ({
 	payload: {
 		city,
 	},
+});
+
+export const setSort = (sort) => ({
+	type: SET_SORT,
+	payload: sort,
 });
