@@ -27,7 +27,6 @@ export default function ProductCard(props) {
 	return (
 		<Grid container item md={4} sm={6} xs={12}>
 			<Card
-				key={itemNo}
 				sx={{
 					display: 'flex',
 					alignItems: 'center',
