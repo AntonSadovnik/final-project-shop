@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import {
 	Card,
 	CardContent,
@@ -12,6 +13,12 @@ import CustomButton from '../../Button/Button';
 // import PropTypes from 'prop-types';
 
 export default function ProductCard(props) {
+	const navigate = useNavigate();
+	const handleClick = (productId) => {
+		navigate({
+			pathname: `/products/${productId}`,
+		});
+	};
 	const {
 		data: { name, weight, currentPrice, imageUrls, itemNo },
 		onClick,
@@ -31,7 +38,9 @@ export default function ProductCard(props) {
 					boxSizing: 'border-box',
 					justifyContent: 'space-between',
 					padding: '0 18px',
+					cursor: 'pointer',
 				}}
+				onClick={() => handleClick(itemNo)}
 			>
 				<Grid item xs={6} sm={12}>
 					<CardMedia
@@ -73,7 +82,7 @@ export default function ProductCard(props) {
 									fontSize: { xs: '18px', sm: '24px' },
 								}}
 							>
-								{currentPrice}$
+								{currentPrice}&#8372;
 							</Typography>
 							<CardActions component="div" sx={{ padding: 0 }}>
 								<CustomButton
@@ -87,7 +96,10 @@ export default function ProductCard(props) {
 										color: '#F2F2F2',
 										fontSize: { xs: '18px', sm: '24px' },
 									}}
-									onClick={onClick}
+									onClick={(e) => {
+										e.stopPropagation();
+										onClick();
+									}}
 								/>
 							</CardActions>
 						</Grid>
