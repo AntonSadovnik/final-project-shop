@@ -54,11 +54,11 @@ function ClientDataForm() {
 
 	const formik = useFormik({
 		initialValues: {
-			name: name,
+			name,
 			phone: '',
 			comment: '',
 			promocode: '',
-			email: email,
+			email,
 			street: '',
 			house: '',
 		},
@@ -66,6 +66,17 @@ function ClientDataForm() {
 		validationSchema: validationschema,
 		onSubmit: (values) => {
 			console.log(values);
+			console.log(customer._id);
+			const newOrder = {
+				customerId: customer._id,
+				products: cartProducts,
+				email: values.email,
+				mobile: values.phone,
+				letterSubject: 'Thank you for order! You are welcome!',
+				letterHtml:
+					'<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>',
+			};
+			console.log(newOrder);
 		},
 	});
 
@@ -303,7 +314,11 @@ function ClientDataForm() {
 									Pickup
 								</ToggleButton>
 							</ToggleButtonGroup>
-							{(delivery === 'courier') ? (<AddressForm formikData={formik} />) : ""}
+							{delivery === 'courier' ? (
+								<AddressForm formikData={formik} />
+							) : (
+								''
+							)}
 						</Grid>
 
 						<Grid item xs={8}>
