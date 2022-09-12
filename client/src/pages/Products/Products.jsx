@@ -38,6 +38,7 @@ function Products() {
 		const sortedProducts = sortFunction(products, sorting);
 		components = sortedProducts.map((product) => (
 			<ProductCard
+				key={product.itemNo}
 				data={product}
 				onClick={() => dispatch(addToCart(product))}
 			/>
@@ -45,6 +46,7 @@ function Products() {
 	} else {
 		components = products.map((product) => (
 			<ProductCard
+				key={product.itemNo}
 				data={product}
 				onClick={() => dispatch(addToCart(product))}
 			/>
