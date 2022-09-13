@@ -1,0 +1,6 @@
+.products__sorting::before {
+	border-bottom: 0.5px solid #a4acad;
+}
+.products__sorting:hover::before {
+	border-bottom: 0.5px solid #a4acad !important;
+}

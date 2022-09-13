@@ -8,24 +8,58 @@ import menuItemsContent from '../../components/Nav/config';
 import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
 import Socials from '../../components/Footer/components/socials/Socials';
 import SortSelect from '../../components/ProductListing/SortSelect/SortSelect';
+import Filter from '../../components/Filter/Filter';
+import sortFunction from '../../components/ProductListing/SortSelect/SortFunction';
 
 function Products() {
 	const dispatch = useDispatch();
 	const [searchParams] = useSearchParams();
 	const currentParams = Object.fromEntries(searchParams);
+	const sorting = useSelector((state) => state.sort);
+
 	useEffect(() => {
-		dispatch(getProductsAction(`categories=${currentParams.categories}`));
-	}, [currentParams.categories]);
+		dispatch(
+			getProductsAction(
+				`categories=${currentParams.categories}${
+					currentParams.spicy ? '&spicy=true' : ''
+				}${currentParams.vegetarian ? '&vegetarian=true' : ''}`
+			)
+		);
+	}, [
+		currentParams.categories,
+		currentParams.spicy,
+		currentParams.vegetarian,
+		sorting,
+	]);
+
 	const { products } = useSelector((state) => state.products);
-	const components = products.map((product) => (
-		<ProductCard data={product} onClick={() => dispatch(addToCart(product))} />
-	));
+	let components;
+	if (sorting !== 'default') {
+		const sortedProducts = sortFunction(products, sorting);
+		components = sortedProducts.map((product) => (
+			<ProductCard
+				key={product.itemNo}
+				data={product}
+				onClick={() => dispatch(addToCart(product))}
+			/>
+		));
+	} else {
+		components = products.map((product) => (
+			<ProductCard
+				key={product.itemNo}
+				data={product}
+				onClick={() => dispatch(addToCart(product))}
+			/>
+		));
+	}
+
 	const categoryTitle =
 		currentParams.categories.charAt(0).toUpperCase() +
 		currentParams.categories.slice(1);
 	const categoryImgPath = menuItemsContent().find(
 		(el) => el.alt.toLocaleLowerCase() === categoryTitle.toLocaleLowerCase()
 	).src;
+
 	return (
 		<main>
 			<Grid
@@ -58,6 +92,9 @@ function Products() {
 						<Typography variant="h4" component="h2">
 							{categoryTitle}
 						</Typography>
+					</Grid>
+					<Grid>
+						<Filter />
 					</Grid>
 					<Grid sx={{ width: { xs: '100%', sm: '50%', lg: 'fit-content' } }}>
 						<SortSelect />
