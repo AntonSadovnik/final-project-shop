@@ -1,15 +1,16 @@
 import React from 'react';
 import { Stack } from '@mui/material';
-import ProductCard from '../../components/ProductCard/ProductCard';
+import ProductDescriptionCard from '../../components/ProductDescriptionCard/ProductDescriptionCard';
 import RecommendedSlider from '../../components/Slider/components/recommendedSlider/SliderTwo';
-
 
 function Product() {
 	return (
-		<main sx={{
-			margin: { xs: '0 auto' },
-		}}>
-			<ProductCard />
+		<main
+			sx={{
+				margin: { xs: '0 auto' },
+			}}
+		>
+			<ProductDescriptionCard />
 			<Stack
 				sx={{
 					marginBottom: { xs: '0', md: '0' },

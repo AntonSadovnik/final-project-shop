@@ -17,7 +17,7 @@ import CustomButton from '../Button/Button';
 
 import { addToCart } from '../../store/actions';
 
-function ProductCard() {
+function ProductDescriptionCard() {
 	const [product, setProduct] = useState({});
 	const [forwardProductId, setForwardProductId] = useState('');
 	const [backProductId, setBackProductId] = useState('');
@@ -506,4 +506,4 @@ function ProductCard() {
 	);
 }
 
-export default ProductCard;
+export default ProductDescriptionCard;
