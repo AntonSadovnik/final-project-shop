@@ -1,4 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint object-shorthand: ["error", "always", { "ignoreConstructors": true }] */
+/* eslint-env es6 */
 import * as React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -14,11 +16,14 @@ import {
 	ToggleButtonGroup,
 	Box,
 } from '@mui/material';
+import { useSelector } from 'react-redux';
 import AddressForm from './AddressForm';
 import ChangeForm from './ChangeForm';
 
 function ClientDataForm() {
 	const [counter, setCounter] = React.useState(1);
+	const [name, setName] = React.useState('');
+	const [email, setEmail] = React.useState('');
 	const [payment, setPayment] = React.useState('cash');
 	const [delivery, setDelivery] = React.useState('courier');
 	const [time, setTime] = React.useState('now');
@@ -29,23 +34,35 @@ function ClientDataForm() {
 			}}
 		/>
 	);
+	const customer = useSelector((state) => state.customer);
+	const city = useSelector((store) => store.city);
+	const cartProducts = useSelector((store) => store.cart.cart.products);
+
+	React.useEffect(() => {
+		if (customer) {
+			setName(customer.firstName);
+			setEmail(customer.email);
+		}
+	}, [customer]);
 
 	const validationschema = yup.object({
 		name: yup.string('Enter your name').required('Name is required'),
-		phone: yup
-			.string('Enter your phone')
-			// .min(8, 'phone should be of minimum 10 characters length')
-			.required('phone is required'),
+		phone: yup.string('Enter your phone').required('Phone is required'),
+		street: yup.string('Enter your street').required('Street is required'),
+		house: yup.string('Enter your house').required('House is required'),
 	});
 
 	const formik = useFormik({
 		initialValues: {
-			name: '',
+			name: name,
 			phone: '',
 			comment: '',
 			promocode: '',
-			email: '',
+			email: email,
+			street: '',
+			house: '',
 		},
+		enableReinitialize: true,
 		validationSchema: validationschema,
 		onSubmit: (values) => {
 			console.log(values);
@@ -62,16 +79,12 @@ function ClientDataForm() {
 			setCounter(0);
 		}
 	};
-
-	const [address, setAddress] = React.useState(
-		<AddressForm formikData={formik} />
-	);
 	const [change, setChange] = React.useState(
 		<ChangeForm formikData={formik} />
 	);
 
 	const handlePaymentChange = (
-		event: React.MouseEvent<HTMLElement>,
+		_event: React.MouseEvent<HTMLElement>,
 		nextView: string
 	) => {
 		setPayment(nextView);
@@ -93,11 +106,6 @@ function ClientDataForm() {
 		nextView: string
 	) => {
 		setDelivery(nextView);
-		if (address) {
-			setAddress(null);
-		} else {
-			setAddress(<AddressForm formikData={formik} />);
-		}
 	};
 
 	const handleTimeChange = (
@@ -135,10 +143,23 @@ function ClientDataForm() {
 		}
 	};
 
+	const calculateOrder = () =>
+		cartProducts.reduce(
+			(accumulator, productInfo) =>
+				accumulator +
+				productInfo.cartQuantity * productInfo.product.currentPrice,
+			0
+		);
+
 	return (
 		<Box>
 			<form className="client-data-form" onSubmit={formik.handleSubmit}>
-				<Typography fontSize={24}>Your data</Typography>
+				<Typography fontSize={18} marginBottom="10px">
+					Your are now in {city}
+				</Typography>
+				<Typography fontSize={18}>
+					Your total order is {calculateOrder()} UAH
+				</Typography>
 				<Box className="client-data-form__container">
 					<Grid spacing={1} container columns={8}>
 						<Grid sx={{ height: 70 }} item xs={4}>
@@ -172,7 +193,7 @@ function ClientDataForm() {
 						<Grid item xs={8}>
 							<ToggleButtonGroup
 								fullWidth
-								sx={{ height: "52px", paddingBottom: "5px" }}
+								sx={{ height: '52px', paddingBottom: '5px' }}
 								type="radio"
 								id={payment}
 								onBlur={formik.onBlur}
@@ -282,7 +303,7 @@ function ClientDataForm() {
 									Pickup
 								</ToggleButton>
 							</ToggleButtonGroup>
-							{address}
+							{(delivery === 'courier') ? (<AddressForm formikData={formik} />) : ""}
 						</Grid>
 
 						<Grid item xs={8}>

@@ -1,0 +1,17 @@
+
+ .slick-slide > div{
+   display:flex;
+   justify-content: center;
+   width: 100%;
+ }
+ 
+ @media  (max-width: 900px) {
+  .sale-slider{
+    display: none
+  } 
+}
+
+.blockquote {
+  margin: 10px;
+  box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px, rgba(60, 64, 67, 0.25) 0px 2px 6px 2px;
+}
