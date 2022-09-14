@@ -103,7 +103,7 @@ function Products() {
 				<Grid container sx={{ rowGap: { xs: '10px', sm: '50px' } }}>
 					{components}
 				</Grid>
-				<Grid sx={{ margin: { xs: '60px 0 20px', sm: '174px 0 0' } }}>
+				<Grid sx={{ margin: { xs: '30px 0 20px', sm: '40px 0 0' } }}>
 					<SimpleAccordion />
 				</Grid>
 				<Grid sx={{ display: { xs: 'block', sm: 'none' } }} textAlign="center">
