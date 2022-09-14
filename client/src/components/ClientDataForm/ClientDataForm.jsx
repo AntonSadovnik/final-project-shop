@@ -17,7 +17,6 @@ import {
 	Box,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 import AddressForm from './AddressForm';
 import ChangeForm from './ChangeForm';
 
@@ -53,42 +52,6 @@ function ClientDataForm() {
 		house: yup.string('Enter your house').required('House is required'),
 	});
 
-	const aosfokj = {
-		products: [
-			{
-				_id: '62f5484221540326c000aced',
-				enabled: true,
-				imageUrls: [
-					'https://res.cloudinary.com/dh6o5rpfe/image/upload/v1660239764/sushi-shop/Data%20base/pizza/Pizza_Margarita_tzb8qv.jpg',
-				],
-				quantity: 0,
-				name: 'margarita',
-				currentPrice: 149,
-				categories: 'pizza',
-				ingredients: 'dough, red sauce, buffalo mozzarella, basil, olive oil',
-				weight: 445,
-				spicy: 'false',
-				itemNo: '611794',
-				date: '2022-08-11T18:19:46.802+0000',
-				__v: 0,
-				vegetarian: 'true',
-				promo: 'new',
-			},
-		],
-		deliveryAddress: {
-			country: 'Ukraine',
-			city: 'Kiev',
-			address: 'Kreshchatic Street 56//A',
-			postal: '01044',
-		},
-		shipping: 'Kiev 50UAH',
-		paymentInfo: 'Credit card',
-		status: 'not shipped',
-		email: 'saribeg@gmail.com',
-		mobile: '+380630000000',
-		letterSubject: 'Thank you for order! You are welcome!'
-	};
-
 	const formik = useFormik({
 		initialValues: {
 			name,
@@ -103,19 +66,6 @@ function ClientDataForm() {
 		validationSchema: validationschema,
 		onSubmit: (values) => {
 			console.log(values);
-			const newOrder = {
-				// products: cartProducts,
-				email: values.email,
-				mobile: values.phone,
-				letterSubject: 'Thank you for order! You are welcome!',
-				letterHtml:
-					'<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>',
-			};
-			console.log(newOrder);
-			axios
-				.post('/api/orders', aosfokj)
-				.then((order) => console.log(order))
-				.catch((err) => console.log(err));
 		},
 	});
 
