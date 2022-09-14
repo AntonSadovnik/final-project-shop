@@ -13,8 +13,6 @@ function Product() {
 	const [product, setProduct] = useState({});
 	const [forwardProductId, setForwardProductId] = useState('');
 	const [backProductId, setBackProductId] = useState('');
-	const [quantityGoods, setQuantityGoods] = useState(1);
-	const dispatch = useDispatch();
 	const { id } = useParams();
 
 	async function showProduct() {
