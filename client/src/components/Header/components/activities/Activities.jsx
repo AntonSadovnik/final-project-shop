@@ -51,11 +51,7 @@ function Activities() {
 	};
 	const {products} = useSelector(state => state.cart.cart)
 	const quantityProductsInCart = products.reduce((prev, curr) => prev + curr.cartQuantity,0)
-	// const quantity = productArr.map(product => product.cartQuantity)
-	// let quantityProductsInCart = 0
-	// for (let i = 0; i < quantity.length; i += 1) {
-	//     quantityProductsInCart += quantity[i]
-	// }
+
 	useEffect(
 		() => {
 			if (localStorage.getItem('token')) {
