@@ -1,5 +1,5 @@
-import { React, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { React, useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import {
 	Grid,
 	CardMedia,
@@ -7,66 +7,21 @@ import {
 	CardActionArea,
 	Stack,
 } from '@mui/material';
-import { useParams, NavLink } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircle from '@mui/icons-material/RemoveCircle';
-import NavigateBefore from '@mui/icons-material/NavigateBefore';
-import NavigateNext from '@mui/icons-material/NavigateNext';
-import { getProduct, getProductsByCategory } from '../../api/Api';
+// import { getProduct, getProductsByCategory } from '../../api/Api';
 import CustomButton from '../Button/Button';
 
-import { addToCart } from '../../store/actions';
+// import { addToCart } from '../../store/actions';
+// import BtnBack from './components/BtnBack';
+// import BtnForward from './components/BtnForward';
 
-function ProductDescriptionCard() {
-	const [product, setProduct] = useState({});
-	const [forwardProductId, setForwardProductId] = useState('');
-	const [backProductId, setBackProductId] = useState('');
+function ProductDescriptionCard(props) {
 	const [quantityGoods, setQuantityGoods] = useState(1);
-
-	const dispatch = useDispatch();
-	const { id } = useParams();
-	const cardPicture = 'imageUrls' in product ? product.imageUrls[0] : '';
-	const cardWeight = 'weight' in product ? product.weight : '';
-	const cardTitle = 'name' in product ? product.name : '';
-	const cardPrice = 'currentPrice' in product ? product.currentPrice : '';
-	const cardPpromoPrice =
-		'previousPrice' in product ? product.previousPrice : '';
-	let cardCompound = 'ingredients' in product ? product.ingredients : '';
-	cardCompound =
-		'contains' in product ? product.contains.toString() : cardCompound;
-	const displayCompound = cardCompound !== '' ? 'block' : 'none';
-	const displaycardPpromoPrice = cardPpromoPrice !== '' ? 'block' : 'none';
-
-	const showProduct = () =>
-		getProduct(id).then(({ data: { products } }) => {
-			getProductsByCategory(products[0].categories).then((data) => {
-				const currentProductId = data.data.products.findIndex(
-					(element) => element.itemNo === id
-				);
-				const forvardProd =
-					typeof data.data.products[currentProductId + 1] === 'undefined'
-						? 0
-						: currentProductId + 1;
-				setForwardProductId(
-					`/products/${data.data.products[forvardProd].itemNo}`
-				);
-
-				const backProd =
-					typeof data.data.products[currentProductId - 1] === 'undefined'
-						? data.data.products.length - 1
-						: currentProductId - 1;
-				setBackProductId(`/products/${data.data.products[backProd].itemNo}`);
-			});
-			return setProduct(products[0]);
-		});
-
-	useEffect(() => {
-		showProduct();
-	}, []);
-
-	useEffect(() => {
-		showProduct();
-	}, [id]);
+	const {
+		product: { imageUrls, name, weight, ingredients, currentPrice },
+	} = props;
 
 	const addQuantity = () => {
 		setQuantityGoods(quantityGoods + 1);
@@ -78,130 +33,16 @@ function ProductDescriptionCard() {
 		}
 	};
 
-	const onClickButton = () => {
-		product.cartQuantity = quantityGoods;
-		dispatch(addToCart(product));
-	};
+	// const onClickButton = () => {
+	// 	product.cartQuantity = quantityGoods;
+	// 	dispatch(addToCart(product));
+	// };
 
 	return (
-		<Stack
-			className="product-card"
-			style={{
-				margin: '0 auto',
-			}}
-		>
-			<Stack
-				className="product-card_block-switch"
-				direction="row"
-				justifyContent="space-between"
-				alignItems="center"
-				spacing={4}
-				style={{ paddingLeft: 30, paddingRight: 30 }}
-				sx={{
-					height: { xs: '60px', sm: '80px', md: '90px', lx: '110px' },
-				}}
-			>
-				<NavLink
-					to={backProductId}
-					style={{
-						textDecoration: 'none',
-					}}
-				>
-					<Stack
-						variant="contained"
-						component="a"
-						direction="row"
-						alignItems="center"
-						className="product-card__switch-in-sheet"
-					>
-						<NavigateBefore
-							style={{
-								background: '#F46D40',
-								color: '#F2F2F2',
-								borderRadius: '50px',
-								height: '20px',
-								width: '20px',
-							}}
-						/>
-
-						<Typography
-							variant="body2"
-							component="span"
-							style={{
-								fontStyle: 'normal',
-								fontWeight: '400',
-								fontSize: '18px',
-								lineHeight: '22px',
-							}}
-							sx={{
-								color: { xs: '#000000' },
-								margin: {
-									xs: '0 0 0 12px',
-									sm: '0 0 0 15px',
-									md: '0 0 0 17px',
-									lx: '0 0 0 18px',
-								},
-							}}
-						>
-							Back
-						</Typography>
-					</Stack>
-				</NavLink>
-
-				<NavLink
-					to={forwardProductId}
-					style={{
-						textDecoration: 'none',
-					}}
-				>
-					<Stack
-						variant="contained"
-						component="a"
-						direction="row"
-						alignItems="center"
-						className="product-card__switch-in-sheet"
-					>
-						<Typography
-							className="product-card__switch-text"
-							variant="body2"
-							component="span"
-							style={{
-								fontStyle: 'normal',
-								fontWeight: '400',
-								fontSize: '18px',
-								lineHeight: '22px',
-							}}
-							sx={{
-								color: { xs: '#000000' },
-								margin: {
-									xs: '0 13px 0 0',
-									sm: '0 15px 0 0',
-									md: '0 17px 0 0',
-									lx: '0 19px 0 0',
-								},
-							}}
-						>
-							Forward
-						</Typography>
-
-						<NavigateNext
-							style={{
-								background: '#F46D40',
-								color: '#F2F2F2',
-								borderRadius: '50px',
-								height: '20px',
-								width: '20px',
-							}}
-						/>
-					</Stack>
-				</NavLink>
-			</Stack>
-
+		<Stack>
 			<Grid
 				container
 				xs={12}
-				spacing={0}
-				className="product-card_grid"
 				sm={{
 					width: '100 %',
 				}}
@@ -209,26 +50,10 @@ function ProductDescriptionCard() {
 					height: { sm: '350px', md: '400px', lx: '700px' },
 				}}
 			>
-				<Grid container item xs={12} md={7} className="product-card_grid-item">
+				<Grid container item xs={12} md={7}>
 					<CardActionArea>
-						<Stack
-							className="product-card_grid-picture-container"
-							spacing={1}
-							style={{
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'flex-start',
-							}}
-							display="flex"
-							justifyContent="center"
-							alignItems="flex-start"
-						>
-							<CardMedia
-								className="product-card_grid-picture"
-								component="img"
-								image={cardPicture}
-								alt="set picture"
-							/>
+						<Stack spacing={1} justifyContent="center" alignItems="flex-start">
+							<CardMedia component="img" image={imageUrls} alt="set picture" />
 						</Stack>
 					</CardActionArea>
 				</Grid>
@@ -238,7 +63,6 @@ function ProductDescriptionCard() {
 					item
 					xs={12}
 					md={5}
-					className="product-card_grid-item"
 					sm={{
 						width: '100 %',
 					}}
@@ -247,7 +71,6 @@ function ProductDescriptionCard() {
 					}}
 				>
 					<Stack
-						className="product-card_grid-item-container"
 						direction="column"
 						justifyContent="center"
 						sm={{
@@ -259,7 +82,6 @@ function ProductDescriptionCard() {
 						}}
 					>
 						<Stack
-							className="product-card_grid-prodact-info"
 							sm={{
 								width: '100 %',
 							}}
@@ -270,11 +92,9 @@ function ProductDescriptionCard() {
 							}}
 						>
 							<Typography
-								className="product-card_grid-title"
 								variant="h3"
 								component="h3"
 								sm={{
-									fontStyle: 'normal',
 									fontWeight: '500',
 								}}
 								sx={{
@@ -289,15 +109,13 @@ function ProductDescriptionCard() {
 									},
 								}}
 							>
-								{cardTitle}
+								{name}
 							</Typography>
 
 							<Typography
-								className="product-card_grid-prodact-weight"
 								variant="body2"
 								component="p"
 								sm={{
-									fontStyle: 'normal',
 									fontWeight: '300',
 								}}
 								sx={{
@@ -312,19 +130,19 @@ function ProductDescriptionCard() {
 									},
 								}}
 							>
-								{cardWeight} grams
+								{weight} grams
 							</Typography>
 
 							<Stack
 								direction="row"
 								spacing={2}
-								justifyContent="space-around;"
+								justifyContent="space-around"
 								alignItems="center"
 								sx={{
 									maxWidth: { md: '500px' },
 								}}
 							>
-								<Typography
+								{/* <Typography
 									sx={{
 										textDecoration: 'line-through',
 										color: { xs: '#000000' },
@@ -345,14 +163,12 @@ function ProductDescriptionCard() {
 									display={displaycardPpromoPrice}
 								>
 									{cardPpromoPrice}
-								</Typography>
+								</Typography> */}
 
 								<Typography
-									className="product-card_grid-prodact-price"
 									variant="h4"
 									component="span"
 									sm={{
-										fontStyle: 'normal',
 										fontWeight: '700',
 									}}
 									sx={{
@@ -372,11 +188,10 @@ function ProductDescriptionCard() {
 										},
 									}}
 								>
-									{cardPrice} UAH
+									{currentPrice} UAH
 								</Typography>
 
 								<Stack
-									className="product-card_grid-blok-count"
 									direction="row"
 									spacing={1}
 									justifyContent="space-between"
@@ -391,13 +206,12 @@ function ProductDescriptionCard() {
 									}}
 								>
 									<RemoveCircle
-										style={{ color: '#F46D40' }}
+										sx={{ color: '#F46D40' }}
 										fontSize="large"
 										onClick={minusQuantity}
 									/>
 
 									<Typography
-										className="product-card_grid-count"
 										variant="h4"
 										component="h6"
 										sm={{
@@ -426,7 +240,7 @@ function ProductDescriptionCard() {
 
 									<AddCircleIcon
 										fontSize="large"
-										style={{ color: '#F46D40' }}
+										sx={{ color: '#F46D40' }}
 										onClick={addQuantity}
 									/>
 								</Stack>
@@ -436,18 +250,16 @@ function ProductDescriptionCard() {
 								direction="column"
 								justifyContent="center"
 								spacing={1}
-								display={displayCompound}
+								// display={displayCompound}
 								sx={{
 									margin: { xs: '26px 0 5px 0' },
 									alignItems: { xs: 'center', md: 'flex-start' },
 								}}
 							>
 								<Typography
-									className="product-card_grid-compound-title"
 									variant="h6"
 									component="h6"
 									sm={{
-										fontStyle: 'normal',
 										fontWeight: '500',
 										fontSize: '18px',
 										lineHeight: '22px',
@@ -463,11 +275,9 @@ function ProductDescriptionCard() {
 								</Typography>
 
 								<Typography
-									className="product-card_grid-compound"
 									variant="body2"
 									component="p"
 									sx={{
-										fontStyle: 'normal',
 										fontWeight: '300',
 										fontSize: '18px',
 										lineHeight: '22px',
@@ -475,19 +285,18 @@ function ProductDescriptionCard() {
 										color: { xs: '#111111' },
 									}}
 								>
-									{cardCompound}
+									{ingredients}
 								</Typography>
 							</Stack>
 						</Stack>
 
 						<CustomButton
 							title="Want!"
-							onClick={onClickButton}
+							// onClick={onClickButton}
 							textStyle={{
 								color: '#F2F2F2',
 								borderRadius: '5px',
 								padding: '5px 65px',
-								fontStyle: 'normal',
 								fontWeight: '500',
 								fontSize: '23px',
 								lineHeight: '28px',
