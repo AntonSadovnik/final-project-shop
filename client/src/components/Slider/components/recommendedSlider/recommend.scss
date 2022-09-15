@@ -7,16 +7,21 @@
   font-family: 'Nunito Sans','sans-serif'  
 } 
 
-@media (min-width: 300px) and (max-width: 1200px) {
+@media (min-width: 300px) and (max-width: 900px) {
+  .slick-wrapp{
+    width:76vw; 
+  }; 
   .slick-slider{
-    width:100%; 
-  }; 
-  .slick-wrapper{
-    width:83.5vw; 
-  }; 
+    width: 100%;
+  }
+}
+@media (min-width: 901px) and (max-width: 1200px) {
+ 
+  .slick-slider{
+    width: 100%;
+  }
 }
 .slider-btn:hover{
   background: transparent;
   box-shadow: none;
 }
-

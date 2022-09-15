@@ -4,7 +4,7 @@ import { Typography, Stack } from '@mui/material';
 import { getRecommendedProduct } from '../../../../api/Api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import '../../slider.scss';
+import './recommend.scss';
 import SushiCard from './SushiCard';
 import NextBtn from '../buttons/NextBtn';
 import PrevBtn from '../buttons/PrevBtn';
@@ -70,7 +70,7 @@ function RecommendedSlider() {
 	}
 	return (
 		<Stack
-			className="slider-wrapper"
+			className="slider-wrapp"
 			direction="column"
 			justifyContent="center"
 			alignItems="center"

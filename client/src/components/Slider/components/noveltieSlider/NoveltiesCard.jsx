@@ -31,7 +31,8 @@ return (<Card key={item.id} className="card" sx={{ padding: 0,
   boxSizing:'content-box',
   margin:"0 70px",
   flexGrow: 1,
-  flexShrink:1
+  flexShrink:1,
+  
   }}>
 
 <Typography  component="div" className='title' sx={{display:"flex", justifyContent: 'center'}}>

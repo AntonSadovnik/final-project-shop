@@ -13,13 +13,14 @@ import LoginReducer from './reducers/LoginReducer';
 import cityReducer from "./reducers/cityReducer";
 
 
+
 export const reducers = combineReducers({
 	products: ProductsReducer,
 	cart: CartReducer,
 	filter: FilterReducer,
 	customer: CustomerReducer,
 	isLoggedIn: LoginReducer,
-	city:cityReducer
+	city:cityReducer,
 });
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || {products:[]}
