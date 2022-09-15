@@ -20,8 +20,8 @@ import { useSelector } from 'react-redux';
 import AddressForm from './AddressForm';
 import ChangeForm from './ChangeForm';
 
-function ClientDataForm() {
-	const [counter, setCounter] = React.useState(1);
+function ClientDataForm({ handleNonAuthOrder, setOpenModal }) {
+	const [sauceAndSticksNum, setSauceAndSticksNum] = React.useState(1);
 	const [name, setName] = React.useState('');
 	const [email, setEmail] = React.useState('');
 	const [payment, setPayment] = React.useState('cash');
@@ -35,8 +35,9 @@ function ClientDataForm() {
 		/>
 	);
 	const customer = useSelector((state) => state.customer);
-	const city = useSelector((store) => store.city);
-	const cartProducts = useSelector((store) => store.cart.cart.products);
+	const city = useSelector((state) => state.city);
+	const cartProducts = useSelector((state) => state.cart.cart.products);
+	const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
 	React.useEffect(() => {
 		if (customer) {
@@ -47,7 +48,7 @@ function ClientDataForm() {
 
 	const validationschema = yup.object({
 		name: yup.string('Enter your name').required('Name is required'),
-		phone: yup.string('Enter your phone').required('Phone is required'),
+		mobile: yup.string('Enter your mobile').required('mobile is required'),
 		street: yup.string('Enter your street').required('Street is required'),
 		house: yup.string('Enter your house').required('House is required'),
 	});
@@ -55,7 +56,7 @@ function ClientDataForm() {
 	const formik = useFormik({
 		initialValues: {
 			name,
-			phone: '',
+			mobile: '',
 			comment: '',
 			promocode: '',
 			email,
@@ -65,18 +66,33 @@ function ClientDataForm() {
 		enableReinitialize: true,
 		validationSchema: validationschema,
 		onSubmit: (values) => {
-			console.log(values);
+			if (isLoggedIn) {
+				console.log('user is logged in');
+			} else {
+				formik.resetForm();
+				handleNonAuthOrder(
+					{
+						...values,
+						payment,
+						delivery,
+						sauceAndSticksNum,
+						time,
+					},
+					cartProducts
+				);
+				setOpenModal(true)
+			}
 		},
 	});
 
 	const handleIncrement = () => {
-		setCounter(counter + 1);
+		setSauceAndSticksNum(sauceAndSticksNum + 1);
 	};
 
 	const handleDecrement = () => {
-		if (counter > 0) setCounter(counter - 1);
+		if (sauceAndSticksNum > 0) setSauceAndSticksNum(sauceAndSticksNum - 1);
 		else {
-			setCounter(0);
+			setSauceAndSticksNum(0);
 		}
 	};
 	const [change, setChange] = React.useState(
@@ -179,15 +195,15 @@ function ClientDataForm() {
 							<TextField
 								sx={{ height: 70 }}
 								fullWidth
-								id="phone"
-								name="phone"
-								label="Phone"
-								type="phone"
-								value={formik.values.phone}
+								id="mobile"
+								name="mobile"
+								label="mobile"
+								type="mobile"
+								value={formik.values.mobile}
 								onChange={formik.handleChange}
 								onBlur={formik.onBlur}
-								error={formik.touched.phone && Boolean(formik.errors.phone)}
-								helperText={formik.touched.phone && formik.errors.phone}
+								error={formik.touched.mobile && Boolean(formik.errors.mobile)}
+								helperText={formik.touched.mobile && formik.errors.mobile}
 							/>
 						</Grid>
 						<Grid item xs={8}>
@@ -254,7 +270,7 @@ function ClientDataForm() {
 										aria-label="small outlined button group"
 									>
 										<Button onClick={handleDecrement}>-</Button>
-										<Button disabled>{counter}</Button>
+										<Button disabled>{sauceAndSticksNum}</Button>
 										<Button onClick={handleIncrement}>+</Button>
 									</ButtonGroup>
 								</Grid>
