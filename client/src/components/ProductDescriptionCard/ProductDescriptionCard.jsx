@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { React, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -10,7 +11,7 @@ import {
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircle from '@mui/icons-material/RemoveCircle';
 import CustomButton from '../Button/Button';
-import { addToCart, increaseQuantity } from '../../store/actions';
+import { addToCart } from '../../store/actions';
 
 function ProductDescriptionCard(props) {
 	const cartProducts = useSelector((state) => state.cart.cart.products);
@@ -40,17 +41,21 @@ function ProductDescriptionCard(props) {
 	};
 
 	const handleAddToCart = () => {
-		const cartProduct = cartProducts.find(
-			({ product }) => product.itemNo === itemNo
-		);
-		if (cartProduct) {
-			// newCartProduct.cartQuantity += quantityGoods;
-			dispatch(increaseQuantity(cartProduct.product.itemNo));
-		} else {
-			const { product } = props;
-			// const newCartProduct = { ...product, cartQuantity: quantityGoods };
-			dispatch(addToCart(product));
-		}
+		const { product } = props;
+		// const cartProduct = cartProducts.find(
+		// 	({ product }) => product.itemNo === itemNo
+		// );
+		dispatch(addToCart(product));
+		// if (cartProduct) {
+		// 	cartProduct.cartQuantity = quantityGoods;
+		// 	// console.log(cartProduct);
+		// 	dispatch(addToCart(cartProduct));
+		// }
+		// else {
+		// 	const { product } = props;
+		// 	const newCartProduct = { ...product, cartQuantity: quantityGoods };
+		// 	dispatch(addToCart(product));
+		// }
 		// product.cartQuantity = quantityGoods;
 		// dispatch(addToCart(product));
 	};
