@@ -85,7 +85,7 @@ export default function ProductCard(props) {
 							</Typography>
 							<CardActions component="div" sx={{ padding: 0 }}>
 								<CustomButton
-									title="Wish"
+									title="Want!"
 									btnStyle={{
 										width: { xs: '95px', sm: '143px' },
 										height: { xs: '26px', sm: '40px' },
