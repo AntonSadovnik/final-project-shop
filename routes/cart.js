@@ -5,7 +5,7 @@ const passport = require("passport");
 //Import controllers
 const {
   createCart,
-  updateCart,
+      updateCart,
   addProductToCart,
   decreaseCartProductQuantity,
   deleteCart,

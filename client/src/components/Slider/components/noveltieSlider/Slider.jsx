@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Stack, Typography } from '@mui/material';
@@ -23,7 +22,7 @@ function NoveltieSlider() {
 	}, [button]);
 
 	const settings = {
-		dots: true,
+		dots: false,
 		infinite: false,
 		speed: 500,
 		slidesToShow: 3,
@@ -70,11 +69,7 @@ function NoveltieSlider() {
 		return null;
 	}
 	return (
-		<Stack
-			direction="column"
-			justifyContent="center"
-			alignItems="center"
-		>
+		<Stack direction="column" justifyContent="center" alignItems="center">
 			<Typography
 				component="div"
 				className="btn-container"
@@ -85,8 +80,6 @@ function NoveltieSlider() {
 			{button==='right' ? <CustomButton onClick={() => setButton('right')} title="Popular" className='slider-btn' btnStyle={{background:"transparent", color: 'red', hover:'transparent', marginLeft:'20px', boxShadow: 'none', fontWeight:'700'}}/>:
 			<CustomButton onClick={() => setButton('right')} title="Popular" className='slider-btn' btnStyle={{background:"transparent", color: '#FF9846', hover:'transparent', marginLeft:'20px', boxShadow: 'none'}}/>
 			} 
-		
-			
 			</Typography>
 			<Stack
 				className="slider-wrapper"
