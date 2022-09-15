@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Stack, Typography } from '@mui/material';
@@ -23,7 +22,7 @@ function NoveltieSlider() {
 	}, [button]);
 
 	const settings = {
-		dots: true,
+		dots: false,
 		infinite: false,
 		speed: 500,
 		slidesToShow: 3,
@@ -70,14 +69,11 @@ function NoveltieSlider() {
 		return null;
 	}
 	return (
-		<Stack
-			direction="column"
-			justifyContent="center"
-			alignItems="center"
-		>
+		<Stack direction="column" justifyContent="center" alignItems="center">
 			<Typography
 				component="div"
 				className="btn-container"
+<<<<<<< HEAD
 				sx={{ display: 'flex', alignSelf: 'flex-start', width:'95%', paddingLeft:'25px', boxShadow: 'none', marginBottom:'-25px' }}
 			>
 			 {button==='left' ? <CustomButton onClick={() => {setButton('left')}} title="Novelties" className='slider-btn' btnStyle={{background:"transparent", color: 'red' , hover:'transparent', border:'0px', boxShadow: 'none', fontWeight:'700' }}/> :<CustomButton onClick={() => setButton('left')} title="Novelties" className='slider-btn' btnStyle={{background:"transparent", color: '#FF9846' , hover:'transparent', border:'0px', boxShadow: 'none' }}/>}
@@ -87,6 +83,42 @@ function NoveltieSlider() {
 			} 
 		
 			
+=======
+				sx={{
+					display: 'flex',
+					alignSelf: 'flex-start',
+					width: '100%',
+					paddingLeft: '25px',
+					boxShadow: 'none',
+					marginBottom: '-25px',
+				}}
+			>
+				<CustomButton
+					onClick={() => setButton('left')}
+					title="Novelties"
+					className="slider-btn"
+					btnStyle={{
+						background: 'transparent',
+						color: '#FF9846',
+						hover: 'transparent',
+						border: '0px',
+						boxShadow: 'none',
+					}}
+				/>
+
+				<CustomButton
+					onClick={() => setButton('right')}
+					title="Popular"
+					className="slider-btn"
+					btnStyle={{
+						background: 'transparent',
+						color: '#FF9846',
+						hover: 'transparent',
+						marginLeft: '20px',
+						boxShadow: 'none',
+					}}
+				/>
+>>>>>>> dev
 			</Typography>
 			<Stack
 				className="slider-wrapper"
