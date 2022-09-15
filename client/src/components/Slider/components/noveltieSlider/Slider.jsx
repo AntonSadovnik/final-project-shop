@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import { Stack, Button, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { getNoveltieProduct, getPopularProduct } from '../../../../api/Api';
+import CustomButton from '../../../Button/Button';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../slider.scss';
@@ -68,32 +69,44 @@ function NoveltieSlider() {
 		return null;
 	}
 	return (
-		<Stack
-			direction="column"
-			justifyContent="center"
-			alignItems="center"
-		>
+		<Stack direction="column" justifyContent="center" alignItems="center">
 			<Typography
 				component="div"
 				className="btn-container"
-				sx={{ display: 'flex', alignSelf: 'flex-start', marginBottom:'-50px' }}
+				sx={{
+					display: 'flex',
+					alignSelf: 'flex-start',
+					width: '100%',
+					paddingLeft: '25px',
+					boxShadow: 'none',
+					marginBottom: '-25px',
+				}}
 			>
-				<Button
+				<CustomButton
 					onClick={() => setButton('left')}
-					sx={{ paddingLeft: 4, paddingRight: 5, marginRight: '-10px', }}
-					
-				>
-					Novelties
-				</Button>
-				<Button
+					title="Novelties"
+					className="slider-btn"
+					btnStyle={{
+						background: 'transparent',
+						color: '#FF9846',
+						hover: 'transparent',
+						border: '0px',
+						boxShadow: 'none',
+					}}
+				/>
+
+				<CustomButton
 					onClick={() => setButton('right')}
-					style={{
-							textDecoration: 'none',
-						}}
-					sx={{ paddingLeft: 4, paddingRight: 5, marginRight: '-10px', textDecoration:'none'  }}
-				>
-					Popular
-				</Button>
+					title="Popular"
+					className="slider-btn"
+					btnStyle={{
+						background: 'transparent',
+						color: '#FF9846',
+						hover: 'transparent',
+						marginLeft: '20px',
+						boxShadow: 'none',
+					}}
+				/>
 			</Typography>
 			<Stack
 				className="slider-wrapper"

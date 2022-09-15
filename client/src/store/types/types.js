@@ -1,5 +1,5 @@
-export const GET_PRODUCTS_INIT = "GET_PRODUCTS_INIT";
-export const SET_PRODUCTS = "SET_PRODUCTS";
+export const GET_PRODUCTS_INIT = 'GET_PRODUCTS_INIT';
+export const SET_PRODUCTS = 'SET_PRODUCTS';
 export const ADD_FILTER = 'ADD_FILTER';
 
 export const SET_CART = "SET_CART";
@@ -14,4 +14,6 @@ export const SET_CUSTOMER = 'SET_CUSTOMER';
 export const SET_LOGIN = 'SET_LOGIN';
 export const SET_LOGOUT = 'SET_LOGOUT';
 
-export const SET_CITY = "SET_CITY";
+export const SET_CITY = 'SET_CITY';
+
+export const SET_SORT = 'SET_SORT';

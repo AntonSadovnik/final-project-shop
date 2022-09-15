@@ -28,4 +28,14 @@ export const getCustomer = (token) =>
 			Authorization: token,
 		},
 	});
-export const getSaleProduct=()=> axios.get('/api/products/filter?promo=sale')
+export const getSaleProduct = () =>
+	axios.get('/api/products/filter?promo=sale');
+
+export const postReview = (review, token) =>
+	axios.post('api/comments', review, {
+		headers: {
+			Authorization: token,
+		},
+	});
+
+export const getReviews = () => axios.get('api/comments')
