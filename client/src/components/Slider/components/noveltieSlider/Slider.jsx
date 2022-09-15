@@ -78,7 +78,7 @@ function NoveltieSlider() {
 			<Typography
 				component="div"
 				className="btn-container"
-				sx={{ display: 'flex', alignSelf: 'flex-start', width:'100%', paddingLeft:'25px', boxShadow: 'none', marginBottom:'-25px' }}
+				sx={{ display: 'flex', alignSelf: 'flex-start', width:'95%', paddingLeft:'25px', boxShadow: 'none', marginBottom:'-25px' }}
 			>
 			 {button==='left' ? <CustomButton onClick={() => {setButton('left')}} title="Novelties" className='slider-btn' btnStyle={{background:"transparent", color: 'red' , hover:'transparent', border:'0px', boxShadow: 'none', fontWeight:'700' }}/> :<CustomButton onClick={() => setButton('left')} title="Novelties" className='slider-btn' btnStyle={{background:"transparent", color: '#FF9846' , hover:'transparent', border:'0px', boxShadow: 'none' }}/>}
 	

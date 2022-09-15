@@ -19,7 +19,7 @@ container
 justifyContent="space-around"
 flexDirection="column"
 backgroundColor={(theme) => theme.palette.lightGrayColor.main}
-sx={{overflow:'hidden'}}
+sx={{overflow:'hidden', padding:'0 10px'}}
 >
 
 <Grid sx={{ padding: '30px 0 60px', width: '100%' }}>
