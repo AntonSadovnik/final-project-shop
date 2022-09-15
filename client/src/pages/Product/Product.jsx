@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { Stack } from '@mui/material';
+import { Grid } from '@mui/material';
 import ProductDescriptionCard from '../../components/ProductDescriptionCard/ProductDescriptionCard';
 import RecommendedSlider from '../../components/Slider/components/recommendedSlider/SliderTwo';
 import BtnBack from '../../components/ProductDescriptionCard/components/BtnBack';
@@ -57,7 +55,8 @@ function Product() {
 
 	return (
 		<main>
-			<Stack
+			<Grid
+				container
 				direction="row"
 				justifyContent="space-around"
 				alignItems="center"
@@ -67,11 +66,13 @@ function Product() {
 			>
 				<BtnBack backProductId={backProductId} />
 				<BtnForward forwardProductId={forwardProductId} />
-			</Stack>
-			<ProductDescriptionCard product={product} />
-			<Stack>
+			</Grid>
+			<Grid container>
+				<ProductDescriptionCard product={product} />
+			</Grid>
+			<Grid>
 				<RecommendedSlider />
-			</Stack>
+			</Grid>
 		</main>
 	);
 }
