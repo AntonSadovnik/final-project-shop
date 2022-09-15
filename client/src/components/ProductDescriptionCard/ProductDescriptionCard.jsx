@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 import { React, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
 	Grid,
 	CardMedia,
@@ -14,7 +13,6 @@ import CustomButton from '../Button/Button';
 import { addToCart } from '../../store/actions';
 
 function ProductDescriptionCard(props) {
-	const cartProducts = useSelector((state) => state.cart.cart.products);
 	const [quantityGoods, setQuantityGoods] = useState(1);
 	const dispatch = useDispatch();
 	const {
@@ -25,7 +23,6 @@ function ProductDescriptionCard(props) {
 			ingredients,
 			currentPrice,
 			previousPrice,
-			itemNo,
 		},
 	} = props;
 	const title = name ? name.charAt(0).toUpperCase() + name.slice(1) : '';
@@ -42,22 +39,9 @@ function ProductDescriptionCard(props) {
 
 	const handleAddToCart = () => {
 		const { product } = props;
-		// const cartProduct = cartProducts.find(
-		// 	({ product }) => product.itemNo === itemNo
-		// );
-		dispatch(addToCart(product));
-		// if (cartProduct) {
-		// 	cartProduct.cartQuantity = quantityGoods;
-		// 	// console.log(cartProduct);
-		// 	dispatch(addToCart(cartProduct));
-		// }
-		// else {
-		// 	const { product } = props;
-		// 	const newCartProduct = { ...product, cartQuantity: quantityGoods };
-		// 	dispatch(addToCart(product));
-		// }
-		// product.cartQuantity = quantityGoods;
-		// dispatch(addToCart(product));
+		const cartProduct = { ...product };
+		cartProduct.cartQuantity = quantityGoods;
+		dispatch(addToCart(cartProduct));
 	};
 
 	return (
