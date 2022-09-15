@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux';
 import AddressForm from './AddressForm';
 import ChangeForm from './ChangeForm';
 
-function ClientDataForm({ handleNonAuthOrder, setOpenModal }) {
+function ClientDataForm({ handleNonAuthOrder, handleAuthOrder, setOpenModal }) {
 	const [sauceAndSticksNum, setSauceAndSticksNum] = React.useState(1);
 	const [name, setName] = React.useState('');
 	const [email, setEmail] = React.useState('');
@@ -51,6 +51,7 @@ function ClientDataForm({ handleNonAuthOrder, setOpenModal }) {
 		mobile: yup.string('Enter your mobile').required('mobile is required'),
 		street: yup.string('Enter your street').required('Street is required'),
 		house: yup.string('Enter your house').required('House is required'),
+		email: yup.string('Enter your email').required('Email is required'),
 	});
 
 	const formik = useFormik({
@@ -66,21 +67,21 @@ function ClientDataForm({ handleNonAuthOrder, setOpenModal }) {
 		enableReinitialize: true,
 		validationSchema: validationschema,
 		onSubmit: (values) => {
+			const userData = {
+				...values,
+				payment,
+				delivery,
+				sauceAndSticksNum,
+				time,
+			};
 			if (isLoggedIn) {
 				console.log('user is logged in');
+				handleAuthOrder(userData, customer._id);
+				setOpenModal(true);
 			} else {
 				formik.resetForm();
-				handleNonAuthOrder(
-					{
-						...values,
-						payment,
-						delivery,
-						sauceAndSticksNum,
-						time,
-					},
-					cartProducts
-				);
-				setOpenModal(true)
+				handleNonAuthOrder(userData, cartProducts);
+				setOpenModal(true);
 			}
 		},
 	});
@@ -173,8 +174,10 @@ function ClientDataForm({ handleNonAuthOrder, setOpenModal }) {
 				<Typography fontSize={18} marginBottom="10px">
 					Your are now in {city}
 				</Typography>
-				<Typography fontSize={18}>
-					Your total order is {calculateOrder()} UAH
+				<Typography fontSize={18} color="red">
+					{cartProducts.length
+						? `Your total order is ${calculateOrder()} UAH`
+						: 'The cart is empty'}
 				</Typography>
 				<Box className="client-data-form__container">
 					<Grid spacing={1} container columns={8}>
@@ -362,7 +365,13 @@ function ClientDataForm({ handleNonAuthOrder, setOpenModal }) {
 					</Grid>
 				</Box>
 
-				<Button color="primary" variant="contained" fullWidth type="submit">
+				<Button
+					color="primary"
+					variant="contained"
+					fullWidth
+					type="submit"
+					disabled={!cartProducts.length}
+				>
 					Submit
 				</Button>
 			</form>

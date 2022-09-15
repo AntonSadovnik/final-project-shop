@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import GppBadIcon from '@mui/icons-material/GppBad';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ClientDataForm from '../../components/ClientDataForm/ClientDataForm';
-import { placeNonAuthOrder } from '../../api/placeOrders';
+import { placeNonAuthOrder, placeAuthOrder } from '../../api/placeOrders';
 import LoadingElement from '../../components/Search/components/LoadingElement';
 
 function Ordering() {
@@ -16,6 +16,11 @@ function Ordering() {
 	const handleClose = () => setOpenModal(false);
 
 	const handleNonAuthOrder = (userData, cartProducts) => {
+		setOrderProcessing(true);
+		setSuccess(false);
+		setError(false);
+		console.log(cartProducts);
+
 		const newOrder = {
 			products: cartProducts,
 			...userData,
@@ -25,15 +30,40 @@ function Ordering() {
 			.then(() => {
 				localStorage.removeItem('cart');
 				setSuccess(true);
+				setError(false);
 			})
-			.catch(() => setError(true))
+			.catch((err) => {
+				setError(true);
+				setSuccess(false);
+				console.log(err);
+			})
 			.finally(() => setOrderProcessing(false));
+	};
+
+	const handleAuthOrder = (userData, customerId) => {
+		const newOrder = { ...userData, customerId };
+
+		placeAuthOrder(newOrder)
+			.then(() => {
+				// localStorage.removeItem('cart');
+				// setSuccess(true);
+				// setError(false);
+				// setOrderProcessing(false);
+			})
+			.catch(() => {
+				// setError(true);
+				// setSuccess(false);
+				// setOrderProcessing(false);
+				// console.log(err);
+			})
+			.finally(() => setOrderProcessing(true));
 	};
 
 	return (
 		<main>
 			<ClientDataForm
 				handleNonAuthOrder={handleNonAuthOrder}
+				handleAuthOrder={handleAuthOrder}
 				setOpenModal={setOpenModal}
 			/>
 			<Dialog
@@ -55,10 +85,10 @@ function Ordering() {
 							justifyContent: 'center',
 						}}
 					>
-						{error && <GppBadIcon fontSize="large" sx={{ color: '#d50000' }} />}
 						{success && (
 							<ThumbUpOffAltIcon fontSize="large" sx={{ color: '#ff9846' }} />
 						)}
+						{error && <GppBadIcon fontSize="large" sx={{ color: '#d50000' }} />}
 					</div>
 				</DialogContent>
 			</Dialog>
