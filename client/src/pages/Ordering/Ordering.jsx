@@ -1,71 +1,55 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 // eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import GppBadIcon from '@mui/icons-material/GppBad';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ClientDataForm from '../../components/ClientDataForm/ClientDataForm';
-import { placeNonAuthOrder, placeAuthOrder } from '../../api/placeOrders';
+import { placeNonAuthOrder, removeOrderedProducts} from '../../api/placeOrders';
 import LoadingElement from '../../components/Search/components/LoadingElement';
+import { resetCart } from '../../store/actions';
 
 function Ordering() {
 	const [openOrderModal, setOpenModal] = React.useState(false);
 	const [orderProcessing, setOrderProcessing] = React.useState(true);
 	const [error, setError] = React.useState(false);
 	const [success, setSuccess] = React.useState(false);
+	const dispatch = useDispatch();
 
 	const handleClose = () => setOpenModal(false);
 
-	const handleNonAuthOrder = (userData, cartProducts) => {
+	const handleOrder = (userData, cartProducts, resetForm, customerId) => {
 		setOrderProcessing(true);
 		setSuccess(false);
 		setError(false);
-		console.log(cartProducts);
 
-		const newOrder = {
-			products: cartProducts,
-			...userData,
-		};
+		let newOrder = {};
+
+		if (customerId) {
+			newOrder = { customerId, ...userData };
+		} else {
+			newOrder = { products: cartProducts, ...userData };
+		}
 
 		placeNonAuthOrder(newOrder)
 			.then(() => {
 				localStorage.removeItem('cart');
+				dispatch(resetCart());
+				resetForm();
 				setSuccess(true);
 				setError(false);
+				removeOrderedProducts(localStorage.getItem('token'));
 			})
-			.catch((err) => {
+			.catch(() => {
 				setError(true);
 				setSuccess(false);
-				console.log(err);
 			})
 			.finally(() => setOrderProcessing(false));
 	};
 
-	const handleAuthOrder = (userData, customerId) => {
-		const newOrder = { ...userData, customerId };
-
-		placeAuthOrder(newOrder)
-			.then(() => {
-				// localStorage.removeItem('cart');
-				// setSuccess(true);
-				// setError(false);
-				// setOrderProcessing(false);
-			})
-			.catch(() => {
-				// setError(true);
-				// setSuccess(false);
-				// setOrderProcessing(false);
-				// console.log(err);
-			})
-			.finally(() => setOrderProcessing(true));
-	};
-
 	return (
 		<main>
-			<ClientDataForm
-				handleNonAuthOrder={handleNonAuthOrder}
-				handleAuthOrder={handleAuthOrder}
-				setOpenModal={setOpenModal}
-			/>
+			<ClientDataForm handleOrder={handleOrder} setOpenModal={setOpenModal} />
 			<Dialog
 				open={openOrderModal}
 				onClose={handleClose}

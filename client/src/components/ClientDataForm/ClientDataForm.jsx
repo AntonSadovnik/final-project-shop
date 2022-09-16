@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux';
 import AddressForm from './AddressForm';
 import ChangeForm from './ChangeForm';
 
-function ClientDataForm({ handleNonAuthOrder, handleAuthOrder, setOpenModal }) {
+function ClientDataForm({ handleOrder, setOpenModal }) {
 	const [sauceAndSticksNum, setSauceAndSticksNum] = React.useState(1);
 	const [name, setName] = React.useState('');
 	const [email, setEmail] = React.useState('');
@@ -74,15 +74,15 @@ function ClientDataForm({ handleNonAuthOrder, handleAuthOrder, setOpenModal }) {
 				sauceAndSticksNum,
 				time,
 			};
-			if (isLoggedIn) {
-				console.log('user is logged in');
-				handleAuthOrder(userData, customer._id);
-				setOpenModal(true);
-			} else {
+			const resetForm = () => {
 				formik.resetForm();
-				handleNonAuthOrder(userData, cartProducts);
-				setOpenModal(true);
+			};
+			if (isLoggedIn) {
+				handleOrder(userData, cartProducts, resetForm, customer._id);
+			} else {
+				handleOrder(userData, cartProducts, resetForm);
 			}
+			setOpenModal(true);
 		},
 	});
 
