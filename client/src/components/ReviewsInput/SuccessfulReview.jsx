@@ -1,17 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { IconButton, Modal } from '@mui/material';
+import { IconButton, Modal, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import LoginForm from './LoginForm';
 
-export default function LoginModal(props) {
-	const { loginModal, setLoginModal } = props;
-	const [form, setForm] = React.useState(null);
-
-	React.useEffect(() => {
-		setForm(<LoginForm setLoginModal={setLoginModal} setForm={setForm} />);
-	}, loginModal);
-
+export default function SuccessfulReview({ setOpen, open }) {
 	const style = {
 		position: 'absolute',
 		top: '50%',
@@ -25,25 +17,26 @@ export default function LoginModal(props) {
 	};
 
 	const handleClose = () => {
-		setLoginModal(false);
-		setForm(<LoginForm setLoginModal={setLoginModal} setForm={setForm} />);
+        setOpen(false);
+        window.location.reload();
 	};
 
 	return (
 		<Modal
-			open={loginModal}
+			open={open}
 			onClose={handleClose}
 			aria-labelledby="modal-modal-title"
 			aria-describedby="modal-modal-description"
 		>
 			<Box sx={style}>
-				{form}
+				<Typography id="modal-modal-title" variant="h6" component="h2">
+					Your review was successfully sent. Thank you!
+				</Typography>
 				<IconButton
 					sx={{
 						position: 'absolute',
 						top: '25px',
 						right: '20px',
-						// transform: 'translate(-50%, -50%)',
 						bgcolor: 'background.paper',
 					}}
 					edge="start"

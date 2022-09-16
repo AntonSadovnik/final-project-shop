@@ -27,11 +27,12 @@ return (<Card key={item.id} className="card" sx={{ padding: 0,
   overflow:'hidden',
   maxWidth:'290px',
   maxHeight:'397px',
-  minWidth:'245px',
+  minWidth:'235px',
   boxSizing:'content-box',
   margin:"0 70px",
   flexGrow: 1,
-  flexShrink:1
+  flexShrink:1,
+  
   }}>
 
 <Typography  component="div" className='title' sx={{display:"flex", justifyContent: 'center'}}>

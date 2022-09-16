@@ -1,8 +1,9 @@
+import React, { useEffect } from 'react';
 
-import React, { useEffect, useState } from 'react';
+
 import Slider from 'react-slick';
-import { Stack } from '@mui/material';
-import {getSaleProduct } from '../../../../api/Api';
+import {  Stack } from '@mui/material';
+
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "./offer.scss";
@@ -12,11 +13,10 @@ import OfferCard from './OfferCard';
 
 
 
-function OfferSlider() {
-const [items, setItems] = useState();
+function OfferSlider({items}) {
 
  useEffect(()=>{
-  getSaleProduct().then(({data:{products}})=> setItems(products))
+
   
  },[])
 

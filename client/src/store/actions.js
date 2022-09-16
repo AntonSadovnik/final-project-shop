@@ -1,6 +1,20 @@
 import getProducts from '../api/getProducts';
 import {getAllProducts, getCustomer} from '../api/Api';
 import {
+<<<<<<<<< Temporary merge branch 1
+	GET_PRODUCTS_INIT,
+	ADD_TO_CART,
+	ADD_FILTER,
+	DECREASE_QUANTITY_TO_CART,
+	INCREASE_QUANTITY_TO_CART,
+	REMOVE_FROM_CART,
+	SET_CUSTOMER,
+	SET_LOGIN,
+	SET_LOGOUT,
+	SET_PRODUCTS,
+	SET_CITY,
+	SET_SORT,
+=========
     GET_PRODUCTS_INIT,
     ADD_TO_CART,
     ADD_FILTER,
@@ -13,7 +27,7 @@ import {
     SET_PRODUCTS,
     SET_CITY,
     SET_CART, CREATE_CART_AFTER_LOGIN,
-	SET_SORT
+>>>>>>>>> Temporary merge branch 2
 } from './types/types';
 
 export const getProductsAction = (categories) => (dispatch) => {
@@ -82,6 +96,7 @@ export const setLogout = () => (dispatch) => {
 };
 
 export const setCustomer = () => (dispatch) => {
+<<<<<<<<< Temporary merge branch 1
 	getCustomer(localStorage.getItem('token'))
 		.then((loggedInCustomer) => {
 			dispatch({ type: SET_CUSTOMER, payload: loggedInCustomer.data });
@@ -91,10 +106,21 @@ export const setCustomer = () => (dispatch) => {
 			localStorage.removeItem('token');
 			dispatch({ type: SET_LOGOUT });
 		});
+=========
+    getCustomer(localStorage.getItem('token'))
+        .then((loggedInCustomer) => {
+            dispatch({type: SET_CUSTOMER, payload: loggedInCustomer.data});
+            dispatch({type: SET_LOGIN});
+        })
+        .catch(() => {
+            localStorage.removeItem('token')
+            dispatch({type: SET_LOGOUT});
+        });
+>>>>>>>>> Temporary merge branch 2
 };
 
 export const deleteCustomer = () => (dispatch) => {
-	dispatch({ type: SET_CUSTOMER, payload: null });
+    dispatch({type: SET_CUSTOMER, payload: null});
 };
 
 export const setCity = (city) => ({

@@ -33,7 +33,6 @@ export default function LoginForm({ setForm, setLoginModal }) {
 			onSubmit: (userData) => {
 				login(userData)
 					.then((response) => {
-						console.log(response)
 						localStorage.setItem('token', response.data.token);
 						setLoginModal(false);
 						dispatch(createCartAfterLogin(response.data.token))
