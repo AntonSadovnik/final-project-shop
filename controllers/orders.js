@@ -53,16 +53,16 @@ exports.placeOrder = async (req, res, next) => {
       0
     );
 
-    const productAvailibilityInfo = await productAvailibilityChecker(
-      order.products
-    );
+    // const productAvailibilityInfo = await productAvailibilityChecker(
+    //   order.products
+    // );
 
-    if (!productAvailibilityInfo.productsAvailibilityStatus) {
-      res.json({
-        message: "Some of your products are unavailable for now",
-        productAvailibilityInfo
-      });
-    } else {
+    // if (!productAvailibilityInfo.productsAvailibilityStatus) {
+    //   res.json({
+    //     message: "Some of your products are unavailable for now",
+    //     productAvailibilityInfo
+    //   });
+    // } else {
       const subscriberMail = req.body.email;
       const letterSubject = req.body.letterSubject;
       const letterHtml = req.body.letterHtml;
@@ -118,7 +118,7 @@ exports.placeOrder = async (req, res, next) => {
             message: `Error happened on server: "${err}" `
           })
         );
-    }
+'    // }'
   } catch (err) {
     res.status(400).json({
       message: `Error happened on server: "${err}" `
