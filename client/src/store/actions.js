@@ -12,8 +12,7 @@ import {
     SET_LOGOUT,
     SET_PRODUCTS,
     SET_CITY,
-    SET_SORT,
-    SET_CART, CREATE_CART_AFTER_LOGIN,
+    SET_CART, CREATE_CART_AFTER_LOGIN, SET_SORT
 } from './types/types';
 
 export const getProductsAction = (categories) => (dispatch) => {
@@ -108,4 +107,3 @@ export const setSort = (sort) => ({
 	type: SET_SORT,
 	payload: sort,
 });
-
