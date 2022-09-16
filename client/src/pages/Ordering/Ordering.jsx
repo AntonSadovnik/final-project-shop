@@ -5,8 +5,11 @@ import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import GppBadIcon from '@mui/icons-material/GppBad';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ClientDataForm from '../../components/ClientDataForm/ClientDataForm';
-import { placeNonAuthOrder, removeOrderedProducts} from '../../api/placeOrders';
-import LoadingElement from '../../components/Search/components/LoadingElement';
+import {
+	placeNonAuthOrder,
+	removeOrderedProducts,
+} from '../../api/placeOrders';
+import Loader from '../../components/Loader/Loader';
 import { resetCart } from '../../store/actions';
 
 function Ordering() {
@@ -62,7 +65,7 @@ function Ordering() {
 					{error && 'Oops! Something went wrong, please try again later'}
 				</DialogTitle>
 				<DialogContent>
-					{orderProcessing && <LoadingElement />}
+					{orderProcessing && <Loader />}
 					<div
 						style={{
 							display: 'flex',
