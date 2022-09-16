@@ -13,6 +13,7 @@ import {
     SET_PRODUCTS,
     SET_CITY,
     SET_CART, CREATE_CART_AFTER_LOGIN,
+	SET_SORT
 } from './types/types';
 
 export const getProductsAction = (categories) => (dispatch) => {
@@ -81,19 +82,19 @@ export const setLogout = () => (dispatch) => {
 };
 
 export const setCustomer = () => (dispatch) => {
-    getCustomer(localStorage.getItem('token'))
-        .then((loggedInCustomer) => {
-            dispatch({type: SET_CUSTOMER, payload: loggedInCustomer.data});
-            dispatch({type: SET_LOGIN});
-        })
-        .catch(() => {
-            localStorage.removeItem('token')
-            dispatch({type: SET_LOGOUT});
-        });
+	getCustomer(localStorage.getItem('token'))
+		.then((loggedInCustomer) => {
+			dispatch({ type: SET_CUSTOMER, payload: loggedInCustomer.data });
+			dispatch({ type: SET_LOGIN });
+		})
+		.catch(() => {
+			localStorage.removeItem('token');
+			dispatch({ type: SET_LOGOUT });
+		});
 };
 
 export const deleteCustomer = () => (dispatch) => {
-    dispatch({type: SET_CUSTOMER, payload: null});
+	dispatch({ type: SET_CUSTOMER, payload: null });
 };
 
 export const setCity = (city) => ({
@@ -101,4 +102,9 @@ export const setCity = (city) => ({
     payload: {
         city,
     },
+});
+
+export const setSort = (sort) => ({
+	type: SET_SORT,
+	payload: sort,
 });

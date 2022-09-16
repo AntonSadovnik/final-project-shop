@@ -54,11 +54,11 @@ function ClientDataForm() {
 
 	const formik = useFormik({
 		initialValues: {
-			name: name,
+			name,
 			phone: '',
 			comment: '',
 			promocode: '',
-			email: email,
+			email,
 			street: '',
 			house: '',
 		},
@@ -303,7 +303,11 @@ function ClientDataForm() {
 									Pickup
 								</ToggleButton>
 							</ToggleButtonGroup>
-							{(delivery === 'courier') ? (<AddressForm formikData={formik} />) : ""}
+							{delivery === 'courier' ? (
+								<AddressForm formikData={formik} />
+							) : (
+								''
+							)}
 						</Grid>
 
 						<Grid item xs={8}>

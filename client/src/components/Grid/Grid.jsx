@@ -25,7 +25,7 @@ function GridItem() {
 			{gridItems().map((e) => {
 				const { layout, src, alt, text } = e;
 				return (
-					<Grid item {...layout}>
+					<Grid item {...layout} key={alt}>
 						<Box
 							sx={{
 								position: 'relative',
@@ -59,6 +59,7 @@ function GridItem() {
 				const { src, alt, text } = e;
 				return (
 					<Grid
+						key={alt}
 						item
 						sx={{ display: { md: 'none', sm: 'block' } }}
 						sm={4}

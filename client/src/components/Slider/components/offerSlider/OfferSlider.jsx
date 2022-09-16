@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Stack } from '@mui/material';
@@ -28,6 +29,7 @@ const [items, setItems] = useState();
     speed: 2500,
     autoplaySpeed: 2500,
     arrows: false,
+    
 
     responsive: [{
       breakpoint: 2300,
@@ -88,5 +90,3 @@ const [items, setItems] = useState();
 
 
 export default OfferSlider
-
-

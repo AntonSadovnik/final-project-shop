@@ -1,71 +1,114 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import {
-    Card,
-    CardContent,
-    CardMedia,
-    Typography,
-    Button,
-    CardActions,
-    Divider
+	Card,
+	CardContent,
+	CardMedia,
+	Typography,
+	CardActions,
+	Divider,
+	Grid,
 } from '@mui/material';
-import PropTypes from 'prop-types';
-
+import CustomButton from '../../Button/Button';
+// import PropTypes from 'prop-types';
 
 export default function ProductCard(props) {
-    const { data } = props;
-    const { title, portion, price, imgSrc, article } = data;
-    return (<Card key={article} className="card" sx={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: { xs: 'row', md: 'column' },
-        borderRadius: 5,
-        background: 'white',
-        overflow: 'hidden',
-        boxSizing: 'border-box',
-        justifyContent: 'space-around',
-        // maxWidth: {sm: 330}
-    }}>
-        <CardMedia 
-            component="img"
-            alt="not display"
-            sx={{
-                height: 210,
-                width: 253,
-                fit:"cover",
-                maxWith: {xs: 100, sm: 180, md: 253},
-            }}
-            
-            image={imgSrc}
-            className="img"
-        />
-        <CardContent sx={{ paddingBottom: '0px' }}>
-            <Typography gutterBottom variant="h6" component="p" className='title' sx={{ fontSize: '24px', fontWeight: 500 }}>
-                {title}
-            </Typography>
-            <Typography variant="body2" component="p" color="text.secondary" className='portion' sx={{ marginBottom: "0", fontSize: '18px', fontWeight: 400 }}>
-                {portion}
-                <Divider style={{ color: 'black', marginTop: '20px' }} />
-            </Typography>
-
-            <Typography variant="body2" component="p" className='card-bottom' sx={{
-                position: "relative",
-                display: 'flex', justifyContent: 'space-between', padding: 0,
-            }}>
-                <Typography variant="body2" component="p" sx={{
-                    alignSelf: "center",
-                    fontWeight: 700,
-                    fontSize: '24px',
-                }}>
-                    {price}
-                </Typography>
-                <CardActions component="div">
-                    <Button variant="contained" sx={{ padding: '5px 30px'}}>Wish</Button>
-                </CardActions>
-            </Typography>
-        </CardContent>
-    </Card>)
+	const navigate = useNavigate();
+	const handleClick = (productId) => {
+		navigate({
+			pathname: `/products/${productId}`,
+		});
+	};
+	const {
+		data: { name, weight, currentPrice, imageUrls, itemNo },
+		onClick,
+	} = props;
+	const title = name.charAt(0).toUpperCase() + name.slice(1);
+	return (
+		<Grid container item md={4} sm={6} xs={12}>
+			<Card
+				sx={{
+					display: 'flex',
+					alignItems: 'center',
+					flexDirection: { xs: 'row', sm: 'column' },
+					maxWidth: { xs: 'auto', md: '288px' },
+					borderRadius: 5,
+					background: 'white',
+					boxSizing: 'border-box',
+					justifyContent: 'space-between',
+					padding: '0 18px',
+					cursor: 'pointer',
+				}}
+				onClick={() => handleClick(itemNo)}
+			>
+				<Grid item xs={6} sm={12}>
+					<CardMedia
+						component="img"
+						alt="not display"
+						sx={{
+							fit: 'cover',
+						}}
+						image={imageUrls}
+					/>
+				</Grid>
+				<Grid item width="100%" xs={6} sm={12}>
+					<CardContent sx={{ padding: 0, marginLeft: { xs: '15px', sm: 0 } }}>
+						<Typography
+							variant="h6"
+							component="p"
+							sx={{ fontSize: { xs: '18px', sm: '24px' }, fontWeight: 500 }}
+						>
+							{title} - {weight}g
+						</Typography>
+						<Divider
+							sx={{
+								color: 'black',
+								marginTop: '20px',
+								display: { xs: 'none', md: 'block' },
+							}}
+						/>
+						<Grid
+							container
+							justifyContent="space-between"
+							sx={{ marginTop: '6px' }}
+						>
+							<Typography
+								variant="body2"
+								component="p"
+								sx={{
+									alignSelf: 'center',
+									fontWeight: 700,
+									fontSize: { xs: '18px', sm: '24px' },
+								}}
+							>
+								{currentPrice}&#8372;
+							</Typography>
+							<CardActions component="div" sx={{ padding: 0 }}>
+								<CustomButton
+									title="Wish"
+									btnStyle={{
+										width: { xs: '95px', sm: '143px' },
+										height: { xs: '26px', sm: '40px' },
+									}}
+									textStyle={{
+										fontWeight: 500,
+										color: '#F2F2F2',
+										fontSize: { xs: '18px', sm: '24px' },
+									}}
+									onClick={(e) => {
+										e.stopPropagation();
+										onClick();
+									}}
+								/>
+							</CardActions>
+						</Grid>
+					</CardContent>
+				</Grid>
+			</Card>
+		</Grid>
+	);
 }
 
-ProductCard.propTypes = {
-    data: PropTypes.object,
-}
+// ProductCard.propTypes = {
+//     data: PropTypes.object,
+// }
