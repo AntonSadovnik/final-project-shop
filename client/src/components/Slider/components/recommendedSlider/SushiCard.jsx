@@ -6,7 +6,7 @@ import { useDispatch} from 'react-redux';
 import { addToCart } from '../../../../store/actions';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import "../../slider.scss";
+import "./recommend.scss";
 
 
 function SushiCard({item}){
@@ -23,8 +23,9 @@ function SushiCard({item}){
   display: "flex",
   flexDirection: "column",
   border:"none",
-  boxShadow:"none"
-
+  boxShadow:"none",
+  flexGrow: 1,
+  flexShrink:1,
   }}>
    <Typography variant="body2" component="div" color="text.secondary"  sx={{ background:'white', borderRadius:"50%",width:200, height:200,display:"flex",justifyContent:"center", alignItems:"center", alignSelf:"center" 
   }}>

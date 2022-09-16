@@ -7,6 +7,7 @@ import LoginReducer from './reducers/LoginReducer';
 import cityReducer from './reducers/cityReducer';
 import sortReducer from './reducers/sortReducer';
 
+
 export const reducers = combineReducers({
 	products: ProductsReducer,
 	cart: CartReducer,
