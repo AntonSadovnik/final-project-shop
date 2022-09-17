@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider';
+import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider'
 import GridItem from '../../components/Grid/Grid';
 import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
 import Socials from '../../components/Footer/components/socials/Socials';
