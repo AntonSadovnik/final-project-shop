@@ -12,8 +12,8 @@ import {
     SET_LOGOUT,
     SET_PRODUCTS,
     SET_CITY,
-    SET_SORT,
-    SET_CART, CREATE_CART_AFTER_LOGIN,
+    SET_CART, CREATE_CART_AFTER_LOGIN, SET_SORT,
+    RESET_CART
 } from './types/types';
 
 export const getProductsAction = (categories) => (dispatch) => {
@@ -109,3 +109,6 @@ export const setSort = (sort) => ({
 	payload: sort,
 });
 
+export const resetCart = () => ({
+    type: RESET_CART,
+});

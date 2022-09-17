@@ -14,7 +14,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchListItem from './components/SearchListItem';
 import SearchListEmpty from './components/SearchListEmpty';
-import LoadingElement from './components/LoadingElement';
+import Loader from '../Loader/Loader';
 
 export default function Search({ openSearch, setOpenSearch }) {
 	const theme = useTheme();
@@ -122,7 +122,7 @@ export default function Search({ openSearch, setOpenSearch }) {
 						}}
 					/>
 				</Box>
-				{loading && <LoadingElement />}
+				{loading && <Loader />}
 				{searchResult && (
 					<List sx={{ width: '100%' }}>
 						{searchResult.data.length ? (

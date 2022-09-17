@@ -114,7 +114,7 @@ export default function Cart(props) {
                                     </Grid>
                                     <Grid item xs={1}>
                                         <Typography variant="body2" component="span">
-                                            {i.cartQuantity * i.product.currentPrice}$
+                                            {i.cartQuantity * i.product.currentPrice}&#8372;
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={1}>
@@ -129,10 +129,10 @@ export default function Cart(props) {
                 </DialogContent>
                 <DialogActions>
                     <Typography variant="h6" component="span" color="black" sx={{mr: '2rem'}}>
-                        {sum()}$
+                        {sum()}&#8372;
                     </Typography>
                     <NavLink to="/ordering" style={{ textDecoration: 'inherit'}}>
-                        <CustomButton disabled={products.length === 0} colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT" onClick={handleClose}>
+                        <CustomButton disabled={products.length === 0} textStyle={{color: 'text.btnText'}} title="CHECKOUT" onClick={handleClose}>
                             Checkout
                         </CustomButton>
                     </NavLink>

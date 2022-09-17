@@ -80,8 +80,6 @@ function NoveltieSlider() {
 			{button==='right' ? <CustomButton onClick={() => setButton('right')} title="Popular" className='slider-btn' btnStyle={{background:"transparent", color: 'red', hover:'transparent', marginLeft:'20px', boxShadow: 'none', fontWeight:'700'}}/>:
 			<CustomButton onClick={() => setButton('right')} title="Popular" className='slider-btn' btnStyle={{background:"transparent", color: '#FF9846', hover:'transparent', marginLeft:'20px', boxShadow: 'none'}}/>
 			} 
-		
-			
 			</Typography>
 			<Stack
 				className="slider-wrapper"

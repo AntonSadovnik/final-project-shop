@@ -16,7 +16,6 @@ export const reducers = combineReducers({
 	isLoggedIn: LoginReducer,
 	city: cityReducer,
 	sort: sortReducer,
-
 });
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || {
