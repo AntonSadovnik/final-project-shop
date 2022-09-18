@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography, Pagination } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, getProductsAction } from '../../store/actions';
@@ -16,15 +16,14 @@ function Products() {
 	const currentParams = Object.fromEntries(searchParams);
 
 	useEffect(() => {
-		dispatch(
-			getProductsAction(
-				`categories=${currentParams.categories}${
-					currentParams.spicy ? '&spicy=true' : ''
-				}${currentParams.vegetarian ? '&vegetarian=true' : ''}${
-					currentParams.sort ? `&sort=${currentParams.sort}` : ''
-				}`
-			)
+		const response = getProductsAction(
+			`&perPage=6&startPage=1&categories=${currentParams.categories}${
+				currentParams.spicy ? '&spicy=true' : ''
+			}${currentParams.vegetarian ? '&vegetarian=true' : ''}${
+				currentParams.sort ? `&sort=${currentParams.sort}` : ''
+			}`
 		);
+		dispatch(response);
 	}, [
 		currentParams.categories,
 		currentParams.spicy,
@@ -90,11 +89,12 @@ function Products() {
 				</Grid>
 				<Grid container sx={{ rowGap: { xs: '10px', sm: '50px' } }}>
 					{components}
+					<Pagination />
 				</Grid>
 				<Grid sx={{ margin: { xs: '30px 0 20px', sm: '40px 0 0' } }}>
 					<SimpleAccordion />
 				</Grid>
-				<Grid sx={{ display: { xs: 'block', sm: 'none' } }} textAlign="center">
+				<Grid display={{ xs: 'block', sm: 'none' }} textAlign="center">
 					<Socials />
 				</Grid>
 			</Grid>
