@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider';
+import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider'
 import GridItem from '../../components/Grid/Grid';
 import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
 import Socials from '../../components/Footer/components/socials/Socials';
@@ -16,6 +16,7 @@ function Main() {
 				justifyContent="space-around"
 				flexDirection="column"
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
+				sx={{padding:'0 10px'}}
 			>
 				<Grid sx={{ padding: '30px 0 60px', width: '100%' }}>
 					<Grid sx={{ display: { md: 'block', xs: 'none' } }}>
