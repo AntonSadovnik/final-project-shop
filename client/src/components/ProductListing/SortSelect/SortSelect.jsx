@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 import './style.scss';
 
 export default function SortSelect() {
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams, setSearchParams] = useSearchParams({});
 	const [sortValue, setSortValue] = useState('default');
 	const currentParams = Object.fromEntries(searchParams);
 

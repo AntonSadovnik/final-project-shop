@@ -10,26 +10,20 @@ import Socials from '../../components/Footer/components/socials/Socials';
 import SortSelect from '../../components/ProductListing/SortSelect/SortSelect';
 import Filter from '../../components/Filter/Filter';
 
+const getQuery = (s) => s.includes('?') && s.substr(s.lastIndexOf('?') + 1);
+
 function Products() {
 	const dispatch = useDispatch();
-	const [searchParams] = useSearchParams();
+	const [searchParams] = useSearchParams({});
 	const currentParams = Object.fromEntries(searchParams);
 
 	useEffect(() => {
-		const response = getProductsAction(
-			`&perPage=6&startPage=1&categories=${currentParams.categories}${
-				currentParams.spicy ? '&spicy=true' : ''
-			}${currentParams.vegetarian ? '&vegetarian=true' : ''}${
-				currentParams.sort ? `&sort=${currentParams.sort}` : ''
-			}`
+		dispatch(
+			getProductsAction(
+				`perPage=6&startPage=1&${getQuery(window.location.href)}`
+			)
 		);
-		dispatch(response);
-	}, [
-		currentParams.categories,
-		currentParams.spicy,
-		currentParams.vegetarian,
-		currentParams.sort,
-	]);
+	}, [searchParams]);
 
 	const { products } = useSelector((state) => state.products);
 	const components = products.map((product) => (
@@ -44,7 +38,7 @@ function Products() {
 		currentParams.categories.charAt(0).toUpperCase() +
 		currentParams.categories.slice(1);
 	const categoryImgPath = menuItemsContent().find(
-		(el) => el.alt.toLocaleLowerCase() === categoryTitle.toLocaleLowerCase()
+		(el) => el.alt.toLowerCase() === categoryTitle.toLowerCase()
 	).src;
 
 	return (
