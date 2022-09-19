@@ -25,7 +25,7 @@ function OfferSlider({items}) {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 2500,
     autoplaySpeed: 2500,
     arrows: false,
