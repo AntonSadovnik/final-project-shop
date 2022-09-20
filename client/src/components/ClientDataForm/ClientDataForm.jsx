@@ -3,7 +3,6 @@
 /* eslint-env es6 */
 import * as React from 'react';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import {
@@ -17,6 +16,7 @@ import {
 	Box,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { validationSchema } from './validationSchema';
 import AddressForm from './AddressForm';
 import ChangeForm from './ChangeForm';
 
@@ -46,14 +46,6 @@ function ClientDataForm({ handleOrder, setOpenModal }) {
 		}
 	}, [customer]);
 
-	const validationschema = yup.object({
-		name: yup.string('Enter your name').required('Name is required'),
-		mobile: yup.string('Enter your mobile').required('mobile is required'),
-		street: yup.string('Enter your street').required('Street is required'),
-		house: yup.string('Enter your house').required('House is required'),
-		email: yup.string('Enter your email').required('Email is required'),
-	});
-
 	const formik = useFormik({
 		initialValues: {
 			name,
@@ -65,7 +57,7 @@ function ClientDataForm({ handleOrder, setOpenModal }) {
 			house: '',
 		},
 		enableReinitialize: true,
-		validationSchema: validationschema,
+		validationSchema,
 		onSubmit: (values) => {
 			const userData = {
 				...values,
@@ -149,11 +141,7 @@ function ClientDataForm({ handleOrder, setOpenModal }) {
 						InputLabelProps={{
 							shrink: true,
 						}}
-						inputProps={
-							{
-								// step: 1800,
-							}
-						}
+						inputProps={{}}
 					/>
 				</LocalizationProvider>
 			);
@@ -203,10 +191,18 @@ function ClientDataForm({ handleOrder, setOpenModal }) {
 								label="mobile"
 								type="mobile"
 								value={formik.values.mobile}
-								onChange={formik.handleChange}
+								onChange={(e) => {
+									if (
+										/^[0-9\b+]+$/.test(e.target.value) ||
+										e.target.value === ''
+									) {
+										formik.handleChange(e);
+									}
+								}}
 								onBlur={formik.onBlur}
 								error={formik.touched.mobile && Boolean(formik.errors.mobile)}
 								helperText={formik.touched.mobile && formik.errors.mobile}
+								inputProps={{ maxLength: 13 }}
 							/>
 						</Grid>
 						<Grid item xs={8}>
@@ -360,6 +356,12 @@ function ClientDataForm({ handleOrder, setOpenModal }) {
 								onBlur={formik.onBlur}
 								error={formik.touched.email && Boolean(formik.errors.email)}
 								helperText={formik.touched.email && formik.errors.email}
+								FormHelperTextProps={{
+									style: {
+										position: 'absolute',
+										bottom: -22,
+									},
+								}}
 							/>
 						</Grid>
 					</Grid>
