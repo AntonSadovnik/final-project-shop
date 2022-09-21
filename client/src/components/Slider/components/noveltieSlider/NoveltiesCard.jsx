@@ -21,7 +21,7 @@ theme.typography.h6 ={
 function NoveltiesCard({item}){
   const dispatch= useDispatch()
   const path = `/products/${item.itemNo}`
-return (<Card key={item.id} className="card" sx={{ padding: 0,
+return (<Card key={item.id} className="card" sx={{padding: 0,
   borderRadius: 5,
   background: 'white',
   overflow:'hidden',
@@ -29,7 +29,6 @@ return (<Card key={item.id} className="card" sx={{ padding: 0,
   maxHeight:'397px',
   minWidth:'235px',
   boxSizing:'content-box',
-  margin:"0 70px",
   flexGrow: 1,
   flexShrink:1,
   
@@ -74,7 +73,7 @@ return (<Card key={item.id} className="card" sx={{ padding: 0,
         </Typography>
         <Stack > 
       
-        <Typography variant="body2" component="div"  className='card-bottom' sx={{marginTop: "10px",position: "relative",
+        <Typography variant="body2" component="div" className='card-bottom' sx={{marginTop: "10px",position: "relative",
         display: 'flex', justifyContent: 'space-between',padding:0,}}>
         <Typography variant="body2" component="div"  className='price' sx={{alignSelf: "center",
         fontWeight: 700, marginRight:"-30px", lineHight:"30.05px"}}>
@@ -82,14 +81,13 @@ return (<Card key={item.id} className="card" sx={{ padding: 0,
         </Typography>
         
         <CardActions component="div">
-        <Button variant="contained" sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px'}} onClick={()=>dispatch(addToCart(item))}>Wish</Button>
+        <Button variant="contained" sx={{paddingLeft: 4, paddingRight:5, marginRight:'-10px',color:'white'}} onClick={()=>dispatch(addToCart(item))}>Want</Button>
         </CardActions>
         
         </Typography>
         </Stack>
         </CardContent>
     </Card>)
-
 
 }
 

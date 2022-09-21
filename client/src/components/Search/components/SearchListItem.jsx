@@ -40,12 +40,15 @@ export default function SearchListItem({ product, handleSearchReset }) {
 					/>
 				</ListItemAvatar>
 				<Box sx={{ flexGrow: 1 }}>
-					<Typography sx={{ fontSize: { xs: '14px', sm: '18px' }, fontWeight: 700 }}>
+					<Typography
+						sx={{ fontSize: { xs: '14px', sm: '18px' }, fontWeight: 700 }}
+					>
 						{product.name}
 					</Typography>
 					<Ingredients>
-						{product.ingredients && `ingredients: ${product.ingredients}`}
-						{product.contains && `set contains: ${product.contains}`}
+						{product.ingredients && `INGREDIENTS: ${product.ingredients}`}
+						{product.contains &&
+							`SET CONTAINS: ${product.contains.join(', ')}`}
 					</Ingredients>
 				</Box>
 				<Typography

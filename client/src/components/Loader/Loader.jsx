@@ -2,7 +2,7 @@ import React from 'react';
 import { CircularProgress, } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
-function LoadingElement() {
+function Loader() {
 	return (
 		<div
 			style={{
@@ -23,4 +23,4 @@ function LoadingElement() {
 	);
 }
 
-export default LoadingElement;
+export default Loader;

@@ -1,9 +1,10 @@
 import {
-  DECREASE_QUANTITY_TO_CART,
-  INCREASE_QUANTITY_TO_CART,
-  REMOVE_FROM_CART,
-  ADD_TO_CART,
-  SET_CART
+    DECREASE_QUANTITY_TO_CART,
+    INCREASE_QUANTITY_TO_CART,
+    REMOVE_FROM_CART,
+    ADD_TO_CART,
+    SET_CART,
+    RESET_CART
 } from "../types/types";
 
 const initialState = {cart: {}};
@@ -36,10 +37,14 @@ const cartReducer = (state = initialState, action = {}) => {
       return {...state, cart: action.payload};
     }
 
-    default: {
-      return state;
+        case RESET_CART: {
+            return {...state, cart: {products: []}};
+        }
+
+        default: {
+            return state;
+        }
     }
-  }
 };
 
 export default cartReducer;

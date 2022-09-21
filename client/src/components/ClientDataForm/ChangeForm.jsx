@@ -25,7 +25,7 @@ function ChangeForm({ formikData }) {
 						id="summ"
 						name="summ"
 						label="Summ"
-						type="summ"
+						type="number"
 						value={formikData.values.summ}
 						onChange={formikData.handleChange}
 						onBlur={formikData.onBlur}

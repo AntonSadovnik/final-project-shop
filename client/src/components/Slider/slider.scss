@@ -1,18 +1,17 @@
 .slick-slide > div{
   display:flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
  .slick-slider {
   width:950px; 
-  font-family: 'Nunito Sans','sans-serif'  
+  font-family: 'Nunito Sans','sans-serif';
 } 
-
 @media (min-width: 300px) and (max-width: 1200px) {
   .slick-slider{
-    width:98%; 
+    width:100%; 
   }; 
   .slick-wrapper{
-    width:83.5vw; 
+    width:88vw; 
   }; 
 }
 .slider-btn:hover{
