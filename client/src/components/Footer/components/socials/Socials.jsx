@@ -1,32 +1,38 @@
 import React from 'react';
-import { Typography, Input, List, ListItemIcon, Grid } from '@mui/material';
-import TelegramIcon from '@mui/icons-material/Telegram';
+import { Typography, List, ListItemIcon, Grid } from '@mui/material';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import './style.scss';
 
 function Socials() {
 	return (
 		<Grid container sx={{ justifyContent: { xs: 'center', sm: 'flex-start' } }}>
 			<Grid item sx={{ marginLeft: { lg: '40px', sm: '20px' } }}>
-				<Typography fontWeight="500">Enter your number</Typography>
-				<Input sx={{ margin: '10px 0 20px' }} />
 				<Typography
 					fontSize="18px"
 					color={(theme) => theme.palette.text.secondary}
+					textAlign="center"
 				>
-					Choose a convenient messenger for communication
+					You can follow us on:
 				</Typography>
-				<List className="footer__socials-wrap" disablePadding>
-					<ListItemIcon>
-						<WhatsAppIcon sx={{ color: '#1BD741' }} />
-					</ListItemIcon>
-					<ListItemIcon>
-						<TelegramIcon sx={{ color: '#61A8DE' }} />
-					</ListItemIcon>
-					<ListItemIcon>
-						<InstagramIcon sx={{ color: '#d85ed8' }} />
-					</ListItemIcon>
+				<List
+					disablePadding
+				>
+					<a
+						href="https://uk-ua.facebook.com/"
+						target="_blank"
+						rel="noreferrer"
+						style={{ textDecoration: 'none'}}
+					>
+						<ListItemIcon>
+							<FacebookIcon sx={{ color: '#61A8DE'}} fontSize='large'/>
+						</ListItemIcon>
+					</a>
+
+					<a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+						<ListItemIcon>
+							<InstagramIcon sx={{ color: '#d85ed8' }} fontSize='large'/>
+						</ListItemIcon>
+					</a>
 				</List>
 			</Grid>
 		</Grid>

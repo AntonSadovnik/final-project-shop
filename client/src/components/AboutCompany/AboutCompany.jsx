@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Box, Typography, Button, Container } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import style from './AboutCompany.module.scss';
+
 
 export default function SimpleAccordion() {
 	const [showMore, setShowMore] = useState(false);
@@ -58,7 +58,7 @@ export default function SimpleAccordion() {
 						fish, delivered to your chosen address, can also be a decoration for
 						a family celebration or a business lunch.
 					</Typography>
-					<div className={style.btn}>
+					<Box sx={{display: 'flex', justifyContent: 'center'}}>
 						<Button
 							onClick={() => {
 								setShowMore(!showMore);
@@ -69,10 +69,10 @@ export default function SimpleAccordion() {
 							{' '}
 							show more <ExpandMoreIcon />
 						</Button>
-					</div>
+					</Box>
 				</Box>
 			) : (
-				<div className={style.contentWrapper}>
+				<div>
 					<Typography
 						variant="h6"
 						component="h2"
@@ -161,7 +161,7 @@ export default function SimpleAccordion() {
 						delivery in {city}, we offer delicious and healthy dishes at a bargain
 						price.
 					</Typography>
-					<div className={style.btn}>
+					<Box sx={{display: 'flex', justifyContent: 'center'}}>
 						<Button
 							onClick={() => {
 								setShowMore(!showMore);
@@ -171,7 +171,7 @@ export default function SimpleAccordion() {
 							{' '}
 							show less <ExpandLessIcon />
 						</Button>
-					</div>
+					</Box>
 				</div>
 			)}
 		</Container>

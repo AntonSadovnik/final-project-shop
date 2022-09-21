@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
@@ -14,7 +14,7 @@ function FooterMobile() {
 	const [loginModal, setLoginModal] = React.useState(false);
 	const [loginButton, setLoginButton] = React.useState(null);
 	const dispatch = useDispatch();
-		const isLoggedIn = useSelector((state) => state.isLoggedIn);
+	const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
 	const handleLoginOpen = () => {
 		setLoginModal(true);
@@ -97,7 +97,15 @@ function FooterMobile() {
 			/>
 			<Grid
 				container
-				sx={{ padding: '11px 0', borderTop: '1px solid #A4ACAD' }}
+				sx={{
+					padding: '11px 0',
+					borderTop: '1px solid #A4ACAD',
+					position: 'fixed',
+					bottom: '0px',
+					backgroundColor: 'white',
+					zIndex: 1
+
+				}}
 				justifyContent="space-evenly"
 			>
 				<Grid item>
@@ -158,9 +166,7 @@ function FooterMobile() {
 						</Button>
 					</NavLink>
 				</Grid>
-				<Grid item>
-						{loginButton}
-				</Grid>
+				<Grid item>{loginButton}</Grid>
 			</Grid>
 		</footer>
 	);
