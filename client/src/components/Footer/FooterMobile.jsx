@@ -103,6 +103,8 @@ function FooterMobile() {
 					position: 'fixed',
 					bottom: '0px',
 					backgroundColor: 'white',
+					zIndex: 1
+
 				}}
 				justifyContent="space-evenly"
 			>

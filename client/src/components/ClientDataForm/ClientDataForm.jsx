@@ -157,8 +157,13 @@ function ClientDataForm({ handleOrder, setOpenModal }) {
 		);
 
 	return (
-		<Box>
-			<form className="client-data-form" onSubmit={formik.handleSubmit}>
+		<Box
+			sx={{
+				maxWidth: '760px',
+				padding: { xs: '20px 20px 90px 20px', sm: '20px' },
+			}}
+		>
+			<form onSubmit={formik.handleSubmit}>
 				<Typography fontSize={18} marginBottom="10px">
 					Your are now in {city}
 				</Typography>
@@ -167,7 +172,14 @@ function ClientDataForm({ handleOrder, setOpenModal }) {
 						? `Your total order is ${calculateOrder()} UAH`
 						: 'The cart is empty'}
 				</Typography>
-				<Box className="client-data-form__container">
+				<Box
+					sx={{
+						padding: '30px 0px',
+						gridGap: '20px',
+						display: 'flex',
+						flexDirection: { xs: 'column', sm: 'row' },
+					}}
+				>
 					<Grid spacing={1} container columns={8}>
 						<Grid sx={{ height: 70 }} item xs={4}>
 							<TextField
