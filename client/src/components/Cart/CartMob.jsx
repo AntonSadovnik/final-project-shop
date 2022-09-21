@@ -33,14 +33,18 @@ export default function CartMob() {
         dispatch(decreaseQuantity(itemNo))
     }
 
+    console.log(products.length)
+
     return (
-        <Box sx={{ bgcolor: "backgroungColor.main",paddingTop: '10px' }}>
+        <Box sx={{ padding: '10px 0px 90px' }}>
             <Box sx={{display:"flex",justifyContent:"center"}}>
-                <Typography variant='span' color='text.primary' fontSize='24px' fontWeight='500' sx={{mb: '10px'}}>Your basket</Typography>
+                {products.length === 0 && <NavLink to="/" noWrap='true' style={{  textAlign: 'center', textDecoration: 'inherit'}} > <Typography  variant='span' color='text.primary' fontSize='24px' fontWeight='500' sx={{mb: '10px'}}>Your basket is empty let&apos;s make an order? </Typography></NavLink> }
+                {products.length !== 0&&<Typography variant='span' color='text.primary' fontSize='24px' fontWeight='500' sx={{mb: '10px'}}>Your basket</Typography>}
+
             </Box>
             {
-                products.map(item => <Card key = {item.product.itemNo} sx={{margin: '10px', display:"flex"}}>
-                <img style={{maxWidth: '90px', marginRight: "14px",height: '62px'
+                products.map(item => <Card key = {item.product.itemNo} sx={{margin: '10px', display:"flex", bgcolor: "backgroungColor.main"}}>
+                <img style={{width: '76px', marginRight: "14px",height: '62px'
                             }} src={item.product.imageUrls[0]} alt="susi"/>
                 <Box>
                 <Typography id="modal-modal-description" sx={{ml: 1, fontSize: "18px"}}>{item.product.name}</Typography>
@@ -51,22 +55,23 @@ export default function CartMob() {
                 <IconButton aria-label="delete" onClick={()=>incrQuantity(item.product.itemNo)}>
                     <AddCircleIcon color='secondary'  fontSize="small"/>
                 </IconButton>
-                <Typography variant="body2" component="span" marginX='.1rem' fontSize='18px' fontWeight='700'>{item.product.currentPrice * item.cartQuantity}$</Typography>
+                <Typography variant="body2" component="span" marginX='.1rem' fontSize='18px' fontWeight='700'>{item.product.currentPrice * item.cartQuantity}&#8372;</Typography>
                 </Box>
             </Card>)}
-            <Card sx={{margin: '10px'}}>
+            {products.length !== 0 &&
+            <Card sx={{bgcolor: "backgroungColor.main"}}>
                 <Box sx={{display:"flex",justifyContent:"center"}}>
                     <Typography variant='span' color='text.hoverText' fontSize='24px' fontWeight='500' sx={{mb: '10px'}}>Pay for oder</Typography>
                     </Box>
-                <Box  sx={{mb: '12px',paddingX:'40px', fontSize: "18px", borderBottom:' .5px #A4ACAD solid', display:'flex', justifyContent: 'space-between' }}>
+                <Box  sx={{paddingX:'40px', fontSize: "18px", borderBottom:' .5px #A4ACAD solid', display:'flex', justifyContent: 'space-between' }}>
                     <Typography fontSize='18px' fontWeight='400'>
-                        {summQuantity}
+                        {`${summQuantity} items`}
                     </Typography>
                     <Typography fontSize='18px' fontWeight='400'>
-                        {summForPay} pay for
+                        {summForPay} &#8372;
                     </Typography>
                 </Box>
-                <Box  sx={{mb: '12px',paddingX:'40px', fontSize: "18px", borderBottom:' .5px #A4ACAD solid', display:'flex', justifyContent: 'space-between' }}>
+                <Box  sx={{paddingX:'40px', fontSize: "18px", borderBottom:' .5px #A4ACAD solid', display:'flex', justifyContent: 'space-between' }}>
                     <Typography fontSize='18px' fontWeight='400'>
                         Delivery
                     </Typography>
@@ -74,17 +79,19 @@ export default function CartMob() {
                         Free
                     </Typography>
                 </Box>
-            </Card>
-            <Box sx={{display:"flex", justifyContent:"center"}}>
-                <NavLink to="/ordering">
+            </Card>}
+            {products.length !== 0 &&
+            <Box sx={{display:"flex", justifyContent:"center", marginTop:'10px'}}>
+                <NavLink to="/ordering" style={{ textDecoration: 'inherit'}}>
                     <Button variant="contained" >
                         <Typography variant='subtitle2' color='text.btnText'>
-                        оформить заказ
-                    </Typography>
+                            Checkout
+                        </Typography>
                     </Button>
                 </NavLink>
 
-            </Box>
+            </Box>}
+
         </Box>
     );
 }

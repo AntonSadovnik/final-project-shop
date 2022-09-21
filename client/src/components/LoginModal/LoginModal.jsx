@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import { IconButton, Modal } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import LoginForm from './LoginForm';
-// import RegistrationForm from './RegistrationForm';
 
 export default function LoginModal(props) {
 	const { loginModal, setLoginModal } = props;

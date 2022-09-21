@@ -1,10 +1,22 @@
-import {DECREASE_QUANTITY_TO_CART, INCREASE_QUANTITY_TO_CART, REMOVE_FROM_CART, ADD_TO_CART} from "../types/types";
+import {
+    DECREASE_QUANTITY_TO_CART,
+    INCREASE_QUANTITY_TO_CART,
+    REMOVE_FROM_CART,
+    ADD_TO_CART,
+    SET_CART,
+    RESET_CART
+} from "../types/types";
 
 const initialState = {cart: {}};
 
 
 const cartReducer = (state = initialState, action = {}) => {
     switch (action.type) {
+
+        case SET_CART: {
+            return {...state, cart: action.payload};
+        }
+
         case ADD_TO_CART: {
             return {
                 ...state,
@@ -23,6 +35,10 @@ const cartReducer = (state = initialState, action = {}) => {
 
         case REMOVE_FROM_CART: {
             return {...state, cart: action.payload};
+        }
+
+        case RESET_CART: {
+            return {...state, cart: {products: []}};
         }
 
         default: {

@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { NavLink } from 'react-router-dom';
 import { Card, Button, CardContent, CardMedia, Typography, CardActions, Stack} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { useDispatch} from 'react-redux';
+import { addToCart } from '../../../../store/actions';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -18,6 +20,7 @@ theme.typography.h6 ={
 }
 
 function OfferCard({item}){
+  const dispatch= useDispatch()
   const path = `/products/${item.itemNo}`
 return (<Card key={item.id} className="card blockquote" sx={{ display:'flex',
   padding: '10px 30px',
@@ -87,7 +90,7 @@ return (<Card key={item.id} className="card blockquote" sx={{ display:'flex',
         
         
         <CardActions component="div">
-        <Button variant="contained" sx={{padding:'10px 70px', marginBottom:'-50px', }}>Wish</Button>
+        <Button variant="contained" sx={{padding:'10px 70px', marginBottom:'-50px',color:'white' }} onClick={()=>dispatch(addToCart(item))}>Want</Button>
         </CardActions>
         
         </Typography>

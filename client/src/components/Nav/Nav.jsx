@@ -48,7 +48,7 @@ function Nav() {
 				</NavLink>
 				<Divider />
 			</Box>
-			<MenuList>
+			<MenuList className="menu" sx={{display:'flex', flexDirection:'column', alignItems:'center'}}>
 				{menuItemsContent().map((e) => {
 					const { src, alt } = e;
 					return (

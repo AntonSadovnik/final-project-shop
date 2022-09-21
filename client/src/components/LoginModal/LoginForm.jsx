@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useDispatch} from "react-redux";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Box from '@mui/material/Box';
@@ -6,10 +7,12 @@ import { Button, TextField, Typography } from '@mui/material';
 // eslint-disable-next-line import/no-cycle
 import RegistrationForm from './RegistrationForm';
 import { login } from '../../api/Api';
+import {createCartAfterLogin} from "../../store/actions";
 
 
 export default function LoginForm({ setForm, setLoginModal }) {
 	const [err, setErr] = React.useState(null);
+	const dispatch = useDispatch()
     const validationschema = yup.object({
 			loginOrEmail: yup
 				.string('Enter your email or login')
@@ -32,6 +35,8 @@ export default function LoginForm({ setForm, setLoginModal }) {
 					.then((response) => {
 						localStorage.setItem('token', response.data.token);
 						setLoginModal(false);
+						dispatch(createCartAfterLogin(response.data.token))
+
 					})
 				.catch((error) =>{
 					setErr(error.response.data[Object.keys(error.response.data)[0]]);}

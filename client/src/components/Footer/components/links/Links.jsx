@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 function Links() {
 	return (
 		<Grid container>
-			<List className="footer__links-wrap" disablePadding>
+			<List className="footer__links-wrap" disablePadding sx={{marginLeft:'10px'}}>
 				<Typography component="li">
 					<NavLink to="/about">About company</NavLink>
 				</Typography>

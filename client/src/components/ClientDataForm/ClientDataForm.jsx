@@ -3,7 +3,6 @@
 /* eslint-env es6 */
 import * as React from 'react';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import {
@@ -17,11 +16,12 @@ import {
 	Box,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { validationSchema } from './validationSchema';
 import AddressForm from './AddressForm';
 import ChangeForm from './ChangeForm';
 
-function ClientDataForm() {
-	const [counter, setCounter] = React.useState(1);
+function ClientDataForm({ handleOrder, setOpenModal }) {
+	const [sauceAndSticksNum, setSauceAndSticksNum] = React.useState(1);
 	const [name, setName] = React.useState('');
 	const [email, setEmail] = React.useState('');
 	const [payment, setPayment] = React.useState('cash');
@@ -35,8 +35,9 @@ function ClientDataForm() {
 		/>
 	);
 	const customer = useSelector((state) => state.customer);
-	const city = useSelector((store) => store.city);
-	const cartProducts = useSelector((store) => store.cart.cart.products);
+	const city = useSelector((state) => state.city);
+	const cartProducts = useSelector((state) => state.cart.cart.products);
+	const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
 	React.useEffect(() => {
 		if (customer) {
@@ -45,17 +46,10 @@ function ClientDataForm() {
 		}
 	}, [customer]);
 
-	const validationschema = yup.object({
-		name: yup.string('Enter your name').required('Name is required'),
-		phone: yup.string('Enter your phone').required('Phone is required'),
-		street: yup.string('Enter your street').required('Street is required'),
-		house: yup.string('Enter your house').required('House is required'),
-	});
-
 	const formik = useFormik({
 		initialValues: {
 			name,
-			phone: '',
+			mobile: '',
 			comment: '',
 			promocode: '',
 			email,
@@ -63,20 +57,35 @@ function ClientDataForm() {
 			house: '',
 		},
 		enableReinitialize: true,
-		validationSchema: validationschema,
+		validationSchema,
 		onSubmit: (values) => {
-			console.log(values);
+			const userData = {
+				...values,
+				payment,
+				delivery,
+				sauceAndSticksNum,
+				time,
+			};
+			const resetForm = () => {
+				formik.resetForm();
+			};
+			if (isLoggedIn) {
+				handleOrder(userData, cartProducts, resetForm, customer._id);
+			} else {
+				handleOrder(userData, cartProducts, resetForm);
+			}
+			setOpenModal(true);
 		},
 	});
 
 	const handleIncrement = () => {
-		setCounter(counter + 1);
+		setSauceAndSticksNum(sauceAndSticksNum + 1);
 	};
 
 	const handleDecrement = () => {
-		if (counter > 0) setCounter(counter - 1);
+		if (sauceAndSticksNum > 0) setSauceAndSticksNum(sauceAndSticksNum - 1);
 		else {
-			setCounter(0);
+			setSauceAndSticksNum(0);
 		}
 	};
 	const [change, setChange] = React.useState(
@@ -132,11 +141,7 @@ function ClientDataForm() {
 						InputLabelProps={{
 							shrink: true,
 						}}
-						inputProps={
-							{
-								// step: 1800,
-							}
-						}
+						inputProps={{}}
 					/>
 				</LocalizationProvider>
 			);
@@ -152,15 +157,29 @@ function ClientDataForm() {
 		);
 
 	return (
-		<Box>
-			<form className="client-data-form" onSubmit={formik.handleSubmit}>
+		<Box
+			sx={{
+				maxWidth: '760px',
+				padding: { xs: '20px 20px 90px 20px', sm: '20px' },
+			}}
+		>
+			<form onSubmit={formik.handleSubmit}>
 				<Typography fontSize={18} marginBottom="10px">
 					Your are now in {city}
 				</Typography>
-				<Typography fontSize={18}>
-					Your total order is {calculateOrder()} UAH
+				<Typography fontSize={18} color="red">
+					{cartProducts.length
+						? `Your total order is ${calculateOrder()} UAH`
+						: 'The cart is empty'}
 				</Typography>
-				<Box className="client-data-form__container">
+				<Box
+					sx={{
+						padding: '30px 0px',
+						gridGap: '20px',
+						display: 'flex',
+						flexDirection: { xs: 'column', sm: 'row' },
+					}}
+				>
 					<Grid spacing={1} container columns={8}>
 						<Grid sx={{ height: 70 }} item xs={4}>
 							<TextField
@@ -179,15 +198,23 @@ function ClientDataForm() {
 							<TextField
 								sx={{ height: 70 }}
 								fullWidth
-								id="phone"
-								name="phone"
-								label="Phone"
-								type="phone"
-								value={formik.values.phone}
-								onChange={formik.handleChange}
+								id="mobile"
+								name="mobile"
+								label="mobile"
+								type="mobile"
+								value={formik.values.mobile}
+								onChange={(e) => {
+									if (
+										/^[0-9\b+]+$/.test(e.target.value) ||
+										e.target.value === ''
+									) {
+										formik.handleChange(e);
+									}
+								}}
 								onBlur={formik.onBlur}
-								error={formik.touched.phone && Boolean(formik.errors.phone)}
-								helperText={formik.touched.phone && formik.errors.phone}
+								error={formik.touched.mobile && Boolean(formik.errors.mobile)}
+								helperText={formik.touched.mobile && formik.errors.mobile}
+								inputProps={{ maxLength: 13 }}
 							/>
 						</Grid>
 						<Grid item xs={8}>
@@ -254,7 +281,7 @@ function ClientDataForm() {
 										aria-label="small outlined button group"
 									>
 										<Button onClick={handleDecrement}>-</Button>
-										<Button disabled>{counter}</Button>
+										<Button disabled>{sauceAndSticksNum}</Button>
 										<Button onClick={handleIncrement}>+</Button>
 									</ButtonGroup>
 								</Grid>
@@ -341,12 +368,24 @@ function ClientDataForm() {
 								onBlur={formik.onBlur}
 								error={formik.touched.email && Boolean(formik.errors.email)}
 								helperText={formik.touched.email && formik.errors.email}
+								FormHelperTextProps={{
+									style: {
+										position: 'absolute',
+										bottom: -22,
+									},
+								}}
 							/>
 						</Grid>
 					</Grid>
 				</Box>
 
-				<Button color="primary" variant="contained" fullWidth type="submit">
+				<Button
+					color="primary"
+					variant="contained"
+					fullWidth
+					type="submit"
+					disabled={!cartProducts.length}
+				>
 					Submit
 				</Button>
 			</form>

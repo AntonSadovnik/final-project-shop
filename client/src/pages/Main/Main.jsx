@@ -1,21 +1,13 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import Grid from '@mui/material/Grid';
-import { getProductsRequest } from '../../store/actions';
-
 import NoveltieSlider from '../../components/Slider/components/noveltieSlider/Slider';
-import OfferSlider from '../../components/Slider/components/offerSlider/OfferSlider'
 import GridItem from '../../components/Grid/Grid';
 import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
 import Socials from '../../components/Footer/components/socials/Socials';
 
+import OfferSliderSkeleton from '../../components/Skeleton/Skeleton';
+
 function Main() {
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(getProductsRequest());
-	}, []);
-
 	return (
 		<main>
 			<Grid
@@ -23,10 +15,16 @@ function Main() {
 				justifyContent="space-around"
 				flexDirection="column"
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
+				sx={{ padding: '0 10px' }}
 			>
-				<Grid sx={{ padding: '30px 0 60px', width: '100%' }}>
+				<Grid
+					sx={{
+						padding: { xs: '30px 5px 90px', sm: '30px 5px 30px' },
+						width: '100%',
+					}}
+				>
 					<Grid sx={{ display: { md: 'block', xs: 'none' } }}>
-						<OfferSlider/>
+						<OfferSliderSkeleton />
 					</Grid>
 					<Grid container justifyContent="center">
 						<GridItem />
@@ -43,7 +41,7 @@ function Main() {
 						justifyContent="center"
 						sx={{ marginTop: { sm: '50px', xs: '20px' } }}
 					>
-						<Grid item sm={10} xs={11}>
+						<Grid item sm={10}>
 							<SimpleAccordion />
 						</Grid>
 					</Grid>

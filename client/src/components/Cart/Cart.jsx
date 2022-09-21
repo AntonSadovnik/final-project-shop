@@ -69,7 +69,6 @@ export default function Cart(props) {
 
     return (
         <div>
-            {/* <Button onClick={handleClickOpen('paper')}>Open modal</Button> */}
             <Dialog open={open} onClose={handleClose} scroll={scroll} aria-labelledby="scroll-dialog-title"
                     aria-describedby="scroll-dialog-description">
                 <Box>
@@ -115,7 +114,7 @@ export default function Cart(props) {
                                     </Grid>
                                     <Grid item xs={1}>
                                         <Typography variant="body2" component="span">
-                                            {i.cartQuantity * i.product.currentPrice}$
+                                            {i.cartQuantity * i.product.currentPrice}&#8372;
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={1}>
@@ -130,10 +129,10 @@ export default function Cart(props) {
                 </DialogContent>
                 <DialogActions>
                     <Typography variant="h6" component="span" color="black" sx={{mr: '2rem'}}>
-                        {sum()}$
+                        {sum()}&#8372;
                     </Typography>
-                    <NavLink to="/ordering">
-                        <CustomButton disabled={products.length === 0} colorTitle="text.btnText" colorButton="secondary" title="CHECKOUT" onClick={handleClose}>
+                    <NavLink to="/ordering" style={{ textDecoration: 'inherit'}}>
+                        <CustomButton disabled={products.length === 0} textStyle={{color: 'text.btnText'}} title="CHECKOUT" onClick={handleClose}>
                             Checkout
                         </CustomButton>
                     </NavLink>

@@ -64,7 +64,7 @@ function Products() {
 		<main>
 			<Grid
 				sx={{
-					padding: { xs: '15px 0 30px', lg: '30px 111px 60px' },
+					padding: { xs: '15px 15px 90px', sm: '15px 15px 30px', lg: '30px 111px 60px' },
 					backgroundColor: '#F2F2F2',
 				}}
 			>
@@ -103,7 +103,7 @@ function Products() {
 				<Grid container sx={{ rowGap: { xs: '10px', sm: '50px' } }}>
 					{components}
 				</Grid>
-				<Grid sx={{ margin: { xs: '60px 0 20px', sm: '174px 0 0' } }}>
+				<Grid sx={{ margin: { xs: '30px 0 20px', sm: '40px 0 0' } }}>
 					<SimpleAccordion />
 				</Grid>
 				<Grid sx={{ display: { xs: 'block', sm: 'none' } }} textAlign="center">

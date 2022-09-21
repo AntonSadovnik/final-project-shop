@@ -1,8 +1,8 @@
 import React from 'react';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
-function LoadingElement() {
+function Loader() {
 	return (
 		<div
 			style={{
@@ -11,15 +11,16 @@ function LoadingElement() {
 				paddingTop: 10,
 			}}
 		>
-			<LoadingButton
+		 	<LoadingButton
 				loading
 				variant="text"
 				loadingIndicator={
 					<CircularProgress size={30} style={{ color: '#ff9846' }} />
 				}
-			/>
+			/> 
+		
 		</div>
 	);
 }
 
-export default LoadingElement;
+export default Loader;

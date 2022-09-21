@@ -11,7 +11,7 @@ import HeaderMobile from '../components/Header/Header-mobile';
 import FooterMobile from '../components/Footer/FooterMobile';
 import Ordering from '../pages/Ordering/Ordering';
 import Shipping from '../pages/Shipping/Shipping';
-import Reviews from '../pages/Rewiews/Reviews';
+import Reviews from '../pages/Reviews/Reviews';
 import Product from '../pages/Product/Product';
 import Return from '../pages/Return/Return';
 import Products from '../pages/Products/Products';
@@ -55,7 +55,7 @@ function AppRouter(){
       </Box>
     </Grid>
   </Grid>
-    
+
 )
 }
 
