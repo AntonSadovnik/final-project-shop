@@ -13,8 +13,26 @@ import LoginModal from '../LoginModal/LoginModal';
 function FooterMobile() {
 	const [loginModal, setLoginModal] = React.useState(false);
 	const [loginButton, setLoginButton] = React.useState(null);
+	const [scroll,setScroll] = React.useState(0);
+
+	const handleScroll =()=>{
+
+		setScroll(window.scrollY)
+		setScroll(0)
+	}
+
+	const handleUpButton = () => {
+    window.scrollTo({top:scroll,
+		behavior: "smooth"});
+  };
+
+	useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 	const dispatch = useDispatch();
-		const isLoggedIn = useSelector((state) => state.isLoggedIn);
+	const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
 	const handleLoginOpen = () => {
 		setLoginModal(true);
@@ -109,7 +127,8 @@ function FooterMobile() {
 					>
 						<Button
 							disableRipple
-							sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+							onClick={handleUpButton}
+							sx={{ padding: '0', minWidth: 0, flexDirection: 'column', transition: '.2s all ease-in-out' }}
 						>
 							<RestaurantMenuIcon
 								color="hoverColor"
