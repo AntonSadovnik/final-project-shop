@@ -13,12 +13,20 @@ import Filter from '../../components/Filter/Filter';
 const getQuery = (s) => s.includes('?') && s.substr(s.lastIndexOf('?') + 1);
 
 function Products() {
+	const perPageProducts = 6;
 	const dispatch = useDispatch();
 	const [searchParams, setSearchParams] = useSearchParams({});
 	const currentParams = Object.fromEntries(searchParams);
+	const productsQuantity = useSelector(
+		(state) => state.products.productsQuantity
+	);
 
 	useEffect(() => {
-		dispatch(getProductsAction(`perPage=6&${getQuery(window.location.href)}`));
+		dispatch(
+			getProductsAction(
+				`perPage=${perPageProducts}&${getQuery(window.location.href)}`
+			)
+		);
 	}, [searchParams]);
 
 	const { products } = useSelector((state) => state.products);
@@ -93,7 +101,7 @@ function Products() {
 				{components.length ? (
 					<Grid>
 						<Pagination
-							count={2}
+							count={Math.ceil(productsQuantity / perPageProducts)}
 							sx={{ paddingTop: 2, ul: { justifyContent: 'center' } }}
 							onChange={(_, value) => {
 								setSearchParams({ ...currentParams, startPage: value });

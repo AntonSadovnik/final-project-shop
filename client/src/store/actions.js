@@ -18,9 +18,13 @@ import {
 } from './types/types';
 
 export const getProductsAction = (categories) => (dispatch) => {
-	getProducts(categories).then((products) => {
-		dispatch({ type: SET_PRODUCTS, payload: products.data });
-	});
+	try {
+		getProducts(categories).then((products) => {
+			dispatch({ type: SET_PRODUCTS, payload: products.data });
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const getProductsRequest = () => async (dispatch) => {
