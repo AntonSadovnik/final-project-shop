@@ -14,15 +14,11 @@ const getQuery = (s) => s.includes('?') && s.substr(s.lastIndexOf('?') + 1);
 
 function Products() {
 	const dispatch = useDispatch();
-	const [searchParams] = useSearchParams({});
+	const [searchParams, setSearchParams] = useSearchParams({});
 	const currentParams = Object.fromEntries(searchParams);
 
 	useEffect(() => {
-		dispatch(
-			getProductsAction(
-				`perPage=6&startPage=1&${getQuery(window.location.href)}`
-			)
-		);
+		dispatch(getProductsAction(`perPage=6&${getQuery(window.location.href)}`));
 	}, [searchParams]);
 
 	const { products } = useSelector((state) => state.products);
@@ -33,7 +29,6 @@ function Products() {
 			onClick={() => dispatch(addToCart(product))}
 		/>
 	));
-
 	const categoryTitle =
 		currentParams.categories.charAt(0).toUpperCase() +
 		currentParams.categories.slice(1);
@@ -82,9 +77,31 @@ function Products() {
 					</Grid>
 				</Grid>
 				<Grid container sx={{ rowGap: { xs: '10px', sm: '50px' } }}>
-					{components}
-					<Pagination />
+					{components.length ? (
+						components
+					) : (
+						<Typography
+							component="p"
+							variant="h4"
+							textAlign="center"
+							width="100%"
+						>
+							No results
+						</Typography>
+					)}
 				</Grid>
+				{components.length ? (
+					<Grid>
+						<Pagination
+							count={2}
+							sx={{ paddingTop: 2, ul: { justifyContent: 'center' } }}
+							onChange={(_, value) => {
+								setSearchParams({ ...currentParams, startPage: value });
+								window.scrollTo(0, 0);
+							}}
+						/>
+					</Grid>
+				) : null}
 				<Grid sx={{ margin: { xs: '30px 0 20px', sm: '40px 0 0' } }}>
 					<SimpleAccordion />
 				</Grid>

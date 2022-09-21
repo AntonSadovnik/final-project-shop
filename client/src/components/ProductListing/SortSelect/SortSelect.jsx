@@ -5,19 +5,24 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import './style.scss';
 
 export default function SortSelect() {
 	const [searchParams, setSearchParams] = useSearchParams({});
 	const [sortValue, setSortValue] = useState('default');
-	const currentParams = Object.fromEntries(searchParams);
+	let currentParams = Object.fromEntries(searchParams);
 
 	useEffect(() => {
 		setSortValue('default');
 	}, [currentParams.categories]);
 
 	useEffect(() => {
-		setSearchParams({ ...currentParams, sort: `${sortValue}` });
+		if (sortValue === 'default') {
+			currentParams = Object.fromEntries(searchParams);
+			delete currentParams.sort;
+			setSearchParams({ ...currentParams });
+		} else {
+			setSearchParams({ ...currentParams, sort: sortValue });
+		}
 	}, [sortValue]);
 
 	return (
@@ -25,7 +30,14 @@ export default function SortSelect() {
 			<FormControl fullWidth variant="standard">
 				<InputLabel id="select-label">Sorting</InputLabel>
 				<Select
-					className="products__sorting"
+					sx={{
+						'&::before': {
+							borderBottom: '0.5px solid #a4acad',
+						},
+						'&:hover::before': {
+							borderBottom: '0.5px solid #a4acad !important',
+						},
+					}}
 					labelId="select-label"
 					value={sortValue}
 					onChange={(e) => setSortValue(e.target.value)}

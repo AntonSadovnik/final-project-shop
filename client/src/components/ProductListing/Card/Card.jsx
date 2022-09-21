@@ -20,7 +20,7 @@ export default function ProductCard(props) {
 		});
 	};
 	const {
-		data: { name, weight, currentPrice, imageUrls, itemNo },
+		data: { name, weight, currentPrice, imageUrls, itemNo, categories },
 		onClick,
 	} = props;
 	const title = name.charAt(0).toUpperCase() + name.slice(1);
@@ -68,7 +68,8 @@ export default function ProductCard(props) {
 							component="p"
 							sx={{ fontSize: { xs: '18px', sm: '24px' }, fontWeight: 500 }}
 						>
-							{title} - {weight}g
+							{title} - {weight}
+							{categories === 'drinks' ? 'ml' : 'g'}
 						</Typography>
 						<Box>
 							<Divider
