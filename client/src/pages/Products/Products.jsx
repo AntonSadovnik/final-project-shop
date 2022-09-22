@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Grid, Typography, Pagination } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,10 +16,17 @@ function Products() {
 	const perPageProducts = 6;
 	const dispatch = useDispatch();
 	const [searchParams, setSearchParams] = useSearchParams({});
+	const [page, setPage] = useState(1);
 	const currentParams = Object.fromEntries(searchParams);
-	const productsQuantity = useSelector(
-		(state) => state.products.productsQuantity
-	);
+	const { products, productsQuantity } = useSelector((state) => state.products);
+
+	useEffect(() => {
+		if (currentParams.startPage) {
+			setPage(Number(currentParams.startPage));
+		} else {
+			setPage(1);
+		}
+	}, [currentParams.categories]);
 
 	useEffect(() => {
 		dispatch(
@@ -29,7 +36,6 @@ function Products() {
 		);
 	}, [searchParams]);
 
-	const { products } = useSelector((state) => state.products);
 	const components = products.map((product) => (
 		<ProductCard
 			key={product.itemNo}
@@ -101,11 +107,13 @@ function Products() {
 				{components.length ? (
 					<Grid>
 						<Pagination
+							page={page}
 							count={Math.ceil(productsQuantity / perPageProducts)}
 							sx={{ paddingTop: 2, ul: { justifyContent: 'center' } }}
 							onChange={(_, value) => {
 								setSearchParams({ ...currentParams, startPage: value });
-								window.scrollTo(0, 0);
+								setPage(value);
+								window.scrollTo({ behavior: 'smooth', top: '0px' });
 							}}
 						/>
 					</Grid>
