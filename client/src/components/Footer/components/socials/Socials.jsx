@@ -3,7 +3,6 @@ import { Typography, Input, List, ListItemIcon, Grid } from '@mui/material';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import './style.scss';
 
 function Socials() {
 	return (
@@ -17,7 +16,23 @@ function Socials() {
 				>
 					Choose a convenient messenger for communication
 				</Typography>
-				<List className="footer__socials-wrap" disablePadding>
+				<List
+					className="footer__socials-wrap"
+					disablePadding
+					sx={{
+						marginTop: 1.25,
+						'& > div': {
+							justifyContent: 'center',
+							'&>svg': {
+								width: 50,
+								height: 50,
+								opacity: 0.5,
+								cursor: 'pointer',
+								'&:hover': { opacity: 1 },
+							},
+						},
+					}}
+				>
 					<ListItemIcon>
 						<WhatsAppIcon sx={{ color: '#1BD741' }} />
 					</ListItemIcon>
