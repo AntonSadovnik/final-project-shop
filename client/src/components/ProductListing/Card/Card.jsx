@@ -48,7 +48,7 @@ export default function ProductCard(props) {
 						sx={{
 							fit: 'cover',
 						}}
-						image={imageUrls}
+						image={imageUrls[0]}
 					/>
 				</Grid>
 				<Grid item width="100%" xs={6} sm={12}>

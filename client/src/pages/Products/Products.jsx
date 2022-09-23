@@ -111,8 +111,8 @@ function Products() {
 							count={Math.ceil(productsQuantity / perPageProducts)}
 							sx={{ paddingTop: 2, ul: { justifyContent: 'center' } }}
 							onChange={(_, value) => {
-								setSearchParams({ ...currentParams, startPage: value });
 								setPage(value);
+								setSearchParams({ ...currentParams, startPage: value });
 								window.scrollTo({ behavior: 'smooth', top: '0px' });
 							}}
 						/>

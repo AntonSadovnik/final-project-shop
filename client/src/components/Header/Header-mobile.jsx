@@ -5,7 +5,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import PhoneNumbers from './components/phone-numbers/PhoneNumbers';
 import Logo from '../Logo/Logo';
 import WorkHours from './components/work-hours/WorkHours';
-import './components/activities/style.scss';
 import Search from '../Search/Search';
 
 function HeaderMobile() {
