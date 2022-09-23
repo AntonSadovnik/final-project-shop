@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import {  Stack } from '@mui/material';
 import "slick-carousel/slick/slick.css"; 
@@ -11,11 +11,6 @@ import OfferCard from './OfferCard';
 
 
 function OfferSlider({items}) {
-
- useEffect(()=>{
-
-  
- },[])
 
   const settings = {
     dots: true,
