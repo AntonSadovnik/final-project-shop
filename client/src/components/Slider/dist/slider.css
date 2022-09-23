@@ -18,11 +18,6 @@
     width: 80.5vw;
   }
 }
-@media (max-width: 900px) {
-  .sale-slider {
-    display: none;
-  }
-}
 .slick-dots li.slick-active button:before {
   color: #FF9846;
 }

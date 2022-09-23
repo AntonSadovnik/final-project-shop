@@ -72,7 +72,7 @@ function OfferSlider({items}) {
     ]
   };
   if(!items){return null}
-  return (<Stack direction="column" justifyContent="center" alignItems="center" alignSelf="center" justifySelf="center" paddin="50px" sx={{marginBottom:'50px'}} className="sale-slider">
+  return (<Stack direction="column" justifyContent="center" alignItems="center" alignSelf="center" justifySelf="center" paddin="50px" sx={{marginBottom:'50px' }} className="sale-slider">
   
   <Stack className='slider-wrapper' direction="row" justifyContent="center" alignItems="center" sx={{marginTop: '50px'}}>
  
