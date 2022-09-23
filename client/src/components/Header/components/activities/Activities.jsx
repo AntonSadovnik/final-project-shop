@@ -161,12 +161,7 @@ function Activities() {
 						/>
 					</Badge>
 				</Button>
-				<Button
-					className="header__buttons"
-					disableRipple
-					size="small"
-					onClick={handleOpenSearchClick}
-				>
+				<Button disableRipple size="small" onClick={handleOpenSearchClick}>
 					<SearchIcon
 						color="grayColor"
 						sx={{
@@ -174,7 +169,7 @@ function Activities() {
 						}}
 					/>
 				</Button>
-				<Button className="header__buttons" disableRipple size="small">
+				<Button disableRipple size="small">
 					{loginButton}
 				</Button>
 			</Grid>

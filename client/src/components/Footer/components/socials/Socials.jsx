@@ -15,7 +15,6 @@ function Socials() {
 					You can follow us on:
 				</Typography>
 				<List
-					className="footer__socials-wrap"
 					disablePadding
 					sx={{
 						marginTop: 1.25,

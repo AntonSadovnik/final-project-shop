@@ -55,7 +55,6 @@ function HeaderMobile() {
 				</Grid>
 				<Grid item xs={1}>
 					<Button
-						className="header__buttons"
 						disableRipple
 						size="small"
 						onClick={handleOpenSearchClick}

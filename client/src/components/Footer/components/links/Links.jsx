@@ -6,7 +6,6 @@ function Links() {
 	return (
 		<Grid container>
 			<List
-				className="footer__links-wrap"
 				disablePadding
 				sx={{
 					marginLeft: 1.25,
