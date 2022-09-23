@@ -55,7 +55,6 @@ function Nav() {
 					return (
 						<MenuItem
 							onClick={() => handleClick(alt)}
-							className="nav__menu-item"
 							key={alt}
 							disableGutters
 							disableRipple
