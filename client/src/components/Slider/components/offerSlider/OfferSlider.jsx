@@ -22,7 +22,7 @@ function OfferSlider({items}) {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     speed: 2500,
     autoplaySpeed: 2500,
     arrows: false,
@@ -78,7 +78,7 @@ function OfferSlider({items}) {
  
   <Slider {...settings}>
 
-  {items.map((item)=> <OfferCard key={item.article} item={item}/>
+  {items.map((item)=> <OfferCard key={item.itemNo} item={item}/>
   )}
   </Slider>
   </Stack>

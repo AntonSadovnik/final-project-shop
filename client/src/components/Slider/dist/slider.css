@@ -1,0 +1,33 @@
+.slick-slide > div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.slick-slider {
+  width: 940px;
+  font-family: "Nunito Sans", "sans-serif";
+}
+
+@media (min-width: 300px) and (max-width: 1200px) {
+  .slick-slider {
+    width: 100%;
+  }
+}
+@media (min-width: 300px) and (max-width: 1200px) {
+  .slider-wrapper {
+    width: 80.5vw;
+  }
+}
+@media (max-width: 900px) {
+  .sale-slider {
+    display: none;
+  }
+}
+.slick-dots li.slick-active button:before {
+  color: #FF9846;
+}
+
+.slider-btn:hover {
+  background: transparent;
+  box-shadow: none;
+}
