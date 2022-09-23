@@ -5,7 +5,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import PhoneNumbers from './components/phone-numbers/PhoneNumbers';
 import Logo from '../Logo/Logo';
 import WorkHours from './components/work-hours/WorkHours';
-import './components/activities/style.scss';
 import Search from '../Search/Search';
 
 function HeaderMobile() {
@@ -56,10 +55,10 @@ function HeaderMobile() {
 				</Grid>
 				<Grid item xs={1}>
 					<Button
-						className="header__buttons"
 						disableRipple
 						size="small"
 						onClick={handleOpenSearchClick}
+						sx={{ minWidth: 0, padding: 0 }}
 					>
 						<SearchIcon
 							color="grayColor"

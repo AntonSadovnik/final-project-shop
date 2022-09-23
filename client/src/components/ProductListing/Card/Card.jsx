@@ -8,9 +8,9 @@ import {
 	CardActions,
 	Divider,
 	Grid,
+	Box,
 } from '@mui/material';
 import CustomButton from '../../Button/Button';
-// import PropTypes from 'prop-types';
 
 export default function ProductCard(props) {
 	const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function ProductCard(props) {
 		});
 	};
 	const {
-		data: { name, weight, currentPrice, imageUrls, itemNo },
+		data: { name, weight, currentPrice, imageUrls, itemNo, categories },
 		onClick,
 	} = props;
 	const title = name.charAt(0).toUpperCase() + name.slice(1);
@@ -48,67 +48,76 @@ export default function ProductCard(props) {
 						sx={{
 							fit: 'cover',
 						}}
-						image={imageUrls}
+						image={imageUrls[0]}
 					/>
 				</Grid>
 				<Grid item width="100%" xs={6} sm={12}>
-					<CardContent sx={{ padding: 0, marginLeft: { xs: '15px', sm: 0 } }}>
+					<CardContent
+						sx={{
+							display: 'flex',
+							flexDirection: 'column',
+							height: '100%',
+							justifyContent: 'space-between',
+							boxSizing: 'border-box',
+							padding: 0,
+							marginLeft: { xs: '15px', sm: 0 },
+						}}
+					>
 						<Typography
 							variant="h6"
 							component="p"
 							sx={{ fontSize: { xs: '18px', sm: '24px' }, fontWeight: 500 }}
 						>
-							{title} - {weight}g
+							{title} - {weight}
+							{categories === 'drinks' ? 'ml' : 'g'}
 						</Typography>
-						<Divider
-							sx={{
-								color: 'black',
-								marginTop: '20px',
-								display: { xs: 'none', md: 'block' },
-							}}
-						/>
-						<Grid
-							container
-							justifyContent="space-between"
-							sx={{ marginTop: '6px' }}
-						>
-							<Typography
-								variant="body2"
-								component="p"
+						<Box>
+							<Divider
 								sx={{
-									alignSelf: 'center',
-									fontWeight: 700,
-									fontSize: { xs: '18px', sm: '24px' },
+									color: 'black',
+									marginTop: '20px',
+									display: { xs: 'none', md: 'block' },
 								}}
+							/>
+							<Grid
+								container
+								justifyContent="space-between"
+								sx={{ marginTop: '6px' }}
 							>
-								{currentPrice}&#8372;
-							</Typography>
-							<CardActions component="div" sx={{ padding: 0 }}>
-								<CustomButton
-									title="Want!"
-									btnStyle={{
-										width: { xs: '95px', sm: '143px' },
-										height: { xs: '26px', sm: '40px' },
-									}}
-									textStyle={{
-										fontWeight: 500,
-										color: '#F2F2F2',
+								<Typography
+									variant="body2"
+									component="p"
+									sx={{
+										alignSelf: 'center',
+										fontWeight: 700,
 										fontSize: { xs: '18px', sm: '24px' },
 									}}
-									onClick={(e) => {
-										e.stopPropagation();
-										onClick();
-									}}
-								/>
-							</CardActions>
-						</Grid>
+								>
+									{currentPrice}&#8372;
+								</Typography>
+								<CardActions component="div" sx={{ padding: 0 }}>
+									<CustomButton
+										title="Want!"
+										btnStyle={{
+											width: { xs: '95px', sm: '143px' },
+											height: { xs: '26px', sm: '40px' },
+										}}
+										textStyle={{
+											fontWeight: 500,
+											color: '#F2F2F2',
+											fontSize: { xs: '18px', sm: '24px' },
+										}}
+										onClick={(e) => {
+											e.stopPropagation();
+											onClick();
+										}}
+									/>
+								</CardActions>
+							</Grid>
+						</Box>
 					</CardContent>
 				</Grid>
 			</Card>
 		</Grid>
 	);
 }
-
-// ProductCard.propTypes = {
-//     data: PropTypes.object,
-// }

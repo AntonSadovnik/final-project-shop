@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, List, ListItemIcon, Grid } from '@mui/material';
+import { Typography, List, ListItemIcon, Grid, Link } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
@@ -16,23 +16,35 @@ function Socials() {
 				</Typography>
 				<List
 					disablePadding
+					sx={{
+						marginTop: 1.25,
+						svg: {
+							width: 50,
+							height: 50,
+							opacity: 0.5,
+							cursor: 'pointer',
+							'&:hover': { opacity: 1 },
+						},
+					}}
 				>
-					<a
-						href="https://uk-ua.facebook.com/"
-						target="_blank"
-						rel="noreferrer"
-						style={{ textDecoration: 'none'}}
-					>
-						<ListItemIcon>
-							<FacebookIcon sx={{ color: '#61A8DE'}} fontSize='large'/>
-						</ListItemIcon>
-					</a>
-
-					<a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-						<ListItemIcon>
-							<InstagramIcon sx={{ color: '#d85ed8' }} fontSize='large'/>
-						</ListItemIcon>
-					</a>
+					<ListItemIcon>
+						<Link
+							href="https://uk-ua.facebook.com/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<FacebookIcon sx={{ color: '#61A8DE' }} />
+						</Link>
+					</ListItemIcon>
+					<ListItemIcon>
+						<Link
+							href="https://www.instagram.com/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<InstagramIcon sx={{ color: '#d85ed8' }} />
+						</Link>
+					</ListItemIcon>
 				</List>
 			</Grid>
 		</Grid>
