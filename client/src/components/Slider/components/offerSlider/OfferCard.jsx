@@ -90,7 +90,7 @@ return (<Card key={item.id} className="card blockquote" sx={{ display:'flex',
         
         
         <CardActions component="div">
-        <Button variant="contained" sx={{padding:'10px 70px', marginBottom:'-50px', }} onClick={()=>dispatch(addToCart(item))}>Wish</Button>
+        <Button variant="contained" sx={{padding:'10px 70px', marginBottom:'-50px',color:'white' }} onClick={()=>dispatch(addToCart(item))}>Want</Button>
         </CardActions>
         
         </Typography>

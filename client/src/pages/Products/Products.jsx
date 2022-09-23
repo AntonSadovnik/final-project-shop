@@ -54,7 +54,7 @@ function Products() {
 		<main>
 			<Grid
 				sx={{
-					padding: { xs: '15px 0 30px', lg: '30px 111px 60px' },
+					padding: { xs: '15px 15px 90px', sm: '15px 15px 30px', lg: '30px 111px 60px' },
 					backgroundColor: '#F2F2F2',
 				}}
 			>
