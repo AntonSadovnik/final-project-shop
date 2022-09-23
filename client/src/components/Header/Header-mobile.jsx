@@ -59,6 +59,7 @@ function HeaderMobile() {
 						disableRipple
 						size="small"
 						onClick={handleOpenSearchClick}
+						sx={{ minWidth: 0, padding: 0 }}
 					>
 						<SearchIcon
 							color="grayColor"
