@@ -21,7 +21,8 @@ function HeaderMobile() {
 				container
 				justifyContent="space-evenly"
 				alignItems="center"
-				sx={{ padding: '12px 0 8px', borderBottom: '0.5px solid #A4ACAD;' }}
+				padding="12px 0 8px"
+				borderBottom="0.5px solid #A4ACAD"
 			>
 				<Grid item xs={2}>
 					<NavLink
@@ -63,7 +64,7 @@ function HeaderMobile() {
 						<SearchIcon
 							color="grayColor"
 							sx={{
-								fontSize: '29px',
+								fontSize: 29,
 							}}
 						/>
 					</Button>

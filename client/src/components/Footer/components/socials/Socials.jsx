@@ -5,10 +5,10 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 function Socials() {
 	return (
-		<Grid container sx={{ justifyContent: { xs: 'center', sm: 'flex-start' } }}>
-			<Grid item sx={{ marginLeft: { lg: '40px', sm: '20px' } }}>
+		<Grid container justifyContent={{ xs: 'center', sm: 'flex-start' }}>
+			<Grid item marginLeft={{ lg: 5, sm: 2.5 }}>
 				<Typography
-					fontSize="18px"
+					fontSize={18}
 					color={(theme) => theme.palette.text.secondary}
 					textAlign="center"
 				>

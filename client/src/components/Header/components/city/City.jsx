@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Typography, Box, Menu, MenuItem } from '@mui/material';
+import { Typography, Menu, MenuItem, Grid } from '@mui/material';
 import ExpandCircleDownSharpIcon from '@mui/icons-material/ExpandCircleDownSharp';
 import { menuItemHover } from './styles';
 import { setCity } from '../../../../store/actions';
@@ -42,8 +42,10 @@ function City() {
 
 	return (
 		<>
-			<Box
-				sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+			<Grid
+				container
+				alignItems="center"
+				sx={{ cursor: 'pointer' }}
 				id="click-box"
 				aria-controls={open ? 'menu' : undefined}
 				aria-haspopup="true"
@@ -51,15 +53,17 @@ function City() {
 				onClick={handleClick}
 			>
 				<Typography
-					fontSize="14px"
+					fontSize={14}
 					color={(theme) => theme.palette.text.secondary}
-					sx={{ display: 'flex', flexDirection: 'column', flexBasis: '50px' }}
+					display="flex"
+					flexDirection="column"
+					flexBasis={50}
 				>
 					<span>City:</span>
 					<span>{stateCity}</span>
 				</Typography>
 				<ExpandCircleDownSharpIcon sx={{ color: '#ff9846' }} />
-			</Box>
+			</Grid>
 
 			<Menu
 				id="menu"

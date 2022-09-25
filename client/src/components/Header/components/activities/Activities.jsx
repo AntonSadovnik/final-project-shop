@@ -45,7 +45,7 @@ function Activities() {
 				onClick={handleLoginOpen}
 				sx={{
 					color: '#1BD741',
-					fontSize: '40px',
+					fontSize: 40,
 				}}
 			/>
 		);
@@ -66,7 +66,7 @@ function Activities() {
 						onClick={handleLogout}
 						sx={{
 							color: 'red',
-							fontSize: '40px',
+							fontSize: 40,
 						}}
 					/>
 				);
@@ -76,7 +76,7 @@ function Activities() {
 						onClick={handleLoginOpen}
 						sx={{
 							color: '#1BD741',
-							fontSize: '40px',
+							fontSize: 40,
 						}}
 					/>
 				);
@@ -156,7 +156,7 @@ function Activities() {
 						<ShoppingCartIcon
 							color="grayColor"
 							sx={{
-								fontSize: '40px',
+								fontSize: 40,
 							}}
 						/>
 					</Badge>
@@ -165,7 +165,7 @@ function Activities() {
 					<SearchIcon
 						color="grayColor"
 						sx={{
-							fontSize: '40px',
+							fontSize: 40,
 						}}
 					/>
 				</Button>
