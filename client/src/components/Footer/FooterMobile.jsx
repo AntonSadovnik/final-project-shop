@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
-import { useDispatch , useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
@@ -14,7 +14,7 @@ function FooterMobile() {
 	const [loginModal, setLoginModal] = React.useState(false);
 	const [loginButton, setLoginButton] = React.useState(null);
 	const dispatch = useDispatch();
-		const isLoggedIn = useSelector((state) => state.isLoggedIn);
+	const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
 	const handleLoginOpen = () => {
 		setLoginModal(true);
@@ -27,12 +27,12 @@ function FooterMobile() {
 			<Button
 				onClick={handleLoginOpen}
 				disableRipple
-				sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+				sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 			>
 				<LoginIcon
 					sx={{
 						color: '#1BD741',
-						fontSize: '30px',
+						fontSize: 30,
 					}}
 				/>
 				<Typography color={(theme) => theme.palette.text.primary}>
@@ -51,12 +51,12 @@ function FooterMobile() {
 					<Button
 						onClick={handleLogout}
 						disableRipple
-						sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+						sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 					>
 						<LogoutIcon
 							sx={{
 								color: 'red',
-								fontSize: '30px',
+								fontSize: 30,
 							}}
 						/>
 						<Typography color={(theme) => theme.palette.text.primary}>
@@ -69,12 +69,12 @@ function FooterMobile() {
 					<Button
 						onClick={handleLoginOpen}
 						disableRipple
-						sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+						sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 					>
 						<LoginIcon
 							sx={{
 								color: '#1BD741',
-								fontSize: '30px',
+								fontSize: 30,
 							}}
 						/>
 						<Typography color={(theme) => theme.palette.text.primary}>
@@ -97,7 +97,12 @@ function FooterMobile() {
 			/>
 			<Grid
 				container
-				sx={{ padding: '11px 0', borderTop: '1px solid #A4ACAD' }}
+				padding="11px 0"
+				borderTop="1px solid #A4ACAD"
+				position="fixed"
+				bottom={0}
+				backgroundColor="white"
+				zIndex={1}
 				justifyContent="space-evenly"
 			>
 				<Grid item>
@@ -109,12 +114,9 @@ function FooterMobile() {
 					>
 						<Button
 							disableRipple
-							sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+							sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 						>
-							<RestaurantMenuIcon
-								color="hoverColor"
-								sx={{ fontSize: '30px' }}
-							/>
+							<RestaurantMenuIcon color="hoverColor" sx={{ fontSize: 30 }} />
 
 							<Typography color={(theme) => theme.palette.text.primary}>
 								Menu
@@ -131,9 +133,9 @@ function FooterMobile() {
 					>
 						<Button
 							disableRipple
-							sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+							sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 						>
-							<ShoppingCartIcon color="hoverColor" sx={{ fontSize: '30px' }} />
+							<ShoppingCartIcon color="hoverColor" sx={{ fontSize: 30 }} />
 							<Typography color={(theme) => theme.palette.text.primary}>
 								Cart
 							</Typography>
@@ -149,18 +151,16 @@ function FooterMobile() {
 					>
 						<Button
 							disableRipple
-							sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+							sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 						>
-							<ThumbUpOffAltIcon color="hoverColor" sx={{ fontSize: '30px' }} />
+							<ThumbUpOffAltIcon color="hoverColor" sx={{ fontSize: 30 }} />
 							<Typography color={(theme) => theme.palette.text.primary}>
 								Reviews
 							</Typography>
 						</Button>
 					</NavLink>
 				</Grid>
-				<Grid item>
-						{loginButton}
-				</Grid>
+				<Grid item>{loginButton}</Grid>
 			</Grid>
 		</footer>
 	);

@@ -22,8 +22,8 @@ function Reviews() {
 				});
 		} else if (reviews) {
 			const reviewsCatalog = reviews.map((item) => (
-					<ReviewCard name={item.customer.firstName} text={item.content} />
-				));
+				<ReviewCard name={item.customer.firstName} text={item.content} />
+			));
 			setCatalog(reviewsCatalog);
 		}
 	}
@@ -33,7 +33,7 @@ function Reviews() {
 	}, [reviews]);
 
 	return (
-		<Box sx={{ padding: '30px' }}>
+		<Box sx={{ padding: { xs: '30px 15px 90px', sm: '30px 15px 30px' } }}>
 			<Typography sx={{ paddingBottom: '20px' }} variant="h4" component="h2">
 				Reviews
 			</Typography>
@@ -43,8 +43,8 @@ function Reviews() {
 				<Box
 					sx={{
 						paddingBottom: { xs: '10px', sm: '25px' },
-							fontFamily: "'Nunito Sans', sans-serif",
-							fontSize: '20px'
+						fontFamily: "'Nunito Sans', sans-serif",
+						fontSize: '20px',
 					}}
 				>
 					Please, log in or registrate to leave the review
