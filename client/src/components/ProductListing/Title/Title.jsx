@@ -16,7 +16,7 @@ function Title() {
 			<CardMedia
 				component="img"
 				src={categoryImgPath}
-				sx={{ marginRight: '20px', width: 'fit-content' }}
+				sx={{ marginRight: 2.5, width: 'fit-content' }}
 			/>
 			<Typography variant="h4" component="h2">
 				{categoryTitle}

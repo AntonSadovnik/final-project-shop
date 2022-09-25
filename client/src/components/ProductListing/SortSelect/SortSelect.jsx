@@ -26,7 +26,7 @@ export default function SortSelect() {
 	}, [sortValue]);
 
 	return (
-		<Box sx={{ minWidth: 120 }}>
+		<Box minWidth={120}>
 			<FormControl fullWidth variant="standard">
 				<InputLabel id="select-label">Sorting</InputLabel>
 				<Select

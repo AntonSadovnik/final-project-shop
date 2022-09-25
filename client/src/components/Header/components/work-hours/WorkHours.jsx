@@ -8,7 +8,7 @@ function WorkHours() {
 			<AccessTimeIcon color="hoverColor" />
 			<Typography
 				color={(theme) => theme.palette.text.secondary}
-				fontSize="14px"
+				fontSize={14}
 				align="center"
 			>
 				Work hours: 10:00-00:00
