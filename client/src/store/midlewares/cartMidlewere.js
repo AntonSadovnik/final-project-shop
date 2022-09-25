@@ -6,11 +6,9 @@ import {
 } from "../types/types";
 import {decreaseQuantity, increaseQuantity, removeProductFromCart, setCart} from "../actions";
 import {
-  addProductToCartOnServer,
-  createCart,
+  addProductToCartOnServer, createCart,
   decreaseCartOnServer, deleteCartFromServer,
-  getCart,
-  removeProductFromServer
+  getCart, removeProductFromServer
 } from "../../api/cart";
 
 export const cartMiddleware = (store) => (dispatch) => (action) => {
@@ -57,13 +55,10 @@ export const cartMiddleware = (store) => (dispatch) => (action) => {
               createCart(newCart2, localStorage.getItem('token')).then(data => {
                 localStorage.setItem('cart', JSON.stringify({products: data.data.products}))
                 dispatch(setCart({products: data.data.products}))
-                console.log(data.data.products)
               })
             })
-
             return
           }
-
           dispatch(setCart(response.data))
         })
       }
@@ -90,10 +85,9 @@ export const cartMiddleware = (store) => (dispatch) => (action) => {
     return dispatch(increaseQuantity(cart))
   }
 
-
   if (action.type === INCREASE_QUANTITY_TO_CART) {
     const index = state.cart.cart.products.findIndex((prod) => prod.product.itemNo === action.payload)
-    const idProduct = state.cart.cart.products.find((prod) => prod.product.itemNo === action.payload).product._id
+    const idProduct = state.cart.cart.products.find((prod) => prod.product.itemNo === action.payload)?.product._id
     cartCopy.products[index].cartQuantity += 1
     localStorage.setItem('cart', JSON.stringify(cartCopy))
     if (state.isLoggedIn) {
@@ -102,10 +96,10 @@ export const cartMiddleware = (store) => (dispatch) => (action) => {
     return dispatch(increaseQuantity(cartCopy))
   }
 
-
   if (action.type === DECREASE_QUANTITY_TO_CART) {
     const index = state.cart.cart.products.findIndex((prod) => prod.product.itemNo === action.payload)
-    const idProduct = state.cart.cart.products.find((prod) => prod.product.itemNo === action.payload).product._id
+    const idProduct = state.cart.cart.products.find((prod) => prod.product.itemNo === action.payload)?.product._id
+
     if (state.isLoggedIn) {
       decreaseCartOnServer(idProduct, localStorage.getItem('token'))
     }
@@ -117,9 +111,8 @@ export const cartMiddleware = (store) => (dispatch) => (action) => {
     return dispatch(decreaseQuantity(cartCopy))
   }
 
-
   if (action.type === REMOVE_FROM_CART) {
-    const idProduct = state.cart.cart.products.find((prod) => prod.product.itemNo === action.payload).product._id
+    const idProduct  =  state.cart.cart.products.find((prod) => prod.product.itemNo === action.payload).product._id
     if (state.isLoggedIn) {
       removeProductFromServer(idProduct, localStorage.getItem('token'))
     }
