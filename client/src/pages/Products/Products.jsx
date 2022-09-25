@@ -50,30 +50,28 @@ function Products() {
 			>
 				<Grid
 					container
-					sx={{
-						marginBottom: '30px',
-						justifyContent: { xs: 'center', lg: 'space-between' },
-						alignItems: 'center',
-						flexDirection: { xs: 'column', lg: 'row' },
-					}}
+					marginBottom={3.75}
+					justifyContent={{ xs: 'center', lg: 'space-between' }}
+					flexDirection={{ xs: 'column', lg: 'row' }}
+					alignItems="center"
 				>
 					<Grid
 						item
 						container
 						width="fit-content"
 						alignItems="center"
-						sx={{ marginBottom: { xs: '16px', lg: '0' } }}
+						marginBottom={{ xs: 2, lg: 0 }}
 					>
 						<Title />
 					</Grid>
 					<Grid>
 						<Filter />
 					</Grid>
-					<Grid sx={{ width: { xs: '100%', sm: '50%', lg: 'fit-content' } }}>
+					<Grid width={{ xs: '100%', sm: '50%', lg: 'fit-content' }}>
 						<SortSelect />
 					</Grid>
 				</Grid>
-				<Grid container sx={{ rowGap: { xs: '10px', sm: '50px' } }}>
+				<Grid container rowGap={{ xs: 1.25, sm: 6.25 }}>
 					{components.length ? components : <NoResults />}
 				</Grid>
 				{components.length ? (
@@ -84,7 +82,7 @@ function Products() {
 						/>
 					</Grid>
 				) : null}
-				<Grid sx={{ margin: { xs: '30px 0 20px', sm: '40px 0 0' } }}>
+				<Grid margin={{ xs: '30px 0 20px', sm: '40px 0 0' }}>
 					<SimpleAccordion />
 				</Grid>
 				<Grid display={{ xs: 'block', sm: 'none' }} textAlign="center">

@@ -5,7 +5,6 @@ import {
 	CardContent,
 	CardMedia,
 	Typography,
-	CardActions,
 	Divider,
 	Grid,
 	Box,
@@ -31,25 +30,16 @@ export default function ProductCard(props) {
 					display: 'flex',
 					alignItems: 'center',
 					flexDirection: { xs: 'row', sm: 'column' },
-					maxWidth: { xs: 'auto', md: '288px' },
+					maxWidth: { xs: 'fit-content', md: 288 },
 					borderRadius: 5,
-					background: 'white',
 					boxSizing: 'border-box',
-					justifyContent: 'space-between',
 					padding: '0 18px',
 					cursor: 'pointer',
 				}}
 				onClick={() => handleClick(itemNo)}
 			>
 				<Grid item xs={6} sm={12}>
-					<CardMedia
-						component="img"
-						alt="not display"
-						sx={{
-							fit: 'cover',
-						}}
-						image={imageUrls[0]}
-					/>
+					<CardMedia component="img" alt="not display" image={imageUrls[0]} />
 				</Grid>
 				<Grid item width="100%" xs={6} sm={12}>
 					<CardContent
@@ -60,13 +50,14 @@ export default function ProductCard(props) {
 							justifyContent: 'space-between',
 							boxSizing: 'border-box',
 							padding: 0,
-							marginLeft: { xs: '15px', sm: 0 },
+							marginLeft: { xs: 1.87, sm: 0 },
 						}}
 					>
 						<Typography
 							variant="h6"
 							component="p"
-							sx={{ fontSize: { xs: '18px', sm: '24px' }, fontWeight: 500 }}
+							fontSize={{ xs: 18, sm: 24 }}
+							fontWeight={500}
 						>
 							{title} - {weight}
 							{categories === 'drinks' ? 'ml' : 'g'}
@@ -74,45 +65,41 @@ export default function ProductCard(props) {
 						<Box>
 							<Divider
 								sx={{
-									color: 'black',
-									marginTop: '20px',
 									display: { xs: 'none', md: 'block' },
+									marginTop: 2.5,
 								}}
 							/>
 							<Grid
 								container
 								justifyContent="space-between"
-								sx={{ marginTop: '6px' }}
+								alignItems="center"
+								marginTop={0.75}
 							>
 								<Typography
 									variant="body2"
 									component="p"
-									sx={{
-										alignSelf: 'center',
-										fontWeight: 700,
-										fontSize: { xs: '18px', sm: '24px' },
-									}}
+									fontWeight={700}
+									fontSize={{ xs: 18, sm: 24 }}
 								>
 									{currentPrice}&#8372;
 								</Typography>
-								<CardActions component="div" sx={{ padding: 0 }}>
-									<CustomButton
-										title="Want!"
-										btnStyle={{
-											width: { xs: '95px', sm: '143px' },
-											height: { xs: '26px', sm: '40px' },
-										}}
-										textStyle={{
-											fontWeight: 500,
-											color: '#F2F2F2',
-											fontSize: { xs: '18px', sm: '24px' },
-										}}
-										onClick={(e) => {
-											e.stopPropagation();
-											onClick();
-										}}
-									/>
-								</CardActions>
+
+								<CustomButton
+									title="Want!"
+									btnStyle={{
+										width: { xs: '95px', sm: '143px' },
+										height: { xs: '26px', sm: '40px' },
+									}}
+									textStyle={{
+										fontWeight: 500,
+										color: '#F2F2F2',
+										fontSize: { xs: '18px', sm: '24px' },
+									}}
+									onClick={(e) => {
+										e.stopPropagation();
+										onClick();
+									}}
+								/>
 							</Grid>
 						</Box>
 					</CardContent>
