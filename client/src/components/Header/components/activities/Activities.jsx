@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
-import { useSelector , useDispatch } from 'react-redux';
-import {  Grid, Button, Typography  } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { Grid, Button, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
-import './style.scss';
 import Cart from '../../../Cart/Cart';
 import LoginModal from '../../../LoginModal/LoginModal';
-import { deleteCustomer, setCustomer, setLogout } from '../../../../store/actions';
+import {
+	deleteCustomer,
+	setCustomer,
+	setLogout,
+} from '../../../../store/actions';
 import Search from '../../../Search/Search';
 import CartIcon from "./CartIcon";
 
@@ -26,13 +29,13 @@ function Activities() {
 		setOpenSearch(true);
 	};
 
-    const handleClickOpen = (type) => {
-        setOpen(true);
-        setScroll(type);
-    };
-    const handleLoginOpen = () => {
-        setLoginModal(true);
-    };
+	const handleClickOpen = (type) => {
+		setOpen(true);
+		setScroll(type);
+	};
+	const handleLoginOpen = () => {
+		setLoginModal(true);
+	};
 
 	const handleLogout = () => {
 		dispatch(setLogout());
@@ -42,7 +45,7 @@ function Activities() {
 				onClick={handleLoginOpen}
 				sx={{
 					color: '#1BD741',
-					fontSize: '40px',
+					fontSize: 40,
 				}}
 			/>
 		);
@@ -53,22 +56,22 @@ function Activities() {
 		() => {
 			if (localStorage.getItem('token')) {
 				dispatch(setCustomer());
-					setLoginButton(
-						<LogoutIcon
-							onClick={handleLogout}
-							sx={{
-								color: 'red',
-								fontSize: '40px',
-							}}
-						/>
-					);
+				setLoginButton(
+					<LogoutIcon
+						onClick={handleLogout}
+						sx={{
+							color: 'red',
+							fontSize: 40,
+						}}
+					/>
+				);
 			} else {
 				setLoginButton(
 					<LoginIcon
 						onClick={handleLoginOpen}
 						sx={{
 							color: '#1BD741',
-							fontSize: '40px',
+							fontSize: 40,
 						}}
 					/>
 				);
@@ -77,8 +80,6 @@ function Activities() {
 		[localStorage.getItem('token')],
 		isLoggedIn
 	);
-
-
 
 	return (
 		<>
@@ -95,16 +96,27 @@ function Activities() {
 				handleLoginOpen={handleLoginOpen}
 			/>
 			<Search openSearch={openSearch} setOpenSearch={setOpenSearch} />
-			<Grid item container lg={7} sm={7} alignItems="center">
+			<Grid
+				item
+				container
+				lg={7}
+				sm={7}
+				alignItems="center"
+				sx={{
+					a: {
+						color: '#111',
+						'&:hover': { color: '#ff9846' },
+						'&:first-of-type': { marginRight: 1.25 },
+					},
+				}}
+			>
 				<NavLink
 					style={{
 						textDecoration: 'none',
 					}}
 					to="/reviews"
 				>
-					<Typography className="header__links" component="a" href="/">
-						Reviews
-					</Typography>
+					<Typography>Reviews</Typography>
 				</NavLink>
 				<NavLink
 					style={{
@@ -112,12 +124,24 @@ function Activities() {
 					}}
 					to="/shipping"
 				>
-					<Typography className="header__links" component="a" href="/">
-						Shipping and payment
-					</Typography>
+					<Typography>Shipping and payment</Typography>
 				</NavLink>
 			</Grid>
-			<Grid container item justifyContent="space-evenly" sm={4}>
+			<Grid
+				container
+				item
+				justifyContent="space-evenly"
+				sm={4}
+				sx={{
+					button: {
+						padding: 0,
+						minWidth: 0,
+						'&:hover': {
+							background: 'none',
+						},
+					},
+				}}
+			>
 				<Button
 					className="header__buttons"
 					disableRipple
@@ -126,15 +150,15 @@ function Activities() {
 				>
 					<CartIcon/>
 				</Button>
-				<Button className="header__buttons" disableRipple size="small" onClick={handleOpenSearchClick}>
+				<Button disableRipple size="small" onClick={handleOpenSearchClick}>
 					<SearchIcon
 						color="grayColor"
 						sx={{
-							fontSize: '40px',
+							fontSize: 40,
 						}}
 					/>
 				</Button>
-				<Button className="header__buttons" disableRipple size="small">
+				<Button disableRipple size="small">
 					{loginButton}
 				</Button>
 			</Grid>

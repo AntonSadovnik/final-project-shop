@@ -5,7 +5,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import PhoneNumbers from './components/phone-numbers/PhoneNumbers';
 import Logo from '../Logo/Logo';
 import WorkHours from './components/work-hours/WorkHours';
-import './components/activities/style.scss';
 import Search from '../Search/Search';
 
 function HeaderMobile() {
@@ -22,7 +21,8 @@ function HeaderMobile() {
 				container
 				justifyContent="space-evenly"
 				alignItems="center"
-				sx={{ padding: '12px 0 8px', borderBottom: '0.5px solid #A4ACAD;' }}
+				padding="12px 0 8px"
+				borderBottom="0.5px solid #A4ACAD"
 			>
 				<Grid item xs={2}>
 					<NavLink
@@ -56,15 +56,15 @@ function HeaderMobile() {
 				</Grid>
 				<Grid item xs={1}>
 					<Button
-						className="header__buttons"
 						disableRipple
 						size="small"
 						onClick={handleOpenSearchClick}
+						sx={{ minWidth: 0, padding: 0 }}
 					>
 						<SearchIcon
 							color="grayColor"
 							sx={{
-								fontSize: '29px',
+								fontSize: 29,
 							}}
 						/>
 					</Button>

@@ -59,7 +59,7 @@ function Filter() {
 				aria-expanded={open ? 'true' : undefined}
 				onClick={handleOpen}
 			>
-				Filter ({Object.keys(queryParams).length - 1})
+				Filter
 			</Button>
 			<Menu
 				className="filter"

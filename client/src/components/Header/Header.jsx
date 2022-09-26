@@ -20,7 +20,7 @@ function Header() {
 					flexDirection="column"
 					align="center"
 					padding="6px 0 8px"
-					sx={{ display: { xs: 'none', md: 'block' } }}
+					display={{ xs: 'none', md: 'block' }}
 				>
 					<PhoneNumbers />
 					<Grid container alignItems="center" justifyContent="center">
@@ -39,14 +39,9 @@ function Header() {
 					sm={12}
 					justifyContent="space-between"
 					alignItems="center"
-					sx={{ padding: { sm: '10px 0', md: '0' } }}
+					padding={{ sm: '10px 0', md: 0 }}
 				>
-					<Grid
-						item
-						sx={{
-							display: { sm: 'block', md: 'none' },
-						}}
-					>
+					<Grid item display={{ sm: 'block', md: 'none' }}>
 						<NavLink
 							style={{
 								textDecoration: 'none',
@@ -56,7 +51,7 @@ function Header() {
 							<Logo maxWidth="40px" maxHeight="40px" />
 						</NavLink>
 					</Grid>
-					<Grid item marginLeft="10px" xs={2}>
+					<Grid item marginLeft={1.25} xs={2}>
 						<City />
 					</Grid>
 					<Grid

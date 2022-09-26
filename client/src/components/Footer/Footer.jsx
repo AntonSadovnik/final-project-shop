@@ -4,7 +4,6 @@ import Links from './components/links/Links';
 import Socials from './components/socials/Socials';
 import Contacts from './components/contacts/Contacts';
 
-
 function Footer() {
 	return (
 		<footer>
@@ -13,22 +12,16 @@ function Footer() {
 				justifyContent="space-around"
 				backgroundColor={(theme) => theme.palette.lightGrayColor.main}
 			>
-				<Grid container maxWidth="950px" flexDirection="column">
+				<Grid container maxWidth={950} flexDirection="column">
 					<Divider flexItem />
-					<Grid
-						container
-						sx={{ marginTop: '22px' }}
-						justifyContent="space-between"
-					>
+					<Grid container marginTop={2.75} justifyContent="space-between">
 						<Grid item xs={3}>
 							<Links />
 						</Grid>
 						<Grid
 							item
-							sx={{
-								paddingBottom: '60px',
-								borderLeft: '0.5px solid #A4ACAD',
-							}}
+							paddingBottom={7.5}
+							borderLeft="0.5px solid #A4ACAD"
 							xs={4}
 						>
 							<Socials />
@@ -36,15 +29,13 @@ function Footer() {
 						<Grid
 							item
 							xs={3}
-							sx={{
-								paddingBottom: '60px',
-								borderLeft: '0.5px solid #A4ACAD',
-							}}
+							paddingBottom={7.5}
+							borderLeft="0.5px solid #A4ACAD"
 						>
 							<Grid
 								container
 								maxWidth="fit-content"
-								sx={{ marginLeft: { lg: '40px', sm: '20px' } }}
+								marginLeft={{ lg: 5, sm: 2.5 }}
 							>
 								<Contacts />
 							</Grid>
@@ -56,5 +47,3 @@ function Footer() {
 	);
 }
 export default Footer;
-
-

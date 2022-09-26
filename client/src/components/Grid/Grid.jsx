@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Typography, Grid, CardMedia } from '@mui/material';
 import gridItems from './itemGrid';
 import gridItemsHidden from './itemGridHidden';
-import './grid.scss';
 
 function GridItem() {
 	const navigate = useNavigate();
@@ -37,7 +36,7 @@ function GridItem() {
 							}}
 							onClick={() => handleClick(alt)}
 						>
-							<img src={src} className="card__image" alt={alt} />
+							<CardMedia component="img" src={src} alt={alt} height="100%" />
 							<Typography
 								sx={{
 									left: 10,
@@ -66,7 +65,6 @@ function GridItem() {
 						xs={6}
 					>
 						<Box
-							className="card"
 							sx={{
 								position: 'relative',
 								borderRadius: 5,
@@ -74,7 +72,7 @@ function GridItem() {
 							}}
 							onClick={() => handleClick(alt)}
 						>
-							<img src={src} className="card__image" alt={alt} />
+							<CardMedia component="img" src={src} alt={alt} height="100%" />
 							<Typography
 								sx={{
 									left: 10,
