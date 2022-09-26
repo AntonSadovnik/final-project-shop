@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Button, Typography } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { NavLink } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Badge from '@mui/material/Badge';
 import Cart from '../../../Cart/Cart';
 import LoginModal from '../../../LoginModal/LoginModal';
 import {
@@ -15,6 +13,8 @@ import {
 	setLogout,
 } from '../../../../store/actions';
 import Search from '../../../Search/Search';
+import CartIcon from "./CartIcon";
+
 
 function Activities() {
 	const [open, setOpen] = React.useState(false);
@@ -51,11 +51,6 @@ function Activities() {
 		);
 		window.location.reload();
 	};
-	const { products } = useSelector((state) => state.cart.cart);
-	const quantityProductsInCart = products.reduce(
-		(prev, curr) => prev + curr.cartQuantity,
-		0
-	);
 
 	useEffect(
 		() => {
@@ -152,14 +147,7 @@ function Activities() {
 					size="small"
 					onClick={() => handleClickOpen('paper')}
 				>
-					<Badge badgeContent={quantityProductsInCart} color="primary">
-						<ShoppingCartIcon
-							color="grayColor"
-							sx={{
-								fontSize: 40,
-							}}
-						/>
-					</Badge>
+					<CartIcon/>
 				</Button>
 				<Button disableRipple size="small" onClick={handleOpenSearchClick}>
 					<SearchIcon
