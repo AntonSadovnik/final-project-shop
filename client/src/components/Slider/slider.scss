@@ -1,21 +1,25 @@
 .slick-slide > div{
   display:flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
  .slick-slider {
-  width:950px; 
+  width:940px; 
   font-family: 'Nunito Sans','sans-serif';
 } 
 @media (min-width: 300px) and (max-width: 1200px) {
   .slick-slider{
     width:100%; 
-  }; 
-  .slick-wrapper{
-    width:88vw; 
+  } 
+  .slider-wrapper{
+    width:80.5vw; 
   }; 
 }
-.slider-btn:hover{
+
+ .slick-dots li.slick-active button:before {
+  color:#FF9846;
+ }
+
+ .slider-btn:hover{
   background: transparent;
   box-shadow: none;
 }
-

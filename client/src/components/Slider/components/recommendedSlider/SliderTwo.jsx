@@ -4,7 +4,7 @@ import { Typography, Stack } from '@mui/material';
 import { getRecommendedProduct } from '../../../../api/Api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './recommend.scss';
+import '../../slider.scss';
 import SushiCard from './SushiCard';
 import NextBtn from '../buttons/NextBtn';
 import PrevBtn from '../buttons/PrevBtn';
@@ -74,7 +74,7 @@ function RecommendedSlider() {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			sx={{marginTop: '50px', background:'#F2F2F2', padding:'20px' }}
+			sx={{marginTop: '50px', background:'#F2F2F2', padding:'20px', }}
 		>
 			<Typography
 				gutterBottom
