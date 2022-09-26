@@ -1,8 +1,6 @@
 import * as React from 'react';
-// import {useSelector} from "react-redux";
 import {
   Box,
-  // Typography,
   Dialog,
   DialogActions,
   DialogContent,
@@ -29,7 +27,6 @@ export default function Cart(props) {
     }
   }, [open]);
 
-
   return (
     <div>
       <Dialog open={open}
@@ -41,13 +38,10 @@ export default function Cart(props) {
         </Box>
         <DialogContent dividers={scroll === 'paper'}>
           <Box ref={descriptionElementRef} tabIndex={-1}>
-
             <ProductsInCart setOpen={setOpen}/>
           </Box>
-
         </DialogContent>
         <DialogActions>
-
           <SumCart/>
           <ButtonCart setOpen={setOpen}/>
         </DialogActions>

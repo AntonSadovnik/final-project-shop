@@ -29,7 +29,8 @@ export default function CartItem({i}) {
           ? {maxWidth: '3rem', height: '3rem'}
           : {maxWidth: '5rem', height: '3rem'}
         }
-             src={i.product.imageUrls[0]} alt="susi"/>
+             src={i.product.imageUrls[0]} alt="susi"
+        />
       </Grid>
       <Grid item xs={5}>
         <Typography>
