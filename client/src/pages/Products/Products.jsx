@@ -1,112 +1,91 @@
 import React, { useEffect } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, getProductsAction } from '../../store/actions';
 import ProductCard from '../../components/ProductListing/Card/Card';
-import menuItemsContent from '../../components/Nav/config';
 import SimpleAccordion from '../../components/AboutCompany/AboutCompany';
 import Socials from '../../components/Footer/components/socials/Socials';
 import SortSelect from '../../components/ProductListing/SortSelect/SortSelect';
 import Filter from '../../components/Filter/Filter';
-import sortFunction from '../../components/ProductListing/SortSelect/SortFunction';
+import Title from '../../components/ProductListing/Title/Title';
+import NoResults from '../../components/ProductListing/NoResults/NoResults';
+import ProductsPagination from '../../components/ProductListing/ProductsPagination/ProductsPagination';
 
 function Products() {
+	const getQuery = (s) => s.includes('?') && s.substr(s.lastIndexOf('?') + 1);
+
+	const perPageProducts = 6;
 	const dispatch = useDispatch();
-	const [searchParams] = useSearchParams();
-	const currentParams = Object.fromEntries(searchParams);
-	const sorting = useSelector((state) => state.sort);
+	const [searchParams] = useSearchParams({});
+	const { products, productsQuantity } = useSelector((state) => state.products);
 
 	useEffect(() => {
 		dispatch(
 			getProductsAction(
-				`categories=${currentParams.categories}${
-					currentParams.spicy ? '&spicy=true' : ''
-				}${currentParams.vegetarian ? '&vegetarian=true' : ''}`
+				`perPage=${perPageProducts}&${getQuery(window.location.href)}`
 			)
 		);
-	}, [
-		currentParams.categories,
-		currentParams.spicy,
-		currentParams.vegetarian,
-		sorting,
-	]);
+	}, [searchParams]);
 
-	const { products } = useSelector((state) => state.products);
-	let components;
-	if (sorting !== 'default') {
-		const sortedProducts = sortFunction(products, sorting);
-		components = sortedProducts.map((product) => (
-			<ProductCard
-				key={product.itemNo}
-				data={product}
-				onClick={() => dispatch(addToCart(product))}
-			/>
-		));
-	} else {
-		components = products.map((product) => (
-			<ProductCard
-				key={product.itemNo}
-				data={product}
-				onClick={() => dispatch(addToCart(product))}
-			/>
-		));
-	}
-
-	const categoryTitle =
-		currentParams.categories.charAt(0).toUpperCase() +
-		currentParams.categories.slice(1);
-	const categoryImgPath = menuItemsContent().find(
-		(el) => el.alt.toLocaleLowerCase() === categoryTitle.toLocaleLowerCase()
-	).src;
+	const components = products.map((product) => (
+		<ProductCard
+			key={product.itemNo}
+			data={product}
+			onClick={() => dispatch(addToCart(product))}
+		/>
+	));
 
 	return (
 		<main>
 			<Grid
 				sx={{
-					padding: { xs: '15px 15px 90px', sm: '15px 15px 30px', lg: '30px 111px 60px' },
+					padding: {
+						xs: '15px 15px 90px',
+						sm: '15px 15px 30px',
+						lg: '30px 111px 60px',
+					},
 					backgroundColor: '#F2F2F2',
 				}}
 			>
 				<Grid
 					container
-					sx={{
-						marginBottom: '30px',
-						justifyContent: { xs: 'center', lg: 'space-between' },
-						alignItems: 'center',
-						flexDirection: { xs: 'column', lg: 'row' },
-					}}
+					marginBottom={3.75}
+					justifyContent={{ xs: 'center', lg: 'space-between' }}
+					flexDirection={{ xs: 'column', lg: 'row' }}
+					alignItems="center"
 				>
 					<Grid
 						item
 						container
 						width="fit-content"
 						alignItems="center"
-						sx={{ marginBottom: { xs: '16px', lg: '0' } }}
+						marginBottom={{ xs: 2, lg: 0 }}
 					>
-						<Box
-							component="img"
-							src={categoryImgPath}
-							sx={{ marginRight: '20px' }}
-						/>
-						<Typography variant="h4" component="h2">
-							{categoryTitle}
-						</Typography>
+						<Title />
 					</Grid>
 					<Grid>
 						<Filter />
 					</Grid>
-					<Grid sx={{ width: { xs: '100%', sm: '50%', lg: 'fit-content' } }}>
+					<Grid width={{ xs: '100%', sm: '50%', lg: 'fit-content' }}>
 						<SortSelect />
 					</Grid>
 				</Grid>
-				<Grid container sx={{ rowGap: { xs: '10px', sm: '50px' } }}>
-					{components}
+				<Grid container rowGap={{ xs: 1.25, sm: 6.25 }}>
+					{components.length ? components : <NoResults />}
 				</Grid>
-				<Grid sx={{ margin: { xs: '30px 0 20px', sm: '40px 0 0' } }}>
+				{components.length ? (
+					<Grid>
+						<ProductsPagination
+							productsQuantity={productsQuantity}
+							perPageProducts={perPageProducts}
+						/>
+					</Grid>
+				) : null}
+				<Grid margin={{ xs: '30px 0 20px', sm: '40px 0 0' }}>
 					<SimpleAccordion />
 				</Grid>
-				<Grid sx={{ display: { xs: 'block', sm: 'none' } }} textAlign="center">
+				<Grid display={{ xs: 'block', sm: 'none' }} textAlign="center">
 					<Socials />
 				</Grid>
 			</Grid>

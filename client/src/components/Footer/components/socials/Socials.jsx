@@ -1,14 +1,14 @@
 import React from 'react';
-import { Typography, List, ListItemIcon, Grid } from '@mui/material';
+import { Typography, List, ListItemIcon, Grid, Link } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 function Socials() {
 	return (
-		<Grid container sx={{ justifyContent: { xs: 'center', sm: 'flex-start' } }}>
-			<Grid item sx={{ marginLeft: { lg: '40px', sm: '20px' } }}>
+		<Grid container justifyContent={{ xs: 'center', sm: 'flex-start' }}>
+			<Grid item marginLeft={{ lg: 5, sm: 2.5 }}>
 				<Typography
-					fontSize="18px"
+					fontSize={18}
 					color={(theme) => theme.palette.text.secondary}
 					textAlign="center"
 				>
@@ -16,23 +16,35 @@ function Socials() {
 				</Typography>
 				<List
 					disablePadding
+					sx={{
+						marginTop: 1.25,
+						svg: {
+							width: 50,
+							height: 50,
+							opacity: 0.5,
+							cursor: 'pointer',
+							'&:hover': { opacity: 1 },
+						},
+					}}
 				>
-					<a
-						href="https://uk-ua.facebook.com/"
-						target="_blank"
-						rel="noreferrer"
-						style={{ textDecoration: 'none'}}
-					>
-						<ListItemIcon>
-							<FacebookIcon sx={{ color: '#61A8DE'}} fontSize='large'/>
-						</ListItemIcon>
-					</a>
-
-					<a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
-						<ListItemIcon>
-							<InstagramIcon sx={{ color: '#d85ed8' }} fontSize='large'/>
-						</ListItemIcon>
-					</a>
+					<ListItemIcon>
+						<Link
+							href="https://uk-ua.facebook.com/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<FacebookIcon sx={{ color: '#61A8DE' }} />
+						</Link>
+					</ListItemIcon>
+					<ListItemIcon>
+						<Link
+							href="https://www.instagram.com/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<InstagramIcon sx={{ color: '#d85ed8' }} />
+						</Link>
+					</ListItemIcon>
 				</List>
 			</Grid>
 		</Grid>

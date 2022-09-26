@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Typography, Stack } from '@mui/material';
-import { getRecommendedProduct } from '../../../../api/Api';
+import { getRecommendedProduct, getProductsByCategory } from '../../../../api/Api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../slider.scss';
@@ -9,14 +9,45 @@ import SushiCard from './SushiCard';
 import NextBtn from '../buttons/NextBtn';
 import PrevBtn from '../buttons/PrevBtn';
 
-function RecommendedSlider() {
-	const [items, setItems] = useState();
+function RecommendedSlider({category}) {
+	const[items, setItems] = useState();
+	const[categories, setCategories] = useState()
 
 	useEffect(() => {
-		getRecommendedProduct().then(({ data: { products } }) =>
+		if(category==='drinks'){
+			getRecommendedProduct().then(({ data: { products } }) =>{
 			setItems(products)
+			setCategories(category)
+			}
+			
 		);
+		} else if(category==='sushi') {
+			getProductsByCategory(category).then(({data:{ products }})=>{setItems(products)
+			setCategories('sushi')
+			})
+		}	
+	
 	}, []);
+
+	  useEffect(() => {
+		  if(categories==='drinks'){
+				
+			getProductsByCategory(category).then(({data:{ products }})=>{setItems(products)
+			setItems(products)
+			setCategories('drinks')
+			}
+			
+		);
+		} else if(categories==='sushi') {
+			
+			getRecommendedProduct().then(({ data: { products } }) =>{
+				console.log(products)
+				setItems(products)   
+			setCategories('sushi')})
+		} 
+	
+	}, [category]); 
+
 
 	const settings = {
 		dots: false,

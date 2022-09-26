@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 function SushiCard({item}){
+  
   const dispatch= useDispatch()
   const path = `/products/${item.itemNo}`
   return(<Card key={item.itemNo}  direction="column"

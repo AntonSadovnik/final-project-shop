@@ -45,12 +45,12 @@ function FooterMobile() {
 			<Button
 				onClick={handleLoginOpen}
 				disableRipple
-				sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+				sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 			>
 				<LoginIcon
 					sx={{
 						color: '#1BD741',
-						fontSize: '30px',
+						fontSize: 30,
 					}}
 				/>
 				<Typography color={(theme) => theme.palette.text.primary}>
@@ -69,12 +69,12 @@ function FooterMobile() {
 					<Button
 						onClick={handleLogout}
 						disableRipple
-						sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+						sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 					>
 						<LogoutIcon
 							sx={{
 								color: 'red',
-								fontSize: '30px',
+								fontSize: 30,
 							}}
 						/>
 						<Typography color={(theme) => theme.palette.text.primary}>
@@ -87,12 +87,12 @@ function FooterMobile() {
 					<Button
 						onClick={handleLoginOpen}
 						disableRipple
-						sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+						sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 					>
 						<LoginIcon
 							sx={{
 								color: '#1BD741',
-								fontSize: '30px',
+								fontSize: 30,
 							}}
 						/>
 						<Typography color={(theme) => theme.palette.text.primary}>
@@ -115,15 +115,12 @@ function FooterMobile() {
 			/>
 			<Grid
 				container
-				sx={{
-					padding: '11px 0',
-					borderTop: '1px solid #A4ACAD',
-					position: 'fixed',
-					bottom: '0px',
-					backgroundColor: 'white',
-					zIndex: 1
-
-				}}
+				padding="11px 0"
+				borderTop="1px solid #A4ACAD"
+				position="fixed"
+				bottom={0}
+				backgroundColor="white"
+				zIndex={1}
 				justifyContent="space-evenly"
 			>
 				<Grid item>
@@ -135,13 +132,9 @@ function FooterMobile() {
 					>
 						<Button
 							disableRipple
-							onClick={handleUpButton}
-							sx={{ padding: '0', minWidth: 0, flexDirection: 'column', transition: '.2s all ease-in-out' }}
+							sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 						>
-							<RestaurantMenuIcon
-								color="hoverColor"
-								sx={{ fontSize: '30px' }}
-							/>
+							<RestaurantMenuIcon color="hoverColor" sx={{ fontSize: 30 }} />
 
 							<Typography color={(theme) => theme.palette.text.primary}>
 								Menu
@@ -158,9 +151,9 @@ function FooterMobile() {
 					>
 						<Button
 							disableRipple
-							sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+							sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 						>
-							<ShoppingCartIcon color="hoverColor" sx={{ fontSize: '30px' }} />
+							<ShoppingCartIcon color="hoverColor" sx={{ fontSize: 30 }} />
 							<Typography color={(theme) => theme.palette.text.primary}>
 								Cart
 							</Typography>
@@ -176,9 +169,9 @@ function FooterMobile() {
 					>
 						<Button
 							disableRipple
-							sx={{ padding: '0', minWidth: 0, flexDirection: 'column' }}
+							sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 						>
-							<ThumbUpOffAltIcon color="hoverColor" sx={{ fontSize: '30px' }} />
+							<ThumbUpOffAltIcon color="hoverColor" sx={{ fontSize: 30 }} />
 							<Typography color={(theme) => theme.palette.text.primary}>
 								Reviews
 							</Typography>
