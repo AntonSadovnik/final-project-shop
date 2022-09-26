@@ -35,7 +35,6 @@ function Products() {
 			onClick={() => dispatch(addToCart(product))}
 		/>
 	));
-
 	return (
 		<main>
 			<Grid
@@ -64,9 +63,11 @@ function Products() {
 					>
 						<Title />
 					</Grid>
-					<Grid>
-						<Filter />
-					</Grid>
+					{products[0].categories !== 'drinks' ? (
+						<Grid>
+							<Filter />
+						</Grid>
+					) : null}
 					<Grid width={{ xs: '100%', sm: '50%', lg: 'fit-content' }}>
 						<SortSelect />
 					</Grid>
