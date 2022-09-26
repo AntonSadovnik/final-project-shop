@@ -1,15 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
-import { Dialog, DialogContent, DialogTitle, Stack } from '@mui/material';
-import GppBadIcon from '@mui/icons-material/GppBad';
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import { Stack } from '@mui/material';
 import ClientDataForm from '../../components/ClientDataForm/ClientDataForm';
-import {
-	placeNonAuthOrder,
-	removeOrderedProducts,
-} from '../../api/placeOrders';
-import Loader from '../../components/Loader/Loader';
+import { OrderMessage } from '../../components/OrderMessage/OrderMessage';
+import { placeOrder, removeOrderedProducts } from '../../api/placeOrders';
 import { resetCart } from '../../store/actions';
 
 function Ordering() {
@@ -34,54 +28,36 @@ function Ordering() {
 			newOrder = { products: cartProducts, ...userData };
 		}
 
-		placeNonAuthOrder(newOrder)
+		placeOrder(newOrder)
 			.then(() => {
+				setOrderProcessing(false);
+				setSuccess(true);
+				setError(false);
 				localStorage.removeItem('cart');
 				dispatch(resetCart());
 				resetForm();
-				setSuccess(true);
-				setError(false);
-				removeOrderedProducts(localStorage.getItem('token'));
+				if (customerId) {
+					removeOrderedProducts(localStorage.getItem('token'));
+				}
 			})
 			.catch(() => {
+				setOrderProcessing(false);
 				setError(true);
 				setSuccess(false);
-			})
-			.finally(() => setOrderProcessing(false));
+			});
 	};
 
 	return (
 		<main>
 			<Stack alignItems="center">
 				<ClientDataForm handleOrder={handleOrder} setOpenModal={setOpenModal} />
-				<Dialog
+				<OrderMessage
 					open={openOrderModal}
-					onClose={handleClose}
-					aria-labelledby="alert-dialog-title"
-					aria-describedby="alert-dialog-description"
-				>
-					<DialogTitle id="alert-dialog-title" sx={{ textAlign: 'center' }}>
-						{orderProcessing && 'Processing... It might take a second'}
-						{success && 'Your order has been successfully placed'}
-						{error && 'Oops! Something went wrong, please try again later'}
-					</DialogTitle>
-					<DialogContent>
-						{orderProcessing && <Loader />}
-						<div
-							style={{
-								display: 'flex',
-								justifyContent: 'center',
-							}}
-						>
-							{success && (
-								<ThumbUpOffAltIcon fontSize="large" sx={{ color: '#ff9846' }} />
-							)}
-							{error && (
-								<GppBadIcon fontSize="large" sx={{ color: '#d50000' }} />
-							)}
-						</div>
-					</DialogContent>
-				</Dialog>
+					handleClose={handleClose}
+					orderProcessing={orderProcessing}
+					success={success}
+					error={error}
+				/>
 			</Stack>
 		</main>
 	);
