@@ -143,7 +143,6 @@ function Activities() {
 				}}
 			>
 				<Button
-					className="header__buttons"
 					disableRipple
 					size="small"
 					onClick={() => handleClickOpen('paper')}
