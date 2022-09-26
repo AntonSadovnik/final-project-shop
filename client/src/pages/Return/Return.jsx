@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import style from './Return.module.scss';
 
 function Return() {
 	return (
@@ -30,16 +29,16 @@ function Return() {
 				the order, is the fact of delivery of obviously damaged Goods, which the
 				Consumer reasonably declares at the time of refusal to receive the
 				Goods.
-				<span className={style.text}>
+				<span style={{ display: 'block', fontSize: '18px', marginTop: '15px' }}>
 					Many retailers will accept returns provided that the customer has a
 					receipt as a proof of purchase, and that certain other conditions,
-					which depend on the retailer&apos;s policies, are met. These may include
-					the merchandise being in a certain condition (usually resellable if
-					not defective), no more than a certain amount of time having passed
-					since the purchase, and sometimes that identification be provided
-					(though usually only if a receipt is not provided). In some cases,
-					only exchanges or store credit are offered, again usually only without
-					a receipt, or after an initial refund period has passed. Some
+					which depend on the retailer&apos;s policies, are met. These may
+					include the merchandise being in a certain condition (usually
+					resalable if not defective), no more than a certain amount of time
+					having passed since the purchase, and sometimes that identification be
+					provided (though usually only if a receipt is not provided). In some
+					cases, only exchanges or store credit are offered, again usually only
+					without a receipt, or after an initial refund period has passed. Some
 					retailers charge a restocking fee for non-defective returned
 					merchandise, but typically only if the packaging has been opened.
 					There are various reasons why customers may wish to return
@@ -53,7 +52,7 @@ function Return() {
 					and the recipient can exchange this item for another item of
 					comparable value, or for store credit, often on a gift card.
 				</span>
-				<span className={style.text}>
+				<span style={{ display: 'block', fontSize: '18px', marginTop: '15px' }}>
 					According to the Decree of the Cabinet of Ministers of Ukraine dated
 					March 19, 1994 On the implementation of certain provisions of the Law
 					of Ukraine &ldquo;On the Protection of Consumer Rights&rdquo;, food
