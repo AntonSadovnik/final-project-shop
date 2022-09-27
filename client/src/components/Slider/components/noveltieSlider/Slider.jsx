@@ -86,7 +86,7 @@ function NoveltieSlider() {
 				direction="row"
 				justifyContent="center"
 				alignItems="center"
-				sx={{ marginTop: '50px', width: '100%' }}
+				sx={{ marginTop: '50px',  width:{sm:'94vw',md:'80.5vw',lg:'940px',xl:'940px' } }}
 			>
 				<Slider {...settings}>
 					{items.map((item) => (

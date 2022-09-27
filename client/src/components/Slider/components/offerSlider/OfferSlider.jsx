@@ -18,7 +18,7 @@ function OfferSlider({items}) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2500,
+    speed: 5500,
     autoplaySpeed: 2500,
     arrows: false,
     
@@ -69,7 +69,7 @@ function OfferSlider({items}) {
   if(!items){return null}
   return (<Stack direction="column" justifyContent="center" alignItems="center" alignSelf="center" justifySelf="center" paddin="50px" sx={{marginBottom:'50px' }} className="sale-slider">
   
-  <Stack className='slider-wrapper' direction="row" justifyContent="center" alignItems="center" sx={{marginTop: '50px'}}>
+  <Stack className='slider-wrapper' direction="row" justifyContent="center" alignItems="center" sx={{marginTop: '50px',width:{sm:'none',md:'80vw',lg:'940px',xl:'940px' }}}>
  
   <Slider {...settings}>
 
