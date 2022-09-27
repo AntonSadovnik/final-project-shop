@@ -8,20 +8,17 @@ function BlockSwitchingInCategory(props) {
     const { forwardProductId, backProductId } = props;
 
     return (
-        <Stack
-            direction="row"
+        <Stack direction="row"
             justifyContent="space-between"
             alignItems="center"
             spacing={4}
             style={{ paddingLeft: 30, paddingRight: 30 }}
             sx={{ height: { xs: '60px', sm: '80px', md: '90px', xl: '110px' }, }}
         >
-            <NavLink
-                to={backProductId}
+            <NavLink to={backProductId}
                 style={{ textDecoration: 'none', }}
             >
-                <Stack
-                    variant="contained"
+                <Stack variant="contained"
                     component="a"
                     direction="row"
                     alignItems="center"
@@ -35,11 +32,9 @@ function BlockSwitchingInCategory(props) {
                             width: '20px',
                         }}
                     />
-                    <Typography
-                        variant="body2"
+                    <Typography variant="body2"
                         component="span"
                         style={{
-                            fontStyle: 'normal',
                             fontWeight: '400',
                             fontSize: '18px',
                             lineHeight: '22px',
@@ -47,28 +42,22 @@ function BlockSwitchingInCategory(props) {
                         sx={{
                             color: { xs: '#000000' },
                             margin: { xs: '0 0 0 12px', sm: '0 0 0 15px', md: '0 0 0 17px', xl: '0 0 0 18px', },
-                        }}
-                    >
+                        }} >
                         Back
                     </Typography>
                 </Stack>
             </NavLink>
 
-            <NavLink
-                to={forwardProductId}
+            <NavLink to={forwardProductId}
                 style={{ textDecoration: 'none', }}
             >
-                <Stack
-                    variant="contained"
+                <Stack variant="contained"
                     component="a"
                     direction="row"
                     alignItems="center"
                 >
-                    <Typography
-                        variant="body2"
-                        component="span"
+                    <Typography variant="body2" component="span"
                         style={{
-                            fontStyle: 'normal',
                             fontWeight: '400',
                             fontSize: '18px',
                             lineHeight: '22px',
@@ -76,8 +65,7 @@ function BlockSwitchingInCategory(props) {
                         sx={{
                             color: { xs: '#000000' },
                             margin: { xs: '0 13px 0 0', sm: '0 15px 0 0', md: '0 17px 0 0', xl: '0 19px 0 0', },
-                        }}
-                    >
+                        }} >
                         Forward
                     </Typography>
 
@@ -95,5 +83,4 @@ function BlockSwitchingInCategory(props) {
         </Stack>
     )
 }
-
 export default BlockSwitchingInCategory;

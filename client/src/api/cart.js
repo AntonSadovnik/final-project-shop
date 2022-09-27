@@ -25,6 +25,7 @@ export const decreaseCartOnServer = (idProduct, token) =>
             Authorization: token,
         }
     })
+
 export const removeProductFromServer = (idProduct, token) =>
     axios.delete(`/api/cart/${idProduct}`,{
         headers: {

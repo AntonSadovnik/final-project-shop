@@ -2,11 +2,10 @@ import React from 'react';
 import { Typography, Stack } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-function Error() {
-
+function Error(props) {
+	const { backendError } = props;
 	return (
 		<Stack
-			className="error-card"
 			component="section"
 			xs={12}
 			style={{
@@ -21,7 +20,6 @@ function Error() {
 			}}
 		>
 			<Stack
-				className="error-card_block-switch"
 				spacing={4}
 				style={{
 					display: 'flex',
@@ -35,7 +33,6 @@ function Error() {
 				}}
 			>
 				<Typography
-					className="error-card_title"
 					variant="h4"
 					component="h4"
 					style={{
@@ -45,14 +42,12 @@ function Error() {
 					sx={{
 						fontSize: { xs: '25px', md: '35px', lx: '45px', lg: '55px' },
 						marginBottom: { xs: '10px', md: '35px', lx: '45px' },
-
 					}}
 				>
-					Error 404
+					{backendError ? 'O-o-ops' : 'Error 404'}
 				</Typography>
 
 				<Typography
-					className="error-card_content"
 					variant="h5"
 					component="span"
 					style={{
@@ -61,14 +56,14 @@ function Error() {
 					sx={{
 						fontSize: { xs: '15px', md: '25px', lx: '35px' },
 						marginBottom: { xs: '10px', md: '25px', lx: '35px' },
-
 					}}
 				>
-					Unfortunately, there is no such page.
+					{backendError
+						? 'Something went wrong!'
+						: 'Unfortunately, there is no such page.'}
 				</Typography>
 
 				<Typography
-					className="error-card_content-switch-home-page"
 					variant="body2"
 					component="p"
 					sx={{
@@ -87,7 +82,6 @@ function Error() {
 					<Stack
 						variant="contained"
 						component="a"
-						className="error-card_switch-home-page"
 						style={{
 							borderRadius: '5px',
 							padding: '5px 65px',
@@ -101,13 +95,12 @@ function Error() {
 							background: { xs: '#F46D40' },
 							color: { xs: '#F2F2F2' },
 						}}
-
 					>
 						OUR MENU
 					</Stack>
 				</NavLink>
-			</Stack >
-		</Stack >
+			</Stack>
+		</Stack>
 	);
 }
 
