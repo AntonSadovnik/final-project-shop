@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Button, Typography } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -22,6 +22,7 @@ function Activities() {
 	const [loginModal, setLoginModal] = React.useState(false);
 	const [scroll, setScroll] = React.useState('paper');
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [openSearch, setOpenSearch] = React.useState(false);
 	const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
@@ -38,7 +39,7 @@ function Activities() {
 	};
 
 	const handleLogout = () => {
-		dispatch(setLogout());
+		dispatch(setLogout(navigate));
 		dispatch(deleteCustomer());
 		setLoginButton(
 			<LoginIcon
