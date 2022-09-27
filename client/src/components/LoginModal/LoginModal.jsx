@@ -10,7 +10,7 @@ export default function LoginModal(props) {
 
 	React.useEffect(() => {
 		setForm(<LoginForm setLoginModal={setLoginModal} setForm={setForm} />);
-	}, loginModal);
+	}, [loginModal]);
 
 	const style = {
 		position: 'absolute',
