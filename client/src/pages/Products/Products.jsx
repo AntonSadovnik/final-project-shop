@@ -63,7 +63,7 @@ function Products() {
 					>
 						<Title />
 					</Grid>
-					{products[0].categories !== 'drinks' ? (
+					{products.lenght > 0 && products[0].categories !== 'drinks' ? (
 						<Grid>
 							<Filter />
 						</Grid>
