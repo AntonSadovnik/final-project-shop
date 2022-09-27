@@ -22,7 +22,7 @@ function Reviews() {
 				});
 		} else if (reviews) {
 			const reviewsCatalog = reviews.map((item) => (
-				<ReviewCard name={item.customer.firstName} text={item.content} />
+				<ReviewCard key={Math.random()} name={item.customer.firstName} text={item.content} />
 			));
 			setCatalog(reviewsCatalog);
 		}
