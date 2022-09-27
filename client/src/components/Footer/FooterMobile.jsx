@@ -13,6 +13,11 @@ import IconCart from "./components/iconCart/IconCart";
 function FooterMobile() {
 	const [loginModal, setLoginModal] = React.useState(false);
 	const [loginButton, setLoginButton] = React.useState(null);
+
+	const handleScroll =()=>{
+		window.scrollTo({ behavior: 'smooth', top: '0px' });
+	}
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate(); 	
 	const isLoggedIn = useSelector((state) => state.isLoggedIn);
@@ -115,6 +120,7 @@ function FooterMobile() {
 					>
 						<Button
 							disableRipple
+							onClick={handleScroll}
 							sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
 						>
 							<RestaurantMenuIcon color="hoverColor" sx={{ fontSize: 30 }} />

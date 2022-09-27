@@ -19,7 +19,6 @@ function ProductCard() {
 	const { id } = useParams();
 	const cardTitle = 'name' in product ? product.name : '';
 	const categorySlider = product.categories === 'drinks' ? 'sushi' : 'drinks';
-
 	async function showProduct() {
 
 		await getProduct(id).then(({ data: { products } }) => {

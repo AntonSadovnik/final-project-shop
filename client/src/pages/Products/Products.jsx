@@ -23,7 +23,8 @@ function Products() {
 	useEffect(() => {
 		dispatch(
 			getProductsAction(
-				`perPage=${perPageProducts}&${getQuery(window.location.href)}`, navigate
+				`perPage=${perPageProducts}&${getQuery(window.location.href)}`,
+				navigate
 			)
 		);
 	}, [searchParams]);
@@ -63,11 +64,9 @@ function Products() {
 					>
 						<Title />
 					</Grid>
-					{/* {products[0].categories !== 'drinks' ? (
-						<Grid>
-							<Filter />
-						</Grid>
-					) : null} */}
+					<Grid>
+						<Filter />
+					</Grid>
 					<Grid width={{ xs: '100%', sm: '50%', lg: 'fit-content' }}>
 						<SortSelect />
 					</Grid>
