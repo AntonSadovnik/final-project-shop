@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ import Filter from '../../components/Filter/Filter';
 import Title from '../../components/ProductListing/Title/Title';
 import NoResults from '../../components/ProductListing/NoResults/NoResults';
 import ProductsPagination from '../../components/ProductListing/ProductsPagination/ProductsPagination';
+import Loader from '../../components/Loader/Loader';
 
 function Products() {
 	const getQuery = (s) => s.includes('?') && s.substr(s.lastIndexOf('?') + 1);
@@ -18,13 +19,15 @@ function Products() {
 	const perPageProducts = 6;
 	const dispatch = useDispatch();
 	const [searchParams] = useSearchParams({});
+	const [loader, setLoader] = useState(false);
 	const { products, productsQuantity } = useSelector((state) => state.products);
 
 	useEffect(() => {
 		dispatch(
 			getProductsAction(
 				`perPage=${perPageProducts}&${getQuery(window.location.href)}`,
-				navigate
+				navigate,
+				setLoader
 			)
 		);
 	}, [searchParams]);
@@ -71,23 +74,30 @@ function Products() {
 						<SortSelect />
 					</Grid>
 				</Grid>
-				<Grid container rowGap={{ xs: 1.25, sm: 6.25 }}>
-					{components.length ? components : <NoResults />}
-				</Grid>
-				{components.length ? (
-					<Grid>
-						<ProductsPagination
-							productsQuantity={productsQuantity}
-							perPageProducts={perPageProducts}
-						/>
-					</Grid>
-				) : null}
-				<Grid margin={{ xs: '30px 0 20px', sm: '40px 0 0' }}>
-					<SimpleAccordion />
-				</Grid>
-				<Grid display={{ xs: 'block', sm: 'none' }} textAlign="center">
-					<Socials />
-				</Grid>
+
+				{loader ? (
+					<Loader />
+				) : (
+					<>
+						<Grid container rowGap={{ xs: 1.25, sm: 6.25 }}>
+							{components.length ? components : <NoResults />}
+						</Grid>
+						{components.length ? (
+							<Grid>
+								<ProductsPagination
+									productsQuantity={productsQuantity}
+									perPageProducts={perPageProducts}
+								/>
+							</Grid>
+						) : null}
+						<Grid margin={{ xs: '30px 0 20px', sm: '40px 0 0' }}>
+							<SimpleAccordion />
+						</Grid>
+						<Grid display={{ xs: 'block', sm: 'none' }} textAlign="center">
+							<Socials />
+						</Grid>
+					</>
+				)}
 			</Grid>
 		</main>
 	);
