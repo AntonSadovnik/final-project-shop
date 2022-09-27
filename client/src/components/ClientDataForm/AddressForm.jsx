@@ -50,7 +50,7 @@ function AddressForm({ formikData }) {
 					id="apartment"
 					name="apartment"
 					label="Apt"
-					type="apartment"
+					type="number"
 					value={formikData.values.apartment}
 					onChange={formikData.handleChange}
 					onBlur={formikData.onBlur}
@@ -68,7 +68,7 @@ function AddressForm({ formikData }) {
 					id="entrance"
 					name="entrance"
 					label="Entrance"
-					type="entrance"
+					type="number"
 					value={formikData.values.entrance}
 					onChange={formikData.handleChange}
 					onBlur={formikData.onBlur}
@@ -84,7 +84,7 @@ function AddressForm({ formikData }) {
 					id="floor"
 					name="floor"
 					label="Floor"
-					type="floor"
+					type="number"
 					value={formikData.values.floor}
 					onChange={formikData.handleChange}
 					onBlur={formikData.onBlur}
@@ -98,7 +98,7 @@ function AddressForm({ formikData }) {
 					id="code"
 					name="code"
 					label="Code"
-					type="code"
+					type="number"
 					value={formikData.values.code}
 					onChange={formikData.handleChange}
 					onBlur={formikData.onBlur}

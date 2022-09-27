@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 import Box from '@mui/material/Box';
 import { Button, TextField, Typography } from '@mui/material';
+import { validationSchemaRegistration } from './validationSchema';
 // eslint-disable-next-line import/no-cycle
 import LoginForm from './LoginForm';
 import { registrateCustomer } from '../../api/Api';
@@ -11,25 +11,6 @@ import SuccessfullRegistration from './SuccessfulRegistration';
 
 export default function RegistrationForm({ setForm }) {
 	const [err, setErr] = React.useState(null);
-	const validationschema = yup.object({
-		email: yup.string('Enter your email').required('Email is required'),
-		password: yup
-			.string('Enter your password')
-			.min(7, '*Password must be between 7 and 30 characters')
-			.max(30, '*Password must be between 7 and 30 characters')
-			.required('Password is required'),
-		firstName: yup
-			.string('Enter your First name')
-			.required('First name is required'),
-		lastName: yup
-			.string('Enter your Last name')
-			.required('Last name is required'),
-		login: yup
-			.string('Login your password')
-			.min(3, '*Login must be between 3 and 10 characters')
-			.max(10, '*Login must be between 3 and 10 characters')
-			.required('Login is required'),
-	});
 
 	const formik = useFormik({
 		initialValues: {
@@ -39,7 +20,7 @@ export default function RegistrationForm({ setForm }) {
 			lastName: '',
 			login: '',
 		},
-		validationSchema: validationschema,
+		validationSchema: validationSchemaRegistration,
 		onSubmit: (values) => {
 			registrateCustomer(values)
 				.then(() => {
@@ -104,6 +85,7 @@ export default function RegistrationForm({ setForm }) {
 						id="email"
 						name="email"
 						label="Email"
+						type='email'
 						value={formik.values.email}
 						onBlur={formik.onBlur}
 						onChange={formik.handleChange}
@@ -124,7 +106,7 @@ export default function RegistrationForm({ setForm }) {
 						helperText={formik.touched.password && formik.errors.password}
 					/>
 				</Typography>
-				<Typography component="div" sx={{ marginBottom: '20px' }}>
+				<Typography component="div" sx={{ marginBottom: '20px', color: 'red'}}>
 					{err}
 				</Typography>
 				<Button
