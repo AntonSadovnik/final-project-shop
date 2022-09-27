@@ -63,11 +63,9 @@ function Products() {
 					>
 						<Title />
 					</Grid>
-					{products.lenght > 0 && products[0].categories !== 'drinks' ? (
-						<Grid>
-							<Filter />
-						</Grid>
-					) : null}
+					<Grid>
+						<Filter />
+					</Grid>
 					<Grid width={{ xs: '100%', sm: '50%', lg: 'fit-content' }}>
 						<SortSelect />
 					</Grid>
