@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, getProductsAction } from '../../store/actions';
 import ProductCard from '../../components/ProductListing/Card/Card';
@@ -11,19 +11,23 @@ import Filter from '../../components/Filter/Filter';
 import Title from '../../components/ProductListing/Title/Title';
 import NoResults from '../../components/ProductListing/NoResults/NoResults';
 import ProductsPagination from '../../components/ProductListing/ProductsPagination/ProductsPagination';
+import Loader from '../../components/Loader/Loader';
 
 function Products() {
 	const getQuery = (s) => s.includes('?') && s.substr(s.lastIndexOf('?') + 1);
-
+	const navigate = useNavigate();
 	const perPageProducts = 6;
 	const dispatch = useDispatch();
 	const [searchParams] = useSearchParams({});
+	const [loader, setLoader] = useState(false);
 	const { products, productsQuantity } = useSelector((state) => state.products);
 
 	useEffect(() => {
 		dispatch(
 			getProductsAction(
-				`perPage=${perPageProducts}&${getQuery(window.location.href)}`
+				`perPage=${perPageProducts}&${getQuery(window.location.href)}`,
+				navigate,
+				setLoader
 			)
 		);
 	}, [searchParams]);
@@ -63,32 +67,37 @@ function Products() {
 					>
 						<Title />
 					</Grid>
-					{products.lenght > 0 && products[0].categories !== 'drinks' ? (
-						<Grid>
-							<Filter />
-						</Grid>
-					) : null}
+					<Grid>
+						<Filter />
+					</Grid>
 					<Grid width={{ xs: '100%', sm: '50%', lg: 'fit-content' }}>
 						<SortSelect />
 					</Grid>
 				</Grid>
-				<Grid container rowGap={{ xs: 1.25, sm: 6.25 }}>
-					{components.length ? components : <NoResults />}
-				</Grid>
-				{components.length ? (
-					<Grid>
-						<ProductsPagination
-							productsQuantity={productsQuantity}
-							perPageProducts={perPageProducts}
-						/>
-					</Grid>
-				) : null}
-				<Grid margin={{ xs: '30px 0 20px', sm: '40px 0 0' }}>
-					<SimpleAccordion />
-				</Grid>
-				<Grid display={{ xs: 'block', sm: 'none' }} textAlign="center">
-					<Socials />
-				</Grid>
+
+				{loader ? (
+					<Loader />
+				) : (
+					<>
+						<Grid container rowGap={{ xs: 1.25, sm: 6.25 }}>
+							{components.length ? components : <NoResults />}
+						</Grid>
+						{components.length ? (
+							<Grid>
+								<ProductsPagination
+									productsQuantity={productsQuantity}
+									perPageProducts={perPageProducts}
+								/>
+							</Grid>
+						) : null}
+						<Grid margin={{ xs: '30px 0 20px', sm: '40px 0 0' }}>
+							<SimpleAccordion />
+						</Grid>
+						<Grid display={{ xs: 'block', sm: 'none' }} textAlign="center">
+							<Socials />
+						</Grid>
+					</>
+				)}
 			</Grid>
 		</main>
 	);

@@ -78,7 +78,7 @@ function Filter() {
 					}}
 					control={
 						<Checkbox
-							checked={spicy}
+							checked={!!spicy}
 							onChange={() => handleChange('spicy')}
 							name="spicy"
 						/>
@@ -92,7 +92,7 @@ function Filter() {
 					}}
 					control={
 						<Checkbox
-							checked={vegetarian}
+							checked={!!vegetarian}
 							onChange={() => handleChange('vegetarian')}
 							name="vegetarian"
 						/>
