@@ -6,10 +6,11 @@ import { useDispatch} from 'react-redux';
 import { addToCart } from '../../../../store/actions';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import "./recommend.scss";
+
 
 
 function SushiCard({item}){
+  
   const dispatch= useDispatch()
   const path = `/products/${item.itemNo}`
   return(<Card key={item.itemNo}  direction="column"

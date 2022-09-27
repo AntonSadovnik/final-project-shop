@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
-
-
+import React from 'react';
 import Slider from 'react-slick';
 import {  Stack } from '@mui/material';
-
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import "./offer.scss";
+import "../../slider.scss";
 import OfferCard from './OfferCard';
 
 
@@ -14,11 +11,6 @@ import OfferCard from './OfferCard';
 
 
 function OfferSlider({items}) {
-
- useEffect(()=>{
-
-  
- },[])
 
   const settings = {
     dots: true,
@@ -75,13 +67,13 @@ function OfferSlider({items}) {
     ]
   };
   if(!items){return null}
-  return (<Stack direction="column" justifyContent="center" alignItems="center" alignSelf="center" justifySelf="center" paddin="50px" sx={{marginBottom:'50px'}} className="sale-slider">
+  return (<Stack direction="column" justifyContent="center" alignItems="center" alignSelf="center" justifySelf="center" paddin="50px" sx={{marginBottom:'50px' }} className="sale-slider">
   
   <Stack className='slider-wrapper' direction="row" justifyContent="center" alignItems="center" sx={{marginTop: '50px'}}>
  
   <Slider {...settings}>
 
-  {items.map((item)=> <OfferCard key={item.article} item={item}/>
+  {items.map((item)=> <OfferCard key={item.itemNo} item={item}/>
   )}
   </Slider>
   </Stack>
