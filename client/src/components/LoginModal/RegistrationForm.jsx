@@ -58,10 +58,10 @@ export default function RegistrationForm({ setForm }) {
 	return (
 		<form onSubmit={formik.handleSubmit}>
 			<Box>
-				<Typography id="modal-modal-title" variant="h6" component="h2">
+				<Typography component="div" id="modal-modal-title" variant="h6">
 					Registration
 				</Typography>
-				<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+				<Typography component="div" id="modal-modal-description" sx={{ mt: 2 }}>
 					<TextField
 						sx={{ marginBottom: '20px' }}
 						fullWidth
@@ -124,7 +124,9 @@ export default function RegistrationForm({ setForm }) {
 						helperText={formik.touched.password && formik.errors.password}
 					/>
 				</Typography>
-				<Typography sx={{ marginBottom: '20px' }}>{err}</Typography>
+				<Typography component="div" sx={{ marginBottom: '20px' }}>
+					{err}
+				</Typography>
 				<Button
 					sx={{ marginBottom: '20px' }}
 					color="primary"
