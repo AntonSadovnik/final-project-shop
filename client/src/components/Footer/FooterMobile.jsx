@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { deleteCustomer, setCustomer, setLogout } from '../../store/actions';
@@ -14,6 +14,7 @@ function FooterMobile() {
 	const [loginModal, setLoginModal] = React.useState(false);
 	const [loginButton, setLoginButton] = React.useState(null);
 	const dispatch = useDispatch();
+	const navigate = useNavigate(); 	
 	const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
 	const handleLoginOpen = () => {
@@ -21,7 +22,7 @@ function FooterMobile() {
 	};
 
 	const handleLogout = () => {
-		dispatch(setLogout());
+		dispatch(setLogout(navigate));
 		dispatch(deleteCustomer());
 		setLoginButton(
 			<Button

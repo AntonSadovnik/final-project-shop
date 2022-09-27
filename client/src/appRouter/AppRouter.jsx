@@ -45,6 +45,7 @@ function AppRouter() {
 					<Route path="/products/:id" element={<Product />} />
 					<Route path="/cart" element={<CartMob />} />
 					<Route path="/return" element={<Return />} />
+					<Route path="/backError" element={<ErrorPage backendError={1} />} />
 					<Route path="*" element={<ErrorPage backendError={0} />} />
 				</Routes>
 				<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
