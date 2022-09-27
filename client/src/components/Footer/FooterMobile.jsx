@@ -107,7 +107,7 @@ function FooterMobile() {
 				position="fixed"
 				bottom={0}
 				backgroundColor="white"
-				zIndex={1}
+				zIndex={11111}
 				justifyContent="space-evenly"
 			>
 				<Grid item>

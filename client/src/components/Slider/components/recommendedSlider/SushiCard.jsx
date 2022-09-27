@@ -10,7 +10,9 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 function SushiCard({item}){
-  
+  const handleScroll =()=>{
+		window.scrollTo({ behavior: 'smooth', top: 130 });
+	}
   const dispatch= useDispatch()
   const path = `/products/${item.itemNo}`
   return(<Card key={item.itemNo}  direction="column"
@@ -38,6 +40,7 @@ function SushiCard({item}){
 						to={path}
 					>
    <CardMedia 
+        onClick={handleScroll}
         component="img"
         alt="not display"
         height="190px"
@@ -50,11 +53,12 @@ function SushiCard({item}){
         <Typography gutterBottom variant="h6" component="div" className='card-title' sx={{ fontSize: 20, display:"flex",justifyContent:"center", alignItems:"center", marginTop:"0px", flexDirection:"column", textAlign:"center", height:'80px',marginBottom:"30px",
        }}>
         <NavLink
-						style={{
+        onClick={handleScroll} 
+				style={{
 							textDecoration: 'none',
               color:'black'
 						}}
-						to={path}
+				to={path}
 					>
         {item.name[0].toUpperCase()+item.name.slice(1)}
         </NavLink>
