@@ -81,7 +81,7 @@ function Error(props) {
 				>
 					<Stack
 						variant="contained"
-						component="a"
+						component="p"
 						style={{
 							borderRadius: '5px',
 							padding: '5px 65px',

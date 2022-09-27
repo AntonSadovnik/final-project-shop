@@ -14,8 +14,11 @@ function BlockDrawCard(props) {
 	const { minusQuantity, quantityGoods, addQuantity, onClickButton } = props;
 
 	return (
-		<Grid container xs={12} sm={{ width: '100 %' }}
-			sx={{ height: { sm: '350px', md: '400px', xl: '700px' } }}
+		<Grid container item xs={12}
+			sx={{
+				height: { sm: '350px', md: '400px', xl: '700px' },
+				width: { sm: '100 %', },
+			}}
 		>
 			<ImgPdCard cardPicture={imageUrls[0]} />
 
@@ -62,7 +65,9 @@ function BlockDrawCard(props) {
 							addQuantity={addQuantity}
 						/>
 
-						<BlockCompound contains={contains} ingredients={ingredients} />
+						<BlockCompound contains={contains}
+							ingredients={ingredients}
+							categories={categories} />
 					</Stack>
 
 					<CustomButton title="Want!" onClick={onClickButton}
@@ -83,6 +88,6 @@ function BlockDrawCard(props) {
 					/>
 				</Stack>
 			</Grid>
-		</Grid>
+		</Grid >
 	);
 } export default BlockDrawCard;
