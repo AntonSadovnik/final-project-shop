@@ -11,31 +11,31 @@ const initialState = {cart: {}};
 
 
 const cartReducer = (state = initialState, action = {}) => {
-    switch (action.type) {
+  switch (action.type) {
 
-        case SET_CART: {
-            return {...state, cart: action.payload};
-        }
+    case SET_CART: {
+      return {...state, cart: action.payload};
+    }
 
-        case ADD_TO_CART: {
-            return {
-                ...state,
-                cart: {...state.cart, products: [...state.cart.products, action.payload]}
-            };
-        }
+    case ADD_TO_CART: {
+      return {
+        ...state,
+        cart: {...state.cart, products: [...state.cart.products, action.payload]}
+      };
+    }
 
-        case INCREASE_QUANTITY_TO_CART: {
+    case INCREASE_QUANTITY_TO_CART: {
 
-            return {...state, cart: action.payload};
-        }
+      return {...state, cart: action.payload};
+    }
 
-        case DECREASE_QUANTITY_TO_CART: {
-            return {...state, cart: action.payload};
-        }
+    case DECREASE_QUANTITY_TO_CART: {
+      return {...state, cart: action.payload};
+    }
 
-        case REMOVE_FROM_CART: {
-            return {...state, cart: action.payload};
-        }
+    case REMOVE_FROM_CART: {
+      return {...state, cart: action.payload};
+    }
 
         case RESET_CART: {
             return {...state, cart: {products: []}};

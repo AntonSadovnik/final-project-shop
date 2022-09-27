@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import { NavLink } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { deleteCustomer, setCustomer, setLogout } from '../../store/actions';
 import LoginModal from '../LoginModal/LoginModal';
+import IconCart from "./components/iconCart/IconCart";
 
 function FooterMobile() {
 	const [loginModal, setLoginModal] = React.useState(false);
@@ -137,15 +137,7 @@ function FooterMobile() {
 						}}
 						to="/cart"
 					>
-						<Button
-							disableRipple
-							sx={{ padding: 0, minWidth: 0, flexDirection: 'column' }}
-						>
-							<ShoppingCartIcon color="hoverColor" sx={{ fontSize: 30 }} />
-							<Typography color={(theme) => theme.palette.text.primary}>
-								Cart
-							</Typography>
-						</Button>
+						<IconCart/>
 					</NavLink>
 				</Grid>
 				<Grid item>

@@ -7,7 +7,7 @@ const colors = {
 	buttonsLightGrayText: '#F2F2F2',
 	primaryButton: '#F46D40',
 	secondaryButton: '#FF9846',
-	backgroungColor: '#E5E5E5',
+	backgroundColor: '#E5E5E5',
 };
 
 const theme = createTheme({

@@ -1,4 +1,3 @@
-
 import { React } from 'react';
 import { Grid, CardMedia, Stack, } from '@mui/material';
 
@@ -7,9 +6,8 @@ function ImgPdCard(props) {
 
     return (
         <Grid container item xs={12} sm={7} >
-            <Stack
+            <Stack width="100%"
                 spacing={1}
-                width="100%"
                 style={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -27,7 +25,6 @@ function ImgPdCard(props) {
                     background-position="center"
                     width="100%"
                     object-fit="cover"
-
                 />
             </Stack>
         </Grid>
