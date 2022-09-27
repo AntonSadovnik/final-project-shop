@@ -1,8 +1,6 @@
-import { useNavigate } from 'react-router-dom';
 import getProducts from '../api/getProducts';
-import { getAllProducts, getCustomer } from '../api/Api';
+import { getCustomer } from '../api/Api';
 import {
-	GET_PRODUCTS_INIT,
 	ADD_TO_CART,
 	ADD_FILTER,
 	DECREASE_QUANTITY_TO_CART,
@@ -24,17 +22,7 @@ export const getProductsAction = (categories, navigate) => (dispatch) => {
 			dispatch({ type: SET_PRODUCTS, payload: products.data });
 		});
 	} catch (error) {
-		navigate('/backError')
-	}
-};
-
-export const getProductsRequest = () => async (dispatch) => {
-	const navigate = useNavigate();
-	try {
-		const { data } = await getAllProducts();
-		dispatch({ type: GET_PRODUCTS_INIT, payload: data });
-	} catch (error) {
-		navigate('/backError')
+		navigate('/backError');
 	}
 };
 
@@ -80,7 +68,7 @@ export const setLogout = (navigate) => (dispatch) => {
 		localStorage.removeItem('cart');
 		dispatch({ type: SET_LOGOUT });
 	} catch (error) {
-		navigate('/backError')
+		navigate('/backError');
 	}
 };
 
