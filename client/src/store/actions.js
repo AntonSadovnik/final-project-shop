@@ -16,15 +16,21 @@ import {
 	RESET_CART,
 } from './types/types';
 
-export const getProductsAction = (categories, navigate) => (dispatch) => {
-	try {
-		getProducts(categories).then((products) => {
-			dispatch({ type: SET_PRODUCTS, payload: products.data });
-		});
-	} catch (error) {
-		navigate('/backError');
-	}
-};
+export const getProductsAction =
+	(categories, navigate, setLoader) => (dispatch) => {
+		try {
+			setLoader(true);
+			getProducts(categories)
+				.then((products) => {
+					dispatch({ type: SET_PRODUCTS, payload: products.data });
+				})
+				.then(() => {
+					setLoader(false);
+				});
+		} catch (error) {
+			navigate('/backError');
+		}
+	};
 
 export const addFilter = (data) => (dispatch) => {
 	dispatch({ type: ADD_FILTER, payload: data });
