@@ -13,14 +13,14 @@ function ChangeForm({ formikData }) {
 			xs={8}
 		>
 			<Grid columns={16} container>
-				<Grid xs={10}>
+				<Grid item xs={10}>
 					<FormControlLabel
-						sx={{ marginTop: "10px" }}
+						sx={{ marginTop: '10px' }}
 						control={<Checkbox defaultChecked />}
 						label="Prepare change with"
 					/>
 				</Grid>
-				<Grid xs={6}>
+				<Grid item xs={6}>
 					<TextField
 						id="summ"
 						name="summ"

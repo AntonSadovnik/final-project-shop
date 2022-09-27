@@ -53,11 +53,16 @@ export default function LoginForm({ setForm, setLoginModal }) {
     return (
 			<form onSubmit={formik.handleSubmit}>
 				<Box>
-					<Typography id="modal-modal-title" variant="h6" component="h2">
+					<Typography component="div" id="modal-modal-title" variant="h6">
 						Login
 					</Typography>
-					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+					<Typography
+						component="div"
+						id="modal-modal-description"
+						sx={{ mt: 2 }}
+					>
 						<TextField
+							component="span"
 							sx={{ marginBottom: '20px' }}
 							fullWidth
 							id="loginOrEmail"
@@ -75,6 +80,7 @@ export default function LoginForm({ setForm, setLoginModal }) {
 							}
 						/>
 						<TextField
+							component="span"
 							type="password"
 							sx={{ marginBottom: '20px' }}
 							fullWidth
@@ -88,7 +94,9 @@ export default function LoginForm({ setForm, setLoginModal }) {
 							helperText={formik.touched.password && formik.errors.password}
 						/>
 					</Typography>
-					<Typography sx={{ marginBottom: '20px' }}>{err}</Typography>
+					<Typography component="div" sx={{ marginBottom: '20px' }}>
+						{err}
+					</Typography>
 					<Button
 						sx={{ marginBottom: '20px' }}
 						color="primary"
@@ -98,7 +106,8 @@ export default function LoginForm({ setForm, setLoginModal }) {
 					>
 						Submit
 					</Button>
-					<Box
+					<Typography
+						component="div"
 						sx={{
 							textAlign: 'center',
 							fontFamily: "'Nunito Sans', sans-serif",
@@ -106,10 +115,14 @@ export default function LoginForm({ setForm, setLoginModal }) {
 					>
 						{' '}
 						or{' '}
-						<Box className="modal__change-form" onClick={changeForm}>
+						<Typography
+							component="div"
+							className="modal__change-form"
+							onClick={changeForm}
+						>
 							Registration
-						</Box>
-					</Box>
+						</Typography>
+					</Typography>
 				</Box>
 			</form>
 		);
