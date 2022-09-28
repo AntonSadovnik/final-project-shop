@@ -3,7 +3,7 @@ import cityReducer from './cityReducer';
 describe('cityReducer func', () => {
 
     const location = [''];
-    const selectCity = ['Kyiv', 'Kharkiv', 'Odesa', 'Dnipro'];
+    const selectCity = ['Kyiv', 'Kharkiv', 'Odesa'];
 
     it('should return default value', () => {
         expect(cityReducer(undefined,{})).toEqual('')
