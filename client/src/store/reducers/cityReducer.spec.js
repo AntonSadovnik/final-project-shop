@@ -8,6 +8,7 @@ describe('cityReducer func', () => {
     it('should return default value', () => {
         expect(cityReducer(undefined,{})).toEqual('')
     })
+    
     it('should set city', () => {
         expect(cityReducer(location, {type: 'SET_CITY', payload: {city: selectCity[1] }})).toEqual('Kharkiv')
     })
