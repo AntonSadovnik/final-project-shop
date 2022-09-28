@@ -74,7 +74,7 @@ function ProductCard() {
 		setQuantityGoods(1);
 	};
 
-	if (cardTitle === '') {
+	if (cardTitle === '' && product.error !== 404) {
 		return <Loader />;
 	}
 
