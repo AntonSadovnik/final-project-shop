@@ -43,7 +43,6 @@ export default function LoginModal(props) {
 						position: 'absolute',
 						top: '25px',
 						right: '20px',
-						// transform: 'translate(-50%, -50%)',
 						bgcolor: 'background.paper',
 					}}
 					edge="start"
