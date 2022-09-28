@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { getReviews } from '../../api/Api';
@@ -10,6 +11,7 @@ function Reviews() {
 	const [reviews, setReviews] = useState(null);
 	const [catalog, setCatalog] = useState(null);
 	const customer = useSelector((state) => state.customer);
+	const navigate = useNavigate();
 
 	function reviewsList() {
 		if (!reviews) {
@@ -17,12 +19,16 @@ function Reviews() {
 				.then((comments) => {
 					setReviews(comments.data);
 				})
-				.catch((err) => {
-					console.log(err);
+				.catch(() => {
+					navigate('/backError');
 				});
 		} else if (reviews) {
 			const reviewsCatalog = reviews.map((item) => (
-				<ReviewCard key={Math.random()} name={item.customer.firstName} text={item.content} />
+				<ReviewCard
+					key={Math.random()}
+					name={item.customer.firstName}
+					text={item.content}
+				/>
 			));
 			setCatalog(reviewsCatalog);
 		}

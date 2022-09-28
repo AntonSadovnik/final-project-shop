@@ -19,7 +19,7 @@ function BlockSwitchingInCategory(props) {
                 style={{ textDecoration: 'none', }}
             >
                 <Stack variant="contained"
-                    component="a"
+                    component="p"
                     direction="row"
                     alignItems="center"
                 >
@@ -52,7 +52,7 @@ function BlockSwitchingInCategory(props) {
                 style={{ textDecoration: 'none', }}
             >
                 <Stack variant="contained"
-                    component="a"
+                    component="p"
                     direction="row"
                     alignItems="center"
                 >

@@ -29,20 +29,15 @@ export default function ReviewsInput({ name }) {
 		},
 		validationSchema: validationschema,
 		onSubmit: (data) => {
-
 			const review = {
 				product: '632070730888dc13b467f037',
 				content: data.content,
 				firstName: data.firstName,
 			};
-			console.log(review);
 			setOpen(true);
-			postReview(review, localStorage.getItem('token'))
-				.then((response) => {
-					console.log(response)
-				})
-				.catch((error) => setErr(error.response.data[Object.keys(error.response.data)[0]]));
-
+			postReview(review, localStorage.getItem('token')).catch((error) =>
+				setErr(error.response.data[Object.keys(error.response.data)[0]])
+			);
 		},
 	});
 
@@ -54,8 +49,9 @@ export default function ReviewsInput({ name }) {
 				handleClickOpen={handleClickOpen}
 			/>
 			<Box>
-				<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+				<Typography component="div" id="modal-modal-description" sx={{ mt: 2 }}>
 					<TextField
+						component="span"
 						sx={{ marginBottom: '20px' }}
 						fullWidth
 						id="firstName"
@@ -68,7 +64,7 @@ export default function ReviewsInput({ name }) {
 						helperText={formik.touched.firstName && formik.errors.firstName}
 					/>
 					<TextField
-
+						component="span"
 						fullWidth
 						multiline
 						rows={4}
@@ -82,7 +78,9 @@ export default function ReviewsInput({ name }) {
 						helperText={formik.touched.content && formik.errors.content}
 					/>
 				</Typography>
-				<Typography sx={{ marginBottom: '20px' }}>{err}</Typography>
+				<Typography component="div" sx={{ marginBottom: '20px' }}>
+					{err}
+				</Typography>
 				<Button
 					sx={{ marginBottom: '40px' }}
 					color="primary"
