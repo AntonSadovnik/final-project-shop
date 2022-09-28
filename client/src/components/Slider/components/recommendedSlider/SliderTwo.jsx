@@ -15,39 +15,48 @@ import PrevBtn from '../buttons/PrevBtn';
 function RecommendedSlider({ category }) {
 	const [items, setItems] = useState();
 	const [categories, setCategories] = useState();
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		if (category === 'drinks') {
-			getRecommendedProduct().then(({ data: { products } }) => {
-				setItems(products);
-				setCategories(category);
-			});
-		} else if (category === 'sushi') {
-			getProductsByCategory(category).then(({ data: { products } }) => {
-				setItems(products);
-				setCategories('sushi');
-			});
+		try {
+			if (category === 'drinks') {
+				getRecommendedProduct().then(({ data: { products } }) => {
+					setItems(products);
+					setCategories(category);
+				});
+			} else if (category === 'sushi') {
+				getProductsByCategory(category).then(({ data: { products } }) => {
+					setItems(products);
+					setCategories('sushi');
+				});
+			}
+		} catch (err) {
+			setError(true);
 		}
 	}, []);
 
 	useEffect(() => {
-		if (categories === 'drinks') {
-			getProductsByCategory(category).then(({ data: { products } }) => {
-				setItems(products);
-				setItems(products);
-				setCategories('drinks');
-			});
-		} else if (categories === 'sushi') {
-			getRecommendedProduct().then(({ data: { products } }) => {
-				setItems(products);
-				setCategories('sushi');
-			});
+		try {
+			if (categories === 'drinks') {
+				getProductsByCategory(category).then(({ data: { products } }) => {
+					setItems(products);
+					setItems(products);
+					setCategories('drinks');
+				});
+			} else if (categories === 'sushi') {
+				getRecommendedProduct().then(({ data: { products } }) => {
+					setItems(products);
+					setCategories('sushi');
+				});
+			}
+		} catch (err) {
+			setError(true);
 		}
 	}, [category]);
 
 	const settings = {
 		dots: false,
-		infinite: false,
+		infinite: true,
 		speed: 500,
 		slidesToShow: 3,
 		slidesToScroll: 1,
@@ -61,7 +70,7 @@ function RecommendedSlider({ category }) {
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 1,
-					infinite: false,
+					infinite: true,
 					dots: false,
 				},
 			},
@@ -70,7 +79,7 @@ function RecommendedSlider({ category }) {
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 1,
-					infinite: false,
+					infinite: true,
 					dots: false,
 				},
 			},
@@ -93,6 +102,10 @@ function RecommendedSlider({ category }) {
 	};
 	if (!items) {
 		return null;
+	}
+
+	if (error) {
+		return <Typography>Oooops, something went wrong!!!</Typography>;
 	}
 	return (
 		<Stack

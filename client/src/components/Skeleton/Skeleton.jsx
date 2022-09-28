@@ -5,14 +5,23 @@ import OfferSlider from '../Slider/components/offerSlider/OfferSlider';
 
 function OfferSliderSkeleton() {
 	const [items, setItems] = useState();
+	const [error, setError] = useState(false);
 	let content;
 	useEffect(() => {
-		getSaleProduct().then(({ data: { products } }) => {
-			setTimeout(() => {
-				setItems(products);
-			}, 1200);
-		});
+		try {
+			getSaleProduct().then(({ data: { products } }) => {
+				setTimeout(() => {
+					setItems(products);
+				}, 1200);
+			});
+		} catch (err) {
+			setError(true);
+		}
 	}, []);
+
+	if (error) {
+		<Typography>Ooops, something went wrong!!!</Typography>;
+	}
 
 	if (!items) {
 		content = (
@@ -105,8 +114,8 @@ function OfferSliderSkeleton() {
 							component="span"
 							variant="rectangular"
 							sx={{ bgcolor: 'grey.600', borderRadius: '5px' }}
-							width="150px"
-							height="45px"
+							width="210px"
+							height="62px"
 						/>
 					</Typography>
 				</Stack>
