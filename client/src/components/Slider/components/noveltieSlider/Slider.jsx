@@ -13,17 +13,23 @@ import PrevBtn from '../buttons/PrevBtn';
 function NoveltieSlider() {
 	const [items, setItems] = useState();
 	const [button, setButton] = useState('left');
-
+	const [error,setError] = useState(false)
 	useEffect(() => {
+		try{
 		if (button === 'left')
 			getNoveltieProduct().then(({ data: { products } }) => setItems(products));
 		if (button === 'right')
 			getPopularProduct().then(({ data: { products } }) => setItems(products));
+		}
+		catch(err){
+			setError(true)
+		}
+		
 	}, [button]);
 
 	const settings = {
 		dots: false,
-		infinite: false,
+		infinite: true,
 		speed: 500,
 		slidesToShow: 3,
 		slidesToScroll: 1,
@@ -36,7 +42,7 @@ function NoveltieSlider() {
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 1,
-					infinite: false,
+					infinite: true,
 				},
 			},
 			{
@@ -44,7 +50,7 @@ function NoveltieSlider() {
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 1,
-					infinite: false,
+					infinite: true,
 					dots: true,
 				},
 			},
@@ -67,6 +73,9 @@ function NoveltieSlider() {
 	};
 	if (!items) {
 		return null;
+	}
+	if(error){
+		return <Typography>Oooops, something went wrong!!!</Typography>
 	}
 	return (
 		<Stack direction="column" justifyContent="center" alignItems="center">
