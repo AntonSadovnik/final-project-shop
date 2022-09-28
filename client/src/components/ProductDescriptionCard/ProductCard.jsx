@@ -60,6 +60,7 @@ function ProductCard() {
 	const onClickButton = () => {
 		product.cartQuantity = quantityGoods;
 		dispatch(addToCart(product));
+		setQuantityGoods(1);
 	};
 
 	if (cardTitle !== '') {

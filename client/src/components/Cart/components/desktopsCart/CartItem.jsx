@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useDispatch} from "react-redux";
 import {useMemo} from "react";
-import {Box, Grid, IconButton, Typography, useMediaQuery} from "@mui/material";
+import {Card, Grid, IconButton, Typography, useMediaQuery} from "@mui/material";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
@@ -26,7 +26,7 @@ export default function CartItem({i}) {
     <>
       <Grid item xs={2} display="flex" justifyContent='space-around'>
         <img style={{matches}
-          ? {maxWidth: '3rem', height: '3rem'}
+          ? {maxWidth: '4rem', height: '3rem'}
           : {maxWidth: '5rem', height: '3rem'}
         }
              src={i.product.imageUrls[0]} alt="susi"
@@ -39,12 +39,14 @@ export default function CartItem({i}) {
       </Grid>
     </>, [])
 
-  const product = useMemo(()=><Box sx={{ my: 1 }}>
+  const product = useMemo(()=><Card sx={{ py: 1, mt: 1 }}>
     <Grid container
           spacing={1}
           alignItems="center"
           direction="row"
-          justifyContent="space-between">
+          justifyContent="space-between"
+    >
+
 
       {lefPart}
 
@@ -74,7 +76,7 @@ export default function CartItem({i}) {
         </IconButton>
       </Grid>
     </Grid>
-  </Box>,[i, i.cartQuantity])
+  </Card>,[i, i.cartQuantity])
 
   return product;
 };

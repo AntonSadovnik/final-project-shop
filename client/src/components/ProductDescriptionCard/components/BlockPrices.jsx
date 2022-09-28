@@ -8,7 +8,7 @@ function BlockPrices(props) {
 
     return (
         <>
-            <Stack direction="row" lignItems="center"
+            <Stack direction="row" alignItems="center"
                 justifyContent="space-around"
                 spacing={0}
                 sx={{ maxWidth: { md: '500px' } }}

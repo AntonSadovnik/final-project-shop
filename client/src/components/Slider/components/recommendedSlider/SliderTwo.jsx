@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Typography, Stack } from '@mui/material';
-import { getRecommendedProduct, getProductsByCategory } from '../../../../api/Api';
+import {
+	getRecommendedProduct,
+	getProductsByCategory,
+} from '../../../../api/Api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../slider.scss';
@@ -53,11 +56,10 @@ function RecommendedSlider({category}) {
 				} 
 			
 			}catch(err){
-				console.log(err)
-			}
+			setError(true)
+		}
 		  
 	}, [category]); 
-
 
 	const settings = {
 		dots: false,
@@ -68,7 +70,7 @@ function RecommendedSlider({category}) {
 		initialSlide: 0,
 		prevArrow: <PrevBtn />,
 		nextArrow: <NextBtn />,
-		
+
 		responsive: [
 			{
 				breakpoint: 2300,
@@ -78,7 +80,6 @@ function RecommendedSlider({category}) {
 					infinite: true,
 					dots: false,
 				},
-
 			},
 			{
 				breakpoint: 1200,
@@ -119,7 +120,7 @@ function RecommendedSlider({category}) {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			sx={{marginTop: '50px', background:'#F2F2F2', padding:'20px', }}
+			sx={{ marginTop: '50px', background: '#F2F2F2', padding: '20px' }}
 		>
 			<Typography
 				gutterBottom
@@ -146,5 +147,3 @@ function RecommendedSlider({category}) {
 }
 
 export default RecommendedSlider;
-
-
