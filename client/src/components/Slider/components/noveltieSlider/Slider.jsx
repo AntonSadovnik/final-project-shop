@@ -5,7 +5,6 @@ import { getNoveltieProduct, getPopularProduct } from '../../../../api/Api';
 import CustomButton from '../../../Button/Button';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import '../../slider.scss';
 import NoveltiesCard from './NoveltiesCard';
 import NextBtn from '../buttons/NextBtn';
 import PrevBtn from '../buttons/PrevBtn';
@@ -13,17 +12,25 @@ import PrevBtn from '../buttons/PrevBtn';
 function NoveltieSlider() {
 	const [items, setItems] = useState();
 	const [button, setButton] = useState('left');
-
+	const [error, setError] = useState(false);
 	useEffect(() => {
-		if (button === 'left')
-			getNoveltieProduct().then(({ data: { products } }) => setItems(products));
-		if (button === 'right')
-			getPopularProduct().then(({ data: { products } }) => setItems(products));
+		try {
+			if (button === 'left')
+				getNoveltieProduct().then(({ data: { products } }) =>
+					setItems(products)
+				);
+			if (button === 'right')
+				getPopularProduct().then(({ data: { products } }) =>
+					setItems(products)
+				);
+		} catch (err) {
+			setError(true);
+		}
 	}, [button]);
 
 	const settings = {
 		dots: false,
-		infinite: false,
+		infinite: true,
 		speed: 500,
 		slidesToShow: 3,
 		slidesToScroll: 1,
@@ -36,7 +43,7 @@ function NoveltieSlider() {
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 1,
-					infinite: false,
+					infinite: true,
 				},
 			},
 			{
@@ -44,7 +51,7 @@ function NoveltieSlider() {
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 1,
-					infinite: false,
+					infinite: true,
 					dots: true,
 				},
 			},
@@ -68,25 +75,91 @@ function NoveltieSlider() {
 	if (!items) {
 		return null;
 	}
+	if (error) {
+		return <Typography>Oooops, something went wrong!!!</Typography>;
+	}
 	return (
 		<Stack direction="column" justifyContent="center" alignItems="center">
 			<Typography
 				component="div"
 				className="btn-container"
-				sx={{ display: 'flex', justifyContent: 'center', width:'95%', boxShadow: 'none', marginBottom:'-25px' }}
+				sx={{
+					display: 'flex',
+					justifyContent: 'center',
+					width: '95%',
+					boxShadow: 'none',
+					marginBottom: '-25px',
+				}}
 			>
-			{button==='left' ? <CustomButton onClick={() => {setButton('left')}} title="Novelties" className='slider-btn' btnStyle={{background:"transparent", color: 'red' , hover:'transparent', border:'0px', boxShadow: 'none', fontWeight:'700' }}/> :<CustomButton 	onClick={() => setButton('left')} title="Novelties" className='slider-btn' btnStyle={{background:"transparent", color: '#FF9846' , hover:'transparent', border:'0px', boxShadow: 'none' }}/>}
-	
-			{button==='right' ? <CustomButton onClick={() => setButton('right')} title="Popular" className='slider-btn' btnStyle={{background:"transparent", color: 'red', hover:'transparent', marginLeft:'20px', boxShadow: 'none', fontWeight:'700'}}/>:
-			<CustomButton onClick={() => setButton('right')} title="Popular" className='slider-btn' btnStyle={{background:"transparent", color: '#FF9846', hover:'transparent', marginLeft:'20px', boxShadow: 'none'}}/>
-			} 
+				{button === 'left' ? (
+					<CustomButton
+						onClick={() => {
+							setButton('left');
+						}}
+						title="Novelties"
+						className="slider-btn"
+						btnStyle={{
+							background: 'transparent',
+							color: 'red',
+							hover: 'transparent',
+							border: '0px',
+							boxShadow: 'none',
+							fontWeight: '700',
+						}}
+					/>
+				) : (
+					<CustomButton
+						onClick={() => setButton('left')}
+						title="Novelties"
+						className="slider-btn"
+						btnStyle={{
+							background: 'transparent',
+							color: '#FF9846',
+							hover: 'transparent',
+							border: '0px',
+							boxShadow: 'none',
+						}}
+					/>
+				)}
+
+				{button === 'right' ? (
+					<CustomButton
+						onClick={() => setButton('right')}
+						title="Popular"
+						className="slider-btn"
+						btnStyle={{
+							background: 'transparent',
+							color: 'red',
+							hover: 'transparent',
+							marginLeft: '20px',
+							boxShadow: 'none',
+							fontWeight: '700',
+						}}
+					/>
+				) : (
+					<CustomButton
+						onClick={() => setButton('right')}
+						title="Popular"
+						className="slider-btn"
+						btnStyle={{
+							background: 'transparent',
+							color: '#FF9846',
+							hover: 'transparent',
+							marginLeft: '20px',
+							boxShadow: 'none',
+						}}
+					/>
+				)}
 			</Typography>
 			<Stack
 				className="slider-wrapper"
 				direction="row"
 				justifyContent="center"
 				alignItems="center"
-				sx={{ marginTop: '50px',  width:{sm:'94vw',md:'80.5vw',lg:'940px',xl:'940px' } }}
+				sx={{
+					marginTop: '50px',
+					width: { sm: '94vw', md: '80.5vw', lg: '940px', xl: '940px' },
+				}}
 			>
 				<Slider {...settings}>
 					{items.map((item) => (

@@ -1,81 +1,84 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Typography, Stack } from '@mui/material';
-import { getRecommendedProduct, getProductsByCategory } from '../../../../api/Api';
+import {
+	getRecommendedProduct,
+	getProductsByCategory,
+} from '../../../../api/Api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import '../../slider.scss';
 import SushiCard from './SushiCard';
 import NextBtn from '../buttons/NextBtn';
 import PrevBtn from '../buttons/PrevBtn';
 
-function RecommendedSlider({category}) {
-	const[items, setItems] = useState();
-	const[categories, setCategories] = useState()
+function RecommendedSlider({ category }) {
+	const [items, setItems] = useState();
+	const [categories, setCategories] = useState();
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		if(category==='drinks'){
-			getRecommendedProduct().then(({ data: { products } }) =>{
-			setItems(products)
-			setCategories(category)
+		try {
+			if (category === 'drinks') {
+				getRecommendedProduct().then(({ data: { products } }) => {
+					setItems(products);
+					setCategories(category);
+				});
+			} else if (category === 'sushi') {
+				getProductsByCategory(category).then(({ data: { products } }) => {
+					setItems(products);
+					setCategories('sushi');
+				});
 			}
-			
-		);
-		} else if(category==='sushi') {
-			getProductsByCategory(category).then(({data:{ products }})=>{setItems(products)
-			setCategories('sushi')
-			})
-		}	
-	
+		} catch (err) {
+			setError(true);
+		}
 	}, []);
 
-	  useEffect(() => {
-		  if(categories==='drinks'){
-				
-			getProductsByCategory(category).then(({data:{ products }})=>{setItems(products)
-			setItems(products)
-			setCategories('drinks')
+	useEffect(() => {
+		try {
+			if (categories === 'drinks') {
+				getProductsByCategory(category).then(({ data: { products } }) => {
+					setItems(products);
+					setItems(products);
+					setCategories('drinks');
+				});
+			} else if (categories === 'sushi') {
+				getRecommendedProduct().then(({ data: { products } }) => {
+					setItems(products);
+					setCategories('sushi');
+				});
 			}
-			
-		);
-		} else if(categories==='sushi') {
-			
-			getRecommendedProduct().then(({ data: { products } }) =>{
-				console.log(products)
-				setItems(products)   
-			setCategories('sushi')})
-		} 
-	
-	}, [category]); 
-
+		} catch (err) {
+			setError(true);
+		}
+	}, [category]);
 
 	const settings = {
 		dots: false,
-		infinite: false,
+		infinite: true,
 		speed: 500,
 		slidesToShow: 3,
 		slidesToScroll: 1,
 		initialSlide: 0,
 		prevArrow: <PrevBtn />,
 		nextArrow: <NextBtn />,
-		
+
 		responsive: [
 			{
 				breakpoint: 2300,
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 1,
-					infinite: false,
+					infinite: true,
 					dots: false,
 				},
-
 			},
 			{
 				breakpoint: 1200,
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 1,
-					infinite: false,
+					infinite: true,
 					dots: false,
 				},
 			},
@@ -99,13 +102,17 @@ function RecommendedSlider({category}) {
 	if (!items) {
 		return null;
 	}
+
+	if (error) {
+		return <Typography>Oooops, something went wrong!!!</Typography>;
+	}
 	return (
 		<Stack
 			className="slider-wrapp"
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			sx={{marginTop: '50px', background:'#F2F2F2', padding:'20px', }}
+			sx={{ marginTop: '50px', background: '#F2F2F2', padding: '20px' }}
 		>
 			<Typography
 				gutterBottom
@@ -132,5 +139,3 @@ function RecommendedSlider({category}) {
 }
 
 export default RecommendedSlider;
-
-
