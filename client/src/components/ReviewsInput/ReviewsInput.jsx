@@ -35,7 +35,6 @@ export default function ReviewsInput({ name }) {
 				content: data.content,
 				firstName: data.firstName,
 			};
-			console.log(review);
 			setOpen(true);
 			postReview(review, localStorage.getItem('token'))
 				.then((response) => {
@@ -54,8 +53,9 @@ export default function ReviewsInput({ name }) {
 				handleClickOpen={handleClickOpen}
 			/>
 			<Box>
-				<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+				<Typography component="div" id="modal-modal-description" sx={{ mt: 2 }}>
 					<TextField
+						component="span"
 						sx={{ marginBottom: '20px' }}
 						fullWidth
 						id="firstName"
@@ -68,7 +68,7 @@ export default function ReviewsInput({ name }) {
 						helperText={formik.touched.firstName && formik.errors.firstName}
 					/>
 					<TextField
-
+						component="span"
 						fullWidth
 						multiline
 						rows={4}
@@ -82,7 +82,9 @@ export default function ReviewsInput({ name }) {
 						helperText={formik.touched.content && formik.errors.content}
 					/>
 				</Typography>
-				<Typography sx={{ marginBottom: '20px' }}>{err}</Typography>
+				<Typography component="div" sx={{ marginBottom: '20px' }}>
+					{err}
+				</Typography>
 				<Button
 					sx={{ marginBottom: '40px' }}
 					color="primary"
