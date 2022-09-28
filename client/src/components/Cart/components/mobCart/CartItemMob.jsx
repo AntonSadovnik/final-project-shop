@@ -27,7 +27,7 @@ export default function CartItemMob({item}) {
     fontSize: "18px"
   }}>{item.product.name}</Typography>, [item.product.name]);
 
-  const productInCartMob = useMemo(() => <Card key={item.product.itemNo} sx={{mx: .5, px: 1}}>
+  const productInCartMob = useMemo(() => <Card  sx={{mx: .5, p: 1, mt:1}}>
     <Grid
       container
       direction="row"
@@ -35,7 +35,7 @@ export default function CartItemMob({item}) {
       alignItems="center"
     >
       {img}
-      <Grid item xs={8}>
+      <Grid item xs={8} >
         {productName}
 
         <Grid container
