@@ -85,7 +85,7 @@ export default function RegistrationForm({ setForm }) {
 						id="email"
 						name="email"
 						label="Email"
-						type='email'
+						type="email"
 						value={formik.values.email}
 						onBlur={formik.onBlur}
 						onChange={formik.handleChange}
@@ -106,7 +106,7 @@ export default function RegistrationForm({ setForm }) {
 						helperText={formik.touched.password && formik.errors.password}
 					/>
 				</Typography>
-				<Typography component="div" sx={{ marginBottom: '20px', color: 'red'}}>
+				<Typography component="div" sx={{ marginBottom: '20px', color: 'red' }}>
 					{err}
 				</Typography>
 				<Button
@@ -125,7 +125,16 @@ export default function RegistrationForm({ setForm }) {
 					}}
 				>
 					or{' '}
-					<Box className="modal__change-form" onClick={changeForm}>
+					<Box
+						sx={{
+							cursor: 'pointer',
+							display: 'inline-block',
+							margin: '0 auto',
+							textAlign: ' center',
+							'&:hover': { color: '#f46d40' },
+						}}
+						onClick={changeForm}
+					>
 						Login
 					</Box>
 				</Box>

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Typography, Stack } from '@mui/material';
-import { getRecommendedProduct, getProductsByCategory } from '../../../../api/Api';
+import {
+	getRecommendedProduct,
+	getProductsByCategory,
+} from '../../../../api/Api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../slider.scss';
@@ -9,45 +12,38 @@ import SushiCard from './SushiCard';
 import NextBtn from '../buttons/NextBtn';
 import PrevBtn from '../buttons/PrevBtn';
 
-function RecommendedSlider({category}) {
-	const[items, setItems] = useState();
-	const[categories, setCategories] = useState()
+function RecommendedSlider({ category }) {
+	const [items, setItems] = useState();
+	const [categories, setCategories] = useState();
 
 	useEffect(() => {
-		if(category==='drinks'){
-			getRecommendedProduct().then(({ data: { products } }) =>{
-			setItems(products)
-			setCategories(category)
-			}
-			
-		);
-		} else if(category==='sushi') {
-			getProductsByCategory(category).then(({data:{ products }})=>{setItems(products)
-			setCategories('sushi')
-			})
-		}	
-	
+		if (category === 'drinks') {
+			getRecommendedProduct().then(({ data: { products } }) => {
+				setItems(products);
+				setCategories(category);
+			});
+		} else if (category === 'sushi') {
+			getProductsByCategory(category).then(({ data: { products } }) => {
+				setItems(products);
+				setCategories('sushi');
+			});
+		}
 	}, []);
 
-	  useEffect(() => {
-		  if(categories==='drinks'){
-				
-			getProductsByCategory(category).then(({data:{ products }})=>{setItems(products)
-			setItems(products)
-			setCategories('drinks')
-			}
-			
-		);
-		} else if(categories==='sushi') {
-			
-			getRecommendedProduct().then(({ data: { products } }) =>{
-				console.log(products)
-				setItems(products)   
-			setCategories('sushi')})
-		} 
-	
-	}, [category]); 
-
+	useEffect(() => {
+		if (categories === 'drinks') {
+			getProductsByCategory(category).then(({ data: { products } }) => {
+				setItems(products);
+				setItems(products);
+				setCategories('drinks');
+			});
+		} else if (categories === 'sushi') {
+			getRecommendedProduct().then(({ data: { products } }) => {
+				setItems(products);
+				setCategories('sushi');
+			});
+		}
+	}, [category]);
 
 	const settings = {
 		dots: false,
@@ -58,7 +54,7 @@ function RecommendedSlider({category}) {
 		initialSlide: 0,
 		prevArrow: <PrevBtn />,
 		nextArrow: <NextBtn />,
-		
+
 		responsive: [
 			{
 				breakpoint: 2300,
@@ -68,7 +64,6 @@ function RecommendedSlider({category}) {
 					infinite: false,
 					dots: false,
 				},
-
 			},
 			{
 				breakpoint: 1200,
@@ -105,7 +100,7 @@ function RecommendedSlider({category}) {
 			direction="column"
 			justifyContent="center"
 			alignItems="center"
-			sx={{marginTop: '50px', background:'#F2F2F2', padding:'20px', }}
+			sx={{ marginTop: '50px', background: '#F2F2F2', padding: '20px' }}
 		>
 			<Typography
 				gutterBottom
@@ -132,5 +127,3 @@ function RecommendedSlider({category}) {
 }
 
 export default RecommendedSlider;
-
-

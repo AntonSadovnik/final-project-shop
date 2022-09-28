@@ -29,19 +29,15 @@ export default function ReviewsInput({ name }) {
 		},
 		validationSchema: validationschema,
 		onSubmit: (data) => {
-
 			const review = {
 				product: '632070730888dc13b467f037',
 				content: data.content,
 				firstName: data.firstName,
 			};
 			setOpen(true);
-			postReview(review, localStorage.getItem('token'))
-				.then((response) => {
-					console.log(response)
-				})
-				.catch((error) => setErr(error.response.data[Object.keys(error.response.data)[0]]));
-
+			postReview(review, localStorage.getItem('token')).catch((error) =>
+				setErr(error.response.data[Object.keys(error.response.data)[0]])
+			);
 		},
 	});
 
