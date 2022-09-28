@@ -5,17 +5,27 @@ import OfferSlider from '../Slider/components/offerSlider/OfferSlider';
 
 function OfferSliderSkeleton() {
   const [items, setItems] = useState();
+  const [error, setError] = useState(false);
   let content;
   useEffect(()=>{
-    getSaleProduct().then(({data:{products}})=>{
-      setTimeout(() => {
+    try{
+      getSaleProduct().then(({data:{products}})=>{
+        setTimeout(() => {
         setItems(products) 
-      }, 1200);
-    })
-     .catch((error) => console.log(error))
+        }, 1200);
+      })
+    }
+    
+     catch(err){
+      setError(true)
+     }
 
 
    },[])
+
+   if(error){
+    <Typography>Ooops, something went wrong!!!</Typography>
+   }
 
    if(!items){
     content = <Box component="span" direction="column" justifyContent="center" alignItems="flex-end" className='skeleton' sx={{bgcolor:'#F2F2F2', marginBottom: '100px', display:'flex', alignItems:"flex-end", width:'100%', height:{sm:'none',md:525,lg:525,xl:525}}}>
@@ -30,7 +40,7 @@ function OfferSliderSkeleton() {
     <Skeleton component="span" variant="text" sx={{ fontSize: '40px', bgcolor:'grey.600', }} width='100px'  />
     </Typography>
     
-    <Skeleton component="span" variant="rectangular" sx={{bgcolor:'grey.600',borderRadius:'5px'}} width='150px' height='45px' />
+    <Skeleton component="span" variant="rectangular" sx={{bgcolor:'grey.600',borderRadius:'5px'}} width='210px' height='62px' />
     </Typography>
       
     </Stack>

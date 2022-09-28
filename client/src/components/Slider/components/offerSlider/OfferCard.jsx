@@ -32,6 +32,7 @@ return (<Card key={item.id} className="card blockquote" sx={{ display:'flex',
   width:'100%',
   boxSizing:'border-box',
   marginBottom:'50px',
+  
   }}>
 
 <Typography  component="div" className='title' sx={{display:"flex"}}>
@@ -51,7 +52,7 @@ return (<Card key={item.id} className="card blockquote" sx={{ display:'flex',
       </NavLink>
         </Typography>
        
-       <CardContent direction="column" justifycontent="space-between" alignitems="flex-end" sx={{width:'45%', display:'flex', flexDirection:"column", alignItems:'flex-end',justifyContent:"space-around"}}>
+       <CardContent direction="column" justifycontent="space-between" alignitems="flex-end" sx={{width:'45%', display:'flex', flexDirection:"column", alignItems:'flex-end',justifyContent:"space-around", marginLeft:'-10px'}}>
        <ThemeProvider theme={theme}>
        
         <Typography gutterBottom variant="h6" component="div" className='title' sx={{fontSize: 30,marginTop:"20px", marginBottom:"28px", textAlign:'center', position:'absolute', top: 20,  }}>
@@ -90,7 +91,7 @@ return (<Card key={item.id} className="card blockquote" sx={{ display:'flex',
         
         
         <CardActions component="div">
-        <Button variant="contained" sx={{padding:'10px 70px', marginBottom:'-50px',color:'white' }} onClick={()=>dispatch(addToCart(item))}>Want</Button>
+        <Button variant="contained" sx={{padding:'10px 70px', marginBottom:'-50px',color:'white', fontSize:'24px' }} onClick={()=>dispatch(addToCart(item))}>Want</Button>
         </CardActions>
         
         </Typography>
