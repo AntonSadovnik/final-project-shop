@@ -1,38 +1,80 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "client",
+	"proxy": "http://localhost:5000",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@emotion/react": "^11.10.0",
+		"@emotion/styled": "^11.10.0",
+		"@mui/icons-material": "^5.10.2",
+		"@mui/lab": "^5.0.0-alpha.97",
+		"@mui/material": "^5.10.2",
+		"@mui/x-data-grid": "^5.15.1",
+		"@mui/x-date-pickers": "^5.0.0-beta.4",
+		"@mui/x-date-pickers-pro": "^5.0.0-beta.4",
+		"@testing-library/jest-dom": "^5.16.4",
+		"@testing-library/react": "^13.3.0",
+		"@testing-library/user-event": "^13.5.0",
+		"axios": "^0.27.2",
+		"date-fns": "^2.29.1",
+		"formik": "^2.2.9",
+		"prop-types": "^15.8.1",
+		"query-string": "^7.1.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-loading-skeleton": "^3.1.0",
+		"react-redux": "^8.0.2",
+		"react-router": "^6.3.0",
+		"react-router-dom": "^6.4.1",
+		"react-scripts": "^5.0.1",
+		"react-slick": "^0.29.0",
+		"redux": "^4.2.0",
+		"redux-thunk": "^2.4.1",
+		"slick-carousel": "^1.8.1",
+		"styled-components": "^5.3.5",
+		"web-vitals": "^2.1.4",
+		"yup": "^0.32.11"
+	},
+	"devDependencies": {
+		"eslint": "^8.21.0",
+		"eslint-config-airbnb": "^19.0.4",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-jsx-a11y": "^6.6.1",
+		"eslint-plugin-react": "^7.30.1",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"husky": "^8.0.1",
+		"lint-staged": "^13.0.3",
+		"nodemon": "^1.19.1",
+		"prettier": "2.7.1",
+		"sass": "^1.54.4"
+	},
+	"lint-staged": {
+		"*.js": "npm run lint",
+		"*.{js,css,md,html,json}": "npm run format"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }

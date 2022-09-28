@@ -18,15 +18,15 @@ exports.placeOrder = async (req, res, next) => {
     let cartProducts = [];
 
     if (req.body.deliveryAddress) {
-      order.deliveryAddress = JSON.parse(req.body.deliveryAddress);
+      // order.deliveryAddress = JSON.parse(req.body.deliveryAddress);
     }
 
     if (req.body.shipping) {
-      order.shipping = JSON.parse(req.body.shipping);
+      // order.shipping = JSON.parse(req.body.shipping);
     }
 
     if (req.body.paymentInfo) {
-      order.paymentInfo = JSON.parse(req.body.paymentInfo);
+      // order.paymentInfo = JSON.parse(req.body.paymentInfo);
     }
 
     if (req.body.customerId) {
@@ -44,7 +44,7 @@ exports.placeOrder = async (req, res, next) => {
     if (cartProducts.length > 0) {
       order.products = _.cloneDeep(cartProducts);
     } else {
-      order.products = JSON.parse(req.body.products);
+      // order.products = JSON.parse(req.body.products);
     }
 
     order.totalSum = order.products.reduce(
@@ -53,16 +53,16 @@ exports.placeOrder = async (req, res, next) => {
       0
     );
 
-    const productAvailibilityInfo = await productAvailibilityChecker(
-      order.products
-    );
+    // const productAvailibilityInfo = await productAvailibilityChecker(
+    //   order.products
+    // );
 
-    if (!productAvailibilityInfo.productsAvailibilityStatus) {
-      res.json({
-        message: "Some of your products are unavailable for now",
-        productAvailibilityInfo
-      });
-    } else {
+    // if (!productAvailibilityInfo.productsAvailibilityStatus) {
+    //   res.json({
+    //     message: "Some of your products are unavailable for now",
+    //     productAvailibilityInfo
+    //   });
+    // } else {
       const subscriberMail = req.body.email;
       const letterSubject = req.body.letterSubject;
       const letterHtml = req.body.letterHtml;
@@ -118,7 +118,7 @@ exports.placeOrder = async (req, res, next) => {
             message: `Error happened on server: "${err}" `
           })
         );
-    }
+'    // }'
   } catch (err) {
     res.status(400).json({
       message: `Error happened on server: "${err}" `
@@ -136,15 +136,15 @@ exports.updateOrder = (req, res, next) => {
       const order = _.cloneDeep(req.body);
 
       if (req.body.deliveryAddress) {
-        order.deliveryAddress = JSON.parse(req.body.deliveryAddress);
+        // order.deliveryAddress = JSON.parse(req.body.deliveryAddress);
       }
 
       if (req.body.shipping) {
-        order.shipping = JSON.parse(req.body.shipping);
+        // order.shipping = JSON.parse(req.body.shipping);
       }
 
       if (req.body.paymentInfo) {
-        order.paymentInfo = JSON.parse(req.body.paymentInfo);
+        // order.paymentInfo = JSON.parse(req.body.paymentInfo);
       }
 
       if (req.body.customerId) {
@@ -152,7 +152,7 @@ exports.updateOrder = (req, res, next) => {
       }
 
       if (req.body.products) {
-        order.products = JSON.parse(req.body.products);
+        // order.products = JSON.parse(req.body.products);
 
         order.totalSum = order.products.reduce(
           (sum, cartItem) =>
